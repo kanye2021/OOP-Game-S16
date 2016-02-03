@@ -19,5 +19,4 @@ public class StatusViewport extends View {
         g.setColor(Color.WHITE);
         g.drawString("PUT STATS HERE", 50, B_HEIGHT*3/4 + 50);
     }
-
 }
