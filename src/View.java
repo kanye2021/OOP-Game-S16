@@ -4,7 +4,11 @@ import java.awt.*;
 /**
  * Created by sergiopuleri on 2/1/16.
  */
-abstract public class View extends JPanel{
+public abstract class View {
+
+    // Constants
+    public static int B_WIDTH = 700;
+    public static int B_HEIGHT = 600;
 
     protected ViewController viewController;
     protected int width;
@@ -12,33 +16,13 @@ abstract public class View extends JPanel{
     protected int x;
     protected int y;
 
-
-    // Constants
-    protected final int B_WIDTH = 700;
-    protected final int B_HEIGHT = 600;
-
-    public View() {
-        initView();
-
-    }
-
-    private void initView() {
-        setFocusable(true);
-        setBackground(Color.BLACK);
-
-        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
-    }
+    public View() { }
 
     // Subclasses need to implement to render
     // e.g.
 
     abstract void render(Graphics g);
 
-//    protected void getImageDimensions() {
-//
-//        width = view.getWidth(null);
-//        height = view.getHeight(null);
-//    }
 
 
     public int getX() {

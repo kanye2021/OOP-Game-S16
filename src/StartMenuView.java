@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
@@ -7,13 +8,8 @@ import java.awt.geom.Rectangle2D;
  */
 public class StartMenuView extends View {
 
-    private final String CREATE_GAME = "Create New Game";
-    private final String LOAD_GAME = "Load Game";
-    private final String EXIT = "Exit";
     private final int BUTTON_WIDTH = 200;
     private final int BUTTON_HEIGHT = 50;
-
-
 
     public StartMenuView(){
         super();
@@ -23,7 +19,14 @@ public class StartMenuView extends View {
     @Override
     void render(Graphics g) {
 
-        // Rectangles
+        Font small = new Font("Helvetica", Font.BOLD, 14);
+        FontMetrics fm = g.getFontMetrics(small);
+
+        g.setColor(Color.white);
+        g.setFont(small);
+
+    	
+        /*// Rectangles
         // All buttons have the same X position.
         // TODO: Someone come up with better maths to get y positions lol.
         int button_x_pos = B_WIDTH/2 - BUTTON_WIDTH/2;
@@ -33,7 +36,7 @@ public class StartMenuView extends View {
 
         // Text in the rectangles
         Font small = new Font("Helvetica", Font.BOLD, 14);
-        FontMetrics fm = getFontMetrics(small);
+        FontMetrics fm = g.getFontMetrics(small);
 
         g.setColor(Color.white);
         g.setFont(small);
@@ -50,7 +53,7 @@ public class StartMenuView extends View {
         int x3 = (B_WIDTH - (int)r3.getWidth())/2;
         int y3 = button3_y_pos + (int)r3.getHeight() + fm.getAscent();
 
-        if (((StartMenuController)viewController).getSelected() == StartMenuController.Selected.LOAD_GAME) {
+        if (((StartMenuController)viewController).getSelected() == StartMenuController.MenuOptions.LOAD_GAME) {
             g.setColor(Color.WHITE);
             g.fillRect(button_x_pos, button1_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.setColor(Color.BLACK);
@@ -60,7 +63,7 @@ public class StartMenuView extends View {
             g.drawRect(button_x_pos, button1_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.drawString(LOAD_GAME, x1, y1);
         }
-        if (((StartMenuController)viewController).getSelected() == StartMenuController.Selected.CREATE_GAME) {
+        if (((StartMenuController)viewController).getSelected() == StartMenuController.MenuOptions.CREATE_GAME) {
             g.setColor(Color.WHITE);
             g.fillRect(button_x_pos, button2_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.setColor(Color.BLACK);
@@ -70,7 +73,7 @@ public class StartMenuView extends View {
             g.drawRect(button_x_pos, button2_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.drawString(CREATE_GAME, x2, y2);
         }
-        if (((StartMenuController)viewController).getSelected() == StartMenuController.Selected.EXIT) {
+        if (((StartMenuController)viewController).getSelected() == StartMenuController.MenuOptions.EXIT_GAME) {
             g.setColor(Color.WHITE);
             g.fillRect(button_x_pos, button3_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.setColor(Color.BLACK);
@@ -79,18 +82,46 @@ public class StartMenuView extends View {
             g.setColor(Color.WHITE);
             g.drawRect(button_x_pos, button3_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.drawString(EXIT, x3, y3);
-        }
+        }*/
 
+        
+        
+        
+        for (StartMenuController.MenuOptions option : StartMenuController.MenuOptions.values()) {
+			
+			Rectangle2D rectangle = fm.getStringBounds(option.toString(), g);
+			int boxX = B_WIDTH / 2 - BUTTON_WIDTH / 2;
+			int boxY = BUTTON_HEIGHT * option.ordinal();
+			int boxDX = BUTTON_WIDTH;
+			int boxDY = BUTTON_HEIGHT;
+			int stringX = B_WIDTH / 2 - (int) (rectangle.getWidth() / 2);
+			int stringY = option.ordinal() * BUTTON_HEIGHT + (int) (rectangle.getHeight() / 2) + fm.getAscent();
+			
+			Color primaryColor;
+			Color secondaryColor;
+			
+			if (option == ((StartMenuController) viewController).getActiveItem()) {
+			
+				primaryColor = Color.WHITE;
+				secondaryColor = Color.BLACK;
+			
+			} else {
+				
+				primaryColor = Color.BLACK;
+				secondaryColor = Color.WHITE;
+				
+			}
+			
+			g.setColor(primaryColor);
+			g.fillRect(boxX, boxY, boxDX, boxDY);
+			g.setColor(secondaryColor);
+			g.drawString(option.toString(), stringX, stringY);
+			//g.drawRect(boxX, boxY, boxDX, boxDY);
+			
+		}
+        
         Toolkit.getDefaultToolkit().sync();
 
-
     }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        render(g);
-    }
-
 
 }

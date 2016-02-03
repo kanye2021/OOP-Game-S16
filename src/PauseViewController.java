@@ -1,19 +1,20 @@
 import java.awt.event.KeyEvent;
 
 /**
- * Created by sergiopuleri on 2/1/16.
+ * Created by Austin on 2/2/16.
  */
-public class StartMenuController extends ViewController {
+public class PauseViewController extends ViewController {
 
-	
 	// This enum represents the menu options available on this screen. The setView() function maps to an individual view
-	// such as IOMediator.Views.CREATE_GAME;
+	// such as IOMediator.Views.GAME;
+	
 	public enum MenuOptions {
-		CREATE_GAME("Create Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.CREATE_GAME);};},
-		INVENTORY("Open Inventory") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.INVENTORY);};},
-		PAUSE("Open Pause Menu") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.PAUSE);};},
+		RESUME("Resume Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.GAME);};}, 
+		OPTIONS("Options") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
 		LOAD_GAME("Load Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
-		EXIT_GAME("Exit Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};};
+		SAVE_GAME("Save Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
+		DAVE("Dave") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.START_MENU);};},
+		EXIT_GAME("Exit Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.START_MENU);};};
 		
 		private String s;
 		
@@ -64,49 +65,44 @@ public class StartMenuController extends ViewController {
 		}
 		
 	}
-
-    private MenuOptions option;
-
-    public StartMenuController(View view) {
+	
+	MenuOptions option;
+	
+    public PauseViewController(View view) {
         super(view);
-        option = MenuOptions.CREATE_GAME;
+        option = MenuOptions.RESUME;
     }
 
     public MenuOptions getActiveItem() {
-        return option;
+    	
+    	return option;
+    	
     }
-
+    
     @Override
     public void handleKeyPress(int key) {
 
         if (key == KeyEvent.VK_UP) {
-            System.out.println("Up pressed FROM SMVC");
             option = option.previous();
-
         }
 
         else if (key == KeyEvent.VK_DOWN) {
-            System.out.println("Down pressed FROM SMVC");
             option = option.next();
         }
 
+        else if (key == KeyEvent.VK_ESCAPE) {
+        	IOMediator.setActiveView(IOMediator.Views.GAME);
+        }
+    
         else if (key == KeyEvent.VK_ENTER) {
-            System.out.println("Enter pressed FROM SMVC");
-            option.setView();
-
+        	option.setView();
         }
-        //TODO: REMOVE HAKCY ASS SHIT HOE
-        else if(key == KeyEvent.VK_Q){
-            IOMediator.setActiveView(IOMediator.Views.GAME);
-        }
-        else {
-            System.out.println("invalid key press FROM SMVC");
-        }
-
+        
     }
-
+    
     @Override
     public void handleKeyRelease(int key) {
 
     }
+    
 }

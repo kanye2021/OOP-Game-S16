@@ -1,39 +1,47 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by sergiopuleri on 2/1/16.
  */
-public class Driver {
+public class Driver extends JFrame implements ActionListener {
 
-    // The main JFRAME
-    private Display display;
+    private Timer timer;
+    private final int DELAY = 15;
 
     public Driver() {
-
-        display = new Display();
-//        init();
+        init();
     }
 
     private void init() {
 
-//        add(new Display());
+        add(Display.getInstance());
+        setResizable(false);
+        pack();
 
-//        setResizable(false);
-//        pack();
-//
-//        setTitle("Collision");
-//        setLocationRelativeTo(null);
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("RPG GAME");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Do timer
+        timer = new Timer(DELAY, this);
+        timer.start();
+    }
+
+    // CALLED EVERY DELAY MS
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Display.getInstance().repaint();
     }
 
     public static void main(String[] args) {
-
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 Driver ex = new Driver();
-                ex.display.setVisible(true);
+                ex.setVisible(true);
             }
         });
     }
