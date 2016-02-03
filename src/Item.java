@@ -23,6 +23,10 @@ public class Item {
         return type;
     }
 
+    public int getID() {
+    	return id;
+    }
+    
     public String getDescription() { return description; }
 
     public boolean onTouch(Entity entity){
@@ -32,7 +36,24 @@ public class Item {
     
     @Override
 	public int hashCode() {
-		return id;
-	}
+
+    	return id;
+
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+    	
+    	Item otherItem = (Item) o;
+    	
+    	if (this.getID() == otherItem.getID()) {
+    		
+    		return true;
+    		
+    	}
+    	
+    	return false;
+    	
+    }
     
 }

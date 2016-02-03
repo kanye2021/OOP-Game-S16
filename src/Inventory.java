@@ -9,15 +9,17 @@ public class Inventory {
 	
 	public void addItem(Item newItem) {
 		
-		Integer removedValue = items.remove(newItem);
-		
-		if (removedValue == null) {
+		if (items.containsKey(newItem)) {
 			
-			removedValue = new Integer(0);
-		
+			items.put(newItem, items.get(newItem) + 1);
+			
 		}
 		
-		items.put(newItem, removedValue + 1);
+		else {
+			
+			items.put(newItem, 1);
+			
+		}
 		
 	}
 	

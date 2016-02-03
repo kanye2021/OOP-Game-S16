@@ -16,8 +16,6 @@ public class IOMediator {
 	
     public static enum Views {
     	
-    	// Views.START_MENU_VIEW.render(g);
-    	
         START_MENU(new StartMenuView()) {void render(Graphics g) {getView().render(g);}},
         CREATE_GAME(new CreateNewGameView()) {void render(Graphics g) {getView().render(g);}},
         AVATAR_CREATION(new AvatarCreationView()) {void render(Graphics g) {getView().render(g);}},
@@ -54,8 +52,9 @@ public class IOMediator {
         
         inventory.addItem(new Item("Cat", "Der", "Desc", 1));
         inventory.addItem(new Item("Dog", "Der", "Desc", 2));
-        inventory.addItem(new Item("Goat", "Der", "Desc", 3));
-        inventory.addItem(new Item("Goat", "Der", "Desc", 3));
+        inventory.addItem(new Item("Oversized Goat", "Der", "Desc", 3));
+        inventory.addItem(new Item("Oversized Goat", "Der", "Desc", 3));
+        inventory.addItem(new Item("Elephant", "Der", "Desc", 4));
         
     }
 
