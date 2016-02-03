@@ -75,7 +75,12 @@ public class AreaViewport extends View implements Observer{
                 //TODO: Do the same for areaEffect, item, and entity
                 Entity e = map.getEntityAtLocation(j, i);
                 if(e!=null){
-                    g.drawRect(displayX, displayY, TILE_SIZE, TILE_SIZE);
+                    ImageIcon avatar_icon = new ImageIcon(entityBaseFilepath + e.getOrientation() + ".png");
+                    Image avatarImage = avatar_icon.getImage();
+                   // g.drawRect(displayX, displayY, TILE_SIZE, TILE_SIZE);
+//                    int w = avatarImage.getWidth();
+//                    int h =  avatarImage.getHeight();
+                    g.drawImage(avatarImage, displayX, displayY, Display.getInstance());
                 }
 
                 displayX += TILE_SIZE;
