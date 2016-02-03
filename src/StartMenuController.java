@@ -63,12 +63,12 @@ public class StartMenuController extends ViewController {
 
         else if (key == KeyEvent.VK_ENTER && selectedOption == Selected.CREATE_GAME) {
             System.out.println("Enter pressed FROM SMVC");
-            ioMediator.setActiveView(IOMediator.Views.CREATE_GAME_VIEW);
+            ioMediator.setActiveView(IOMediator.Views.CREATE_GAME);
 
         }
         //TODO: REMOVE HAKCY ASS SHIT HOE
         else if(key == KeyEvent.VK_Q){
-            ioMediator.setActiveView(IOMediator.Views.GAME_VIEW);
+            ioMediator.setActiveView(IOMediator.Views.GAME);
         }
         else {
             System.out.println("invalid key press FROM SMVC");
