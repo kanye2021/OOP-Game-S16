@@ -1,4 +1,6 @@
 import javax.swing.*;
+
+import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -9,29 +11,42 @@ import java.awt.event.KeyEvent;
  */
 public class IOMediator {
 
-    public enum Views {
-        START_MENU_VIEW,
-        CREATE_GAME_VIEW,
-        AVATAR_CREATION_VIEW,
-        GAME_VIEW,
-        INVENTORY_VIEW
+    public static enum Views {
+    	
+    	// Views.START_MENU_VIEW.render(g);
+    	
+        START_MENU(new StartMenuView()) {void render(Graphics g) {getView().render(g);}},
+        CREATE_GAME(new CreateNewGameView()) {void render(Graphics g) {getView().render(g);}},
+        AVATAR_CREATION(new AvatarCreationView()) {void render(Graphics g) {getView().render(g);}},
+        //GAME() {void render(Graphics g) {getView().render(g);}},
+        INVENTORY(new InventoryView(new Inventory())) {void render(Graphics g) {getView().render(g);}},
+        PAUSE(new PauseView()) {void render(Graphics g) {getView().render(g);}};
+        
+        abstract void render(Graphics g);
+        
+        private View view;
+        
+        public View getView() {
+        	return view;
+        }
+
+        private Views(View view) {
+        	this.view = view;
+        }
+        
     }
 
     private static IOMediator ioMediator = new IOMediator();
     // If adding new views, add it as a static class property here.
-    private static View activeView;
-    private static View startMenuView;
-    private static View createNewGame;
-
+    private static Views activeView;
+    
     // A private Constructor prevents any other
     // class from instantiating.
     // If no view passed in,
     // Default view is StartMenuView
     private IOMediator() {
         // Init all views below
-        startMenuView = new StartMenuView();
-        createNewGame = new CreateNewGameView();
-        activeView = startMenuView;
+        activeView = Views.START_MENU;
     }
 
     // Static 'instance' method
@@ -42,28 +57,10 @@ public class IOMediator {
 
     // Other methods protected by singleton-ness
     protected static void setActiveView(Views view) {
-        switch (view) {
-            case START_MENU_VIEW:
-                activeView = startMenuView;
-                break;
-            case CREATE_GAME_VIEW:
-                activeView = createNewGame;
-                break;
-            case AVATAR_CREATION_VIEW:
-                activeView = createNewGame;
-                break;
-            case GAME_VIEW:
-                activeView = createNewGame;
-                break;
-            case INVENTORY_VIEW:
-                activeView = createNewGame;
-                break;
-            default:
-                System.out.println("Bad enum in IOMediator");
-        }
+        activeView = view;
     }
     protected static View getActiveView() {
-        return activeView;
+        return activeView.getView();
     }
 
     protected static void keyPressed(KeyEvent e) {
@@ -72,7 +69,7 @@ public class IOMediator {
         int key = e.getKeyCode();
         if (activeView != null) {
             // If we have an active view, send key press to its controller
-            activeView.viewController.handleKeyPress(key);
+            activeView.getView().viewController.handleKeyPress(key);
         }
 
         else {
