@@ -30,7 +30,7 @@ public class InventoryView extends View {
 		
 		Font small = new Font("Helvetica", Font.BOLD, 14);
 
-        g.setFont(small);
+        g2.setFont(small);
 		
 		for (Map.Entry<Item, Integer> entry : currentInventory.items.entrySet()) {
 			

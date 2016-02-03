@@ -26,8 +26,8 @@ public class PauseView extends View {
 		Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics fm = g.getFontMetrics(small);
 
-        g.setColor(Color.white);
-        g.setFont(small);
+        g2.setColor(Color.white);
+        g2.setFont(small);
 		
 		for (PauseViewController.MenuOptions option : PauseViewController.MenuOptions.values()) {
 			
