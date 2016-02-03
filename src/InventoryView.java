@@ -1,5 +1,8 @@
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.Map;
 
@@ -24,6 +27,10 @@ public class InventoryView extends View {
 		Graphics g2 = overImage.getGraphics();
 		
 		int item = 0;
+		
+		Font small = new Font("Helvetica", Font.BOLD, 14);
+
+        g.setFont(small);
 		
 		for (Map.Entry<Item, Integer> entry : currentInventory.items.entrySet()) {
 			
