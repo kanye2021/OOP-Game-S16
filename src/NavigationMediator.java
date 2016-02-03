@@ -109,9 +109,18 @@ public class NavigationMediator {
                 map.removeItemFromLocation(currentLocation[0], currentLocation[1]);
             }
         }
+
     }
 
     public void returnItemToMap(int x, int y, Item item){
         map.insertItemAtLocation(x, y, item);
+    }
+
+    /*-------------------Testing Load and Save ------------ */
+    private Load_Save ls;
+    public void save(){
+        ls = new Load_Save(); // Should be moved to the constructor of wherever it is placed
+
+        ls.save(entity, map); //calls the save function on the class Load_Save
     }
 }
