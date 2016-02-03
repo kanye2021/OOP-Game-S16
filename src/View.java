@@ -4,7 +4,7 @@ import java.awt.*;
 /**
  * Created by sergiopuleri on 2/1/16.
  */
-abstract public class View extends JPanel{
+abstract public class View extends JPanel {
 
     protected ViewController viewController;
     protected int width;

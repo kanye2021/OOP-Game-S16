@@ -6,29 +6,33 @@ import java.awt.geom.Rectangle2D;
  */
 public class CreateNewGameView extends View {
 
-    private final String CREATE_GAME = "Create New Game";
-    private final String LOAD_GAME = "Load Game";
-    private final String EXIT = "Exit";
-    private final int BUTTON_WIDTH = 200;
-    private final int BUTTON_HEIGHT = 50;
+    private final String NEW_GAME_TEXT = "Create New Game";
+
 
 
 
     public CreateNewGameView(){
         super();
-//        this.viewController
+        this.viewController = new CreateNewGameViewController(this);
     }
 
     @Override
     void render(Graphics g) {
+        System.out.println("IN CREATE NEW GAMES render method");
+        g.drawString(NEW_GAME_TEXT, B_WIDTH/2, B_HEIGHT/2);
 
+    }
 
+    public void testMethod() {
+        System.out.println("calling something from create view");
     }
 
     @Override
     public void paintComponent(Graphics g) {
+        System.out.println("IN CREATE NEW GAMES paint component method");
         super.paintComponent(g);
         render(g);
+        Toolkit.getDefaultToolkit().sync();
     }
 
 }

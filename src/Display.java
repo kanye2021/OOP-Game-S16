@@ -17,7 +17,7 @@ public class Display extends JFrame implements ActionListener {
 
     private final int DELAY = 15;
 
-    private IOMediator ioMediator;
+//    private IOMediator ioMediator;
 
 
     public Display() {
@@ -26,17 +26,17 @@ public class Display extends JFrame implements ActionListener {
     }
 
     private void initDisplay() {
-
+        IOMediator ioMediator = IOMediator.getInstance();
         System.out.println("IN Display constructor");
         //init ioMediator
-        ioMediator = new IOMediator();
+//        ioMediator = new IOMediator();
         // Set up application wide key listener
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(new MyDispatcher());
 
 
         // add the active view (JPANEL) to this JFRAME
-        add(ioMediator.activeView);
+        add(ioMediator.getActiveView());
         setResizable(false);
         pack();
 
@@ -62,16 +62,11 @@ public class Display extends JFrame implements ActionListener {
 //        checkCollisions();
 
         // Every refresh, tell the active view to refresh itself
-        ioMediator.activeView.repaint();
+        IOMediator ioMediator = IOMediator.getInstance();
+        ioMediator.getActiveView().repaint();
     }
 
-//    @Override
-//    public void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//
-//        renderAView(ioMediator.activeView, g);
-//        Toolkit.getDefaultToolkit().sync();
-//    }
+
 
     public void renderAView(View v, Graphics g) {
         // IOMediator's active view renders itself
@@ -81,6 +76,7 @@ public class Display extends JFrame implements ActionListener {
     // Global key listener. Application wide. Not on just a focused compenent.
     // http://stackoverflow.com/questions/286727/unresponsive-keylistener-for-jframe
     private class MyDispatcher implements KeyEventDispatcher {
+        IOMediator ioMediator = IOMediator.getInstance();
         @Override
         public boolean dispatchKeyEvent(KeyEvent e) {
             if (e.getID() == KeyEvent.KEY_PRESSED) {

@@ -88,6 +88,7 @@ public class StartMenuView extends View {
 
     @Override
     public void paintComponent(Graphics g) {
+        System.out.println("painting startmenu");
         super.paintComponent(g);
         render(g);
     }
