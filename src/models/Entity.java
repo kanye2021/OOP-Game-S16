@@ -7,7 +7,7 @@ import utilities.Observable;
  */
 
 public class Entity extends Observable {
-    
+
     private final int START_X = 10;
     private final int START_Y = 5;
 
@@ -25,6 +25,8 @@ public class Entity extends Observable {
         location[1] = START_Y;
 
         lastAtemptedDirection = "N";
+
+        inventory = new Inventory();
     }
     /*----------Get and Setters --------*/
     public int[] getLocation(){
@@ -40,7 +42,6 @@ public class Entity extends Observable {
         return this.entityStats;
     }
     public Inventory getInventory(){
-        System.out.println("Inventory has been got, nigga");
         return this.inventory;
     }
     public void setOccupation(String type) {

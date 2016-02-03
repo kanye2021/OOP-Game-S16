@@ -17,7 +17,6 @@ public class IOMediator {
 
 	static Map map = new Map();
 	static Entity entity = new Entity();
-	static Inventory inventory = new Inventory();
 	
 	// This represents all of the views that the utilities.IOMediator can see. the utilities.IOMediator acts as a MUX and goes through these
 	// to modify the graphics and where the keyPresses go.
@@ -41,7 +40,7 @@ public class IOMediator {
         
         // TODO: REMOVE HACKY SHIT
         GAME(new GameView(map, entity)) {void render(Graphics g) {getView().render(g);}},
-        INVENTORY(new InventoryView(inventory)) {void render(Graphics g) {getView().render(g);}};
+        INVENTORY(new InventoryView(entity.getInventory())) {void render(Graphics g) {getView().render(g);}};
         
         abstract void render(Graphics g);
         

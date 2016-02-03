@@ -30,7 +30,7 @@ public class InventoryView extends View {
 		
 		int item = 0;
 		
-		for (Map.Entry<Item, Integer> entry : currentInventory.items.entrySet()) {
+		for (Map.Entry<Item, Integer> entry : currentInventory.getItems().entrySet()) {
 			
 			Color primaryColor;
 			Color secondaryColor;
@@ -50,7 +50,7 @@ public class InventoryView extends View {
 			g2.setColor(primaryColor);
 			g2.fillRect(0, item * itemHeight, B_WIDTH - 1, itemHeight);
 			g2.setColor(secondaryColor);
-			g2.drawString(entry.getKey().name, 10, (item * itemHeight) + (int) (itemHeight * 0.65));
+//			g2.drawString(entry.getKey().name, 10, (item * itemHeight) + (int) (itemHeight * 0.65));
 			g2.drawString("x" + entry.getValue(), (int) (B_WIDTH * 0.90), (item * itemHeight) + (int) (itemHeight * 0.65));
 			g2.drawRect(0, item * itemHeight, B_WIDTH - 1, itemHeight);
 			item++;

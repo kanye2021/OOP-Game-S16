@@ -10,10 +10,8 @@ public abstract class Item {
     protected String name;
     protected String type;
     protected String description;
-    private int id;
+    protected int id;
 
-    //Default constructor
-    public Item(){}
 
     //Overloaded Constructor that takes in name, type, description and id
     //that construct a generic item
@@ -28,10 +26,16 @@ public abstract class Item {
     public int getID() {
     	return id;
     }
+    public String getName() {
+        return name;
+    }
+    public String getType() {
+        return type;
+    }
     
     public String getDescription() { return description; }
 
-    abstract boolean onTouch(Entity entity);
+    public abstract boolean onTouch(Entity entity);
 
     //Do not touch
     @Override
@@ -56,5 +60,9 @@ public abstract class Item {
     	return false;
     	
     }
-    
+
+    public String toString() {
+        return id + ": " + name + " | " + type;
+    }
+
 }

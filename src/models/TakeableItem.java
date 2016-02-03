@@ -1,6 +1,10 @@
 /**
  * Created by denzel on 2/3/16.
  */
+package models;
+
+import models.Entity;
+import models.Item;
 
 /**
  * TakeableItem's main purpose is to be able to insert itself back into
@@ -9,9 +13,8 @@
 public class TakeableItem extends Item {
 
     //Constructor
-    public TakeableItem(){
-        super();
-        this.type = "take-able";
+    public TakeableItem(String name, String type, String description, int id) {
+        super(name, type, description, id);
     }
 
     /**
@@ -19,8 +22,7 @@ public class TakeableItem extends Item {
      */
     @Override
     public boolean onTouch(Entity entity) {
-
-        //entity.getInventory().addItem(this);
+        entity.getInventory().addItem(this);
         return true;
     }
 }
