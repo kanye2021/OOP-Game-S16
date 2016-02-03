@@ -69,9 +69,5 @@ public class GameController extends ViewController {
 //        }
 //    }
 
-	@Override
-	void handleKeyRelease(int key) {
-		
-	}
 }
 
