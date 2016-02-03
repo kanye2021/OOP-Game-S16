@@ -84,8 +84,6 @@ public class NavigationMediator {
             return;
         }
 
-
-        System.out.println("Move Succesfull");
         //----------------------If we got here we are okay to move so lets do it!----------------------------------
 
         // Remove the entity from it's current location and put it in the new one.

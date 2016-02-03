@@ -51,23 +51,23 @@ public class AreaViewport extends View implements Observer{
             c=0;
         }
         if(c > map.getMapWidth() - logicalWidth){
-            c = map.getMapHeight() - logicalWidth;
+            c = map.getMapWidth() - logicalWidth;
         }
+
+
 
         int displayX = 0;
         int displayY = 0;
 
-        System.out.println("Y is " + r );
-        System.out.println("X is " + c);
-
-
         // THE MAP MUST BE LARGER THAN THE AREA VIEWPORT
-        for(int i=r; i<AREA_HEIGHT/TILE_SIZE; i++){
+        for(int i=r; i<AREA_HEIGHT/TILE_SIZE + r ; i++){
             displayX = 0;
-            for(int j=c; j<AREA_WIDTH/TILE_SIZE; j++){
+            for(int j=c; j<AREA_WIDTH/TILE_SIZE + c; j++){
+
 
                 // Get the terrain at this location
                 Terrain t = map.getTerrainAtLocation(j, i);
+
                 ImageIcon ii = new ImageIcon(terrainBaseFilepath + t.getType() + ".png");
                 Image terrainImg = ii.getImage();
                 g.drawImage(terrainImg, displayX, displayY, Display.getInstance());
@@ -78,6 +78,7 @@ public class AreaViewport extends View implements Observer{
             }
             displayY += TILE_SIZE;
         }
+        g.drawRect((entity.getLocation()[0] - c)*TILE_SIZE, (entity.getLocation()[1] - r)*TILE_SIZE, TILE_SIZE, TILE_SIZE);
     }
 
 
