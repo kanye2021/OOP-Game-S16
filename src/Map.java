@@ -20,10 +20,10 @@ public class Map extends Observable{
     private int changedY;
 
     public Map(){
-        initMap();
+        initMapXML();
     }
 
-    private void initMap(){
+    private void initMapXML(){
 
         try{
             // Get the xml filepath string ensuring file separators are specific to the use's OS.

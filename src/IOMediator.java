@@ -18,9 +18,11 @@ public class IOMediator {
         START_MENU(new StartMenuView()) {void render(Graphics g) {getView().render(g);}},
         CREATE_GAME(new CreateNewGameView()) {void render(Graphics g) {getView().render(g);}},
         AVATAR_CREATION(new AvatarCreationView()) {void render(Graphics g) {getView().render(g);}},
-        //GAME() {void render(Graphics g) {getView().render(g);}},
-        INVENTORY(new InventoryView(new Inventory())) {void render(Graphics g) {getView().render(g);}},
-        PAUSE(new PauseView()) {void render(Graphics g) {getView().render(g);}};
+        PAUSE(new PauseView()) {void render(Graphics g) {getView().render(g);}},
+        
+        // TODO: REMOVE HACKY SHIT
+        GAME(new GameView(new Map(), new Entity())) {void render(Graphics g) {getView().render(g);}},
+        INVENTORY(new InventoryView(new Inventory())) {void render(Graphics g) {getView().render(g);}};
         
         abstract void render(Graphics g);
         
@@ -39,7 +41,7 @@ public class IOMediator {
     private static IOMediator ioMediator = new IOMediator();
     // If adding new views, add it as a static class property here.
     private static Views activeView;
-    
+
     // A private Constructor prevents any other
     // class from instantiating.
     // If no view passed in,

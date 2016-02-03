@@ -1,22 +1,21 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 /**
  * Created by sergiopuleri on 2/1/16.
  */
 public class Display extends JPanel  {
 
-
-
+    private static Display display = new Display();
 
     public Display() {
 
         initDisplay();
+    }
+
+    public static Display getInstance(){
+        return display;
     }
 
     private void initDisplay() {
@@ -40,12 +39,6 @@ public class Display extends JPanel  {
         ioMediator.getActiveView().render(g);
     }
 
-
-    // TODO: Probably wont need.
-    public void renderAView(View v, Graphics g) {
-        // IOMediator's active view renders itself
-        v.render(g);
-    }
 
     // Global key listener. Application wide. Not on just a focused compenent.
     // http://stackoverflow.com/questions/286727/unresponsive-keylistener-for-jframe
