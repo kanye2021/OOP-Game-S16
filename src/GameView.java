@@ -7,8 +7,9 @@ public class GameView extends View {
     private AreaViewport areaViewport;
 //    private StatusViewport statusViewport;
 
-    public GameView(Map map, Entity entity){
+    public GameView(Map map, Entity entity, NavigationMediator navigationMediator){
         areaViewport = new AreaViewport(map, entity);
+        viewController = new GameController(this, navigationMediator);
 //        StatusViewport = new StatusViewport(entity);
     }
 

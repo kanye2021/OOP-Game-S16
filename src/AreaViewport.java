@@ -33,29 +33,33 @@ public class AreaViewport extends View implements Observer{
     @Override
     void render(Graphics g){
         // Render only the tiles within a certain radius of the avatar.
-        int r = entity.getLocation()[1] - AREA_HEIGHT/2;
-        int c = entity.getLocation()[0] - AREA_WIDTH/2;
+
+        int logicalWidth = AREA_WIDTH/TILE_SIZE;
+        int logicalHeight = AREA_HEIGHT/TILE_SIZE;
+
+        int r = entity.getLocation()[1] - logicalHeight/2;
+        int c = entity.getLocation()[0] - logicalWidth/2;
 
         // Make sure to stay within the bounds of the map
         if(r < 0){
             r=0;
         }
-        if(r > map.getMapHeight() - AREA_HEIGHT){
-            r = map.getMapHeight() - AREA_HEIGHT;
+        if(r > map.getMapHeight() - logicalHeight){
+            r = map.getMapHeight() - logicalHeight;
         }
         if(c < 0){
             c=0;
         }
-        if(c > map.getMapWidth() - AREA_WIDTH){
-            c = map.getMapHeight() - AREA_WIDTH;
+        if(c > map.getMapWidth() - logicalWidth){
+            c = map.getMapHeight() - logicalWidth;
         }
 
         int displayX = 0;
         int displayY = 0;
 
-        // REMOVE AFTER TESTING
-        r = 0;
-        c = 0;
+        System.out.println("Y is " + r );
+        System.out.println("X is " + c);
+
 
         // THE MAP MUST BE LARGER THAN THE AREA VIEWPORT
         for(int i=r; i<AREA_HEIGHT/TILE_SIZE; i++){

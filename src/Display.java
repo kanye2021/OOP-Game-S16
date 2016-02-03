@@ -40,6 +40,7 @@ public class Display extends JPanel  {
     }
 
 
+
     // Global key listener. Application wide. Not on just a focused compenent.
     // http://stackoverflow.com/questions/286727/unresponsive-keylistener-for-jframe
     private class MyDispatcher implements KeyEventDispatcher {

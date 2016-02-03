@@ -36,7 +36,8 @@ public class IOMediator {
         // TODO: REMOVE HACKY SHIT
         Map map = new Map();
         Entity ent = new Entity();
-        gameView = new GameView(map, ent);
+        NavigationMediator med = new NavigationMediator(map, ent);
+        gameView = new GameView(map, ent, med);
     }
 
     // Static 'instance' method
