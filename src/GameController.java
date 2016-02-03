@@ -6,10 +6,11 @@ import java.awt.event.KeyEvent;
  */
 public class GameController extends ViewController {
     private NavigationMediator navMediator;
-
+    private Load_Save l_s;
     public GameController(View view, NavigationMediator navigationMediator){
         super(view);
         this.navMediator = navigationMediator;
+        this.l_s = new Load_Save();
     }
 
     @Override
@@ -33,7 +34,9 @@ public class GameController extends ViewController {
             case KeyEvent.VK_ESCAPE:
             	IOMediator.setActiveView(IOMediator.Views.PAUSE);
             	break;
-            	
+            case KeyEvent.VK_S:
+                navMediator.save();
+                break;
             case KeyEvent.VK_NUMPAD1:
             	navMediator.requestMovement("SW");
             	break;
