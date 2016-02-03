@@ -32,11 +32,17 @@ public class AreaViewport extends View implements Observer{
 
     @Override
     void render(Graphics g){
-        // Render only the tiles within a certain radius of the avatar.
 
+        /*  There is essentially a transformation between two different coordinate systems. There is the logical coordinate
+            system (the array of tiles in the map) and a visual coordinate system (what will be shown on the display).
+        */
+
+        // The width of each (visual) tile is used here to convert the visual dismensions of the area viewport to the
+        // logical dimensions(how much of the tiles in the array will be used.
         int logicalWidth = AREA_WIDTH/TILE_SIZE;
         int logicalHeight = AREA_HEIGHT/TILE_SIZE;
 
+        // r and c represent the row and column in the tile array that correspond the top left corner of the visible map.
         int r = entity.getLocation()[1] - logicalHeight/2;
         int c = entity.getLocation()[0] - logicalWidth/2;
 
@@ -55,14 +61,15 @@ public class AreaViewport extends View implements Observer{
         }
 
 
-
+        // r and c will be mapped to te top left corner of the display (0,0).
         int displayX = 0;
         int displayY = 0;
 
-        // THE MAP MUST BE LARGER THAN THE AREA VIEWPORT
-        for(int i=r; i<AREA_HEIGHT/TILE_SIZE + r ; i++){
+        // Loop through the array of tiles mapping each tile to its location on the display.
+        // Note: The map should be larger than the area viewport to render nicely.
+        for(int i=r; i<logicalHeight + r ; i++){
             displayX = 0;
-            for(int j=c; j<AREA_WIDTH/TILE_SIZE + c; j++){
+            for(int j=c; j<logicalWidth + c; j++){
 
 
                 // Get the terrain at this location
@@ -77,10 +84,14 @@ public class AreaViewport extends View implements Observer{
                 if(e!=null){
                     ImageIcon avatar_icon = new ImageIcon(entityBaseFilepath + e.getOrientation() + ".png");
                     Image avatarImage = avatar_icon.getImage();
+
+                    // Center the entity in the tile
+                    int offsetX = (TILE_SIZE - avatarImage.getWidth(null))/2;
+                    int offsetY = (TILE_SIZE - avatarImage.getHeight(null))/2;
                    // g.drawRect(displayX, displayY, TILE_SIZE, TILE_SIZE);
 //                    int w = avatarImage.getWidth();
 //                    int h =  avatarImage.getHeight();
-                    g.drawImage(avatarImage, displayX, displayY, Display.getInstance());
+                    g.drawImage(avatarImage, displayX + offsetX, displayY + offsetY, Display.getInstance());
                 }
 
                 displayX += TILE_SIZE;
