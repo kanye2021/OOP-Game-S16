@@ -21,17 +21,12 @@ public class IOMediator {
 
     }
 
-
-
     public void keyPressed(KeyEvent e) {
-
-
         int key = e.getKeyCode();
         if (activeView != null) {
             // If we have an active view, send key press to its controller
             activeView.viewController.handleKeyPress(key);
         }
-
         else {
             if (key == KeyEvent.VK_SPACE) {
                 System.out.println("Space pressed");
@@ -59,16 +54,13 @@ public class IOMediator {
     public void keyReleased(KeyEvent e) {
 
         int key = e.getKeyCode();
-
         if (key == KeyEvent.VK_LEFT) {
             System.out.println("Left released");
         }
-
         if (key == KeyEvent.VK_RIGHT) {
             System.out.println("Right released");
 
         }
-
         if (key == KeyEvent.VK_UP) {
             System.out.println("Up released");
 
