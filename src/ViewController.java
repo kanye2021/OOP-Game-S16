@@ -17,9 +17,4 @@ abstract public class ViewController {
 
     abstract void handleKeyPress(int key);
     abstract void handleKeyRelease(int key);
-
-    // TODO: Not sure if need
-    protected void reRender() {
-        this.view.repaint();
-    }
 }

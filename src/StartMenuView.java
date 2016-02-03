@@ -33,7 +33,7 @@ public class StartMenuView extends View {
 
         // Text in the rectangles
         Font small = new Font("Helvetica", Font.BOLD, 14);
-        FontMetrics fm = getFontMetrics(small);
+        FontMetrics fm = g.getFontMetrics(small);
 
         g.setColor(Color.white);
         g.setFont(small);
@@ -84,12 +84,5 @@ public class StartMenuView extends View {
         Toolkit.getDefaultToolkit().sync();
 
     }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        render(g);
-    }
-
 
 }

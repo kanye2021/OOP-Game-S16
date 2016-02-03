@@ -9,15 +9,9 @@ import java.util.ArrayList;
 /**
  * Created by sergiopuleri on 2/1/16.
  */
-public class Display extends JFrame implements ActionListener {
+public class Display extends JPanel  {
 
 
-    private boolean ingame;
-    private Timer timer;
-
-    private final int DELAY = 15;
-
-    private IOMediator ioMediator;
 
 
     public Display() {
@@ -26,53 +20,28 @@ public class Display extends JFrame implements ActionListener {
     }
 
     private void initDisplay() {
+        // Init JPanel stuff
+        setFocusable(true);
+        setBackground(Color.BLACK);
+        setPreferredSize(new Dimension(View.B_WIDTH, View.B_HEIGHT));
 
-        System.out.println("IN Display constructor");
-        //init ioMediator
-        ioMediator = new IOMediator();
+
         // Set up application wide key listener
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(new MyDispatcher());
-
-
-        // add the active view (JPANEL) to this JFRAME
-        add(ioMediator.activeView);
-        setResizable(false);
-        pack();
-
-        setTitle("RPG GAME");
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-        timer = new Timer(DELAY, this);
-        timer.start();
     }
 
-    // CALLED EVERY DELAY MS
+
     @Override
-    public void actionPerformed(ActionEvent e) {
-
-//        inGame();
-//
-//        updateCraft();
-//        updateMissiles();
-//        updateAliens();
-//
-//        checkCollisions();
-
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         // Every refresh, tell the active view to refresh itself
-        ioMediator.activeView.repaint();
+        IOMediator ioMediator = IOMediator.getInstance();
+        ioMediator.getActiveView().render(g);
     }
 
-//    @Override
-//    public void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//
-//        renderAView(ioMediator.activeView, g);
-//        Toolkit.getDefaultToolkit().sync();
-//    }
 
+    // TODO: Probably wont need.
     public void renderAView(View v, Graphics g) {
         // IOMediator's active view renders itself
         v.render(g);
@@ -81,6 +50,7 @@ public class Display extends JFrame implements ActionListener {
     // Global key listener. Application wide. Not on just a focused compenent.
     // http://stackoverflow.com/questions/286727/unresponsive-keylistener-for-jframe
     private class MyDispatcher implements KeyEventDispatcher {
+        IOMediator ioMediator = IOMediator.getInstance();
         @Override
         public boolean dispatchKeyEvent(KeyEvent e) {
             if (e.getID() == KeyEvent.KEY_PRESSED) {

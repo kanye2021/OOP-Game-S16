@@ -21,11 +21,11 @@ public class InventoryView extends View {
 			
 			System.out.println(entry.getKey() + ": " + entry.getValue());
 			g.setColor(new Color(150, 150, 150));
-			g.fillRect(0, item * itemHeight, WIDTH, itemHeight);
+			g.fillRect(0, item * itemHeight, B_WIDTH, itemHeight);
 			g.setColor(new Color(0, 0, 0));
 			g.drawString(entry.getKey().getName(), 10, (item * itemHeight) + (int) (itemHeight * 0.65));
-			g.drawString("x" + entry.getValue(), (int) (WIDTH * 0.90), (item * itemHeight) + (int) (itemHeight * 0.65));
-			g.drawRect(0, item * itemHeight, WIDTH, itemHeight);
+			g.drawString("x" + entry.getValue(), (int) (B_WIDTH * 0.90), (item * itemHeight) + (int) (itemHeight * 0.65));
+			g.drawRect(0, item * itemHeight, B_WIDTH, itemHeight);
 			item++;
 		
 		}

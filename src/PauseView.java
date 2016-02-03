@@ -8,10 +8,10 @@ public class PauseView extends View {
 	public void render(Graphics g) {
 		
 		g.setColor(Color.BLACK);
-		g.drawRect(0, 0, WIDTH - 1, HEIGHT - 1);
+		g.drawRect(0, 0, B_WIDTH - 1, B_HEIGHT - 1);
 		
 		g.setColor(new Color(150, 150, 150));
-		g.fillRect((int) (WIDTH * 0.1), (int) (HEIGHT * 0.1), (int) (WIDTH * 0.8), (int) (HEIGHT * 0.8));
+		g.fillRect((int) (B_WIDTH * 0.1), (int) (B_HEIGHT * 0.1), (int) (B_WIDTH * 0.8), (int) (B_HEIGHT * 0.8));
 		
 	}
 
