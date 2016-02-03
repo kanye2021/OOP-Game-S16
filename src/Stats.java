@@ -5,11 +5,8 @@
 
 
 
+public class Stats {
 
-
-
-
-public class Stats extends Obeservable{
 
         int livesLeft = 0;
         int manaLeft = 0;
@@ -31,8 +28,7 @@ public class Stats extends Obeservable{
         int armorRating = 0;
 
 
-
-
+    
         public Stats(String type){//Initializes the original stats from occupation
         //the constructor
 
@@ -164,3 +160,4 @@ public class Stats extends Obeservable{
 
 
 }
+
