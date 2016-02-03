@@ -1,4 +1,245 @@
-<map width="2" height="5">
+<map width="15" height="10">
+    <row>
+    <tile>
+        <terrain type="mountain"></terrain>
+        <areaEffect type="take-damage" statsModifier="10"></areaEffect>
+        <item description="A light sword" type="take-able" name="iron-sword"></item>
+        <entity></entity>
+    </tile>
+    <tile>
+        <terrain type="mountain"></terrain>
+        <areaEffect type="take-damage" statsModifier="10"></areaEffect>
+        <item description="A light sword" type="take-able" name="iron-sword"></item>
+        <entity></entity>
+    </tile>
+    <tile>
+        <terrain type="grass"></terrain>
+    </tile>
+    <tile>
+        <terrain type="grass"></terrain>
+    </tile>
+    <tile>
+        <terrain type="sea"></terrain>
+    </tile>
+    <tile>
+        <terrain type="sea"></terrain>
+    </tile>
+    <tile>
+        <terrain type="grass"></terrain>
+    </tile>
+    <tile>
+        <terrain type="grass"></terrain>
+    </tile>
+    <tile>
+        <terrain type="grass"></terrain>
+    </tile>
+    <tile>
+        <terrain type="grass"></terrain>
+    </tile>
+    <tile>
+        <terrain type="grass"></terrain>
+    </tile>
+    <tile>
+        <terrain type="grass"></terrain>
+    </tile>
+    <tile>
+        <terrain type="grass"></terrain>
+    </tile>
+    <tile>
+        <terrain type="sea"></terrain>
+    </tile>
+    <tile>
+        <terrain type="sea"></terrain>
+    </tile>
+</row>
+    <row>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="sea"></terrain>
+        </tile>
+        <tile>
+            <terrain type="sea"></terrain>
+        </tile>
+    </row>
+    <row>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+    </row>
+    <row>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+    </row>
+    <row>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+    </row>
     <row>
         <tile>
             <terrain type="mountain"></terrain>
@@ -12,6 +253,45 @@
             <item description="A light sword" type="take-able" name="iron-sword"></item>
             <entity></entity>
         </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
     </row>
     <row>
         <tile>
@@ -20,6 +300,45 @@
         <tile>
             <terrain type="grass"></terrain>
         </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
     </row>
     <row>
         <tile>
@@ -28,6 +347,45 @@
         <tile>
             <terrain type="grass"></terrain>
         </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
     </row>
     <row>
         <tile>
@@ -36,8 +394,86 @@
         <tile>
             <terrain type="grass"></terrain>
         </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
     </row>
     <row>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
+        </tile>
         <tile>
             <terrain type="grass"></terrain>
         </tile>

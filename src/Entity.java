@@ -1,7 +1,7 @@
 /**
  * Created by Bradley on 2/1/16.
  */
-public class Entity extends java.util.Observable {
+public class Entity extends Observable{
     private final int START_X = 10;
     private final int START_Y = 5;
     private String lastAtemptedDirection;
