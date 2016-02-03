@@ -9,7 +9,9 @@ public class StartMenuController extends ViewController {
 	// This enum represents the menu options available on this screen. The setView() function maps to an individual view
 	// such as IOMediator.Views.CREATE_GAME;
 	public enum MenuOptions {
-		CREATE_GAME("Create Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.CREATE_GAME);};}, 
+		CREATE_GAME("Create Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.CREATE_GAME);};},
+		INVENTORY("Open Inventory") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.INVENTORY);};},
+		PAUSE("Open Pause Menu") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.PAUSE);};},
 		LOAD_GAME("Load Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
 		EXIT_GAME("Exit Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};};
 		
@@ -70,7 +72,7 @@ public class StartMenuController extends ViewController {
         option = MenuOptions.CREATE_GAME;
     }
 
-    public MenuOptions getSelected() {
+    public MenuOptions getActiveItem() {
         return option;
     }
 
@@ -79,13 +81,13 @@ public class StartMenuController extends ViewController {
 
         if (key == KeyEvent.VK_UP) {
             System.out.println("Up pressed FROM SMVC");
-            option = option.next();
+            option = option.previous();
 
         }
 
         else if (key == KeyEvent.VK_DOWN) {
             System.out.println("Down pressed FROM SMVC");
-            option = option.previous();
+            option = option.next();
         }
 
         else if (key == KeyEvent.VK_ENTER) {

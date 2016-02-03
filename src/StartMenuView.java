@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
@@ -7,13 +8,8 @@ import java.awt.geom.Rectangle2D;
  */
 public class StartMenuView extends View {
 
-    private final String CREATE_GAME = "Create New Game";
-    private final String LOAD_GAME = "Load Game";
-    private final String EXIT = "Exit";
     private final int BUTTON_WIDTH = 200;
     private final int BUTTON_HEIGHT = 50;
-
-
 
     public StartMenuView(){
         super();
@@ -23,7 +19,14 @@ public class StartMenuView extends View {
     @Override
     void render(Graphics g) {
 
-        // Rectangles
+        Font small = new Font("Helvetica", Font.BOLD, 14);
+        FontMetrics fm = g.getFontMetrics(small);
+
+        g.setColor(Color.white);
+        g.setFont(small);
+
+    	
+        /*// Rectangles
         // All buttons have the same X position.
         // TODO: Someone come up with better maths to get y positions lol.
         int button_x_pos = B_WIDTH/2 - BUTTON_WIDTH/2;
@@ -79,8 +82,44 @@ public class StartMenuView extends View {
             g.setColor(Color.WHITE);
             g.drawRect(button_x_pos, button3_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.drawString(EXIT, x3, y3);
-        }
+        }*/
 
+        
+        
+        
+        for (StartMenuController.MenuOptions option : StartMenuController.MenuOptions.values()) {
+			
+			Rectangle2D rectangle = fm.getStringBounds(option.toString(), g);
+			int boxX = B_WIDTH / 2 - BUTTON_WIDTH / 2;
+			int boxY = BUTTON_HEIGHT * option.ordinal();
+			int boxDX = BUTTON_WIDTH;
+			int boxDY = BUTTON_HEIGHT;
+			int stringX = B_WIDTH / 2 - (int) (rectangle.getWidth() / 2);
+			int stringY = option.ordinal() * BUTTON_HEIGHT + (int) (rectangle.getHeight() / 2) + fm.getAscent();
+			
+			Color primaryColor;
+			Color secondaryColor;
+			
+			if (option == ((StartMenuController) viewController).getActiveItem()) {
+			
+				primaryColor = Color.WHITE;
+				secondaryColor = Color.BLACK;
+			
+			} else {
+				
+				primaryColor = Color.BLACK;
+				secondaryColor = Color.WHITE;
+				
+			}
+			
+			g.setColor(primaryColor);
+			g.fillRect(boxX, boxY, boxDX, boxDY);
+			g.setColor(secondaryColor);
+			g.drawString(option.toString(), stringX, stringY);
+			//g.drawRect(boxX, boxY, boxDX, boxDY);
+			
+		}
+        
         Toolkit.getDefaultToolkit().sync();
 
     }
