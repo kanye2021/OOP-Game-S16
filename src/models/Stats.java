@@ -1,3 +1,5 @@
+package models;
+
 /**
  * Created by dyeung on 2/2/16.
  */

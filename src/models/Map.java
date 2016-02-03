@@ -1,7 +1,10 @@
+package models;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXParseException;
+import utilities.Observable;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -10,7 +13,7 @@ import java.io.File;
 /**
  * Created by Bradley on 2/1/16.
  */
-public class Map extends Observable{
+public class Map extends Observable {
 
     public Tile[][] tiles;
     private int mapWidth;
@@ -118,7 +121,7 @@ public class Map extends Observable{
         return tiles[y][x].getEntity();
     }
 
-    //Mutator functions to tiles notify AreaViewport
+    //Mutator functions to tiles notify views.AreaViewport
     public void insertItemAtLocation(int x, int y, Item item){
         tiles[y][x].addItem(item);
         this.setChanged();

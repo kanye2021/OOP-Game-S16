@@ -1,3 +1,11 @@
+package utilities;
+
+import models.Entity;
+import models.Inventory;
+import models.Item;
+import models.Map;
+import views.*;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -11,12 +19,12 @@ public class IOMediator {
 	static Entity entity = new Entity();
 	static Inventory inventory = new Inventory();
 	
-	// This represents all of the views that the IOMediator can see. the IOMediator acts as a MUX and goes through these
+	// This represents all of the views that the utilities.IOMediator can see. the utilities.IOMediator acts as a MUX and goes through these
 	// to modify the graphics and where the keyPresses go.
 	
 	// The code works as follows:
 	// the single argument that the enum takes is a new view.
-	// The view's render function is mapped to the enum's render such that START_MENU.render(g) -> StartMenuView->render(g)
+	// The view's render function is mapped to the enum's render such that START_MENU.render(g) -> views.StartMenuView->render(g)
 	
     public static enum Views {
     	
@@ -56,7 +64,7 @@ public class IOMediator {
     // A private Constructor prevents any other
     // class from instantiating.
     // If no view passed in,
-    // Default view is StartMenuView
+    // Default view is views.StartMenuView
     private IOMediator() {
         activeView = Views.START_MENU;
         
@@ -80,20 +88,20 @@ public class IOMediator {
 
 
     // Other methods protected by singleton-ness
-    protected static void setActiveView(Views view) {
+    public static void setActiveView(Views view) {
         activeView = view;
     }
-    protected static View getActiveView() {
+    public static View getActiveView() {
         return activeView.getView();
     }
 
-    protected static void keyPressed(KeyEvent e) {
+    public static void keyPressed(KeyEvent e) {
 
 
         int key = e.getKeyCode();
         if (activeView != null) {
             // If we have an active view, send key press to its controller
-            activeView.getView().viewController.handleKeyPress(key);
+            activeView.getView().getViewController().handleKeyPress(key);
         }
 
         else {

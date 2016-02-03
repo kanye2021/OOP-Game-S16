@@ -1,3 +1,5 @@
+package models;
+
 /**
  * Created by Bradley on 2/1/16.
  * Modified by Austin on 2/2/16.

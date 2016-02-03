@@ -1,3 +1,7 @@
+package utilities;
+
+import models.*;
+
 /**
  * Created by Bradley on 2/1/16.
  */
@@ -121,6 +125,6 @@ public class NavigationMediator {
     public void save(){
         ls = new Load_Save(); // Should be moved to the constructor of wherever it is placed
 
-        ls.save(entity, map); //calls the save function on the class Load_Save
+        ls.save(entity, map); //calls the save function on the class utilities.Load_Save
     }
 }

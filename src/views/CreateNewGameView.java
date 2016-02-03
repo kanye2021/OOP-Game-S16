@@ -1,3 +1,7 @@
+package views;
+
+import controllers.CreateNewGameViewController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -25,15 +29,15 @@ public class CreateNewGameView extends View {
     }
 
     @Override
-    void render(Graphics g) {
+    public void render(Graphics g) {
         // Text
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics fm = g.getFontMetrics(small);
         g.setColor(Color.white);
         g.setFont(small);
         Rectangle2D r1 = fm.getStringBounds(NEW_GAME_TEXT, g);
-        int x = (B_WIDTH - (int)r1.getWidth())/2;
-        int y = (B_HEIGHT - (int)r1.getHeight())/2 + fm.getAscent();
+        int x = (View.B_WIDTH - (int)r1.getWidth())/2;
+        int y = (View.B_HEIGHT - (int)r1.getHeight())/2 + fm.getAscent();
         g.drawString(NEW_GAME_TEXT, x, y);
 
         // Text Field

@@ -1,14 +1,20 @@
+package controllers;
+
+import models.Inventory;
+import utilities.IOMediator;
+import views.View;
+
 import java.awt.event.KeyEvent;
 
 /**
  * Created by Austin on 2/2/16.
  */
-public class InventoryController extends ViewController {
+public class InventoryViewController extends ViewController {
 
 	int position = 0;
 	Inventory inventory;
 
-    public InventoryController(View view, Inventory inventory) {
+    public InventoryViewController(View view, Inventory inventory) {
         super(view);
         this.inventory = inventory;
     }
@@ -49,7 +55,7 @@ public class InventoryController extends ViewController {
     	
     	if (position < 0) {
     		
-    		position = inventory.items.size() - 1;
+    		position = inventory.getItems().size() - 1;
     		
     	}
     	
@@ -59,7 +65,7 @@ public class InventoryController extends ViewController {
     	
     	position++;
     	
-    	if (position > inventory.items.size() - 1) {
+    	if (position > inventory.getItems().size() - 1) {
     		
     		
     		position = 0;

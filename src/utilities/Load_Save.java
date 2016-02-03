@@ -1,32 +1,35 @@
-/**
+package utilities; /**
  * Created by dyeung on 2/2/16.
  */
+
+import models.Entity;
+import models.Map;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 
 /*
 Layout of the XML file
-<Entity>
+<models.Entity>
     <Avatar>
-        <Stats>
+        <models.Stats>
             <Primary>
             ...
             </Primary>
             <Derived>
             ...
             </Derived>
-        <Inventory>
+        <models.Inventory>
             <Equipped>
                 <Item1>
                 <Item2>
@@ -40,10 +43,10 @@ Layout of the XML file
         <Occupation>
         <Location>
             <Orientation> //Might not be necessary
-</Entity>
-<Map>
+</models.Entity>
+<models.Map>
     //Need more information...
-</Map>
+</models.Map>
 
  */
 
