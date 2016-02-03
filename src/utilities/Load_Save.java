@@ -55,13 +55,15 @@ public class Load_Save {
 
     }
     //For future use it will include map, items, stats
-    public void save(Entity avatar, Map main_map) {
+    public void save(Map main_map, Entity avatar, String fileName) {
         File output =  new File("C:\\file.xml");
         try{
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             Document doc = docBuilder.newDocument();
-            String fileName = "SaveFile_1.xml";
+
+            fileName = "SaveFile_1.xml"; // Temporary
+
             Element mainRootElement = doc.createElementNS(fileName, "Save_File"); //1 will be edited in the feature
             doc.appendChild(mainRootElement);
 

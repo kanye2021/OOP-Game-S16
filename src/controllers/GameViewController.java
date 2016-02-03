@@ -41,9 +41,9 @@ public class GameViewController extends ViewController {
             case KeyEvent.VK_ESCAPE:
             	IOMediator.setActiveView(IOMediator.Views.PAUSE);
             	break;
-            case KeyEvent.VK_S:
-                navMediator.save();
-                break;
+//            case KeyEvent.VK_S:
+//                navMediator.save();
+//                break;
             case KeyEvent.VK_NUMPAD1:
             	navMediator.requestMovement("SW");
             	break;
