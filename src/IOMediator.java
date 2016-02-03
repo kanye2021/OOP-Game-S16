@@ -1,5 +1,3 @@
-import javax.swing.*;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 
@@ -22,6 +20,7 @@ public class IOMediator {
     private static View activeView;
     private static View startMenuView;
     private static View createNewGame;
+    private static View gameView;
 
     // A private Constructor prevents any other
     // class from instantiating.
@@ -31,7 +30,13 @@ public class IOMediator {
         // Init all views below
         startMenuView = new StartMenuView();
         createNewGame = new CreateNewGameView();
+
         activeView = startMenuView;
+
+        // TODO: REMOVE HACKY SHIT
+        Map map = new Map();
+        Entity ent = new Entity();
+        gameView = new GameView(map, ent);
     }
 
     // Static 'instance' method
@@ -53,7 +58,7 @@ public class IOMediator {
                 activeView = createNewGame;
                 break;
             case GAME_VIEW:
-                activeView = createNewGame;
+                activeView = gameView;
                 break;
             case INVENTORY_VIEW:
                 activeView = createNewGame;

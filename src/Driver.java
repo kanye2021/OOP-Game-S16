@@ -11,16 +11,13 @@ public class Driver extends JFrame implements ActionListener {
     private Timer timer;
     private final int DELAY = 15;
 
-    private Display display;
-
     public Driver() {
         init();
     }
 
     private void init() {
 
-        display = new Display();
-        add(display);
+        add(Display.getInstance());
         setResizable(false);
         pack();
 
@@ -36,7 +33,7 @@ public class Driver extends JFrame implements ActionListener {
     // CALLED EVERY DELAY MS
     @Override
     public void actionPerformed(ActionEvent e) {
-        display.repaint();
+        Display.getInstance().repaint();
     }
 
     public static void main(String[] args) {

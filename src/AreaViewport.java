@@ -11,9 +11,9 @@ public class AreaViewport extends View implements Observer{
     private  String areaEffectBaseFilepath = "./src/res/area-effects/";
     private  String itemBaseFilepath = "./src/res/items/";
     private  String entityBaseFilepath = "./src/res/entitys/";
-    private final int AREA_WIDTH = 10;
-    private final int AREA_HEIGHT = 5;
-    private final int TILE_SIZE = 25;
+    private final int AREA_WIDTH = B_WIDTH;
+    private final int AREA_HEIGHT = B_HEIGHT * 3/4;
+    private final int TILE_SIZE = 50;
 
     public AreaViewport(Map map, Entity entity){
         super();
@@ -58,17 +58,15 @@ public class AreaViewport extends View implements Observer{
         c = 0;
 
         // THE MAP MUST BE LARGER THAN THE AREA VIEWPORT
-        for(int i=r; i<AREA_HEIGHT; i++){
+        for(int i=r; i<AREA_HEIGHT/TILE_SIZE; i++){
             displayX = 0;
-            for(int j=c; j<AREA_WIDTH; j++){
+            for(int j=c; j<AREA_WIDTH/TILE_SIZE; j++){
 
                 // Get the terrain at this location
                 Terrain t = map.getTerrainAtLocation(j, i);
-                System.out.println("TERRAIN TYPE: " + t.getType());
-                System.out.println("AT: (" + displayX + ", " + displayY);
                 ImageIcon ii = new ImageIcon(terrainBaseFilepath + t.getType() + ".png");
                 Image terrainImg = ii.getImage();
-                g.drawImage(terrainImg, displayX, displayY, this);
+                g.drawImage(terrainImg, displayX, displayY, Display.getInstance());
 
                 //TODO: Do the same for areaEffect, item, and entity
 
@@ -78,11 +76,6 @@ public class AreaViewport extends View implements Observer{
         }
     }
 
-    @Override
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-        render(g);
-    }
 
     @Override
     public void update(){

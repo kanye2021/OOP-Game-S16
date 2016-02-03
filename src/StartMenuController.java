@@ -66,6 +66,10 @@ public class StartMenuController extends ViewController {
             ioMediator.setActiveView(IOMediator.Views.CREATE_GAME_VIEW);
 
         }
+        //TODO: REMOVE HAKCY ASS SHIT HOE
+        else if(key == KeyEvent.VK_Q){
+            ioMediator.setActiveView(IOMediator.Views.GAME_VIEW);
+        }
         else {
             System.out.println("invalid key press FROM SMVC");
         }
