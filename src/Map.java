@@ -10,12 +10,14 @@ import java.io.File;
 /**
  * Created by Bradley on 2/1/16.
  */
-public class Map {
+public class Map extends Observable{
 
     public Tile[][] tiles;
     private int mapWidth;
     private int mapHeight;
     private final String DEFAULT_MAP = "./src/res/maps/default_map.xml";
+    private int changedX;
+    private int changedY;
 
     public Map(){
         initMap();
@@ -78,7 +80,7 @@ public class Map {
                         String itemType = itemElement.getAttribute("type");
                         String itemDescription = itemElement.getAttribute("description");
                         String itemName = itemElement.getAttribute("name");
-                        item = new Item(itemName, itemType, itemDescription);
+                        item = new Item(itemName, itemType, itemDescription, 1);
                     }
 
                     // Get any entities that are on the tile.
@@ -116,20 +118,37 @@ public class Map {
         return tiles[y][x].getEntity();
     }
 
+    //Mutator functions to tiles notify AreaViewport
     public void insertItemAtLocation(int x, int y, Item item){
         tiles[y][x].addItem(item);
+        this.setChanged();
+        this.changedX = x;
+        this.changedY = y;
+        this.notifyObservers();
     }
 
     public void insertEntityAtLocation(int x, int y, Entity entity){
         tiles[y][x].addEntity(entity);
+        this.setChanged();
+        this.changedX = x;
+        this.changedY = y;
+        this.notifyObservers();
     }
 
     public void removeItemFromLocation(int x, int y){
         tiles[y][x].removeItem();
+        this.setChanged();
+        this.changedX = x;
+        this.changedY = y;
+        this.notifyObservers();
     }
 
     public void removeEntityFromLocation(int x, int y){
         tiles[y][x].removeEntity();
+        this.setChanged();
+        this.changedX = x;
+        this.changedY = y;
+        this.notifyObservers();
     }
 
     public int getMapWidth(){
@@ -144,5 +163,4 @@ public class Map {
     public static void main(String[] args){
         Map m = new Map();
     }
-
 }
