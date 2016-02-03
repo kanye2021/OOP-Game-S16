@@ -19,7 +19,16 @@ public class CreateNewGameView extends View {
     @Override
     void render(Graphics g) {
         System.out.println("IN CREATE NEW GAMES render method");
+        // Text in the rectangles
+        Font small = new Font("Helvetica", Font.BOLD, 14);
+        FontMetrics fm = g.getFontMetrics(small);
+
+        g.setColor(Color.white);
+        g.setFont(small);
+
         g.drawString(NEW_GAME_TEXT, B_WIDTH/2, B_HEIGHT/2);
+
+        Toolkit.getDefaultToolkit().sync();
 
     }
 
@@ -27,12 +36,6 @@ public class CreateNewGameView extends View {
         System.out.println("calling something from create view");
     }
 
-    @Override
-    public void paintComponent(Graphics g) {
-        System.out.println("IN CREATE NEW GAMES paint component method");
-        super.paintComponent(g);
-        render(g);
-        Toolkit.getDefaultToolkit().sync();
-    }
+
 
 }

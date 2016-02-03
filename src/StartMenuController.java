@@ -61,9 +61,9 @@ public class StartMenuController extends ViewController {
             selectedOption = selectedOption.prev();
         }
 
-        else if (key == KeyEvent.VK_ENTER) {
+        else if (key == KeyEvent.VK_ENTER && selectedOption == Selected.CREATE_GAME) {
             System.out.println("Enter pressed FROM SMVC");
-            ioMediator.setActiveView(IOMediator.Views.CreateNewGame);
+            ioMediator.setActiveView(IOMediator.Views.CREATE_GAME_VIEW);
 
         }
         else {
