@@ -5,18 +5,19 @@ import java.awt.*;
  */
 public class GameView extends View {
     private AreaViewport areaViewport;
-//    private StatusViewport statusViewport;
+    private StatusViewport statusViewport;
 
     public GameView(Map map, Entity entity){
+        NavigationMediator mediator = new NavigationMediator(map, entity);
         areaViewport = new AreaViewport(map, entity);
-        this.viewController = new GameController(this, new NavigationMediator(map, entity));
-//        StatusViewport = new StatusViewport(entity);
+        viewController = new GameController(this, mediator);
+        statusViewport = new StatusViewport(entity);
     }
 
     @Override
     void render(Graphics g){
         areaViewport.render(g);
-//        statusViewport.render(g);
+        statusViewport.render(g);
     }
 
 }

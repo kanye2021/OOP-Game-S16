@@ -1,7 +1,4 @@
-import javax.swing.*;
-
-import java.awt.Graphics;
-import java.awt.event.KeyAdapter;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 
@@ -9,7 +6,7 @@ import java.awt.event.KeyEvent;
  * Created by sergiopuleri on 2/1/16.
  */
 public class IOMediator {
-	
+
 	static Map map = new Map();
 	static Entity entity = new Entity();
 	static Inventory inventory = new Inventory();
@@ -55,6 +52,11 @@ public class IOMediator {
         inventory.addItem(new Item("Oversized Goat", "Der", "Desc", 3));
         inventory.addItem(new Item("Oversized Goat", "Der", "Desc", 3));
         inventory.addItem(new Item("Elephant", "Der", "Desc", 4));
+        inventory.addItem(new Item("Goat", "Der", "Desc", 3));
+        inventory.addItem(new Item("Goat", "Der", "Desc", 3));
+
+        // Put the entity (avatar) at its starting lcoation
+        map.insertEntityAtLocation(entity.getLocation()[0], entity.getLocation()[1], entity);
         
     }
 
