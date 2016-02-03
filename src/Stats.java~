@@ -1,8 +1,8 @@
+package game;
 
 /**
  * Created by ben on 2/2/16.
  */
-
 
 
 
@@ -162,5 +162,91 @@ public class Stats extends Obeservable{
 
 
 
+    /*public void modifyLifeLeft(int delta) {
+        if((livesLeft + delta) <= 0 )//So livesLeft does not drop below zero
+        {
+            livesLeft = 0;
+        }
+        else if((livesLeft + delta) >= maxLife )//So livesLeft does not go beyond the max
+        {
+            livesLeft = maxLife;
+        }
+        else{
+            livesLeft = livesLeft + delta;
+        }
 
+    }
+
+    public void modifyManaLeft(int delta) {
+        if((manaLeft + delta) <= 0 )//So livesLeft does not drop below zero
+        {
+            manaLeft = 0;
+        }
+        else if((livesLeft + delta) >= maxMana )//So livesLeft does not go beyond the max
+        {
+            manaLeft = maxMana;
+        }
+        else{
+            manaLeft = manaLeft + delta;
+        }
+
+    }
+
+    public void modifyStrength(int delta) {
+        strength = strength + delta;
+    }
+
+    public void modifyagility(int delta) {
+        agility = agility + delta;
+    }
+
+    public void modifyintellect(int delta) {
+        intellect = intellect + delta;
+        modifyMaxMana(delta);
+        modifyManaLeft(delta);
+    }
+
+    public void modifyhardiness(int delta) {
+        hardiness = hardiness + delta;
+        modifyMaxLife(delta);
+        modifyLifeLeft(delta);
+    }
+
+    public void modifyexperience(int delta) {
+        experience = experience + delta;
+
+    }
+
+    public void modifyMovement(int delta) {
+        movement = movement + delta;
+    }
+
+    public void modifyLevel(int delta) {//same as level up...for the most part
+        level = level + delta;
+
+
+    }
+
+    public void modifyMaxLife(int delta) {
+        maxLife = maxLife + delta;
+    }
+
+    public void modifyMaxMana(int delta) {
+        maxMana = maxMana + delta;
+    }
+
+    public void modifyOffensiveRating(int delta) {
+        offensiveRating = offensiveRating + delta;
+
+    }
+
+    public void modifyDefensiveRating(int delta) {
+        defensiveRating = defensiveRating + delta;
+    }
+
+    public void modifyArmorRating(int delta) {
+        armorRating = armorRating + delta;
+    }
+*/
 }
+
