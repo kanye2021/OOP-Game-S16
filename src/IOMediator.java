@@ -36,6 +36,7 @@ public class IOMediator {
         // TODO: REMOVE HACKY SHIT
         Map map = new Map();
         Entity ent = new Entity();
+        map.insertEntityAtLocation(ent.getLocation()[0], ent.getLocation()[1], ent);
         NavigationMediator med = new NavigationMediator(map, ent);
         gameView = new GameView(map, ent, med);
     }

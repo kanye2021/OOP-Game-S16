@@ -73,12 +73,15 @@ public class AreaViewport extends View implements Observer{
                 g.drawImage(terrainImg, displayX, displayY, Display.getInstance());
 
                 //TODO: Do the same for areaEffect, item, and entity
+                Entity e = map.getEntityAtLocation(j, i);
+                if(e!=null){
+                    g.drawRect(displayX, displayY, TILE_SIZE, TILE_SIZE);
+                }
 
                 displayX += TILE_SIZE;
             }
             displayY += TILE_SIZE;
         }
-        g.drawRect((entity.getLocation()[0] - c)*TILE_SIZE, (entity.getLocation()[1] - r)*TILE_SIZE, TILE_SIZE, TILE_SIZE);
     }
 
 

@@ -4,13 +4,11 @@
             <terrain type="mountain"></terrain>
             <areaEffect type="take-damage" statsModifier="10"></areaEffect>
             <item description="A light sword" type="take-able" name="iron-sword"></item>
-            <entity></entity>
         </tile>
         <tile>
             <terrain type="mountain"></terrain>
             <areaEffect type="take-damage" statsModifier="10"></areaEffect>
             <item description="A light sword" type="take-able" name="iron-sword"></item>
-            <entity></entity>
         </tile>
         <tile>
             <terrain type="grass"></terrain>
@@ -212,10 +210,10 @@
             <terrain type="grass"></terrain>
         </tile>
         <tile>
-            <terrain type="grass"></terrain>
+            <terrain type="sea"></terrain>
         </tile>
         <tile>
-            <terrain type="grass"></terrain>
+            <terrain type="sea"></terrain>
         </tile>
         <tile>
             <terrain type="grass"></terrain>
@@ -313,7 +311,7 @@
             <terrain type="mountain"></terrain>
         </tile>
         <tile>
-            <terrain type="grass"></terrain>
+            <terrain type="sea"></terrain>
         </tile>
         <tile>
             <terrain type="grass"></terrain>
