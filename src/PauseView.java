@@ -58,12 +58,6 @@ public class PauseView extends View {
 			
 		}
 		
-//		g2.setColor(new Color(0, 0, 255));
-//		g2.fillRect(0, 0, B_WIDTH, B_HEIGHT);
-//		
-//		g2.setColor(Color.RED);
-//		g2.drawRect(0, 0, B_WIDTH - 1, B_HEIGHT - 1);
-		
 		g.drawImage(overImage, (int) (B_WIDTH * 0.1), (int) (B_HEIGHT * 0.1), (int) (B_WIDTH * 0.8), (int) (B_HEIGHT * 0.8), null);
 		
 	}

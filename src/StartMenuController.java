@@ -5,6 +5,9 @@ import java.awt.event.KeyEvent;
  */
 public class StartMenuController extends ViewController {
 
+	
+	// This enum represents the menu options available on this screen. The setView() function maps to an individual view
+	// such as IOMediator.Views.CREATE_GAME;
 	public enum MenuOptions {
 		CREATE_GAME("Create Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.CREATE_GAME);};}, 
 		LOAD_GAME("Load Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},

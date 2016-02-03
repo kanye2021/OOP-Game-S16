@@ -11,6 +11,13 @@ public class IOMediator {
 	static Entity entity = new Entity();
 	static Inventory inventory = new Inventory();
 	
+	// This represents all of the views that the IOMediator can see. the IOMediator acts as a MUX and goes through these
+	// to modify the graphics and where the keyPresses go.
+	
+	// The code works as follows:
+	// the single argument that the enum takes is a new view.
+	// The view's render function is mapped to the enum's render such that START_MENU.render(g) -> StartMenuView->render(g)
+	
     public static enum Views {
     	
         START_MENU(new StartMenuView()) {void render(Graphics g) {getView().render(g);}},

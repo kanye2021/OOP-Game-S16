@@ -5,6 +5,9 @@ import java.awt.event.KeyEvent;
  */
 public class PauseViewController extends ViewController {
 
+	// This enum represents the menu options available on this screen. The setView() function maps to an individual view
+	// such as IOMediator.Views.GAME;
+	
 	public enum MenuOptions {
 		RESUME("Resume Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.GAME);};}, 
 		OPTIONS("Options") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
@@ -80,12 +83,10 @@ public class PauseViewController extends ViewController {
     public void handleKeyPress(int key) {
 
         if (key == KeyEvent.VK_UP) {
-            System.out.println("Up pressed FROM PVC");
             option = option.previous();
         }
 
         else if (key == KeyEvent.VK_DOWN) {
-            System.out.println("Down pressed FROM PVC");
             option = option.next();
         }
 
