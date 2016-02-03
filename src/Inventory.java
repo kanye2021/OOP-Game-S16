@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * Created by Austin on 2/1/16.
+ * Created by Austin on 2/2/16.
  */
 public class Inventory {
 

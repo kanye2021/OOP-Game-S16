@@ -13,7 +13,7 @@ public class InventoryView extends View {
 	
 	public InventoryView(Inventory inventory) {
 		super();
-        this.viewController = new InventoryController(this);
+        this.viewController = new InventoryController(this, inventory);
 		currentInventory = inventory;
 	}
 	
@@ -27,15 +27,29 @@ public class InventoryView extends View {
 		
 		for (Map.Entry<Item, Integer> entry : currentInventory.items.entrySet()) {
 			
-			System.out.println(entry.getKey() + ": " + entry.getValue());
-			g2.setColor(new Color(150, 150, 150));
-			g2.fillRect(0, item * itemHeight, B_WIDTH, itemHeight);
-			g2.setColor(new Color(0, 0, 0));
+			Color primaryColor;
+			Color secondaryColor;
+			
+			if (item == ((InventoryController) viewController).getActiveItem()) {
+			
+				primaryColor = new Color(150, 150, 150);
+				secondaryColor = new Color(0, 0, 0);
+			
+			} else {
+				
+				primaryColor = new Color(0, 0, 0);
+				secondaryColor = new Color(150, 150, 150);
+				
+			}
+		
+			g2.setColor(primaryColor);
+			g2.fillRect(0, item * itemHeight, B_WIDTH - 1, itemHeight);
+			g2.setColor(secondaryColor);
 			g2.drawString(entry.getKey().getName(), 10, (item * itemHeight) + (int) (itemHeight * 0.65));
 			g2.drawString("x" + entry.getValue(), (int) (B_WIDTH * 0.90), (item * itemHeight) + (int) (itemHeight * 0.65));
-			g2.drawRect(0, item * itemHeight, B_WIDTH, itemHeight);
+			g2.drawRect(0, item * itemHeight, B_WIDTH - 1, itemHeight);
 			item++;
-		
+			
 		}
 		
 		g.drawImage(overImage, (int) (B_WIDTH * 0.1), (int) (B_HEIGHT * 0.1), (int) (B_WIDTH * 0.8), (int) (B_HEIGHT * 0.8), null);
