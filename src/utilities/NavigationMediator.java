@@ -120,11 +120,4 @@ public class NavigationMediator {
         map.insertItemAtLocation(x, y, item);
     }
 
-    /*-------------------Testing Load and Save ------------ */
-    private Load_Save ls;
-    public void save(){
-        ls = new Load_Save(); // Should be moved to the constructor of wherever it is placed
-
-        ls.save(entity, map); //calls the save function on the class utilities.Load_Save
-    }
 }
