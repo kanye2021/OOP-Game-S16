@@ -80,7 +80,7 @@ public class Map extends Observable{
                         String itemType = itemElement.getAttribute("type");
                         String itemDescription = itemElement.getAttribute("description");
                         String itemName = itemElement.getAttribute("name");
-                        item = new Item(itemName, itemType, itemDescription);
+                        item = new Item(itemName, itemType, itemDescription, 1);
                     }
 
                     // Get any entities that are on the tile.

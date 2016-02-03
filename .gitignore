@@ -1,3 +1,9 @@
 .idea/
 *.iml
 out/
+/bin/
+<<<<<<< HEAD
+=======
+.classpath
+.project
+>>>>>>> refs/remotes/origin/Austin_Philip_Item_Code

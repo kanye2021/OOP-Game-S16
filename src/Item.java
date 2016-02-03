@@ -1,15 +1,18 @@
 /**
  * Created by Bradley on 2/1/16.
+ * Modified by Austin on 2/2/16.
  */
 public class Item {
     private String name;
     private String type;
     private String description;
-
-    public Item(String name, String type, String description){
+    private int id;
+    
+    public Item(String name, String type, String description, int id){
         this.name=name;
         this.type=type;
         this.description=description;
+        this.id  = id;
     }
 
     public String getName(){
@@ -26,4 +29,10 @@ public class Item {
         //TODO: Implement how an item should be triggered.
         return true;
     }
+    
+    @Override
+	public int hashCode() {
+		return id;
+	}
+    
 }
