@@ -23,16 +23,18 @@ public class CreateNewGameViewController extends ViewController {
         }
 
         else if (key == KeyEvent.VK_DOWN) {
-            System.out.println("Down pressed FROM Create New Game VC");
+            System.out.println("down pressed FROM Create New Game VC");
         }
 
         else if (key == KeyEvent.VK_ENTER) {
-            System.out.println("Down pressed FROM Create new VC");
+            System.out.println("enter pressed FROM Create new VC");
+            String getValue = ((CreateNewGameView)view).getSaveStateName().getText();
+            System.out.println("THE SAVE STATE NAME IS: " + getValue);
 
         }
         
         else {
-            System.out.println("invalid key press FROM CREATE NEW VC");
+//            System.out.println("invalid key press FROM CREATE NEW VC");
         }
 
     }

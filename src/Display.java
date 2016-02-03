@@ -50,7 +50,7 @@ public class Display extends JPanel  {
             } else if (e.getID() == KeyEvent.KEY_RELEASED) {
                 ioMediator.keyReleased(e);
             } else if (e.getID() == KeyEvent.KEY_TYPED) {
-                System.out.println("key typed??");
+//                System.out.println("key typed??");
             }
             return false;
         }
