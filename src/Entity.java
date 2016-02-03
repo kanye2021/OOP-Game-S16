@@ -40,12 +40,12 @@ public class Entity extends Observable{
 
     //All this is going to do is update orientation of the entity
 
-    public void moveTo(int x, int y) {
+    public void moveTo(int x, int y, String direction) {
         location[0] = x;
         location[1] = y;
+        updateOrientation(direction);
 
         /* These functions exist in the Observable class */
-
         setChanged();
         notifyObservers();  //Observers are the views
     }
