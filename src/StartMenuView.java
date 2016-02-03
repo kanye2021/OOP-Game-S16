@@ -83,7 +83,6 @@ public class StartMenuView extends View {
 
         Toolkit.getDefaultToolkit().sync();
 
-
     }
 
     @Override
