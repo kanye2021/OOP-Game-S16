@@ -1,0 +1,501 @@
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  "dimensions": {
+    "width": "10",
+    "height": "5"
+  },
+
+  "tiles": [
+    [
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      }
+    ],
+    [
+      {
+        "terrain": {
+          "type": "mountain"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        }
+      }
+    ],
+    [
+      {
+        "terrain": {
+          "type": "mountain"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        }
+      }
+    ],
+    [
+      {
+        "terrain": {
+          "type": "mountain"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "grass"
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        }
+      }
+    ],
+    [
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      },
+      {
+        "terrain": {
+          "type": "mountain"
+        },
+        "areaEffect": {
+          "type": "takeDamage",
+          "amountOfDamage" : "10"
+        },
+        "item": {
+          "name": "iron-sword",
+          "type": "take-able"
+        },
+        "entity": {
+
+        }
+      }
+    ]
+  ]
+}
