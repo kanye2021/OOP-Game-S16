@@ -14,6 +14,7 @@ public class NavigationMediator {
     // N, NE, E, SE, S SW, W, NW
     public void requestMovement(String direction){
         System.out.println("Player is currently at (" + entity.getLocation()[0] + ", " + entity.getLocation()[1] + ")");
+        System.out.println("DIRECTION: " + direction);
         // Assumes the entity has a location of the form int[] = {x, y}
         int[] currentLocation = entity.getLocation();
 
@@ -62,11 +63,13 @@ public class NavigationMediator {
             return;
         }
 
+
         // Check to see if the terrain is passable. For this iteration, we can only pass through grass.
         Terrain terrain = map.getTerrainAtLocation(desiredX, desiredY);
-        if(terrain.getType()!="grass"){
+        if(!terrain.getType().equals("grass")){
             return;
         }
+
 
         // Check to see if there is another entity blocking the path.
         Entity entityOnTile = map.getEntityAtLocation(desiredX, desiredY);
@@ -74,12 +77,12 @@ public class NavigationMediator {
             return;
         }
 
+
         // Check to see if there is an obstacle
         Item item = map.getItemAtLocation(desiredX, desiredY);
         if(item!=null && item.getType() == "obstacle"){
             return;
         }
-
 
         //----------------------If we got here we are okay to move so lets do it!----------------------------------
 
