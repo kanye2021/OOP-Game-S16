@@ -33,6 +33,31 @@ public class GameController extends ViewController {
             case KeyEvent.VK_ESCAPE:
             	IOMediator.setActiveView(IOMediator.Views.PAUSE);
             	break;
+            	
+            case KeyEvent.VK_NUMPAD1:
+            	navMediator.requestMovement("SW");
+            	break;
+            case KeyEvent.VK_NUMPAD2:
+            	navMediator.requestMovement("S");
+            	break;
+            case KeyEvent.VK_NUMPAD3:
+            	navMediator.requestMovement("SE");
+            	break;
+            case KeyEvent.VK_NUMPAD6:
+            	navMediator.requestMovement("E");
+            	break;
+            case KeyEvent.VK_NUMPAD9:
+            	navMediator.requestMovement("NE");
+            	break;
+            case KeyEvent.VK_NUMPAD8:
+            	navMediator.requestMovement("N");
+            	break;
+            case KeyEvent.VK_NUMPAD7:
+            	navMediator.requestMovement("NW");
+            	break;
+            case KeyEvent.VK_NUMPAD4:
+            	navMediator.requestMovement("W");
+            	break;
                 
         }
     }
@@ -41,36 +66,6 @@ public class GameController extends ViewController {
     public void handleKeyRelease(int key){
 
     }
-
-//    private void GameKeyListener(KeyEvent e) {
-//        System.out.println("KEYPRESSED");
-//        switch(e.getKeyCode()){
-//            case KeyEvent.VK_NUMPAD1:
-//                navMediator.requestMovement("SW");
-//                break;
-//            case KeyEvent.VK_NUMPAD2:
-//                navMediator.requestMovement("S");
-//                break;
-//            case KeyEvent.VK_NUMPAD3:
-//                navMediator.requestMovement("SE");
-//                break;
-//            case KeyEvent.VK_NUMPAD6:
-//                navMediator.requestMovement("E");
-//                break;
-//            case KeyEvent.VK_NUMPAD9:
-//                navMediator.requestMovement("NE");
-//                break;
-//            case KeyEvent.VK_NUMPAD8:
-//                navMediator.requestMovement("N");
-//                break;
-//            case KeyEvent.VK_NUMPAD7:
-//                navMediator.requestMovement("NW");
-//                break;
-//            case KeyEvent.VK_NUMPAD4:
-//                navMediator.requestMovement("W");
-//                break;
-//        }
-//    }
 
 }
 

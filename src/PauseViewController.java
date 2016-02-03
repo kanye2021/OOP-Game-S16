@@ -7,9 +7,9 @@ public class PauseViewController extends ViewController {
 
 	public enum MenuOptions {
 		RESUME("Resume Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.GAME);};}, 
-		OPTIONS("Options") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.GAME);};},
-		LOAD_GAME("Load Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.GAME);};},
-		SAVE_GAME("Save Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.GAME);};},
+		OPTIONS("Options") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
+		LOAD_GAME("Load Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
+		SAVE_GAME("Save Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
 		DAVE("Dave") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.START_MENU);};},
 		EXIT_GAME("Exit Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.START_MENU);};};
 		
@@ -22,6 +22,38 @@ public class PauseViewController extends ViewController {
 			this.s = s;
 			
 		}
+		
+		protected MenuOptions previous() {
+	    	
+	    	if (this.ordinal() == 0) {
+	    		
+	    		return MenuOptions.values()[MenuOptions.values().length - 1];
+	    		
+	    	}
+	    	
+	    	else {
+	    	
+	    		return MenuOptions.values()[this.ordinal() - 1];
+	    	
+	    	}
+	    	
+	    }
+	    
+	    protected MenuOptions next() {
+	    	
+	    	if (this.ordinal() == MenuOptions.values().length - 1) {
+	    		
+	    		return MenuOptions.values()[0];
+	    		
+	    	}
+	    	
+	    	else {
+	    	
+	    		return MenuOptions.values()[this.ordinal() + 1];
+	    	
+	    	}
+	    	
+	    }
 		
 		public String toString() {
 			
@@ -49,12 +81,12 @@ public class PauseViewController extends ViewController {
 
         if (key == KeyEvent.VK_UP) {
             System.out.println("Up pressed FROM PVC");
-            previousItem();
+            option = option.previous();
         }
 
         else if (key == KeyEvent.VK_DOWN) {
             System.out.println("Down pressed FROM PVC");
-            nextItem();
+            option = option.next();
         }
 
         else if (key == KeyEvent.VK_ESCAPE) {
@@ -70,42 +102,6 @@ public class PauseViewController extends ViewController {
     @Override
     public void handleKeyRelease(int key) {
 
-    }
-    
-    private void previousItem() {
-    	
-    	if (option.ordinal() == 0) {
-    		
-    		option = MenuOptions.values()[MenuOptions.values().length - 1];
-    		
-    	}
-    	
-    	else {
-    	
-    		option = MenuOptions.values()[option.ordinal() - 1];
-    	
-    	}
-    
-    	System.out.println("Option set to: " + option.toString());
-    	
-    }
-    
-    private void nextItem() {
-    	
-    	if (option.ordinal() == MenuOptions.values().length - 1) {
-    		
-    		option = MenuOptions.values()[0];
-    		
-    	}
-    	
-    	else {
-    	
-    		option = MenuOptions.values()[option.ordinal() + 1];
-    	
-    	}
-    	
-    	System.out.println("Option set to: " + option.toString());
-    	
     }
     
 }

@@ -5,44 +5,70 @@ import java.awt.event.KeyEvent;
  */
 public class StartMenuController extends ViewController {
 
-    public enum Selected{
-        CREATE_GAME {
-            @Override
-            public Selected prev() {
-                return values()[values().length-1]; // rollover to the last
-            };
-        },
-        LOAD_GAME,
-        EXIT {
-            @Override
-            public Selected next() {
-                return values()[0]; // rollover to the first
-            };
-        };
-        public Selected next() {
-            // No bounds checking required here, because the last instance overrides
-            return values()[ordinal() + 1];
-        }
+	public enum MenuOptions {
+		CREATE_GAME("Create Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.CREATE_GAME);};}, 
+		LOAD_GAME("Load Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
+		EXIT_GAME("Exit Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};};
+		
+		private String s;
+		
+		protected abstract void setView();
+		
+		private MenuOptions(String s) {
+			
+			this.s = s;
+			
+		}
+		
+		protected MenuOptions previous() {
+	    	
+	    	if (this.ordinal() == 0) {
+	    		
+	    		return MenuOptions.values()[MenuOptions.values().length - 1];
+	    		
+	    	}
+	    	
+	    	else {
+	    	
+	    		return MenuOptions.values()[this.ordinal() - 1];
+	    	
+	    	}
+	    	
+	    }
+	    
+	    protected MenuOptions next() {
+	    	
+	    	if (this.ordinal() == MenuOptions.values().length - 1) {
+	    		
+	    		return MenuOptions.values()[0];
+	    		
+	    	}
+	    	
+	    	else {
+	    	
+	    		return MenuOptions.values()[this.ordinal() + 1];
+	    	
+	    	}
+	    	
+	    }
+		
+		public String toString() {
+			
+			return s;
+			
+		}
+		
+	}
 
-        public Selected prev() {
-            // No bounds checking required here, because the last instance overrides
-            return values()[ordinal() - 1];
-        }
-    }
-
-    private Selected selectedOption;
-
-    public StartMenuController() {
-        super();
-    }
+    private MenuOptions option;
 
     public StartMenuController(View view) {
         super(view);
-        selectedOption = Selected.CREATE_GAME;
+        option = MenuOptions.CREATE_GAME;
     }
 
-    public Selected getSelected() {
-        return selectedOption;
+    public MenuOptions getSelected() {
+        return option;
     }
 
     @Override
@@ -50,18 +76,18 @@ public class StartMenuController extends ViewController {
 
         if (key == KeyEvent.VK_UP) {
             System.out.println("Up pressed FROM SMVC");
-            selectedOption = selectedOption.next();
+            option = option.next();
 
         }
 
         else if (key == KeyEvent.VK_DOWN) {
             System.out.println("Down pressed FROM SMVC");
-            selectedOption = selectedOption.prev();
+            option = option.previous();
         }
 
-        else if (key == KeyEvent.VK_ENTER && selectedOption == Selected.CREATE_GAME) {
+        else if (key == KeyEvent.VK_ENTER) {
             System.out.println("Enter pressed FROM SMVC");
-            IOMediator.setActiveView(IOMediator.Views.CREATE_GAME);
+            option.setView();
 
         }
         //TODO: REMOVE HAKCY ASS SHIT HOE

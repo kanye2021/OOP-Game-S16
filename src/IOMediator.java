@@ -18,6 +18,12 @@ public class IOMediator {
         AVATAR_CREATION(new AvatarCreationView()) {void render(Graphics g) {getView().render(g);}},
         PAUSE(new PauseView()) {void render(Graphics g) {getView().render(g);}},
         
+        UNIMPLEMENTED(null) {void render(Graphics g) {getView().render(g);}},
+        
+        SAVE(null) {void render(Graphics g) {getView().render(g);}},
+        LOAD(null) {void render(Graphics g) {getView().render(g);}},
+        EXIT(null) {void render(Graphics g) {getView().render(g);}},
+        
         // TODO: REMOVE HACKY SHIT
         GAME(new GameView(map, entity)) {void render(Graphics g) {getView().render(g);}},
         INVENTORY(new InventoryView(inventory)) {void render(Graphics g) {getView().render(g);}};

@@ -50,7 +50,7 @@ public class StartMenuView extends View {
         int x3 = (B_WIDTH - (int)r3.getWidth())/2;
         int y3 = button3_y_pos + (int)r3.getHeight() + fm.getAscent();
 
-        if (((StartMenuController)viewController).getSelected() == StartMenuController.Selected.LOAD_GAME) {
+        if (((StartMenuController)viewController).getSelected() == StartMenuController.MenuOptions.LOAD_GAME) {
             g.setColor(Color.WHITE);
             g.fillRect(button_x_pos, button1_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.setColor(Color.BLACK);
@@ -60,7 +60,7 @@ public class StartMenuView extends View {
             g.drawRect(button_x_pos, button1_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.drawString(LOAD_GAME, x1, y1);
         }
-        if (((StartMenuController)viewController).getSelected() == StartMenuController.Selected.CREATE_GAME) {
+        if (((StartMenuController)viewController).getSelected() == StartMenuController.MenuOptions.CREATE_GAME) {
             g.setColor(Color.WHITE);
             g.fillRect(button_x_pos, button2_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.setColor(Color.BLACK);
@@ -70,7 +70,7 @@ public class StartMenuView extends View {
             g.drawRect(button_x_pos, button2_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.drawString(CREATE_GAME, x2, y2);
         }
-        if (((StartMenuController)viewController).getSelected() == StartMenuController.Selected.EXIT) {
+        if (((StartMenuController)viewController).getSelected() == StartMenuController.MenuOptions.EXIT_GAME) {
             g.setColor(Color.WHITE);
             g.fillRect(button_x_pos, button3_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.setColor(Color.BLACK);
