@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
  */
 public class CreateNewGameViewController extends ViewController {
 
+
     public CreateNewGameViewController() {
         super();
     }
@@ -17,19 +18,21 @@ public class CreateNewGameViewController extends ViewController {
     @Override
     public void handleKeyPress(int key) {
 
-        if (key == KeyEvent.VK_UP) {
-            System.out.println("Up pressed FROM Create NEW GAME VC");
+        if (key == KeyEvent.VK_ENTER) {
+            // Get handle to our view.
+            // Need to cast as a CreateNewGameView
+            CreateNewGameView createNewGameView = ((CreateNewGameView)view);
 
-        }
-
-        else if (key == KeyEvent.VK_DOWN) {
-            System.out.println("down pressed FROM Create New Game VC");
-        }
-
-        else if (key == KeyEvent.VK_ENTER) {
             System.out.println("enter pressed FROM Create new VC");
-            String getValue = ((CreateNewGameView)view).getSaveStateName().getText();
+            String getValue = createNewGameView.getSaveStateName().getText();
             System.out.println("THE SAVE STATE NAME IS: " + getValue);
+            // TODO: need to actually create a "game state" with this name now
+
+
+            // Remove the JTextField from the Display's JPanel
+            Display.getInstance().remove(createNewGameView.getSaveStateName());
+            // Then proceed to avatar create view
+            IOMediator.getInstance().setActiveView(IOMediator.Views.AVATAR_CREATION);
 
         }
         

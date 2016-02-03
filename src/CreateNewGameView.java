@@ -18,8 +18,8 @@ public class CreateNewGameView extends View {
         super();
         this.viewController = new CreateNewGameViewController(this);
         firstRender = true;
-
     }
+
     public JTextField getSaveStateName(){
         return saveStateName;
     }
@@ -41,13 +41,15 @@ public class CreateNewGameView extends View {
         int xtextField = x;
         // Only want to create JTextField on the first render, and add it to the JPanel.
         if (firstRender) {
-
             saveStateName= new JTextField(20);
             saveStateName.setBounds(xtextField, ytextField, 200,40);
             saveStateName.setVisible(true);
             Display.getInstance().add(saveStateName);
             firstRender = false;
         }
+        // Always set focus to JTextField
+        saveStateName.requestFocus();
+
 
         // Label Text
         int yLabelText = ytextField + 10 + fm.getAscent() + saveStateName.getBounds().height;
