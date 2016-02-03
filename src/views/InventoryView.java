@@ -1,10 +1,10 @@
+package views;
+
+import controllers.InventoryViewController;
 import models.Inventory;
 import models.Item;
-import views.View;
-import controllers.InventoryViewController;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Map;
 
@@ -25,12 +25,16 @@ public class InventoryView extends View {
 	@Override
 	public void render(Graphics g) {
 		
-		BufferedImage overImage = new BufferedImage(B_WIDTH, B_HEIGHT, BufferedImage.TYPE_INT_RGB);
+		BufferedImage overImage = new BufferedImage(View.B_WIDTH, View.B_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		Graphics g2 = overImage.getGraphics();
 		
 		int item = 0;
 		
-		for (Map.Entry<Item, Integer> entry : currentInventory.items.entrySet()) {
+		Font small = new Font("Helvetica", Font.BOLD, 14);
+
+        g2.setFont(small);
+		
+		for (Map.Entry<Item, Integer> entry : currentInventory.getItems().entrySet()) {
 			
 			Color primaryColor;
 			Color secondaryColor;
@@ -48,16 +52,16 @@ public class InventoryView extends View {
 			}
 		
 			g2.setColor(primaryColor);
-			g2.fillRect(0, item * itemHeight, B_WIDTH - 1, itemHeight);
+			g2.fillRect(0, item * itemHeight, View.B_WIDTH - 1, itemHeight);
 			g2.setColor(secondaryColor);
-			g2.drawString(entry.getKey().name, 10, (item * itemHeight) + (int) (itemHeight * 0.65));
-			g2.drawString("x" + entry.getValue(), (int) (B_WIDTH * 0.90), (item * itemHeight) + (int) (itemHeight * 0.65));
-			g2.drawRect(0, item * itemHeight, B_WIDTH - 1, itemHeight);
+			g2.drawString(entry.getKey().getName(), 10, (item * itemHeight) + (int) (itemHeight * 0.65));
+			g2.drawString("x" + entry.getValue(), (int) (View.B_WIDTH * 0.90), (item * itemHeight) + (int) (itemHeight * 0.65));
+			g2.drawRect(0, item * itemHeight, View.B_WIDTH - 1, itemHeight);
 			item++;
 			
 		}
 		
-		g.drawImage(overImage, (int) (B_WIDTH * 0.1), (int) (B_HEIGHT * 0.1), (int) (B_WIDTH * 0.8), (int) (B_HEIGHT * 0.8), null);
+		g.drawImage(overImage, (int) (View.B_WIDTH * 0.1), (int) (View.B_HEIGHT * 0.1), (int) (View.B_WIDTH * 0.8), (int) (View.B_HEIGHT * 0.8), null);
 		
 	}
 
