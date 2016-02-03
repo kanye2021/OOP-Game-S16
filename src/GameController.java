@@ -30,6 +30,9 @@ public class GameController extends ViewController {
             case KeyEvent.VK_I:
             	IOMediator.setActiveView(IOMediator.Views.INVENTORY);
             	break;
+            case KeyEvent.VK_ESCAPE:
+            	IOMediator.setActiveView(IOMediator.Views.PAUSE);
+            	break;
                 
         }
     }

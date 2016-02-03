@@ -7,10 +7,6 @@ public class InventoryController extends ViewController {
 
 	int position = 0;
 	Inventory inventory;
-	
-    public InventoryController() {
-        super();
-    }
 
     public InventoryController(View view, Inventory inventory) {
         super(view);
@@ -53,7 +49,7 @@ public class InventoryController extends ViewController {
     	
     	if (position < 0) {
     		
-    		position = inventory.items.size();
+    		position = inventory.items.size() - 1;
     		
     	}
     	
@@ -63,7 +59,7 @@ public class InventoryController extends ViewController {
     	
     	position++;
     	
-    	if (position >= inventory.items.size()) {
+    	if (position > inventory.items.size() - 1) {
     		
     		
     		position = 0;
