@@ -3,18 +3,19 @@
         <tile>
             <terrain type="mountain"></terrain>
             <areaEffect type="take-damage" statsModifier="10"></areaEffect>
-            <item description="A light sword" type="take-able" name="iron-sword"></item>
         </tile>
         <tile>
             <terrain type="mountain"></terrain>
             <areaEffect type="take-damage" statsModifier="10"></areaEffect>
+
+        </tile>
+        <tile>
+            <terrain type="grass"></terrain>
             <item description="A light sword" type="take-able" name="iron-sword"></item>
         </tile>
         <tile>
             <terrain type="grass"></terrain>
-        </tile>
-        <tile>
-            <terrain type="grass"></terrain>
+            <item description="A light sword" type="take-able" name="iron-sword"></item>
         </tile>
         <tile>
             <terrain type="grass"></terrain>

@@ -2,11 +2,16 @@
  * Created by Bradley on 2/1/16.
  */
 public class Entity extends Observable{
+
+    //Starting location for the Entity
     private final int START_X = 10;
     private final int START_Y = 5;
+
+    //Entity properties
     private String lastAtemptedDirection;
     private String occupation;
     private Stats entityStats;
+    private Inventory inventory;
 
     private int[] location;
 
@@ -29,6 +34,10 @@ public class Entity extends Observable{
     }
     public Stats getStats(){
         return this.entityStats;
+    }
+    public Inventory getInventory(){
+        System.out.println("Inventory has been got, nigga");
+        return this.inventory;
     }
     public void setOccupation(String type) {
         this.occupation = type;

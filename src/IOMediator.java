@@ -46,14 +46,7 @@ public class IOMediator {
     // Default view is StartMenuView
     private IOMediator() {
         activeView = Views.START_MENU;
-        
-        inventory.addItem(new Item("Cat", "Der", "Desc", 1));
-        inventory.addItem(new Item("Dog", "Der", "Desc", 2));
-        inventory.addItem(new Item("Oversized Goat", "Der", "Desc", 3));
-        inventory.addItem(new Item("Oversized Goat", "Der", "Desc", 3));
-        inventory.addItem(new Item("Elephant", "Der", "Desc", 4));
-        inventory.addItem(new Item("Goat", "Der", "Desc", 3));
-        inventory.addItem(new Item("Goat", "Der", "Desc", 3));
+
 
         // Put the entity (avatar) at its starting lcoation
         map.insertEntityAtLocation(entity.getLocation()[0], entity.getLocation()[1], entity);

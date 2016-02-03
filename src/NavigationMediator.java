@@ -15,6 +15,7 @@ public class NavigationMediator {
     public void requestMovement(String direction){
         System.out.println("Player is currently at (" + entity.getLocation()[0] + ", " + entity.getLocation()[1] + ")");
         System.out.println("DIRECTION: " + direction);
+        System.out.println("Item on map is: " + map.getItemAtLocation(entity.getLocation()[0], entity.getLocation()[1]));
         // Assumes the entity has a location of the form int[] = {x, y}
         int[] currentLocation = entity.getLocation();
 
@@ -80,7 +81,7 @@ public class NavigationMediator {
 
         // Check to see if there is an obstacle
         Item item = map.getItemAtLocation(desiredX, desiredY);
-        if(item!=null && item.getType() == "obstacle"){
+        if(item!=null && item.type == "obstacle"){
             return;
         }
 
