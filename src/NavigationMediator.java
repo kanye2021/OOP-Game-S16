@@ -86,7 +86,7 @@ public class NavigationMediator {
         // Remove the entity from it's current location and put it in the new one.
         map.removeEntityFromLocation(currentLocation[0], currentLocation[1]);
         map.insertEntityAtLocation(desiredX, desiredY, entity);
-
+        
         entity.moveTo(desiredX, desiredY);
 
 

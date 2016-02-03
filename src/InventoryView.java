@@ -3,7 +3,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Map;
 
-
+/**
+ * Created by Austin on 2/2/16.
+ */
 public class InventoryView extends View {
 
 	Inventory currentInventory;

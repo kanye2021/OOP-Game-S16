@@ -35,8 +35,7 @@ public class Display extends JPanel  {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         // Every refresh, tell the active view to refresh itself
-        IOMediator ioMediator = IOMediator.getInstance();
-        ioMediator.getActiveView().render(g);
+        IOMediator.getActiveView().render(g);
     }
 
 
@@ -47,7 +46,7 @@ public class Display extends JPanel  {
         @Override
         public boolean dispatchKeyEvent(KeyEvent e) {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
-                ioMediator.keyPressed(e);
+                IOMediator.keyPressed(e);
             } else if (e.getID() == KeyEvent.KEY_RELEASED) {
                 ioMediator.keyReleased(e);
             } else if (e.getID() == KeyEvent.KEY_TYPED) {

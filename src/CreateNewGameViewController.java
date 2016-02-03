@@ -30,6 +30,7 @@ public class CreateNewGameViewController extends ViewController {
             System.out.println("Down pressed FROM Create new VC");
 
         }
+        
         else {
             System.out.println("invalid key press FROM CREATE NEW VC");
         }

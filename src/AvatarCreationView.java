@@ -1,7 +1,9 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-
+/**
+ * Created by sergiopuleri on 2/1/16.
+ */
 public class AvatarCreationView extends View {
 
 	@Override

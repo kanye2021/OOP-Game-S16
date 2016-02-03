@@ -5,12 +5,15 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 
-
 /**
  * Created by sergiopuleri on 2/1/16.
  */
 public class IOMediator {
-
+	
+	static Map map = new Map();
+	static Entity entity = new Entity();
+	static Inventory inventory = new Inventory();
+	
     public static enum Views {
     	
     	// Views.START_MENU_VIEW.render(g);
@@ -21,8 +24,8 @@ public class IOMediator {
         PAUSE(new PauseView()) {void render(Graphics g) {getView().render(g);}},
         
         // TODO: REMOVE HACKY SHIT
-        GAME(new GameView(new Map(), new Entity())) {void render(Graphics g) {getView().render(g);}},
-        INVENTORY(new InventoryView(new Inventory())) {void render(Graphics g) {getView().render(g);}};
+        GAME(new GameView(map, entity)) {void render(Graphics g) {getView().render(g);}},
+        INVENTORY(new InventoryView(inventory)) {void render(Graphics g) {getView().render(g);}};
         
         abstract void render(Graphics g);
         
@@ -47,8 +50,13 @@ public class IOMediator {
     // If no view passed in,
     // Default view is StartMenuView
     private IOMediator() {
-        // Init all views below
         activeView = Views.START_MENU;
+        
+        inventory.addItem(new Item("Cat", "Der", "Desc", 1));
+        inventory.addItem(new Item("Dog", "Der", "Desc", 2));
+        inventory.addItem(new Item("Goat", "Der", "Desc", 3));
+        inventory.addItem(new Item("Goat", "Der", "Desc", 3));
+        
     }
 
     // Static 'instance' method

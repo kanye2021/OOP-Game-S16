@@ -2,7 +2,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-
+/**
+ * Created by Austin on 2/1/16.
+ */
 public class PauseView extends View {
 
 	public PauseView() {

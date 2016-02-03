@@ -48,8 +48,6 @@ public class StartMenuController extends ViewController {
     @Override
     public void handleKeyPress(int key) {
 
-        IOMediator ioMediator = IOMediator.getInstance();
-
         if (key == KeyEvent.VK_UP) {
             System.out.println("Up pressed FROM SMVC");
             selectedOption = selectedOption.next();
@@ -63,12 +61,12 @@ public class StartMenuController extends ViewController {
 
         else if (key == KeyEvent.VK_ENTER && selectedOption == Selected.CREATE_GAME) {
             System.out.println("Enter pressed FROM SMVC");
-            ioMediator.setActiveView(IOMediator.Views.CREATE_GAME);
+            IOMediator.setActiveView(IOMediator.Views.CREATE_GAME);
 
         }
         //TODO: REMOVE HAKCY ASS SHIT HOE
         else if(key == KeyEvent.VK_Q){
-            ioMediator.setActiveView(IOMediator.Views.GAME);
+            IOMediator.setActiveView(IOMediator.Views.GAME);
         }
         else {
             System.out.println("invalid key press FROM SMVC");

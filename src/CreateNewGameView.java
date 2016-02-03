@@ -18,7 +18,6 @@ public class CreateNewGameView extends View {
 
     @Override
     void render(Graphics g) {
-        System.out.println("IN CREATE NEW GAMES render method");
         // Text in the rectangles
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics fm = g.getFontMetrics(small);

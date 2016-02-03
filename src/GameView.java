@@ -9,6 +9,7 @@ public class GameView extends View {
 
     public GameView(Map map, Entity entity){
         areaViewport = new AreaViewport(map, entity);
+        this.viewController = new GameController(this, new NavigationMediator(map, entity));
 //        StatusViewport = new StatusViewport(entity);
     }
 

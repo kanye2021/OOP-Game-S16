@@ -1,6 +1,8 @@
 import java.util.*;
 
-
+/**
+ * Created by Austin on 2/1/16.
+ */
 public class Inventory {
 
 	HashMap<Item, Integer> items = new HashMap<Item, Integer>();
