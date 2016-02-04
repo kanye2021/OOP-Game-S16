@@ -10,16 +10,16 @@ import java.awt.*;
 public abstract class View {
 
     // Constants
-    public static int B_WIDTH = 700;
-    public static int B_HEIGHT = 600;
+    public static int B_WIDTH = 1600;
+    public static int B_HEIGHT = 900;
 
+    public static Font VIEW_FONT = new Font("Helvetica", Font.BOLD, 14);
+    
     protected ViewController viewController;
 
     public ViewController getViewController(){
         return viewController;
     }
-
-    public View() { }
 
     // Subclasses need to implement to render
     // e.g.

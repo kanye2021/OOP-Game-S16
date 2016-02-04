@@ -101,7 +101,10 @@ public class Entity extends Observable {
     }
     public String getType() {
         return this.type;
-    };
+    }
+    public String getImageName(){
+        return "entity-" + lastAtemptedDirection + ".png" ;
+    }
     /* ------End of Getters and Setters -----*/
 
     //All this is going to do is update orientation/location of the entity

@@ -3,9 +3,6 @@
  */
 package models;
 
-import models.Entity;
-import models.Item;
-
 /**
  * TakeableItem's main purpose is to be able to insert itself back into
  * the Entity's inventory when touched
@@ -24,5 +21,10 @@ public class TakeableItem extends Item {
     public boolean onTouch(Entity entity) {
         entity.getInventory().addItem(this);
         return true;
+    }
+
+    @Override
+    public String getImageName(){
+        return "takeable-item.png";
     }
 }

@@ -16,7 +16,7 @@ import java.util.Map;
 public class InventoryView extends View {
 
 	Inventory currentInventory;
-	private final int ITEM_HEIGHT = 25;
+	private final int ITEM_HEIGHT = 30;
 	
 	public InventoryView(Inventory inventory) {
 		super();
@@ -33,10 +33,8 @@ public class InventoryView extends View {
 		int itemNumber = 0;
 		int itemOffset = 1;
 		
-		Font small = new Font("Helvetica", Font.BOLD, 14);
-		FontMetrics fm = g.getFontMetrics(small);
-
-        g2.setFont(small);
+		FontMetrics fm = g2.getFontMetrics(VIEW_FONT);
+        g2.setFont(VIEW_FONT);
         
         g2.setColor(Color.WHITE);
         g2.fillRect(0, 0, B_WIDTH - 1, B_HEIGHT - 1);
@@ -46,10 +44,11 @@ public class InventoryView extends View {
         String titleString = "Inventory";
         Rectangle2D titleRectangle = fm.getStringBounds(titleString, g2);
         int titleStringX = (int) (B_WIDTH / 2 - titleRectangle.getWidth() / 2);
-        int titleStringY = (int) (itemNumber * ITEM_HEIGHT + titleRectangle.getHeight() / 3 + fm.getAscent() + 11);
+        int titleStringY = (int) (ITEM_HEIGHT / 3 + fm.getAscent());
         
         g2.setColor(Color.WHITE);
         g2.drawString(titleString, titleStringX, titleStringY);
+        g2.drawRect(0, 0, B_WIDTH, ITEM_HEIGHT);
         
 		for (Map.Entry<Item, Integer> entry : currentInventory.getItems().entrySet()) {
 			
@@ -63,15 +62,15 @@ public class InventoryView extends View {
 			
 			int actualItemNumber = itemNumber + itemOffset;
 			
-			int boxX = 11;
+			int boxX = 25;
 			int boxY = actualItemNumber * ITEM_HEIGHT + 11;
-			int boxDX = B_WIDTH - 22;
+			int boxDX = B_WIDTH - 52;
 			int boxDY = ITEM_HEIGHT;
-			int string1X = 20;
+			int string1X = 30;
 			int string1Y = (int) (actualItemNumber * ITEM_HEIGHT + rectangle1.getHeight() / 3 + fm.getAscent() + 11);
 			int string2X = (int) (B_WIDTH / 2 - rectangle2.getWidth() / 2);
 			int string2Y = (int) (actualItemNumber * ITEM_HEIGHT + rectangle2.getHeight() / 3 + fm.getAscent() + 11);
-			int string3X = (int) (B_WIDTH - rectangle3.getWidth() - 20);
+			int string3X = (int) (B_WIDTH - rectangle3.getWidth() - 30);
 			int string3Y = (int) (actualItemNumber * ITEM_HEIGHT + rectangle3.getHeight() / 3 + fm.getAscent() + 11);
 			
 			Color primaryColor;
@@ -95,7 +94,6 @@ public class InventoryView extends View {
 			g2.drawString(string1, string1X, string1Y);
 			g2.drawString(string2, string2X, string2Y);
 			g2.drawString(string3, string3X, string3Y);
-			g2.drawRect(boxX, boxY, boxDX, boxDY);
 			itemNumber++;
 			
 		}
