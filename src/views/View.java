@@ -1,4 +1,7 @@
-import javax.swing.*;
+package views;
+
+import controllers.ViewController;
+
 import java.awt.*;
 
 /**
@@ -11,25 +14,16 @@ public abstract class View {
     public static int B_HEIGHT = 600;
 
     protected ViewController viewController;
-    protected int width;
-    protected int height;
-    protected int x;
-    protected int y;
+
+    public ViewController getViewController(){
+        return viewController;
+    }
 
     public View() { }
 
     // Subclasses need to implement to render
     // e.g.
 
-    abstract void render(Graphics g);
+    public abstract void render(Graphics g);
 
-
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
 }

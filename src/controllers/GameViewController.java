@@ -1,13 +1,20 @@
+package controllers;
+
+import utilities.IOMediator;
+import utilities.Load_Save;
+import utilities.NavigationMediator;
+import views.View;
+
 import java.awt.event.KeyEvent;
 
 
 /**
  * Created by Bradley on 2/1/2016.
  */
-public class GameController extends ViewController {
+public class GameViewController extends ViewController {
     private NavigationMediator navMediator;
     private Load_Save l_s;
-    public GameController(View view, NavigationMediator navigationMediator){
+    public GameViewController(View view, NavigationMediator navigationMediator){
         super(view);
         this.navMediator = navigationMediator;
         this.l_s = new Load_Save();

@@ -1,3 +1,5 @@
+package views;
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
@@ -20,8 +22,8 @@ public class AvatarCreationView extends View {
 		g.setColor(Color.white);
 		g.setFont(small);
 		Rectangle2D r1 = fm.getStringBounds(AVATAR_CREATE_TEXT, g);
-		int x = (B_WIDTH - (int)r1.getWidth())/2;
-		int y = (B_HEIGHT - (int)r1.getHeight())/2 + fm.getAscent();
+		int x = (View.B_WIDTH - (int)r1.getWidth())/2;
+		int y = (View.B_HEIGHT - (int)r1.getHeight())/2 + fm.getAscent();
 		g.drawString(AVATAR_CREATE_TEXT, x, y);
 		
 	}

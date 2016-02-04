@@ -1,3 +1,5 @@
+package models;
+
 import java.util.*;
 
 /**
@@ -5,7 +7,11 @@ import java.util.*;
  */
 public class Inventory {
 
-	HashMap<Item, Integer> items = new HashMap<Item, Integer>();
+	private HashMap<Item, Integer> items = new HashMap<Item, Integer>();
+
+	public HashMap<Item, Integer> getItems(){
+		return items;
+	}
 	
 	public void addItem(Item newItem) {
 		

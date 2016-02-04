@@ -1,3 +1,4 @@
+package utilities;
 
 public abstract class Observable {
 	//Innate variables of observables and whether the observable has changed

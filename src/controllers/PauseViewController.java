@@ -1,3 +1,8 @@
+package controllers;
+
+import utilities.IOMediator;
+import views.View;
+
 import java.awt.event.KeyEvent;
 
 /**
@@ -6,7 +11,7 @@ import java.awt.event.KeyEvent;
 public class PauseViewController extends ViewController {
 
 	// This enum represents the menu options available on this screen. The setView() function maps to an individual view
-	// such as IOMediator.Views.GAME;
+	// such as utilities.IOMediator.Views.GAME;
 	
 	public enum MenuOptions {
 		RESUME("Resume Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.GAME);};}, 

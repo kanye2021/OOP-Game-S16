@@ -1,8 +1,8 @@
-/**
+package controllers; /**
  * Created by sergiopuleri on 2/1/16.
  */
 
-import java.awt.event.KeyEvent;
+import views.View;
 
 abstract public class ViewController {
 
@@ -15,6 +15,6 @@ abstract public class ViewController {
         this.view = view;
     }
 
-    abstract void handleKeyPress(int key);
-    abstract void handleKeyRelease(int key);
+    public abstract void handleKeyPress(int key);
+    public abstract void handleKeyRelease(int key);
 }

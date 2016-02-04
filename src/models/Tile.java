@@ -1,4 +1,9 @@
+package models;
 
+import models.AreaEffect;
+import models.Entity;
+import models.Item;
+import models.Terrain;
 
 /**
  * Created by Bradley on 2/1/16.

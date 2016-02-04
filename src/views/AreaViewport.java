@@ -1,18 +1,25 @@
+package views;
+
+import models.Entity;
+import models.Map;
+import models.Terrain;
+import utilities.Observer;
+
 import javax.swing.*;
 import java.awt.*;
 
 /**
  * Created by Bradley on 2/2/16.
  */
-public class AreaViewport extends View implements Observer{
+public class AreaViewport extends View implements Observer {
     private Map map;
     private Entity entity;
     private  String terrainBaseFilepath = "./src/res/terrain/";
     private  String areaEffectBaseFilepath = "./src/res/area-effects/";
     private  String itemBaseFilepath = "./src/res/items/";
     private  String entityBaseFilepath = "./src/res/entitys/";
-    private final int AREA_WIDTH = B_WIDTH;
-    private final int AREA_HEIGHT = B_HEIGHT * 3/4;
+    private final int AREA_WIDTH = View.B_WIDTH;
+    private final int AREA_HEIGHT = View.B_HEIGHT * 3/4;
     private final int TILE_SIZE = 50;
 
     public AreaViewport(Map map, Entity entity){
@@ -21,7 +28,7 @@ public class AreaViewport extends View implements Observer{
         this.entity = entity;
         map.addObserver(this);
         entity.addObserver(this);
-//        this.viewController = new GameController(this);
+//        this.viewController = new controllers.GameViewController(this);
 
         // Modify the filepaths based on the user's OS
         terrainBaseFilepath = terrainBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
@@ -31,7 +38,7 @@ public class AreaViewport extends View implements Observer{
     }
 
     @Override
-    void render(Graphics g){
+    public void render(Graphics g){
 
         /*  There is essentially a transformation between two different coordinate systems. There is the logical coordinate
             system (the array of tiles in the map) and a visual coordinate system (what will be shown on the display).

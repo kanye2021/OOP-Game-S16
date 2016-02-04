@@ -1,4 +1,6 @@
-import javax.swing.*;
+package views;
+
+import controllers.StartMenuViewController;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -13,11 +15,11 @@ public class StartMenuView extends View {
 
     public StartMenuView(){
         super();
-        this.viewController = new StartMenuController(this);
+        this.viewController = new StartMenuViewController(this);
     }
 
     @Override
-    void render(Graphics g) {
+    public void render(Graphics g) {
 
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics fm = g.getFontMetrics(small);
@@ -53,7 +55,7 @@ public class StartMenuView extends View {
         int x3 = (B_WIDTH - (int)r3.getWidth())/2;
         int y3 = button3_y_pos + (int)r3.getHeight() + fm.getAscent();
 
-        if (((StartMenuController)viewController).getSelected() == StartMenuController.MenuOptions.LOAD_GAME) {
+        if (((controllers.StartMenuViewController)viewController).getSelected() == controllers.StartMenuViewController.MenuOptions.LOAD_GAME) {
             g.setColor(Color.WHITE);
             g.fillRect(button_x_pos, button1_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.setColor(Color.BLACK);
@@ -63,7 +65,7 @@ public class StartMenuView extends View {
             g.drawRect(button_x_pos, button1_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.drawString(LOAD_GAME, x1, y1);
         }
-        if (((StartMenuController)viewController).getSelected() == StartMenuController.MenuOptions.CREATE_GAME) {
+        if (((controllers.StartMenuViewController)viewController).getSelected() == controllers.StartMenuViewController.MenuOptions.CREATE_GAME) {
             g.setColor(Color.WHITE);
             g.fillRect(button_x_pos, button2_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.setColor(Color.BLACK);
@@ -73,7 +75,7 @@ public class StartMenuView extends View {
             g.drawRect(button_x_pos, button2_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.drawString(CREATE_GAME, x2, y2);
         }
-        if (((StartMenuController)viewController).getSelected() == StartMenuController.MenuOptions.EXIT_GAME) {
+        if (((controllers.StartMenuViewController)viewController).getSelected() == controllers.StartMenuViewController.MenuOptions.EXIT_GAME) {
             g.setColor(Color.WHITE);
             g.fillRect(button_x_pos, button3_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
             g.setColor(Color.BLACK);
@@ -87,20 +89,20 @@ public class StartMenuView extends View {
         
         
         
-        for (StartMenuController.MenuOptions option : StartMenuController.MenuOptions.values()) {
+        for (StartMenuViewController.MenuOptions option : StartMenuViewController.MenuOptions.values()) {
 			
 			Rectangle2D rectangle = fm.getStringBounds(option.toString(), g);
-			int boxX = B_WIDTH / 2 - BUTTON_WIDTH / 2;
+			int boxX = View.B_WIDTH / 2 - BUTTON_WIDTH / 2;
 			int boxY = BUTTON_HEIGHT * option.ordinal();
 			int boxDX = BUTTON_WIDTH;
 			int boxDY = BUTTON_HEIGHT;
-			int stringX = B_WIDTH / 2 - (int) (rectangle.getWidth() / 2);
+			int stringX = View.B_WIDTH / 2 - (int) (rectangle.getWidth() / 2);
 			int stringY = option.ordinal() * BUTTON_HEIGHT + (int) (rectangle.getHeight() / 2) + fm.getAscent();
 			
 			Color primaryColor;
 			Color secondaryColor;
 			
-			if (option == ((StartMenuController) viewController).getActiveItem()) {
+			if (option == ((StartMenuViewController) viewController).getActiveItem()) {
 			
 				primaryColor = Color.WHITE;
 				secondaryColor = Color.BLACK;
