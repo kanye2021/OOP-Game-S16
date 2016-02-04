@@ -23,11 +23,8 @@ public class StartMenuView extends View {
 
     	clear(g);
     	
-        Font small = new Font("Helvetica", Font.BOLD, 14);
-        FontMetrics fm = g.getFontMetrics(small);
-
-        g.setColor(Color.white);
-        g.setFont(small);
+        FontMetrics fm = g.getFontMetrics(VIEW_FONT);
+        g.setFont(VIEW_FONT);
 
     	
         /*// Rectangles

@@ -13,6 +13,8 @@ public abstract class View {
     public static int B_WIDTH = 700;
     public static int B_HEIGHT = 600;
 
+    public static Font VIEW_FONT = new Font("Helvetica", Font.BOLD, 14);
+    
     protected ViewController viewController;
 
     public ViewController getViewController(){
