@@ -1,8 +1,6 @@
 package utilities;
 
 import models.Entity;
-import models.Inventory;
-import models.Item;
 import models.Map;
 import views.*;
 

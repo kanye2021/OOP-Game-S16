@@ -50,6 +50,9 @@ public class Entity extends Observable {
     public void updateOrientation(String orientation){
         lastAtemptedDirection = orientation;
     }
+    public String getImageName(){
+        return "entity-" + lastAtemptedDirection + ".png" ;
+    };
     /* ------End of Getters and Setters -----*/
 
     //All this is going to do is update orientation of the entity
