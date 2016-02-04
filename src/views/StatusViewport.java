@@ -47,8 +47,7 @@ public class StatusViewport extends View {
 
         g.drawString("Lives: ", x, View.B_HEIGHT*3/4 + y+60);
         g.drawString(stats.getLivesLeft(), x+50, View.B_HEIGHT*3/4 + y+60);
-        g.drawString("/", x+70, View.B_HEIGHT*3/4 + y+60);
-        g.drawString(stats.getMaxMana(), x+80, View.B_HEIGHT*3/4 + y+60);
+
 
         g.drawString("Strength", x+120, View.B_HEIGHT*3/4 + y-20);
         g.drawString(stats.getStrength(), x+195, View.B_HEIGHT*3/4 + y-20);
