@@ -12,7 +12,7 @@ import java.awt.*;
 /**
  * Created by Bradley on 2/2/16.
  */
-public class AreaViewport extends View implements Observer {
+public class AreaViewport extends View{
     private Map map;
     private Entity entity;
     private  String terrainBaseFilepath = "./src/res/terrain/";
@@ -27,8 +27,6 @@ public class AreaViewport extends View implements Observer {
         super();
         this.map = map;
         this.entity = entity;
-        map.addObserver(this);
-        entity.addObserver(this);
 //        this.viewController = new controllers.GameViewController(this);
 
         // Modify the filepaths based on the user's OS
@@ -88,7 +86,7 @@ public class AreaViewport extends View implements Observer {
                 g.drawImage(terrainImg, displayX, displayY, Display.getInstance());
 
                 //TODO: Do the same for areaEffect, item, and entity
-                // Display any entitys at thi slocation
+                // Display any entitys at this location
                 Entity e = map.getEntityAtLocation(j, i);
                 if(e!=null){
                     ImageIcon avatar_icon = new ImageIcon(entityBaseFilepath + e.getImageName());
@@ -116,12 +114,6 @@ public class AreaViewport extends View implements Observer {
             }
             displayY += TILE_SIZE;
         }
-    }
-
-
-    @Override
-    public void update(){
-        //TODO: implement
     }
 
 }

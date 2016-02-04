@@ -6,7 +6,7 @@ import utilities.Observable;
  * Created by Bradley on 2/1/16.
  */
 
-public class Entity extends Observable {
+public class Entity {
 
     private final int START_X = 10;
     private final int START_Y = 5;
@@ -62,9 +62,7 @@ public class Entity extends Observable {
         location[1] = y;
         updateOrientation(direction);
 
-        /* These functions exist in the utilities.Observable class */
-        setChanged();
-        notifyObservers();  //Observers are the views
+
     }
 
 
