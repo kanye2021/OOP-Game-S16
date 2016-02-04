@@ -37,7 +37,7 @@ public class Display extends JPanel  {
 
     @Override
     public void paintComponent(Graphics g) {
-        //super.paintComponent(g);
+        // 	super.paintComponent(g);
         // Every refresh, tell the active view to refresh itself
         IOMediator.getActiveView().render(g);
     }
