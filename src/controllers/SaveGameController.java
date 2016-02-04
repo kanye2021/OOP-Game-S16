@@ -5,26 +5,30 @@ import utilities.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 /**
  * Created by dyeung on 2/3/16.
  */
-public class SaveGameController extends ViewController implements ActionListener {
-    SaveGameView controllerView;
+public class SaveGameController extends ViewController {
+    SaveGameView saveView;
     public SaveGameController(SaveGameView v){
-        controllerView = v;
+        saveView = v;
+//        saveView.getTextField().addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                System.out.println("Text=" + saveView.getTextField().getText());
+//            }
+//        });
     }
-    public void actionPerformed(ActionEvent e){
 
-    }
     //Remember that function has to go within keypress
     @Override
     public void handleKeyPress(int key){
         switch(key) {
             case KeyEvent.VK_ENTER :
-                System.out.println("Selected to start saving");
-                controllerView.startSaving();
+
+                saveView.startSaving();
                 break;
 
         }

@@ -6,6 +6,8 @@ import utilities.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 
 /**
@@ -18,7 +20,6 @@ public class SaveGameView extends View {
     //Things that need to be saved
     private Map myMap;
     private Entity myEntity;
-
     private final String MSG = "Save File Name:";
     private final String ENDMSG = "Press enter to save";
 
@@ -27,10 +28,13 @@ public class SaveGameView extends View {
         l_s = new Load_Save();
         this.myMap = m;
         this.myEntity = e;
+        String text;
+
     }
     public void startSaving(){
         System.out.println("Saving map and entity");
         String savedFileName = saveFileField.getText();
+
         System.out.println("Saved file name is " + savedFileName);
         l_s.save(myMap, myEntity, savedFileName);
 
@@ -44,18 +48,29 @@ public class SaveGameView extends View {
     @Override
     public void render(Graphics g) {
         Font small = new Font("Helvetica", Font.BOLD, 14);
+        FontMetrics fm = g.getFontMetrics(small);
+        Rectangle2D r1 = fm.getStringBounds(MSG, g);
+        int x = (View.B_WIDTH - (int)r1.getWidth())/2;
+        int y = (View.B_HEIGHT - (int)r1.getHeight())/2 + fm.getAscent();
 
-        int x = 200;
-        int y = 300;
+        int col = 20;
+        int row = 40;
         g.setColor(Color.white);
         g.drawString(MSG, x, y);
-        g.drawString(ENDMSG, x, y - 200);
+        JButton button = new JButton("BUTTON");
 
-        saveFileField= new JTextField(20);
-        saveFileField.setBounds(x, y - 100, 200,40);
+        saveFileField = new JTextField("Press Return", 20);
+        saveFileField.setBounds(x, y, col * 10, row);
+
+
         saveFileField.setVisible(true);
+        button.setVisible(true);
+
+        g.drawString(ENDMSG, x, y - 80);
+
 
         Display.getInstance().add(saveFileField);
+        Display.getInstance().add(button);
 
     }
 }
