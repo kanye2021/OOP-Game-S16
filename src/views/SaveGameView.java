@@ -25,7 +25,7 @@ public class SaveGameView extends View {
 
     public SaveGameView(Map m, Entity e){
         this.viewController = new SaveGameController(this);
-        l_s = new Load_Save();
+        l_s = new Load_Save("SaveGame_1.xml");
         this.myMap = m;
         this.myEntity = e;
         String text;
@@ -36,7 +36,7 @@ public class SaveGameView extends View {
         String savedFileName = saveFileField.getText();
 
         System.out.println("Saved file name is " + savedFileName);
-        l_s.save(myMap, myEntity, savedFileName);
+        l_s.save(myMap, myEntity);
 
         //Return back to the game (?) Not sure where to go from save
         //IOMediator.setActiveView(IOMediator.Views.GAME);

@@ -17,7 +17,7 @@ public class GameViewController extends ViewController {
     public GameViewController(View view, NavigationMediator navigationMediator){
         super(view);
         this.navMediator = navigationMediator;
-        this.l_s = new Load_Save();
+        this.l_s = new Load_Save("SaveGame_1.xml");
     }
 
     @Override

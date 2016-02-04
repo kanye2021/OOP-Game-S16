@@ -121,9 +121,6 @@ public class AreaViewport extends View implements Observer {
             }
             displayY += TILE_SIZE;
         }
-        
-    	g.setColor(new Color(255,0,0));
-    	g.fillRect(0, 0, View.B_WIDTH,View.B_HEIGHT);
     }
 
 
