@@ -115,7 +115,11 @@ public class Map extends Observable {
     public Tile[][] getTiles() {
         return tiles;
     }
+    
     public Terrain getTerrainAtLocation(int x, int y){
+    	if(y < 0 || y >= tiles.length || x < 0 || x >= tiles[0].length)
+    		return null;
+    	
         return tiles[y][x].getTerrain();
     }
 

@@ -41,6 +41,7 @@ public class AreaViewport extends View implements Observer {
     @Override
     public void render(Graphics g){
 
+    	
         /*  There is essentially a transformation between two different coordinate systems. There is the logical coordinate
             system (the array of tiles in the map) and a visual coordinate system (what will be shown on the display).
         */
@@ -82,7 +83,11 @@ public class AreaViewport extends View implements Observer {
 
                 // Get the terrain at this location
                 Terrain t = map.getTerrainAtLocation(j, i);
-
+                
+                //OUT OF BOUNDS!!!!!!!!!!!!!!!!
+                if(t == null) 
+                	continue;
+                
                 ImageIcon ii = new ImageIcon(terrainBaseFilepath + t.getType() + ".png");
                 Image terrainImg = ii.getImage();
                 g.drawImage(terrainImg, displayX, displayY, Display.getInstance());
@@ -116,9 +121,14 @@ public class AreaViewport extends View implements Observer {
             }
             displayY += TILE_SIZE;
         }
+        
+    	g.setColor(new Color(255,0,0));
+    	g.fillRect(0, 0, View.B_WIDTH,View.B_HEIGHT);
     }
 
 
+    
+    
     @Override
     public void update(){
         //TODO: implement
