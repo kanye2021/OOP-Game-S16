@@ -29,7 +29,12 @@ public class Map extends Observable {
     private void initMapXML(){
 
         try{
+            //TODO: Remove once done testing
+//            String tmp = "./src/res/save_files/SaveFile_1.xml";
+//            String filepath = tmp.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
+
             // Get the xml filepath string ensuring file separators are specific to the use's OS.
+            //TODO: Uncomment when done testing
             String filepath = DEFAULT_MAP.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
 
             // Create a document from the xml file
@@ -40,9 +45,11 @@ public class Map extends Observable {
             // Normalize
             doc.getDocumentElement().normalize();
 
+            NodeList mapList = doc.getElementsByTagName("map"); //Maybe in the future we have multiple maps?
+            Element map = (Element) mapList.item(0); //Only 1 map element atm
             // Get the width and height of the map
-            mapWidth = Integer.parseInt(doc.getDocumentElement().getAttribute("width"));
-            mapHeight = Integer.parseInt(doc.getDocumentElement().getAttribute("height"));
+            mapWidth = Integer.parseInt(map.getAttribute("width"));
+            mapHeight = Integer.parseInt(map.getAttribute("height"));
 
             // Create an empty array of tiles
             tiles = new Tile[mapHeight][mapWidth];
@@ -109,6 +116,7 @@ public class Map extends Observable {
             System.out.println("Error parsing");
             e.printStackTrace();
         }catch(Exception e){
+            System.out.println("Error parsing map again");
             e.printStackTrace();
         }
     }
