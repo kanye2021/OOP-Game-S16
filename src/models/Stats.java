@@ -91,28 +91,28 @@ public class Stats {
     }
 
 
-    public String getLivesLeft(){return Integer.toString(livesLeft);}
-    public String getLevel(){
-            return Integer.toString(level);
+    public int getLivesLeft(){return livesLeft;}
+    public int getLevel(){
+            return level;
         }
-    public String getExperience(){return Integer.toString(experience);}
-    public String getExpReqLvUp(){return Integer.toString(expReqLvUp);}
-    public String getMaxHealth(){
-            return Integer.toString(maxLife);
+    public int getExperience(){return (experience);}
+    public int getExpReqLvUp(){return (expReqLvUp);}
+    public int getMaxHealth(){
+            return (maxLife);
         }
-    public String getMaxMana(){return Integer.toString(maxMana);}
-    public String getHealth(){return Integer.toString(lifeLeft);}
-    public String getMana(){
-            return Integer.toString(manaLeft);
+    public int getMaxMana(){return (maxMana);}
+    public int getHealth(){return (lifeLeft);}
+    public int getMana(){
+            return (manaLeft);
         }
-    public String getStrength(){return Integer.toString(strength);}
-    public String getAgility(){return Integer.toString(agility);}
-    public String getIntellect(){return Integer.toString(intellect);}
-    public String getHardiness(){return Integer.toString(hardiness);}
-    public String getMovement(){return Integer.toString(movement);}
-    public String getOffensiveRating(){return Integer.toString(offensiveRating);}
-    public String getDefensiveRating(){return Integer.toString(defensiveRating);}
-    public String getArmorRating(){return Integer.toString(armorRating);}
+    public int getStrength(){return (strength);}
+    public int getAgility(){return (agility);}
+    public int getIntellect(){return (intellect);}
+    public int getHardiness(){return (hardiness);}
+    public int getMovement(){return (movement);}
+    public int getOffensiveRating(){return (offensiveRating);}
+    public int getDefensiveRating(){return (defensiveRating);}
+    public int getArmorRating(){return (armorRating);}
 
         //derived status or ones that require a formula to calculate
         public void modifyOffensiveRating(){
