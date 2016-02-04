@@ -54,10 +54,12 @@ public class InventoryView extends View {
 		for (Map.Entry<Item, Integer> entry : currentInventory.getItems().entrySet()) {
 			
 			String string1 = entry.getKey().getName();
-			String string2 = "x" + entry.getValue();
+			String string2 = entry.getKey().getDescription();
+			String string3 = "x" + entry.getValue();
 			
 			Rectangle2D rectangle1 = fm.getStringBounds(string1, g2);
 			Rectangle2D rectangle2 = fm.getStringBounds(string2, g2);
+			Rectangle2D rectangle3 = fm.getStringBounds(string3, g2);
 			
 			int actualItemNumber = itemNumber + itemOffset;
 			
@@ -67,8 +69,10 @@ public class InventoryView extends View {
 			int boxDY = ITEM_HEIGHT;
 			int string1X = 20;
 			int string1Y = (int) (actualItemNumber * ITEM_HEIGHT + rectangle1.getHeight() / 3 + fm.getAscent() + 11);
-			int string2X = (int) (B_WIDTH - rectangle2.getWidth() - 20);
+			int string2X = (int) (B_WIDTH / 2 - rectangle2.getWidth() / 2);
 			int string2Y = (int) (actualItemNumber * ITEM_HEIGHT + rectangle2.getHeight() / 3 + fm.getAscent() + 11);
+			int string3X = (int) (B_WIDTH - rectangle3.getWidth() - 20);
+			int string3Y = (int) (actualItemNumber * ITEM_HEIGHT + rectangle3.getHeight() / 3 + fm.getAscent() + 11);
 			
 			Color primaryColor;
 			Color secondaryColor;
@@ -90,6 +94,7 @@ public class InventoryView extends View {
 			g2.setColor(secondaryColor);
 			g2.drawString(string1, string1X, string1Y);
 			g2.drawString(string2, string2X, string2Y);
+			g2.drawString(string3, string3X, string3Y);
 			g2.drawRect(boxX, boxY, boxDX, boxDY);
 			itemNumber++;
 			
