@@ -63,16 +63,17 @@ public class Load_Save {
             Document doc = docBuilder.newDocument();
 
             fileName = "SaveFile_1.xml"; // Temporary
+            String filePath = "src/res/save_files/" + fileName;
 
-            Element mainRootElement = doc.createElementNS(fileName, "Save_File"); //1 will be edited in the feature
+            Element mainRootElement = doc.createElementNS(filePath, "Save_File"); //1 will be edited in the feature
             doc.appendChild(mainRootElement);
 
             // append child elements to root element
-            mainRootElement.appendChild(getAvatar(doc, avatar.getLocation()[0], avatar.getLocation()[1], avatar.getOrientation()));
+            mainRootElement.appendChild(getEntity(doc, avatar));
             mainRootElement.appendChild(getMap(doc, main_map));
 
             //Write to XML
-            writeToXml(doc,fileName);
+            writeToXml(doc,filePath);
         }catch(Exception e) {
             e.printStackTrace();
         }
@@ -80,18 +81,66 @@ public class Load_Save {
     }
 
 
-    private Node getAvatar(Document doc, int x, int y, String orientation ) {
-        Element avatar = doc.createElement("Avatar");
-        //company.setAttribute("id", id);
-        avatar.appendChild(getElements(doc, avatar, "Name", "avatar"));
-        avatar.appendChild(getElements(doc, avatar, "Orientation", orientation));
-        avatar.appendChild(getElements(doc, avatar, "X-Coordinate", Integer.toString(x)));
-        avatar.appendChild(getElements(doc, avatar, "Y-Coordinate", Integer.toString(y)));
-        return avatar;
+    private Node getEntity(Document doc, Entity e) {
+        Element entity = doc.createElement("entities");
+
+    //----  Get Type, location and orientation      ------
+        entity.appendChild(getEntityInfo(doc,e));
+
+        //TODO: Future cases of multiple entities
+
+        return entity;
+    }
+    private Node getEntityInfo(Document doc, Entity e){
+        Element type = doc.createElement("entity");
+
+        //Get attributes such as location, orientation and type
+        Attr e_type = doc.createAttribute("type");
+        e_type.setValue(e.getType());
+        type.setAttributeNode(e_type);
+
+
+        Attr x = doc.createAttribute("location_x");
+        x.setValue(Integer.toString(e.getLocation()[0]));
+        type.setAttributeNode(x);
+
+        Attr y = doc.createAttribute("location_y");
+        y.setValue(Integer.toString(e.getLocation()[1]));
+        type.setAttributeNode(y);
+
+        Attr orientation = doc.createAttribute("orientation");
+        orientation.setValue(e.getOrientation());
+        type.setAttributeNode(orientation);
+
+        //Get stats and inventory of the entity
+        type.appendChild( getInventory(doc, e.getInventory()) );
+        type.appendChild(getStats (doc, e.getStats()) );
+
+        return type;
+    }
+    private Node getInventory(Document doc, Inventory inv){
+        Element inventory = doc.createElement("inventory");
+
+        return inventory;
+    }
+    private Node getStats(Document doc, Stats stat){
+        Element stats = doc.createElement("stats");
+
+        return stats;
     }
     private Node getMap(Document doc, Map m){
         Element map = doc.createElement("map");
         Tile[][] tiles = m.getTiles();
+        int getHeight = tiles.length;
+        int getWidth = tiles[0].length;
+        Attr width = doc.createAttribute("width");
+        width.setValue( Integer.toString(getWidth) );
+        map.setAttributeNode(width);
+
+        Attr height = doc.createAttribute("height");
+        height.setValue( Integer.toString(getHeight) );
+        map.setAttributeNode(height);
+        
         for (int i = 0; i < tiles.length; i++ ){
             Element row = doc.createElement("row");
             for (int j = 0; j < tiles[0].length; j++) {
@@ -147,12 +196,6 @@ public class Load_Save {
         }
         return tile;
     }
-    // utility method to create text node
-    private Node getElements(Document doc, Element element, String name, String value) {
-        Element node = doc.createElement(name);
-        node.appendChild(doc.createTextNode(value));
-        return node;
-    }
 
     //----------Function to transform saved (doc) into Xml and the Console -------
     public void writeToXml(Document doc, String fileName){
@@ -171,9 +214,9 @@ public class Load_Save {
             transformer.transform(source, result);
 
             //Output to console for testing
-            StreamResult consoleResult = new StreamResult(System.out);
-            transformer.transform(source, consoleResult);
-
+            //StreamResult consoleResult = new StreamResult(System.out);
+            //transformer.transform(source, consoleResult);
+            System.out.println("Saved success!");
         } catch (TransformerConfigurationException e) {
             e.printStackTrace();
         } catch (TransformerException e) {

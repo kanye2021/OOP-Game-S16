@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Save_File xmlns="src/res/save_files/SaveFile_1.xml">
+     <entities>
+          <entity location_x="3" location_y="7" orientation="S" type="avatar">
+               <inventory/>
+               <stats/>
+          </entity>
+     </entities>
+     <map height="10" width="30">
+          <row>
+               <tile>
+                    <terrain type="mountain"/>
+                    <areaEffect statsModifier="10" type="take-damage"/>
+               </tile>
+               <tile>
+                    <terrain type="mountain"/>
+                    <areaEffect statsModifier="10" type="take-damage"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+                    <item description="a mini skirt for jorge in the jungle" name="iron-sword" type="take-able"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+                    <item description="jorge in the jungle figurine" name="iron-sword" type="take-able"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+          </row>
+          <row>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+          </row>
+          <row>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="mountain"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+          </row>
+          <row>
+               <tile>
+                    <terrain type="mountain"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="mountain"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="mountain"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+          </row>
+          <row>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="mountain"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+          </row>
+          <row>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="mountain"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="mountain"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="mountain"/>
+               </tile>
+               <tile>
+                    <terrain type="mountain"/>
+               </tile>
+               <tile>
+                    <terrain type="mountain"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+          </row>
+          <row>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+          </row>
+          <row>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+          </row>
+          <row>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+               <tile>
+                    <terrain type="sea"/>
+               </tile>
+          </row>
+          <row>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="mountain"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="mountain"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="mountain"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+               <tile>
+                    <terrain type="grass"/>
+               </tile>
+          </row>
+     </map>
+</Save_File>
