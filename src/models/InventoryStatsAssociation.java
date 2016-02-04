@@ -3,11 +3,11 @@ package models;
 /**
  * Created by david on 2/4/16.
  */
-public class ItemStatsAssociation {
+public class InventoryStatsAssociation {
     Inventory avatarInventory;
     Stats avatarStats;
 
-    ItemStatsAssociation(Entity avatar){
+    InventoryStatsAssociation(Entity avatar){
         avatarInventory = avatar.getInventory();
         avatarStats = avatar.getStats();
     }

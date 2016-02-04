@@ -62,8 +62,14 @@ public abstract class Item {
     	
     }
 
+
     public String toString() {
         return id + ": " + name + " | " + type;
+    }
+
+    //Modifies stats when used
+    public void statModifier(){
+
     }
 
 }
