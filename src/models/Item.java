@@ -4,18 +4,40 @@ package models;
  * Created by Bradley on 2/1/16.
  * Modified by Austin on 2/2/16.
  */
+
 public abstract class Item {
 
+	public static enum Type {
+		TAKEABLE("take-able"),
+		ONE_SHOT("one-shot"),
+		INTERACTIVE("interactive"),
+		OBSTACLE("obstacle");
+		
+		private String s;
+		
+		private Type(String s) {
+			
+			this.s = s;
+		
+		}
+		
+		public String toString() {
+			
+			return s;
+			
+		}
+	}
+	
     //Attributes that all Items will have
     protected String name;
-    protected String type;
+    protected Type type;
     protected String description;
     protected int id;
 
 
     //Overloaded Constructor that takes in name, type, description and id
     //that construct a generic item
-    public Item(String name, String type, String description, int id){
+    public Item(String name, Type type, String description, int id){
         this.name=name;
         this.type=type;
         this.description=description;
@@ -29,7 +51,7 @@ public abstract class Item {
     public String getName() {
         return name;
     }
-    public String getType() {
+    public Type getType() {
         return type;
     }
     

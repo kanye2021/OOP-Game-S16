@@ -137,7 +137,7 @@ public class Load_Save {
             item.setAttributeNode(desc);
 
             Attr iType = doc.createAttribute("type");
-            iType.setValue(t.getItem().getType());
+            iType.setValue(t.getItem().getType().toString());
             item.setAttributeNode(iType);
 
             Attr name = doc.createAttribute("name");

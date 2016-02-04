@@ -88,8 +88,8 @@ public class Map extends Observable {
                         //if statements for the different types of items
 
                         //if take-able
-                        if(itemType.equals("take-able")){
-                            item = new TakeableItem(itemName, itemType, itemDescription, 1);
+                        if(itemType.equals(Item.Type.TAKEABLE.toString())){
+                            item = new TakeableItem(itemName, Item.Type.TAKEABLE, itemDescription, 1);
                         }
 
                     }

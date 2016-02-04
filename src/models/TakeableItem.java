@@ -10,7 +10,7 @@ package models;
 public class TakeableItem extends Item {
 
     //Constructor
-    public TakeableItem(String name, String type, String description, int id) {
+    public TakeableItem(String name, Type type, String description, int id) {
         super(name, type, description, id);
     }
 
