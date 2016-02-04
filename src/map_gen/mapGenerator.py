@@ -62,6 +62,10 @@ if __name__ == "__main__":
     numItems = int(sys.argv[3])
     outputFileName = sys.argv[4]
 
+    if (mapSizeX <= 0 or mapSizeY <= 0):
+        print "The map size can not be negative"
+        exit()
+
     if (numItems > mapSizeX * mapSizeY):
         print "There are too many items for the current map size"
         exit()
