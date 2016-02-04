@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  */
 public class PauseView extends View {
 
-	private final int itemHeight = 50;
+	private final int ITEM_HEIGHT = 50;
 	
 	public PauseView() {
 	    super();
@@ -24,38 +24,57 @@ public class PauseView extends View {
 		BufferedImage overImage = new BufferedImage(View.B_WIDTH, View.B_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		Graphics g2 = overImage.getGraphics();
 		
-		Font small = new Font("Helvetica", Font.BOLD, 14);
-        FontMetrics fm = g.getFontMetrics(small);
-
-        g2.setColor(Color.white);
-        g2.setFont(small);
+        int itemOffset = 1;
 		
+		FontMetrics fm = g2.getFontMetrics(VIEW_FONT);
+        g2.setFont(VIEW_FONT);
+        
+        g2.setColor(Color.WHITE);
+        g2.fillRect(0, 0, B_WIDTH - 1, B_HEIGHT - 1);
+        g2.setColor(Color.BLACK);
+        g2.fillRect(10, 10, B_WIDTH - 21, B_HEIGHT - 21);
+        
+        String titleString = "Game Paused";
+        Rectangle2D titleRectangle = fm.getStringBounds(titleString, g2);
+        int titleStringX = (int) (B_WIDTH / 2 - titleRectangle.getWidth() / 2);
+        int titleStringY = (int) (0 * ITEM_HEIGHT + titleRectangle.getHeight() / 2 + fm.getAscent() + 11);
+        
+        g2.setColor(Color.WHITE);
+        g2.drawString(titleString, titleStringX, titleStringY);
+        g2.drawRect(0, 0, B_WIDTH, ITEM_HEIGHT);
+        
 		for (PauseViewController.MenuOptions option : PauseViewController.MenuOptions.values()) {
 			
-			Rectangle2D rectangle = fm.getStringBounds(option.toString(), g);
+			String string1 = option.toString();
+			Rectangle2D rectangle = fm.getStringBounds(string1, g2);
+			
+			int boxX = 25;
+			int boxY = (option.ordinal() + itemOffset) * ITEM_HEIGHT + 11;
+			int boxDX = B_WIDTH - 52;
+			int boxDY = ITEM_HEIGHT;
 			int stringX = View.B_WIDTH / 2 - (int) (rectangle.getWidth() / 2);
-			int stringY = option.ordinal() * itemHeight + (int) (rectangle.getHeight() / 2) + fm.getAscent();
+			int stringY = (option.ordinal() + itemOffset) * ITEM_HEIGHT + (int) (rectangle.getHeight()) + fm.getAscent();
 			
 			Color primaryColor;
 			Color secondaryColor;
 			
 			if (option == ((PauseViewController) viewController).getActiveItem()) {
 			
-				primaryColor = new Color(150, 150, 150);
-				secondaryColor = new Color(0, 0, 0);
+				primaryColor = Color.WHITE;
+				secondaryColor = Color.BLACK;
 			
 			} else {
 				
-				primaryColor = new Color(0, 0, 0);
-				secondaryColor = new Color(150, 150, 150);
+				primaryColor = Color.BLACK;
+				secondaryColor = Color.WHITE;
 				
 			}
 			
 			g2.setColor(primaryColor);
-			g2.fillRect(0, option.ordinal() * itemHeight, View.B_WIDTH - 1, itemHeight);
+			g2.fillRect(boxX, boxY, boxDX, boxDY);
 			g2.setColor(secondaryColor);
-			g2.drawString(option.toString(), stringX, stringY);
-			g2.drawRect(0, option.ordinal() * itemHeight, View.B_WIDTH - 1, itemHeight);
+			g2.drawString(string1, stringX, stringY);
+			//g2.drawRect(0, (option.ordinal() + itemOffset) * ITEM_HEIGHT, View.B_WIDTH - 1, ITEM_HEIGHT);
 			
 		}
 		

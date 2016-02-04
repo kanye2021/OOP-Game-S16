@@ -79,11 +79,19 @@ public class Map extends Observable {
                     // Get the item if there is one
                     NodeList itemNodes = tileElement.getElementsByTagName("item");
                     if(itemNodes.getLength() > 0){
+                        System.out.println("Item is being added");
                         Element itemElement = (Element) itemNodes.item(0);
                         String itemType = itemElement.getAttribute("type");
                         String itemDescription = itemElement.getAttribute("description");
                         String itemName = itemElement.getAttribute("name");
-                        item = new Item(itemName, itemType, itemDescription, 1);
+
+                        //if statements for the different types of items
+
+                        //if take-able
+                        if(itemType.equals("take-able")){
+                            item = new TakeableItem(itemName, itemType, itemDescription, 1);
+                        }
+
                     }
 
                     // Get any entities that are on the tile.
@@ -104,7 +112,9 @@ public class Map extends Observable {
             e.printStackTrace();
         }
     }
-
+    public Tile[][] getTiles() {
+        return tiles;
+    }
     public Terrain getTerrainAtLocation(int x, int y){
         return tiles[y][x].getTerrain();
     }

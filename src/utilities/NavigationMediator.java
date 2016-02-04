@@ -84,7 +84,7 @@ public class NavigationMediator {
 
         // Check to see if there is an obstacle
         Item item = map.getItemAtLocation(desiredX, desiredY);
-        if(item!=null && item.getType() == "obstacle"){
+        if(item!=null && item.getType().equals("obstacle")){
             return;
         }
 
@@ -107,7 +107,7 @@ public class NavigationMediator {
         }
 
         // Take care of activating any items that have been encountered.
-        if(item!=null){
+        if(item!=null) {
             boolean removeItem = item.onTouch(entity);
             if(removeItem){
                 map.removeItemFromLocation(currentLocation[0], currentLocation[1]);
@@ -120,11 +120,4 @@ public class NavigationMediator {
         map.insertItemAtLocation(x, y, item);
     }
 
-    /*-------------------Testing Load and Save ------------ */
-    private Load_Save ls;
-    public void save(){
-        ls = new Load_Save(); // Should be moved to the constructor of wherever it is placed
-
-        ls.save(entity, map); //calls the save function on the class utilities.Load_Save
-    }
 }

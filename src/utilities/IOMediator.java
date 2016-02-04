@@ -1,8 +1,6 @@
 package utilities;
 
 import models.Entity;
-import models.Inventory;
-import models.Item;
 import models.Map;
 import views.*;
 
@@ -17,7 +15,6 @@ public class IOMediator {
 
 	static Map map = new Map();
 	static Entity entity = new Entity();
-	static Inventory inventory = new Inventory();
 	
 	// This represents all of the views that the utilities.IOMediator can see. the utilities.IOMediator acts as a MUX and goes through these
 	// to modify the graphics and where the keyPresses go.
@@ -35,13 +32,13 @@ public class IOMediator {
         
         UNIMPLEMENTED(null) {void render(Graphics g) {getView().render(g);}},
         
-        SAVE(null) {void render(Graphics g) {getView().render(g);}},
+        SAVE(new SaveGameView(map, entity)) {void render(Graphics g) {getView().render(g);}}, // Not sure if having map and entity in constructor is "hacky" or not
         LOAD(null) {void render(Graphics g) {getView().render(g);}},
         EXIT(null) {void render(Graphics g) {getView().render(g);}},
         
         // TODO: REMOVE HACKY SHIT
         GAME(new GameView(map, entity)) {void render(Graphics g) {getView().render(g);}},
-        INVENTORY(new InventoryView(inventory)) {void render(Graphics g) {getView().render(g);}};
+        INVENTORY(new InventoryView(entity.getInventory())) {void render(Graphics g) {getView().render(g);}};
         
         abstract void render(Graphics g);
         
@@ -67,14 +64,7 @@ public class IOMediator {
     // Default view is views.StartMenuView
     private IOMediator() {
         activeView = Views.START_MENU;
-        
-        inventory.addItem(new Item("Cat", "Der", "Desc", 1));
-        inventory.addItem(new Item("Dog", "Der", "Desc", 2));
-        inventory.addItem(new Item("Oversized Goat", "Der", "Desc", 3));
-        inventory.addItem(new Item("Oversized Goat", "Der", "Desc", 3));
-        inventory.addItem(new Item("Elephant", "Der", "Desc", 4));
-        inventory.addItem(new Item("Goat", "Der", "Desc", 3));
-        inventory.addItem(new Item("Goat", "Der", "Desc", 3));
+
 
         // Put the entity (avatar) at its starting lcoation
         map.insertEntityAtLocation(entity.getLocation()[0], entity.getLocation()[1], entity);
