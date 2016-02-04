@@ -112,7 +112,9 @@ public class Map extends Observable {
             e.printStackTrace();
         }
     }
-
+    public Tile[][] getTiles() {
+        return tiles;
+    }
     public Terrain getTerrainAtLocation(int x, int y){
         return tiles[y][x].getTerrain();
     }

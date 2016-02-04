@@ -45,6 +45,9 @@ public class SaveGameView extends View {
     public JTextField getTextField(){
         return saveFileField;
     }
+    public void setTextField(JTextField in){
+        saveFileField = in;
+    }
     @Override
     public void render(Graphics g) {
         Font small = new Font("Helvetica", Font.BOLD, 14);
@@ -70,7 +73,6 @@ public class SaveGameView extends View {
 
 
         Display.getInstance().add(saveFileField);
-        Display.getInstance().add(button);
 
     }
 }

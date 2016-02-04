@@ -2,21 +2,22 @@ package utilities; /**
  * Created by dyeung on 2/2/16.
  */
 
-import models.Entity;
-import models.Map;
+
+import models.*;
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 import java.io.File;
+import java.io.StringReader;
+import java.io.StringWriter;
 
 /*
 Layout of the XML file
@@ -56,7 +57,6 @@ public class Load_Save {
     }
     //For future use it will include map, items, stats
     public void save(Map main_map, Entity avatar, String fileName) {
-        File output =  new File("C:\\file.xml");
         try{
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -69,7 +69,7 @@ public class Load_Save {
 
             // append child elements to root element
             mainRootElement.appendChild(getAvatar(doc, avatar.getLocation()[0], avatar.getLocation()[1], avatar.getOrientation()));
-            //mainRootElement.appendChild(getMap(doc));
+            mainRootElement.appendChild(getMap(doc, main_map));
 
             //Write to XML
             writeToXml(doc,fileName);
@@ -89,13 +89,62 @@ public class Load_Save {
         avatar.appendChild(getElements(doc, avatar, "Y-Coordinate", Integer.toString(y)));
         return avatar;
     }
-    private Node getMap(Document doc){
+    private Node getMap(Document doc, Map m){
         Element map = doc.createElement("map");
+        Tile[][] tiles = m.getTiles();
+        for (int i = 0; i < tiles.length; i++ ){
+            Element row = doc.createElement("row");
+            for (int j = 0; j < tiles[0].length; j++) {
+                row.appendChild(getTile(doc, tiles[i][j]));
+            }
+            map.appendChild(row);
+        }
         return map;
     }
-    private Node getTile(Document doc, int x, int y){
+    private Node getTile(Document doc, Tile t){
         Element tile = doc.createElement("tile");
+        ///Terrain
+        Element terrain = doc.createElement("terrain");
 
+        Attr type = doc.createAttribute("type");
+        type.setValue(t.getTerrain().getType());
+        terrain.setAttributeNode(type);
+        tile.appendChild(terrain);
+
+        //Entity
+        if (t.getEntity() != null) {
+        //TODO: Still not sure what will be stored here
+        }
+        //Area of Effect
+        if (t.getAreaEffect() != null) {
+            Element areaEffect = doc.createElement("areaEffect");
+
+            Attr aType = doc.createAttribute("type");
+            aType.setValue(t.getAreaEffect().getType());
+            areaEffect.setAttributeNode(aType);
+
+            Attr stats = doc.createAttribute("statsModifier");
+            stats.setValue(Integer.toString(t.getAreaEffect().getstatsModifier())); //Returns an int for stat modifier needs to be converted to string
+            areaEffect.setAttributeNode(stats);
+            tile.appendChild(areaEffect);
+        }
+        //Item
+        if (t.getItem() != null) {
+            Element item = doc.createElement("item");
+
+            Attr desc = doc.createAttribute("description");
+            desc.setValue(t.getItem().getDescription());
+            item.setAttributeNode(desc);
+
+            Attr iType = doc.createAttribute("type");
+            iType.setValue(t.getItem().getType());
+            item.setAttributeNode(iType);
+
+            Attr name = doc.createAttribute("name");
+            name.setValue(t.getItem().getName());
+            item.setAttributeNode(name);
+            tile.appendChild(item);
+        }
         return tile;
     }
     // utility method to create text node
@@ -112,6 +161,13 @@ public class Load_Save {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File(fileName));
+
+            //Formats it nicely (5 is the max number of child nodes
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformerFactory.setAttribute("indent-number", 5);
+            transformer.setOutputProperty(
+                    "{http://xml.apache.org/xslt}indent-amount",
+                    Integer.toString(5));
             transformer.transform(source, result);
 
             //Output to console for testing
@@ -124,4 +180,5 @@ public class Load_Save {
             e.printStackTrace();
         }
     }
+
 }
