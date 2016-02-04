@@ -52,18 +52,19 @@ Layout of the XML file
  */
 
 public class Load_Save {
-    public Load_Save(){
-
+    private String currentFileName;
+    public Load_Save(String fileName ){
+        currentFileName = fileName;
     }
     //For future use it will include map, items, stats
-    public void save(Map main_map, Entity avatar, String fileName) {
+    public void save(Map main_map, Entity avatar) {
         try{
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             Document doc = docBuilder.newDocument();
 
-            fileName = "SaveFile_1.xml"; // Temporary
-            String filePath = "src/res/save_files/" + fileName;
+            currentFileName = "SaveFile_1.xml"; // Temporary
+            String filePath = "src/res/save_files/" + currentFileName;
 
             Element mainRootElement = doc.createElementNS(filePath, "Save_File"); //1 will be edited in the feature
             doc.appendChild(mainRootElement);
@@ -140,7 +141,7 @@ public class Load_Save {
         Attr height = doc.createAttribute("height");
         height.setValue( Integer.toString(getHeight) );
         map.setAttributeNode(height);
-        
+
         for (int i = 0; i < tiles.length; i++ ){
             Element row = doc.createElement("row");
             for (int j = 0; j < tiles[0].length; j++) {
