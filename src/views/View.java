@@ -26,4 +26,9 @@ public abstract class View {
 
     public abstract void render(Graphics g);
 
+    public final void clear(Graphics g) {
+    	g.setColor(Color.BLACK);
+    	g.fillRect(0, 0, B_WIDTH, B_HEIGHT);
+    }
+    
 }

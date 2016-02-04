@@ -21,6 +21,8 @@ public class StartMenuView extends View {
     @Override
     public void render(Graphics g) {
 
+    	clear(g);
+    	
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics fm = g.getFontMetrics(small);
 
