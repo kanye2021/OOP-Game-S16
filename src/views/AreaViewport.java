@@ -19,8 +19,8 @@ public class AreaViewport extends View implements Observer {
     private  String areaEffectBaseFilepath = "./src/res/area-effects/";
     private  String itemBaseFilepath = "./src/res/items/";
     private  String entityBaseFilepath = "./src/res/entitys/";
-    private final int AREA_WIDTH = View.B_WIDTH;
-    private final int AREA_HEIGHT = View.B_HEIGHT * 3/4;
+    private final int AREA_WIDTH = B_WIDTH;
+    private final int AREA_HEIGHT = B_HEIGHT * 3/4;
     private final int TILE_SIZE = 50;
 
     public AreaViewport(Map map, Entity entity){
@@ -47,8 +47,8 @@ public class AreaViewport extends View implements Observer {
 
         // The width of each (visual) tile is used here to convert the visual dismensions of the area viewport to the
         // logical dimensions(how much of the tiles in the array will be used.
-        int logicalWidth = AREA_WIDTH/TILE_SIZE;
-        int logicalHeight = AREA_HEIGHT/TILE_SIZE;
+        int logicalWidth = (int) Math.ceil((double) AREA_WIDTH / TILE_SIZE);
+        int logicalHeight = (int) Math.ceil((double) AREA_HEIGHT / TILE_SIZE);
 
         // r and c represent the row and column in the tile array that correspond the top left corner of the visible map.
         int r = entity.getLocation()[1] - logicalHeight/2;
