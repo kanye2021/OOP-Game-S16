@@ -10,8 +10,9 @@ package models;
 
 public class Stats {
 
-
     private int livesLeft = 0;
+
+    private int lifeLeft = 0;
     private int manaLeft = 0;
     private int strength = 0;
     private  int agility = 0;
@@ -31,6 +32,7 @@ public class Stats {
     private int armorRating = 0;
 
     public Stats(){
+        livesLeft = 3;
         experience = 0;
         movement = 10;
         level = 1;
@@ -41,7 +43,7 @@ public class Stats {
         maxLife = hardiness + level;
         maxMana = intellect + level;
 
-        livesLeft = maxLife;
+        lifeLeft = maxLife;
         manaLeft = maxMana;
 
         offensiveRating = /*weapon + */strength + level;
@@ -52,7 +54,7 @@ public class Stats {
     }
     public Stats(String type){//Initializes the original stats from occupation
         //the constructor
-
+        livesLeft = 3;
         experience = 0;
         movement = 10;
         level = 1;
@@ -78,7 +80,7 @@ public class Stats {
         maxLife = hardiness + level;
         maxMana = intellect + level;
 
-        livesLeft = maxLife;
+        lifeLeft = maxLife;
         manaLeft = maxMana;
 
         offensiveRating = /*weapon + */strength + level;
@@ -88,6 +90,8 @@ public class Stats {
         expReqLvUp = 100;
     }
 
+
+    public String getLivesLeft(){return Integer.toString(livesLeft);}
     public String getLevel(){
             return Integer.toString(level);
         }
@@ -97,7 +101,7 @@ public class Stats {
             return Integer.toString(maxLife);
         }
     public String getMaxMana(){return Integer.toString(maxMana);}
-    public String getHealth(){return Integer.toString(livesLeft);}
+    public String getHealth(){return Integer.toString(lifeLeft);}
     public String getMana(){
             return Integer.toString(manaLeft);
         }
@@ -173,16 +177,16 @@ public class Stats {
         }
 
         public void modifyLivesLeft(int delta){
-            if((livesLeft + delta) <= 0 )//So livesLeft does not drop below zero
+            if((lifeLeft + delta) <= 0 )//So livesLeft does not drop below zero
             {
-                livesLeft = 0;
+                lifeLeft = 0;
             }
-            else if((livesLeft + delta) >= maxLife )//So livesLeft does not go beyond the max
+            else if((lifeLeft + delta) >= maxLife )//So livesLeft does not go beyond the max
             {
-                livesLeft = maxLife;
+                lifeLeft = maxLife;
             }
             else{
-                livesLeft = livesLeft + delta;
+                lifeLeft = lifeLeft + delta;
             }
         }
 
@@ -191,7 +195,7 @@ public class Stats {
             {
                 manaLeft = 0;
             }
-            else if((livesLeft + delta) >= maxMana )//So livesLeft does not go beyond the max
+            else if((lifeLeft + delta) >= maxMana )//So livesLeft does not go beyond the max
             {
                 manaLeft = maxMana;
             }
