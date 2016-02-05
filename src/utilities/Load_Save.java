@@ -132,17 +132,21 @@ public class Load_Save {
         if (t.getItem() != null) {
             Element item = doc.createElement("item");
 
-            Attr desc = doc.createAttribute("description");
-            desc.setValue(t.getItem().getDescription());
-            item.setAttributeNode(desc);
+            //Attr desc = doc.createAttribute("description");
+            //desc.setValue(t.getItem().getDescription());
+            //item.setAttributeNode(desc);
 
             Attr iType = doc.createAttribute("type");
             iType.setValue(t.getItem().getType().toString());
             item.setAttributeNode(iType);
 
-            Attr name = doc.createAttribute("name");
-            name.setValue(t.getItem().getName());
-            item.setAttributeNode(name);
+            Attr id = doc.createAttribute("id");
+            id.setValue(Integer.toString(t.getItem().getID()));
+            item.setAttributeNode(id);
+            
+            //Attr name = doc.createAttribute("name");
+            //name.setValue(t.getItem().getName());
+            //item.setAttributeNode(name);
             tile.appendChild(item);
         }
         return tile;
