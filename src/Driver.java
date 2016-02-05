@@ -13,6 +13,11 @@ public class Driver extends JFrame implements ActionListener {
     private Timer timer;
     private final int DELAY = 15;
 
+    @Override
+    public void setExtendedState(int state) {
+        super.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+
     public Driver() {
         init();
     }
