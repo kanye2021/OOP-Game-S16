@@ -14,8 +14,8 @@ import java.awt.event.KeyEvent;
 public class IOMediator {
 
 
-	public static Map map = new Map();
-	public static Entity entity = new Entity();
+	public static Map map;
+	public static Entity entity;
 	
 	// This represents all of the views that the utilities.IOMediator can see. the utilities.IOMediator acts as a MUX and goes through these
 	// to modify the graphics and where the keyPresses go.
@@ -38,7 +38,7 @@ public class IOMediator {
         EXIT(null) {void render(Graphics g) {getView().render(g);}},
         GAME() {void render(Graphics g) {getView().render(g);}},
         // TODO: REMOVE HACKY SHIT
-        INVENTORY(new InventoryView(entity.getInventory())) {void render(Graphics g) {getView().render(g);}};
+        INVENTORY(new InventoryView()) {void render(Graphics g) {getView().render(g);}};
         
         abstract void render(Graphics g);
         
