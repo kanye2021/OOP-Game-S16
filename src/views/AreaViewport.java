@@ -1,9 +1,6 @@
 package views;
 
-import models.Entity;
-import models.Item;
-import models.Map;
-import models.Terrain;
+import models.*;
 import utilities.Observer;
 
 import javax.swing.*;
@@ -92,18 +89,6 @@ public class AreaViewport extends View implements Observer {
                 Image terrainImg = ii.getImage();
                 g.drawImage(terrainImg, displayX, displayY, Display.getInstance());
 
-                //TODO: Do the same for areaEffect, item, and entity
-                // Display any entitys at thi slocation
-                Entity e = map.getEntityAtLocation(j, i);
-                if(e!=null){
-                    ImageIcon avatar_icon = new ImageIcon(entityBaseFilepath + e.getImageName());
-                    Image avatarImage = avatar_icon.getImage();
-
-                    // Center the entity in the tile
-                    int offsetX = (TILE_SIZE - avatarImage.getWidth(null))/2;
-                    int offsetY = (TILE_SIZE - avatarImage.getHeight(null))/2;
-                    g.drawImage(avatarImage, displayX + offsetX, displayY + offsetY, Display.getInstance());
-                }
 
                 Item item = map.getItemAtLocation(j, i);
                 if(item!=null){
@@ -114,6 +99,30 @@ public class AreaViewport extends View implements Observer {
                     int offsetX = (TILE_SIZE - itemImage.getWidth(null))/2;
                     int offsetY = (TILE_SIZE - itemImage.getHeight(null))/2;
                     g.drawImage(itemImage, displayX + offsetX, displayY + offsetY, Display.getInstance());
+                }
+
+                // Display areaEffects
+                AreaEffect areaEffect = map.getAreaEffectAtLocation(j, i);
+                if(areaEffect!=null){
+                    ImageIcon area_effect_icon = new ImageIcon(areaEffectBaseFilepath + areaEffect.getImageName());
+                    Image areaEffectImage = area_effect_icon.getImage();
+
+                    // Center the decal in the tile
+                    int offsetX = (TILE_SIZE - areaEffectImage.getWidth(null))/2;
+                    int offsetY = (TILE_SIZE - areaEffectImage.getHeight(null))/2;
+                    g.drawImage(areaEffectImage, displayX + offsetX, displayY + offsetY, Display.getInstance());
+                }
+
+                // Display any entitys at thi slocation
+                Entity e = map.getEntityAtLocation(j, i);
+                if(e!=null){
+                    ImageIcon avatar_icon = new ImageIcon(entityBaseFilepath + e.getImageName());
+                    Image avatarImage = avatar_icon.getImage();
+
+                    // Center the entity in the tile
+                    int offsetX = (TILE_SIZE - avatarImage.getWidth(null))/2;
+                    int offsetY = (TILE_SIZE - avatarImage.getHeight(null))/2;
+                    g.drawImage(avatarImage, displayX + offsetX, displayY + offsetY, Display.getInstance());
                 }
 
 
