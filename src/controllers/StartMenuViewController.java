@@ -17,7 +17,7 @@ public class StartMenuViewController extends ViewController {
 		CREATE_GAME("Create Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.CREATE_GAME);};},
 		INVENTORY("Open Inventory") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.INVENTORY);};},
 		PAUSE("Open Pause Menu") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.PAUSE);};},
-		LOAD_GAME("Load Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
+		LOAD_GAME("Load Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.LOAD);};},
 		EXIT_GAME("Exit Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};};
 		
 		private String s;

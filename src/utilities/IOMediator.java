@@ -32,8 +32,8 @@ public class IOMediator {
         
         UNIMPLEMENTED(null) {void render(Graphics g) {getView().render(g);}},
         
-        SAVE(new SaveGameView(map, entity)) {void render(Graphics g) {getView().render(g);}}, // Not sure if having map and entity in constructor is "hacky" or not
-        LOAD(null) {void render(Graphics g) {getView().render(g);}},
+        SAVE(new SaveGameView(map, entity)) {void render(Graphics g) {getView().render(g);}},
+        LOAD(new LoadGameView()) {void render(Graphics g) {getView().render(g);}},
         EXIT(null) {void render(Graphics g) {getView().render(g);}},
         
         // TODO: REMOVE HACKY SHIT
