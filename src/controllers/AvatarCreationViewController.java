@@ -87,7 +87,11 @@ public class AvatarCreationViewController extends ViewController {
         GameView gameView = new GameView(map, avatar);
         IOMediator.Views.GAME.setView(gameView);
         IOMediator.setActiveView(IOMediator.Views.GAME);
-        Load_Save.getInstance().save(map, avatar);
+
+        // Saving
+        Load_Save.getInstance().setGameMap(map);
+        Load_Save.getInstance().setAvatar(avatar);
+        Load_Save.getInstance().save();
     }
 
 

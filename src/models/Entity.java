@@ -33,6 +33,7 @@ public class Entity extends Observable {
         initEntity("smasher");
     }
     public Entity(String occupation){
+
         initEntity(occupation);
     }
 
@@ -45,7 +46,7 @@ public class Entity extends Observable {
         this.inventory = new Inventory();
         this.stats = new Stats(occupation);
         //Avatar parsing
-        initXML(filePathExtension + filePathName);
+       // initXML(filePathExtension + filePathName);
     }
     /*--------------Load from XML --------------*/
     public void initXML(String filepath){
