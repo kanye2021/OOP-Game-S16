@@ -3,6 +3,7 @@ package views;
 import controllers.GameViewController;
 import models.Entity;
 import models.Map;
+import utilities.Load_Save;
 import utilities.NavigationMediator;
 
 import java.awt.*;
@@ -14,11 +15,16 @@ public class GameView extends View {
     private AreaViewport areaViewport;
     private StatusViewport statusViewport;
 
-    public GameView(Map map, Entity entity){
-        NavigationMediator mediator = new NavigationMediator(map, entity);
-        areaViewport = new AreaViewport(map, entity);
+    public GameView(Map map, Entity avatar){
+        NavigationMediator mediator = new NavigationMediator(map, avatar);
+        areaViewport = new AreaViewport(map, avatar);
         viewController = new GameViewController(this, mediator);
-        statusViewport = new StatusViewport(entity);
+        statusViewport = new StatusViewport(avatar);
+
+        // Set the Load_Save Singleton to the current map and avatar
+        Load_Save.getInstance().setAvatar(avatar);
+        Load_Save.getInstance().setGameMap(map);
+
     }
 
     @Override

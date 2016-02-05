@@ -56,6 +56,22 @@ public class Load_Save {
 
     private static String currentFileName;
 
+    private static Map gameMap;
+    private static Entity avatar;
+
+    public static Entity getAvatar() {
+        return avatar;
+    }
+    public static Map getGameMap() {
+        return gameMap;
+    }
+    public static void setGameMap(Map map) {
+        gameMap = map;
+    }
+    public static void setAvatar(Entity a) {
+        avatar = a;
+    }
+
     // Singleton initilization
     private static Load_Save instance = new Load_Save();
 
@@ -77,7 +93,7 @@ public class Load_Save {
     }
 
     //For future use it will include map, items, stats
-    public static void save(Map main_map, Entity avatar) {
+    public static void save() {
         try{
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -90,7 +106,7 @@ public class Load_Save {
 
             // append child elements to root element
             mainRootElement.appendChild(getEntity(doc, avatar));
-            mainRootElement.appendChild(getMap(doc, main_map));
+            mainRootElement.appendChild(getMap(doc, gameMap));
 
             //Write to XML
             writeToXml(doc,filePath);
