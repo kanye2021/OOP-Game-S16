@@ -39,7 +39,7 @@ public class AreaViewport extends View implements Observer {
 
     @Override
     public void render(Graphics g){
-
+        System.out.println("Area view port: render is being called");
     	
         /*  There is essentially a transformation between two different coordinate systems. There is the logical coordinate
             system (the array of tiles in the map) and a visual coordinate system (what will be shown on the display).
