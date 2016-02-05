@@ -13,11 +13,11 @@ import java.awt.event.KeyEvent;
  */
 public class GameViewController extends ViewController {
     private NavigationMediator navMediator;
-    private Load_Save l_s;
+//    private Load_Save l_s;
     public GameViewController(View view, NavigationMediator navigationMediator){
         super(view);
         this.navMediator = navigationMediator;
-        this.l_s = new Load_Save("SaveGame_1.xml");
+//        this.l_s = new Load_Save("SaveGame_1.xml");
     }
 
     @Override
