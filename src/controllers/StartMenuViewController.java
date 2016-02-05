@@ -3,7 +3,7 @@ package controllers;
 import utilities.IOMediator;
 import views.View;
 
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 /**
  * Created by sergiopuleri on 2/1/16.
