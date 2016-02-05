@@ -61,10 +61,11 @@ public class TakeableItem extends Item {
 	}
 		
     //Constructor
-    public TakeableItem(int id) {
-    	super(id, Item.Type.TAKEABLE);
+    public TakeableItem(Items item) {
+    	super(item.ordinal(), Item.Type.TAKEABLE);
     }
 
+    
     /**
      *Returns true if it should be removed from the map
      */

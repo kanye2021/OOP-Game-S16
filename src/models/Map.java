@@ -1,13 +1,21 @@
 package models;
 
+import models.area_effects.AreaEffect;
+import models.area_effects.HealDamage;
+import models.area_effects.InstantDeath;
+import models.area_effects.LevelUp;
+import models.area_effects.TakeDamage;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXParseException;
+
 import utilities.Observable;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 import java.io.File;
 
 /**
@@ -106,7 +114,7 @@ public class Map extends Observable {
 
                         //if take-able
                         if(itemType.equals(Item.Type.TAKEABLE.toString())){
-                            item = new TakeableItem(id);
+                            item = new TakeableItem(TakeableItem.Items.values()[id]);
                         }
 
                     }
