@@ -1,7 +1,9 @@
 package controllers;
 
+
 import models.Inventory;
-import models.InventoryStatsAssociation;
+import models.ItemStatsAssociation;
+import models.TakeableItem;
 import utilities.IOMediator;
 import views.View;
 
@@ -14,7 +16,7 @@ public class InventoryViewController extends ViewController {
 
 	int position = 0;
 	Inventory inventory;
-    InventoryStatsAssociation avatarInvStats;
+    ItemStatsAssociation avatarItemStats;
 
 
     public InventoryViewController(View view) {
@@ -78,14 +80,18 @@ public class InventoryViewController extends ViewController {
     	position++;
     	
     	if (position > getInventory().getItems().size() - 1) {
-    		
-    		
+
     		position = 0;
     	
     	}
     	
     }
 
+    //Uses item in inventory
     private void useItem() {
+        TakeableItem usedItem = getInventory().itemAt(position);
+        avatarItemStats.useFromInv(usedItem);
     }
+
+
 }

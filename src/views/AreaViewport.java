@@ -27,7 +27,6 @@ public class AreaViewport extends View implements Observer {
         this.map = map;
         this.entity = entity;
         map.addObserver(this);
-        entity.addObserver(this);
 //        this.viewController = new controllers.GameViewController(this);
 
         // Modify the filepaths based on the user's OS

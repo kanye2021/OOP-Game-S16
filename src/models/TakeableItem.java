@@ -3,6 +3,8 @@
  */
 package models;
 
+import java.util.HashMap;
+
 /**
  * TakeableItem's main purpose is to be able to insert itself back into
  * the Entity's inventory when touched
@@ -11,27 +13,51 @@ public class TakeableItem extends Item {
 
 	public static enum Items {
 		
-		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png"),
-		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png"),
-		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png"),
-		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png"),
-		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png"),
-		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png"),
-		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png"),
-		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png");
+		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", "equippable","primaryWeapon", "2", "0"),
+		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png", "equippable","primaryWeapon", "2", "0"),
+		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", "equippable","primaryWeapon", "2", "0"),
+		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", "equippable","primaryWeapon", "2", "0"),
+		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", "equippable","secondaryWeapon", "2", "0"),
+		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", "equippable","secondaryWeapon", "2", "0"),
+		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png", "equippable","secondaryWeapon", "2", "0"),
+		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", "equippable","secondaryWeapon", "2", "0");
 		
 		//a mini skirt for jorge in the jungle | jorge in the jungle figurine
 		
 		private String name;
 		private String description;
 		private String pathToPicture;
-		
-		private Items(String name, String description, String pathToPicture) {
+        private String property;
+        private String component;
+        private String offensiveRating;
+        private String armorRating;
+        private boolean isEquippable;
+        private boolean isUsable;
+
+
+		Items(String name, String description, String pathToPicture, String property, String component, String offfensiveRating, String armorRating) {
 			
 			this.name = name;
 			this.description = description;
 			this.pathToPicture = pathToPicture;
-			
+
+            //Whatever the property(i.e. usable, equippable, etc.)
+            this.property = property;
+
+            //Set type of Item
+            this.component = component;
+
+            //Check if equippable or usable
+            if(this.property.compareTo("equippable") == 1){
+                isEquippable = true;
+                isUsable = false;
+            }
+
+            else if(this.property.compareTo("usable") == 1) {
+                isEquippable = false;
+                isUsable = true;
+            }
+
 		}
 		
 		public int getID() {
@@ -57,8 +83,27 @@ public class TakeableItem extends Item {
 			return pathToPicture;
 			
 		}
-		
-	}
+
+        public String getComponent(){
+            return component;
+        }
+
+        public int getOffensiveRating(){
+            return Integer.parseInt(offensiveRating);
+        }
+
+        public int getArmorRating(){
+            return Integer.parseInt(armorRating);
+        }
+
+        public boolean getIsEquippable(){
+            return isEquippable;
+        }
+
+        public boolean getIsUsable() {
+            return isUsable;
+        }
+    }
 		
     //Constructor
     public TakeableItem(Items item) {
@@ -95,4 +140,6 @@ public class TakeableItem extends Item {
 		return Items.values()[getID()].pathToPicture;
 
 	}
+
+
 }
