@@ -62,12 +62,15 @@ public class LoadGameController extends ViewController{
             //TODO: Map will be taken care of by load file
             IOMediator.Views.GAME.setView(gameView);
             // map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
+        }else {
+            IOMediator.getInstance().map.removeEntityFromLocation(IOMediator.getInstance().entity.getLocation()[0], IOMediator.getInstance().entity.getLocation()[1]);
+            //Needs to remove the previous entity
         }
         Load_Save.getInstance().load(fileNames[myOption].getName()); //Going to grab information from XML
 
         IOMediator.setActiveView(IOMediator.Views.GAME);
-
     }
+
     public void handleKeyRelease(int key){
 
     }

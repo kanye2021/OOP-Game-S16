@@ -95,8 +95,8 @@ public class Load_Save {
     public static void loadAvatar(String filepath){
         // Get the xml filepath string ensuring file separators are specific to the use's OS.
         String file = filepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
-        Entity avatar = IOMediator.entity;
-        Map m = IOMediator.map;
+        Entity avatar = IOMediator.getInstance().entity;
+        Map m = IOMediator.getInstance().map;
         try {
             // Create a document from the xml file
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();

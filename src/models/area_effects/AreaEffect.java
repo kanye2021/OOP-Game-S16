@@ -7,7 +7,7 @@ import models.Entity;
  */
 public abstract class AreaEffect {
 
-	private abstract final String type
+	protected String type; //Can't have an abstract final type in abstract class
     public abstract void onTouch(Entity entity);
     public abstract String getType();
     public abstract String getImageName();
