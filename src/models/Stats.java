@@ -194,7 +194,7 @@ public class Stats {
 
     public void modifyLivesLeft(int delta){
         livesLeft--;
-        if(livesLeft < 0){
+        if(livesLeft < 1){
             //TODO: Implement GAME
             System.out.println("Game Over");
         }
