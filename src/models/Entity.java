@@ -22,22 +22,28 @@ public class Entity extends Observable {
     //Entity properties
     protected String lastAtemptedDirection;
     protected String occupation;
-    protected String type;
     protected Stats stats;
     protected Inventory inventory;
     protected int[] location;
     protected String filePathExtension = "src/res/save_files/";
     protected String filePathName = "SaveFile_1.xml"; //tmp
-    
-    public Entity(){
-        location = new int[2];
-        location[0] = START_X;
-        location[1] = START_Y;
-        type = "avatar";
-        lastAtemptedDirection = "N";
 
-        inventory = new Inventory();
-        stats = new Stats();
+    public Entity() {
+        // Default to smasher
+        initEntity("smasher");
+    }
+    public Entity(String occupation){
+        initEntity(occupation);
+    }
+
+    private void initEntity(String occupation) {
+        this.location = new int[2];
+        this.location[0] = START_X;
+        this.location[1] = START_Y;
+        this.lastAtemptedDirection = "N";
+        this.occupation = occupation;
+        this.inventory = new Inventory();
+        this.stats = new Stats(occupation);
         //Avatar parsing
         initXML(filePathExtension + filePathName);
     }
@@ -58,7 +64,6 @@ public class Entity extends Observable {
                 System.out.println(entity.getAttribute("type"));
                 if ( entity.getAttribute("type").equals("avatar") ){
                     System.out.println("In here");
-                    type = "avatar";
                     location[0] = Integer.parseInt(entity.getAttribute("location_x"));
                     location[1] = Integer.parseInt(entity.getAttribute("location_y"));
                     lastAtemptedDirection = entity.getAttribute("orientation");
@@ -92,14 +97,13 @@ public class Entity extends Observable {
     public Inventory getInventory(){
         return this.inventory;
     }
-    public void setOccupation(String type) {
-        this.occupation = type;
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
     }
+    // Each "type" (subclass) of entity will override this method to return its type.
+    public String getType() {return "entity";}
     public void updateOrientation(String orientation){
         lastAtemptedDirection = orientation;
-    }
-    public String getType() {
-        return this.type;
     }
     public String getImageName(){
         return "entity-" + lastAtemptedDirection + ".png" ;

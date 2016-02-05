@@ -51,20 +51,39 @@ Layout of the XML file
 
  */
 
+// This class is a Singleotn
 public class Load_Save {
-    private String currentFileName;
-    public Load_Save(String fileName ){
-        currentFileName = fileName;
+
+    private static String currentFileName;
+
+    // Singleton initilization
+    private static Load_Save instance = new Load_Save();
+
+    // Static 'instance' method
+    public static Load_Save getInstance() {
+        return instance;
     }
+
+    private Load_Save() {
+        currentFileName = "";
+    }
+
+    public static void setCurrentFileName(String name) {
+        currentFileName = name;
+    }
+
+    public static String getCurrentFileName() {
+        return currentFileName;
+    }
+
     //For future use it will include map, items, stats
-    public void save(Map main_map, Entity avatar) {
+    public static void save(Map main_map, Entity avatar) {
         try{
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             Document doc = docBuilder.newDocument();
 
-            currentFileName = "SaveFile_1.xml"; // Temporary
-            String filePath = "src/res/save_files/" + currentFileName;
+            String filePath = "src/res/save_files/" + currentFileName + ".xml";
 
             Element mainRootElement = doc.createElementNS(filePath, "Save_File"); //1 will be edited in the feature
             doc.appendChild(mainRootElement);
@@ -82,7 +101,7 @@ public class Load_Save {
     }
 
 
-    private Node getEntity(Document doc, Entity e) {
+    private static Node getEntity(Document doc, Entity e) {
         Element entity = doc.createElement("entities");
 
     //----  Get Type, location and orientation      ------
@@ -92,7 +111,7 @@ public class Load_Save {
 
         return entity;
     }
-    private Node getEntityInfo(Document doc, Entity e){
+    private static Node getEntityInfo(Document doc, Entity e){
         Element type = doc.createElement("entity");
 
         //Get attributes such as location, orientation and type
@@ -113,23 +132,27 @@ public class Load_Save {
         orientation.setValue(e.getOrientation());
         type.setAttributeNode(orientation);
 
+        Attr occupation = doc.createAttribute("occupation");
+        occupation.setValue(e.getOccupation());
+        type.setAttributeNode(occupation);
+
         //Get stats and inventory of the entity
         type.appendChild( getInventory(doc, e.getInventory()) );
         type.appendChild(getStats (doc, e.getStats()) );
 
         return type;
     }
-    private Node getInventory(Document doc, Inventory inv){
+    private static Node getInventory(Document doc, Inventory inv){
         Element inventory = doc.createElement("inventory");
 
         return inventory;
     }
-    private Node getStats(Document doc, Stats stat){
+    private static Node getStats(Document doc, Stats stat){
         Element stats = doc.createElement("stats");
 
         return stats;
     }
-    private Node getMap(Document doc, Map m){
+    private static Node getMap(Document doc, Map m){
         Element map = doc.createElement("map");
         Tile[][] tiles = m.getTiles();
         int getHeight = tiles.length;
@@ -151,7 +174,7 @@ public class Load_Save {
         }
         return map;
     }
-    private Node getTile(Document doc, Tile t){
+    private static Node getTile(Document doc, Tile t){
         Element tile = doc.createElement("tile");
         ///Terrain
         Element terrain = doc.createElement("terrain");
@@ -199,7 +222,7 @@ public class Load_Save {
     }
 
     //----------Function to transform saved (doc) into Xml and the Console -------
-    public void writeToXml(Document doc, String fileName){
+    public static void writeToXml(Document doc, String fileName){
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         try {
             Transformer transformer = transformerFactory.newTransformer();

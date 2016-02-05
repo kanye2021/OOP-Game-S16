@@ -4,9 +4,11 @@ import models.Avatar;
 import models.Entity;
 import models.Map;
 import utilities.IOMediator;
+import utilities.Load_Save;
 import utilities.NavigationMediator;
 import views.CreateNewGameView;
 import views.Display;
+import views.GameView;
 import views.View;
 
 import java.awt.event.KeyEvent;
@@ -20,10 +22,10 @@ public class AvatarCreationViewController extends ViewController {
     // This enum represents the menu options available on this screen. The setView() function maps to an individual view
     // such as utilities.IOMediator.Views.CREATE_GAME;
     public enum OccupationOptions {
-        SMASHER("Smasher", "specialized in hand-to-hand combat") {protected void selectOccupation() {createAvatar("smasher");};},
-        SUMMONER("Summoner", "specialized in spell-casting") {protected void selectOccupation() {createAvatar("summoner");};},
+        SMASHER("Smasher", "specialized in hand-to-hand combat") {protected void selectOccupation() {createAvatarAndSaveGame("smasher");};},
+        SUMMONER("Summoner", "specialized in spell-casting") {protected void selectOccupation() {createAvatarAndSaveGame("summoner");};},
         SNEAK("Sneak", "specialized in ranged weapons, evading detection, finding/removing traps") {protected void selectOccupation() {
-            createAvatar("sneak");};};
+            createAvatarAndSaveGame("sneak");};};
 
         private String text;
         private String description;
@@ -73,14 +75,19 @@ public class AvatarCreationViewController extends ViewController {
 
     }
 
-    public static void createAvatar(String occupation) {
+    public static void createAvatarAndSaveGame(String occupation) {
         // Wanna ask if ppl think this is good.
         System.out.println("Makin an avatar of occupation: " + occupation);
         Entity avatar = new Avatar(occupation);
-        NavigationMediator nav = new NavigationMediator(new Map(), avatar);
+        Map map = new Map();
+        NavigationMediator nav = new NavigationMediator(map, avatar);
         IOMediator.entity = avatar;
+        IOMediator.map = map;
+        map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
+        GameView gameView = new GameView(map, avatar);
+        IOMediator.Views.GAME.setView(gameView);
         IOMediator.setActiveView(IOMediator.Views.GAME);
-        System.out.println("@@@THE OCCUPATION IS. " + IOMediator.entity.getOccupation());
+        Load_Save.getInstance().save(map, avatar);
     }
 
 
@@ -103,6 +110,7 @@ public class AvatarCreationViewController extends ViewController {
             // This func calls "createAvatar
             // which needs to be implemented
             selectedOccupation.selectOccupation();
+
 
         } else {
 //            System.out.println("invalid key press FROM CREATE NEW VC");

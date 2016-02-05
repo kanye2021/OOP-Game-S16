@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Save_File xmlns="src/res/save_files/SaveFile_1.xml">
      <entities>
-          <entity location_x="3" location_y="7" orientation="S" type="avatar">
+          <entity location_x="11" location_y="8" orientation="E" type="avatar">
                <inventory/>
                <stats/>
           </entity>
