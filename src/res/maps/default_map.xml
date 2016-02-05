@@ -2,13 +2,16 @@
 <map height="50" width="50">
     <row>
         <tile>
-            <terrain type="sea"/>
+            <terrain type="grass"/>
+            <item id="1" type="take-able"></item>
         </tile>
         <tile>
             <terrain type="grass"/>
+            <item id="2" type="take-able"></item>
         </tile>
         <tile>
             <terrain type="grass"/>
+            <item id="1" type="one-shot"></item>
         </tile>
         <tile>
             <terrain type="grass"/>

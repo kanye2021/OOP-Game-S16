@@ -116,6 +116,9 @@ public class Map extends Observable {
                         if(itemType.equals(Item.Type.TAKEABLE.toString())){
                             item = new TakeableItem(TakeableItem.Items.values()[id]);
                         }
+                        else if(itemType.equals(Item.Type.ONE_SHOT.toString())){
+                            item = new OneShotItem(OneShotItem.Effects.values()[id]);
+                        }
 
                     }
 
