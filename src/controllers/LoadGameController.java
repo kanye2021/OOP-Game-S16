@@ -1,5 +1,6 @@
 package controllers;
 
+import com.sun.xml.internal.fastinfoset.sax.SystemIdResolver;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import models.Avatar;
 import models.Entity;
@@ -24,11 +25,14 @@ public class LoadGameController extends ViewController{
     int myOption;
     public LoadGameController(LoadGameView lv){
         loadView = lv;
+        loadNewFolder();
+        myOption = 0;
+    }
+    public File[] loadNewFolder(){
         File folder = new File(saveFilePath);
         fileNames = folder.listFiles();
-        myOption = 0; //Option 0 is always the first one
+        return fileNames;
     }
-
     public int getActiveOptions(){
         return myOption;
     }
@@ -49,6 +53,24 @@ public class LoadGameController extends ViewController{
                 loadGame();
                 break;
         }
+        if (checkFolderList()) {
+            System.out.println("Call this");
+            loadNewFolder();
+            loadView.getNewFiles();
+        }
+    }
+    public boolean checkFolderList(){
+        File folder = new File(saveFilePath);
+        System.out.println("F: " + folder.listFiles().length);
+        System.out.println("File: " + fileNames.length);
+
+        if (folder.listFiles().length != fileNames.length){
+            System.out.println("They shouldn't be the same");
+            return true;
+        }else {
+            System.out.println("Good together");
+            return false;
+        }
     }
     public void loadGame(){
         if (IOMediator.map == null) { //Case if there isn't a map and avatar created
@@ -66,6 +88,7 @@ public class LoadGameController extends ViewController{
             IOMediator.getInstance().map.removeEntityFromLocation(IOMediator.getInstance().entity.getLocation()[0], IOMediator.getInstance().entity.getLocation()[1]);
             //Needs to remove the previous entity
         }
+
         Load_Save.getInstance().load(fileNames[myOption].getName()); //Going to grab information from XML
 
         IOMediator.setActiveView(IOMediator.Views.GAME);
