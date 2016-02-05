@@ -2,7 +2,9 @@
 package models;
 
 
-import java.util.*;
+import views.Display;
+
+import java.util.Timer;
 import java.util.TimerTask;
 
 /**
@@ -154,31 +156,37 @@ public class Stats {
         }
 
         health = maxHealth;
+        Display.getInstance().repaint();
     }
     // Wrapper to animate loosing a life (health bar slides down)
     public void loseALife(){
         modifyHealth(-maxHealth);
+        Display.getInstance().repaint();
     }
     
     public void modifyStrength(int delta){
         strength = strength + delta;
         updateOffensiveRating();
+        Display.getInstance().repaint();
     }
     
     public void modifyAgility(int delta){
         agility = agility +delta;
         updateDefensiveRating();
+        Display.getInstance().repaint();
     }
     
     public void modifyIntellect(int delta){
         intellect = intellect + delta;
         updateMaxMana();
+        Display.getInstance().repaint();
     }
     
     public void modifyHardiness(int delta){
         hardiness = hardiness + delta;
         updateArmorRating();
         updateMaxHealth();
+        Display.getInstance().repaint();
     }
     
     // TODO: Test with item that increases exprience
@@ -194,11 +202,13 @@ public class Stats {
 
                 if(!pastBoudnary && experience + increment < expReqLvUp){
                     experience += increment;
+                    Display.getInstance().repaint();
                 }else{
-                    this.cancel();
                     if(experience + increment >= expReqLvUp){
                         modifyLevel(1);
                     }
+                    Display.getInstance().repaint();
+                    this.cancel();
                 }
             }
         };
@@ -212,13 +222,16 @@ public class Stats {
     public void modifyMovement(int delta){
         
         movement = movement + delta;
+        Display.getInstance().repaint();
     }
     
     // Mutators for derived stats
     
     // Wrapper for modify level 
     public void levelUp(){
+
         modifyExperience(expReqLvUp);
+        Display.getInstance().repaint();
     }
     
     public void modifyLevel(int delta){
@@ -234,6 +247,7 @@ public class Stats {
         lastLvlExpReq = expReqLvUp;
         expReqLvUp = expReqLvUp +100;
         experience = lastLvlExpReq;
+        Display.getInstance().repaint();
     }
     
 
@@ -248,6 +262,7 @@ public class Stats {
 
                 if(!pastBoundrary && ((health + increment) < maxHealth) && ((health + increment) > 0)){
                     health += increment;
+                    Display.getInstance().repaint();
                 }else{
                     // increment is included to keep the bar form overfilling
                     if(health + increment >= maxHealth){
@@ -257,6 +272,7 @@ public class Stats {
                         health = maxHealth;
                         modifyLivesLeft(-1);
                     }
+                    Display.getInstance().repaint();
                     this.cancel();
                 }
             }
@@ -280,6 +296,7 @@ public class Stats {
 
                 if(!pastBoundrary && ((mana + increment) < maxMana) && ((mana + increment) > 0)){
                     mana += increment;
+                    Display.getInstance().repaint();
                 }else{
                     // increment is included to keep the bar form overfilling
                     if(mana + increment >= maxMana){
@@ -288,6 +305,8 @@ public class Stats {
                     if(mana + increment <= 0){
                         mana = 0;
                     }
+
+                    Display.getInstance().repaint();
                     this.cancel();
                 }
             }
@@ -301,35 +320,47 @@ public class Stats {
 
     //derived status or ones that require a formula to calculate
     public void updateOffensiveRating(){
+
         offensiveRating = weaponModifier + strength + level;
+        Display.getInstance().repaint();
     }
 
     public void updateDefensiveRating(){
+
         defensiveRating = agility + level;
+        Display.getInstance().repaint();
     }
 
     public void updateArmorRating(){
+
         armorRating = armorModifier + hardiness;
+        Display.getInstance().repaint();
     }
 
     
     // Mutators for other parameters
-
-    
     public void updateMaxHealth(){
+
         maxHealth = hardiness + level;
+        Display.getInstance().repaint();
     }
 
     public void updateMaxMana(){
+
         maxMana = intellect + level;
+        Display.getInstance().repaint();
     }
 
     public void setWeaponModifier(int modifier){
+
         weaponModifier = modifier;
+        Display.getInstance().repaint();
     }
 
     public void setArmorModifier(int modifier){
+
         armorModifier = modifier;
+        Display.getInstance().repaint();
     }
 }
 
