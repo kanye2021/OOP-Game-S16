@@ -13,7 +13,7 @@ public class Avatar extends Entity {
     }
 
     public void dropItem(Item item) {
-        this.inventory.removeItem(item);
+        //this.inventory.removeItem(item);
         // TODO: Drop item on the map..
         // Need to be able to insert item on map...
         // Singleton??

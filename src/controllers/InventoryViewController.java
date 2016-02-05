@@ -59,7 +59,7 @@ public class InventoryViewController extends ViewController {
     	
     	if (position < 0) {
     		
-    		position = getInventory().getItems().size() - 1;
+    		position = getInventory().getSize() - 1;
     		
     	}
     	
@@ -69,7 +69,7 @@ public class InventoryViewController extends ViewController {
     	
     	position++;
     	
-    	if (position > getInventory().getItems().size() - 1) {
+    	if (position > getInventory().getSize() - 1) {
     		
     		
     		position = 0;
@@ -77,5 +77,6 @@ public class InventoryViewController extends ViewController {
     	}
     	
     }
-    
+   
+    public int getPosition(){return position;}
 }
