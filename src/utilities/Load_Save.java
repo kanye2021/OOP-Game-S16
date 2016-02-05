@@ -76,6 +76,10 @@ public class Load_Save {
         return currentFileName;
     }
 
+    public static void load(String fileName){
+
+    }
+
     //For future use it will include map, items, stats
     public static void save(Map main_map, Entity avatar) {
         try{

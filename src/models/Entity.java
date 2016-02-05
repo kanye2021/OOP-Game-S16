@@ -72,14 +72,10 @@ public class Entity extends Observable {
             }
 
             System.out.println("All the stuff: " + location[0] + "," + location[1] + "," + lastAtemptedDirection);
-
-
-
         }catch(Exception e){
             System.out.println("Problem parsing avatar");
             e.printStackTrace();
         }
-
     }
     /*----------Get and Setters --------*/
     public int[] getLocation(){
