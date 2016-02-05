@@ -35,6 +35,18 @@ public class GameViewController extends ViewController {
             case KeyEvent.VK_DOWN:
                 navMediator.requestMovement("S");
                 break;
+            case KeyEvent.VK_Q:
+                navMediator.requestMovement("NW");
+                break;
+            case KeyEvent.VK_E:
+                navMediator.requestMovement("NE");
+                break;
+            case KeyEvent.VK_Z:
+                navMediator.requestMovement("SW");
+                break;
+            case KeyEvent.VK_C:
+                navMediator.requestMovement("SE");
+                break;
             case KeyEvent.VK_I:
             	IOMediator.setActiveView(IOMediator.Views.INVENTORY);
             	break;
@@ -44,6 +56,7 @@ public class GameViewController extends ViewController {
 //            case KeyEvent.VK_S:
 //                navMediator.save();
 //                break;
+
             case KeyEvent.VK_NUMPAD1:
             	navMediator.requestMovement("SW");
             	break;

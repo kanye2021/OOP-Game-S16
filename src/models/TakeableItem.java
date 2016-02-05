@@ -8,10 +8,9 @@ package models;
  * the Entity's inventory when touched
  */
 public class TakeableItem extends Item {
-
-	public static enum Items {
+	public enum Items {
 		
-		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png"),
+		WOOD_SWORD("Wood Sword", "A sword made of wood", "bronze_sword.png"),
 		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png"),
 		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png"),
 		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png"),
