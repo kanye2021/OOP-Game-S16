@@ -13,8 +13,8 @@ import java.awt.event.KeyEvent;
  */
 public class IOMediator {
 
-	static Map map = new Map();
-	static Entity entity = new Entity();
+	public static Map map = new Map();
+	public static Entity entity = new Entity();
 	
 	// This represents all of the views that the utilities.IOMediator can see. the utilities.IOMediator acts as a MUX and goes through these
 	// to modify the graphics and where the keyPresses go.

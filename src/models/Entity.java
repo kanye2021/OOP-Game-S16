@@ -16,20 +16,19 @@ import java.io.File;
 
 public class Entity extends Observable {
 
-    private final int START_X = 10;
-    private final int START_Y = 5;
+    protected final int START_X = 10;
+    protected final int START_Y = 5;
 
     //Entity properties
-    private String lastAtemptedDirection;
-    private String occupation;
-    private String type;
-    private Stats stats;
-    private Inventory inventory;
-    private int[] location;
-    private String filePathExtension = "src/res/save_files/";
-    private String filePathName = "SaveFile_1.xml"; //tmp
-
-
+    protected String lastAtemptedDirection;
+    protected String occupation;
+    protected String type;
+    protected Stats stats;
+    protected Inventory inventory;
+    protected int[] location;
+    protected String filePathExtension = "src/res/save_files/";
+    protected String filePathName = "SaveFile_1.xml"; //tmp
+    
     public Entity(){
         location = new int[2];
         location[0] = START_X;

@@ -1,6 +1,10 @@
 package controllers;
 
+import models.Avatar;
+import models.Entity;
+import models.Map;
 import utilities.IOMediator;
+import utilities.NavigationMediator;
 import views.CreateNewGameView;
 import views.Display;
 import views.View;
@@ -70,8 +74,13 @@ public class AvatarCreationViewController extends ViewController {
     }
 
     public static void createAvatar(String occupation) {
-        //TODO: make an avatar here and save some shit
+        // Wanna ask if ppl think this is good.
         System.out.println("Makin an avatar of occupation: " + occupation);
+        Entity avatar = new Avatar(occupation);
+        NavigationMediator nav = new NavigationMediator(new Map(), avatar);
+        IOMediator.entity = avatar;
+        IOMediator.setActiveView(IOMediator.Views.GAME);
+        System.out.println("@@@THE OCCUPATION IS. " + IOMediator.entity.getOccupation());
     }
 
 

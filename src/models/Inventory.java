@@ -22,11 +22,12 @@ public class Inventory {
 		}
 		
 		else {
-			
 			items.put(newItem, 1);
-
 		}
 
+	}
+	public void removeItem(Item item) {
+		this.items.remove(item);
 	}
 	
 }
