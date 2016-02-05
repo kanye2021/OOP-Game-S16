@@ -11,7 +11,7 @@ import java.awt.geom.Rectangle2D;
 public class StartMenuView extends View {
 
     private final int BUTTON_WIDTH = 200;
-    private final int BUTTON_HEIGHT = 50;
+    private final int BUTTON_HEIGHT = 32;
     
     //title
     private final String TITLE = "Kanye 2020";
@@ -43,12 +43,11 @@ public class StartMenuView extends View {
     }
     
     private void renderTitle(Graphics g){
-    	
     	g.setColor(new Color(255,255,255));
     	
     	g.setFont(TITLE_FONT);
-    	FontMetrics fm = g.getFontMetrics(); 
-    	
+    	FontMetrics fm = g.getFontMetrics();
+
     	g.drawString("Kanye 2020",View.B_WIDTH/2 - fm.stringWidth(TITLE)/2,fm.getHeight() );
     }
     
@@ -58,7 +57,7 @@ public class StartMenuView extends View {
     	
     	g.setFont(VIEW_FONT);
     	FontMetrics fm = g.getFontMetrics(VIEW_FONT);
-        
+
         for (StartMenuViewController.MenuOptions option : StartMenuViewController.MenuOptions.values()) {
 			
 			Rectangle2D rectangle = fm.getStringBounds(option.toString(), g);
