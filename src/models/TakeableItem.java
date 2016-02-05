@@ -20,6 +20,8 @@ public class TakeableItem extends Item {
 		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png"),
 		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png");
 		
+		//a mini skirt for jorge in the jungle | jorge in the jungle figurine
+		
 		private String name;
 		private String description;
 		private String pathToPicture;
@@ -70,11 +72,6 @@ public class TakeableItem extends Item {
     public final boolean onTouch(Entity entity) {
         entity.getInventory().addItem(this);
         return true;
-    }
-
-    //@Override
-    public String getImageName(){
-        return pathToPicture;
     }
 
 	@Override
