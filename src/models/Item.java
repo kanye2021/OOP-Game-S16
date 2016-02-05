@@ -70,7 +70,6 @@ public abstract class Item {
 
     public abstract boolean onTouch(Entity entity);
 
-    public abstract String getImageName();
     //Do not touch
     @Override
 	public int hashCode() {
@@ -96,7 +95,7 @@ public abstract class Item {
     }
 
     public String toString() {
-        return id + ": " + name + " | " + type;
+        return getID() + ": " + getName() + " | " + getType();
     }
 
 }

@@ -11,11 +11,11 @@
         </tile>
         <tile>
             <terrain type="grass"></terrain>
-            <item description="a mini skirt for jorge in the jungle" type="take-able" name="iron-sword"></item>
+            <item id="2" type="take-able"></item>
         </tile>
         <tile>
             <terrain type="grass"></terrain>
-            <item description="jorge in the jungle figurine" type="take-able" name="iron-sword"></item>
+            <item id="1" type="take-able"></item>
         </tile>
         <tile>
             <terrain type="grass"></terrain>

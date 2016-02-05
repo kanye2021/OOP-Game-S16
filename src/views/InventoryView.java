@@ -15,14 +15,11 @@ import java.util.Map;
  */
 public class InventoryView extends View {
 
-	Inventory currentInventory;
-	
 	private final int ITEM_HEIGHT = 30;
 	
-	public InventoryView(Inventory inventory) {
+	public InventoryView() {
 		super();
-        this.viewController = new InventoryViewController(this, inventory);
-		currentInventory = inventory;
+        this.viewController = new InventoryViewController(this);
 	}
 	
 	
@@ -34,7 +31,7 @@ public class InventoryView extends View {
 		
 		renderBackground(g2);
 		
-		renderItems(g2);
+		renderIems(g2);
 		
 		g.drawImage(overImage, (int) (View.B_WIDTH * 0.1), (int) (View.B_HEIGHT * 0.1), (int) (View.B_WIDTH * 0.8), (int) (View.B_HEIGHT * 0.8), null);
 		
@@ -73,7 +70,7 @@ public class InventoryView extends View {
         g2.drawString(titleString, titleStringX, titleStringY);
         g2.drawRect(0, 0, B_WIDTH, ITEM_HEIGHT);
         
-		for (Map.Entry<Item, Integer> entry : currentInventory.getItems().entrySet()) {
+		for (Map.Entry<Item, Integer> entry : ((InventoryViewController) viewController).getInventory().getItems().entrySet()) {
 			
 			String string1 = entry.getKey().getName();
 			String string2 = entry.getKey().getDescription();
@@ -122,9 +119,5 @@ public class InventoryView extends View {
 		}
 		
 	}
-	
-	public void setInventory(Inventory inventory) {
-		currentInventory = inventory;
-	}
-	
+
 }

@@ -91,8 +91,12 @@ public class AreaViewport extends View implements Observer {
 
 
                 Item item = map.getItemAtLocation(j, i);
+                
+                
+                
                 if(item!=null){
-                    ImageIcon item_icon = new ImageIcon(itemBaseFilepath + item.getImageName());
+                	
+                    ImageIcon item_icon = new ImageIcon(itemBaseFilepath + item.getPathToPicture());
                     Image itemImage = item_icon.getImage();
 
                     // Center the item in the tile
