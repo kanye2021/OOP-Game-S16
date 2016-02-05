@@ -2,6 +2,9 @@
 package models;
 
 
+import java.util.*;
+import java.util.TimerTask;
+
 /**
  * Created by ben on 2/2/16.
  */
@@ -12,8 +15,8 @@ public class Stats {
 
     private int livesLeft = 0;
 
-    private int lifeLeft = 0;
-    private int manaLeft = 0;
+    private int health = 0;
+    private int mana = 0;
     private int strength = 0;
     private  int agility = 0;
     private int intellect = 0;
@@ -24,7 +27,7 @@ public class Stats {
     private int expReqLvUp = 0;
     private int level = 0;
 
-    private int maxLife = 0;
+    private int maxHealth = 0;
     private int maxMana = 0;
 
     private int offensiveRating = 0;
@@ -40,11 +43,11 @@ public class Stats {
         agility = 12;
         intellect = 10;
         hardiness = 10;
-        maxLife = hardiness + level;
+        maxHealth = hardiness + level;
         maxMana = intellect + level;
 
-        lifeLeft = maxLife;
-        manaLeft = maxMana;
+        health = maxHealth;
+        mana = maxMana;
 
         offensiveRating = /*weapon + */strength + level;
         defensiveRating = agility + level;
@@ -77,11 +80,11 @@ public class Stats {
             intellect = 10;
             hardiness = 10;
         }
-        maxLife = hardiness + level;
+        maxHealth = hardiness + level;
         maxMana = intellect + level;
 
-        lifeLeft = maxLife;
-        manaLeft = maxMana;
+        health = maxHealth;
+        mana = maxMana;
 
         offensiveRating = /*weapon + */strength + level;
         defensiveRating = agility + level;
@@ -98,12 +101,12 @@ public class Stats {
     public int getExperience(){return (experience);}
     public int getExpReqLvUp(){return (expReqLvUp);}
     public int getMaxHealth(){
-            return (maxLife);
+            return (maxHealth);
         }
     public int getMaxMana(){return (maxMana);}
-    public int getHealth(){return (lifeLeft);}
+    public int getHealth(){return (health);}
     public int getMana(){
-            return (manaLeft);
+            return (mana);
         }
     public int getStrength(){return (strength);}
     public int getAgility(){return (agility);}
@@ -127,8 +130,8 @@ public class Stats {
         armorRating = /*armor*/ + hardiness;
     }
 
-    public void modifyMaxLife(){
-        maxLife = hardiness + level;
+    public void modifymaxHealth(){
+        maxHealth = hardiness + level;
     }
 
     public void modifyMaxMana(){
@@ -147,12 +150,22 @@ public class Stats {
     public void modifyHardiness(int delta){
         hardiness = hardiness + delta;
         modifyArmorRating();
-        modifyMaxLife();
+        modifymaxHealth();
     }
     public void modifyIntellect(int delta){
         intellect = intellect + delta;
         modifyMaxMana();
     }
+
+    public void loseALife(){
+        modifyHealth(-maxHealth);
+    }
+
+    // Nice wrapper for increasing experience to level up.
+    public void levelUp(){
+        modifyExperience(expReqLvUp);
+    }
+
     public void modifyLevel(int delta){
         level = level + delta;
         int prizes = delta * 10;
@@ -160,35 +173,87 @@ public class Stats {
         modifyAgility(prizes);
         modifyIntellect(prizes);
         modifyHardiness(prizes);
-        lifeLeft = maxLife;
-        manaLeft = maxMana;
+        modifyHealth(maxHealth);
+        modifymana(maxMana);
         expReqLvUp = expReqLvUp +100;
+        experience = 0;
     }
 
+    // TODO: Test with item that increases exprience
     public void modifyExperience(int delta){
-        experience = experience + delta;
-        while(experience >= expReqLvUp)
-        {
-            modifyLevel(1);
-            experience = experience - expReqLvUp;
-        }
+        int stopAtExp =  experience + delta;
+        int sign = delta > 0 ? 1 : -1;
+        int increment = sign * (expReqLvUp)/100; // keep the exp bar consistant at all levels.
+        TimerTask tasknew = new TimerTask() {
+            @Override
+            public void run() {
+                boolean pastBoudnary = delta > 0 ? experience > stopAtExp : experience < stopAtExp;
+
+                if(!pastBoudnary && experience + increment < expReqLvUp){
+                    experience += increment;
+                }else{
+                    this.cancel();
+                    if(experience + increment >= expReqLvUp){
+                        modifyLevel(1);
+                    }
+                }
+            }
+        };
+        Timer timer = new Timer();
+
+        // scheduling the task at fixed rate delay
+        int delay = 10;
+        timer.scheduleAtFixedRate(tasknew,100,delay);
     }
     //////////////////////////
     public void modifyMovement(int currentSpeed){
         movement = currentSpeed;
     }
 
-    public void modifyLifeLeft(int delta){
-        if((lifeLeft + delta) <= 0 )//So livesLeft does not drop below zero
+    public void modifyHealth(int delta){
+        int stopAtHealth = health + delta;
+        int sign = delta > 0 ? 1 : -1;
+        int increment = sign * (maxHealth)/10;
+        TimerTask tasknew = new TimerTask() {
+            @Override
+            public void run() {
+                boolean pastBoundrary = delta > 0 ? health > stopAtHealth : health < stopAtHealth;
+
+                if(!pastBoundrary && ((health + increment) < maxHealth) && (health > 0)){
+                    health += increment;
+                }else{
+                    // increment is included to keep the bar form overfilling
+                    if(health + increment >= maxHealth){
+                        health = maxHealth;
+                    }
+                    if(health == 0){
+                        health = maxHealth;
+                        modifyLivesLeft(-1);
+                    }
+                    this.cancel();
+                }
+            }
+        };
+        Timer timer = new Timer();
+
+        // scheduling the task at fixed rate delay
+        int delay = 75;
+        timer.scheduleAtFixedRate(tasknew,100,delay);
+    }
+
+
+    // TODO: Implement the animation for mana!
+    public void modifymana(int delta){
+        if((mana + delta) <= 0 )//So livesLeft does not drop below zero
         {
-            lifeLeft = 0;
+            mana = 0;
         }
-        else if((lifeLeft + delta) >= maxLife )//So livesLeft does not go beyond the max
+        else if((health + delta) >= maxMana )//So livesLeft does not go beyond the max
         {
-            lifeLeft = maxLife;
+            mana = maxMana;
         }
         else{
-            lifeLeft = lifeLeft + delta;
+            mana = mana + delta;
         }
     }
 
@@ -199,21 +264,9 @@ public class Stats {
             System.out.println("Game Over");
         }
 
-        lifeLeft = maxLife;
+        health = maxHealth;
     }
 
-    public void modifyManaLeft(int delta){
-        if((manaLeft + delta) <= 0 )//So livesLeft does not drop below zero
-        {
-            manaLeft = 0;
-        }
-        else if((lifeLeft + delta) >= maxMana )//So livesLeft does not go beyond the max
-        {
-            manaLeft = maxMana;
-        }
-        else{
-            manaLeft = manaLeft + delta;
-        }
-    }
+
 }
 
