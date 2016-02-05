@@ -5,3 +5,4 @@ out/
 .classpath
 .project
 .DS_Store
+src/res/save_files/*

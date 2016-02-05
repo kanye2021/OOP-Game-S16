@@ -16,7 +16,7 @@ public class PauseViewController extends ViewController {
 	public enum MenuOptions {
 		RESUME("Resume Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.GAME);};}, 
 		OPTIONS("Options") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
-		LOAD_GAME("Load Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
+		LOAD_GAME("Load Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.LOAD);};},
 		SAVE_GAME("Save Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.SAVE);};},
 		DAVE("Dave") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.START_MENU);};},
 		EXIT_GAME("Exit Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.START_MENU);};};

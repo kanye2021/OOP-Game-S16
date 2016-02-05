@@ -57,6 +57,8 @@ public class Display extends JPanel  {
             } else if (e.getID() == KeyEvent.KEY_TYPED) {
 //                System.out.println("key typed??");
             }
+            Display.getInstance().repaint();
+
             return false;
         }
     }

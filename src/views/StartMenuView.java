@@ -11,103 +11,73 @@ import java.awt.geom.Rectangle2D;
 public class StartMenuView extends View {
 
     private final int BUTTON_WIDTH = 200;
-    private final int BUTTON_HEIGHT = 50;
-
+    private final int BUTTON_HEIGHT = 32;
+    
+    //title
+    private final String TITLE = "Kanye 2020";
+    private final Font TITLE_FONT = new Font("Brush Script MT", Font.BOLD, 100);
+    
+    private final int TITLE_BUTTON_MARGIN = (int)(B_HEIGHT*0.15);
+    
+    
     public StartMenuView(){
         super();
         this.viewController = new StartMenuViewController(this);
     }
-
+    
     @Override
     public void render(Graphics g) {
-
+    	
+    	renderBackground(g);
+        
+        renderTitle(g);
+        
+        renderButtons(g);
+        
+        Toolkit.getDefaultToolkit().sync();
+    }
+    
+    
+    private void renderBackground(Graphics g){
     	clear(g);
+    }
+    
+    private void renderTitle(Graphics g){
+    	g.setColor(new Color(255,255,255));
     	
-        FontMetrics fm = g.getFontMetrics(VIEW_FONT);
-        g.setFont(VIEW_FONT);
+    	g.setFont(TITLE_FONT);
+    	FontMetrics fm = g.getFontMetrics();
 
+    	g.drawString("Kanye 2020",View.B_WIDTH/2 - fm.stringWidth(TITLE)/2,fm.getHeight() );
+    }
+    
+    private void renderButtons(Graphics g){
+        
+    	int start = g.getFontMetrics(TITLE_FONT).getHeight() + TITLE_BUTTON_MARGIN;
     	
-        /*// Rectangles
-        // All buttons have the same X position.
-        // TODO: Someone come up with better maths to get y positions lol.
-        int button_x_pos = B_WIDTH/2 - BUTTON_WIDTH/2;
-        int button1_y_pos = B_HEIGHT/3 - BUTTON_HEIGHT/2;
-        int button2_y_pos = B_HEIGHT/2 - BUTTON_HEIGHT/2;
-        int button3_y_pos = (int)((double)B_HEIGHT/1.5) - BUTTON_HEIGHT/2;
+    	g.setFont(VIEW_FONT);
+    	FontMetrics fm = g.getFontMetrics(VIEW_FONT);
 
-        // Text in the rectangles
-        Font small = new Font("Helvetica", Font.BOLD, 14);
-        FontMetrics fm = g.getFontMetrics(small);
-
-        g.setColor(Color.white);
-        g.setFont(small);
-
-        // Centering text in rectangle.
-        // getting coord's to do so
-        Rectangle2D r1 = fm.getStringBounds(CREATE_GAME, g);
-        Rectangle2D r2 = fm.getStringBounds(LOAD_GAME, g);
-        Rectangle2D r3 = fm.getStringBounds(EXIT, g);
-        int x2 = (B_WIDTH - (int)r1.getWidth())/2;
-        int y2 = (B_HEIGHT - (int)r1.getHeight())/2 + fm.getAscent();
-        int x1 = (B_WIDTH - (int)r2.getWidth())/2;
-        int y1 = button1_y_pos + (int)r1.getHeight() + fm.getAscent();
-        int x3 = (B_WIDTH - (int)r3.getWidth())/2;
-        int y3 = button3_y_pos + (int)r3.getHeight() + fm.getAscent();
-
-        if (((controllers.StartMenuViewController)viewController).getSelected() == controllers.StartMenuViewController.MenuOptions.LOAD_GAME) {
-            g.setColor(Color.WHITE);
-            g.fillRect(button_x_pos, button1_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
-            g.setColor(Color.BLACK);
-            g.drawString(LOAD_GAME, x1, y1);
-        } else {
-            g.setColor(Color.WHITE);
-            g.drawRect(button_x_pos, button1_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
-            g.drawString(LOAD_GAME, x1, y1);
-        }
-        if (((controllers.StartMenuViewController)viewController).getSelected() == controllers.StartMenuViewController.MenuOptions.CREATE_GAME) {
-            g.setColor(Color.WHITE);
-            g.fillRect(button_x_pos, button2_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
-            g.setColor(Color.BLACK);
-            g.drawString(CREATE_GAME, x2, y2);
-        } else {
-            g.setColor(Color.WHITE);
-            g.drawRect(button_x_pos, button2_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
-            g.drawString(CREATE_GAME, x2, y2);
-        }
-        if (((controllers.StartMenuViewController)viewController).getSelected() == controllers.StartMenuViewController.MenuOptions.EXIT_GAME) {
-            g.setColor(Color.WHITE);
-            g.fillRect(button_x_pos, button3_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
-            g.setColor(Color.BLACK);
-            g.drawString(EXIT, x3, y3);
-        } else {
-            g.setColor(Color.WHITE);
-            g.drawRect(button_x_pos, button3_y_pos , BUTTON_WIDTH, BUTTON_HEIGHT );
-            g.drawString(EXIT, x3, y3);
-        }*/
-
-        
-        
-        
         for (StartMenuViewController.MenuOptions option : StartMenuViewController.MenuOptions.values()) {
 			
 			Rectangle2D rectangle = fm.getStringBounds(option.toString(), g);
+			
 			int boxX = View.B_WIDTH / 2 - BUTTON_WIDTH / 2;
-			int boxY = BUTTON_HEIGHT * option.ordinal();
+			int boxY = BUTTON_HEIGHT * option.ordinal() + start;
 			int boxDX = BUTTON_WIDTH;
 			int boxDY = BUTTON_HEIGHT;
+			
 			int stringX = View.B_WIDTH / 2 - (int) (rectangle.getWidth() / 2);
-			int stringY = option.ordinal() * BUTTON_HEIGHT + (int) (rectangle.getHeight() / 2) + fm.getAscent();
+			int stringY = option.ordinal() * BUTTON_HEIGHT + (int) (rectangle.getHeight() / 2) + fm.getAscent() + start;
 			
 			Color primaryColor;
 			Color secondaryColor;
 			
 			if (option == ((StartMenuViewController) viewController).getActiveItem()) {
-			
 				primaryColor = Color.WHITE;
 				secondaryColor = Color.BLACK;
 			
 			} else {
-				
 				primaryColor = Color.BLACK;
 				secondaryColor = Color.WHITE;
 				
@@ -116,13 +86,7 @@ public class StartMenuView extends View {
 			g.setColor(primaryColor);
 			g.fillRect(boxX, boxY, boxDX, boxDY);
 			g.setColor(secondaryColor);
-			g.drawString(option.toString(), stringX, stringY);
-			//g.drawRect(boxX, boxY, boxDX, boxDY);
-			
+			g.drawString(option.toString(), stringX, stringY);			
 		}
-        
-        Toolkit.getDefaultToolkit().sync();
-
     }
-
 }

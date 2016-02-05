@@ -14,65 +14,59 @@ import java.awt.geom.Rectangle2D;
  * Created by dyeung on 2/3/16.
  */
 public class SaveGameView extends View {
-    private Load_Save l_s;
-    private JTextField saveFileField;
 
-    //Things that need to be saved
-    private Map myMap;
-    private Entity myEntity;
-    private final String MSG = "Save File Name:";
-    private final String ENDMSG = "Press enter to save";
+    private final int BUTTON_WIDTH = 200;
+    private final int BUTTON_HEIGHT = 50;
 
-    public SaveGameView(Map m, Entity e){
+
+    public SaveGameView() {
+        super();
         this.viewController = new SaveGameController(this);
-        l_s = new Load_Save();
-        this.myMap = m;
-        this.myEntity = e;
-        String text;
+    }
 
-    }
-    public void startSaving(){
-        System.out.println("Saving map and entity");
-        String savedFileName = saveFileField.getText();
-
-        System.out.println("Saved file name is " + savedFileName);
-        l_s.save(myMap, myEntity, savedFileName);
-
-        //Return back to the game (?) Not sure where to go from save
-        //IOMediator.setActiveView(IOMediator.Views.GAME);
-        saveFileField.setVisible(false);
-    }
-    public JTextField getTextField(){
-        return saveFileField;
-    }
-    public void setTextField(JTextField in){
-        saveFileField = in;
-    }
     @Override
     public void render(Graphics g) {
         Font small = new Font("Helvetica", Font.BOLD, 14);
+        clear(g);
+
         FontMetrics fm = g.getFontMetrics(small);
-        Rectangle2D r1 = fm.getStringBounds(MSG, g);
-        int x = (View.B_WIDTH - (int)r1.getWidth())/2;
-        int y = (View.B_HEIGHT - (int)r1.getHeight())/2 + fm.getAscent();
-
-        int col = 20;
-        int row = 40;
-        g.setColor(Color.white);
-        g.drawString(MSG, x, y);
-        JButton button = new JButton("BUTTON");
-
-        saveFileField = new JTextField("Press Return", 20);
-        saveFileField.setBounds(x, y, col * 10, row);
+        g.setFont(small);
 
 
-        saveFileField.setVisible(true);
-        button.setVisible(true);
+        for (SaveGameController.SaveOptions option : SaveGameController.SaveOptions.values()) {
 
-        g.drawString(ENDMSG, x, y - 80);
+            //Box Stuff
+            Rectangle2D rectangle = fm.getStringBounds(option.toString(), g);
+            int boxX = View.B_WIDTH / 2 - BUTTON_WIDTH / 2;
+            int boxY = (( (option.ordinal()+1)) * View.B_HEIGHT/4 ) - BUTTON_HEIGHT;
+            int boxDX = BUTTON_WIDTH;
+            int boxDY = BUTTON_HEIGHT;
 
+            // String stuff
+            Rectangle2D r = fm.getStringBounds(option.getText(), g);
+            int stringX = View.B_WIDTH / 2 - (int) (r.getWidth() / 2);
+            int stringY = boxY + (int) (r.getHeight()) + fm.getAscent();
 
-        Display.getInstance().add(saveFileField);
+            Color primaryColor;
+            Color secondaryColor;
+
+            if (option == ((SaveGameController) viewController).getSelectedOption()) {
+                primaryColor = Color.WHITE;
+                secondaryColor = Color.BLACK;
+            } else {
+                primaryColor = Color.BLACK;
+                secondaryColor = Color.WHITE;
+            }
+
+            g.setColor(primaryColor);
+            g.fillRect(boxX, boxY, boxDX, boxDY);
+            g.setColor(secondaryColor);
+            g.drawString(option.getText(), stringX, stringY);
+            g.drawRect(boxX, boxY, boxDX, boxDY);
+
+        }
+
+        Toolkit.getDefaultToolkit().sync();
 
     }
 }

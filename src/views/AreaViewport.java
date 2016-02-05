@@ -1,18 +1,17 @@
 package views;
 
-import models.Entity;
-import models.Item;
-import models.Map;
-import models.Terrain;
+import models.*;
+import models.area_effects.AreaEffect;
 import utilities.Observer;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 /**
  * Created by Bradley on 2/2/16.
  */
-public class AreaViewport extends View{
+public class AreaViewport extends View implements Observer {
     private Map map;
     private Entity entity;
     private  String terrainBaseFilepath = "./src/res/terrain/";
@@ -27,6 +26,8 @@ public class AreaViewport extends View{
         super();
         this.map = map;
         this.entity = entity;
+        map.addObserver(this);
+        entity.addObserver(this);
 //        this.viewController = new controllers.GameViewController(this);
 
         // Modify the filepaths based on the user's OS
@@ -81,12 +82,43 @@ public class AreaViewport extends View{
                 // Get the terrain at this location
                 Terrain t = map.getTerrainAtLocation(j, i);
 
+                //OUT OF BOUNDS!!!!!!!!!!!!!!!!
+                if(t == null)
+                    continue;
+
                 ImageIcon ii = new ImageIcon(terrainBaseFilepath + t.getType() + ".png");
                 Image terrainImg = ii.getImage();
                 g.drawImage(terrainImg, displayX, displayY, Display.getInstance());
 
-                //TODO: Do the same for areaEffect, item, and entity
-                // Display any entitys at this location
+
+                Item item = map.getItemAtLocation(j, i);
+
+
+
+                if(item!=null){
+
+                    ImageIcon item_icon = new ImageIcon(itemBaseFilepath + item.getPathToPicture());
+                    Image itemImage = item_icon.getImage();
+
+                    // Center the item in the tile
+                    int offsetX = (TILE_SIZE - itemImage.getWidth(null))/2;
+                    int offsetY = (TILE_SIZE - itemImage.getHeight(null))/2;
+                    g.drawImage(itemImage, displayX + offsetX, displayY + offsetY, Display.getInstance());
+                }
+
+                // Display areaEffects
+                AreaEffect areaEffect = map.getAreaEffectAtLocation(j, i);
+                if(areaEffect!=null){
+                    ImageIcon area_effect_icon = new ImageIcon(areaEffectBaseFilepath + areaEffect.getImageName());
+                    Image areaEffectImage = area_effect_icon.getImage();
+
+                    // Center the decal in the tile
+                    int offsetX = (TILE_SIZE - areaEffectImage.getWidth(null))/2;
+                    int offsetY = (TILE_SIZE - areaEffectImage.getHeight(null))/2;
+                    g.drawImage(areaEffectImage, displayX + offsetX, displayY + offsetY, Display.getInstance());
+                }
+
+                // Display any entitys at thi slocation
                 Entity e = map.getEntityAtLocation(j, i);
                 if(e!=null){
                     ImageIcon avatar_icon = new ImageIcon(entityBaseFilepath + e.getImageName());
@@ -98,22 +130,19 @@ public class AreaViewport extends View{
                     g.drawImage(avatarImage, displayX + offsetX, displayY + offsetY, Display.getInstance());
                 }
 
-                Item item = map.getItemAtLocation(j, i);
-                if(item!=null){
-                    ImageIcon item_icon = new ImageIcon(itemBaseFilepath + item.getImageName());
-                    Image itemImage = item_icon.getImage();
-
-                    // Center the item in the tile
-                    int offsetX = (TILE_SIZE - itemImage.getWidth(null))/2;
-                    int offsetY = (TILE_SIZE - itemImage.getHeight(null))/2;
-                    g.drawImage(itemImage, displayX + offsetX, displayY + offsetY, Display.getInstance());
-                }
-
 
                 displayX += TILE_SIZE;
             }
             displayY += TILE_SIZE;
         }
+    }
+
+
+
+
+    @Override
+    public void update(){
+        //TODO: implement
     }
 
 }

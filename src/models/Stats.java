@@ -91,121 +91,129 @@ public class Stats {
     }
 
 
-    public String getLivesLeft(){return Integer.toString(livesLeft);}
-    public String getLevel(){
-            return Integer.toString(level);
+    public int getLivesLeft(){return livesLeft;}
+    public int getLevel(){
+            return level;
         }
-    public String getExperience(){return Integer.toString(experience);}
-    public String getExpReqLvUp(){return Integer.toString(expReqLvUp);}
-    public String getMaxHealth(){
-            return Integer.toString(maxLife);
+    public int getExperience(){return (experience);}
+    public int getExpReqLvUp(){return (expReqLvUp);}
+    public int getMaxHealth(){
+            return (maxLife);
         }
-    public String getMaxMana(){return Integer.toString(maxMana);}
-    public String getHealth(){return Integer.toString(lifeLeft);}
-    public String getMana(){
-            return Integer.toString(manaLeft);
+    public int getMaxMana(){return (maxMana);}
+    public int getHealth(){return (lifeLeft);}
+    public int getMana(){
+            return (manaLeft);
         }
-    public String getStrength(){return Integer.toString(strength);}
-    public String getAgility(){return Integer.toString(agility);}
-    public String getIntellect(){return Integer.toString(intellect);}
-    public String getHardiness(){return Integer.toString(hardiness);}
-    public String getMovement(){return Integer.toString(movement);}
-    public String getOffensiveRating(){return Integer.toString(offensiveRating);}
-    public String getDefensiveRating(){return Integer.toString(defensiveRating);}
-    public String getArmorRating(){return Integer.toString(armorRating);}
+    public int getStrength(){return (strength);}
+    public int getAgility(){return (agility);}
+    public int getIntellect(){return (intellect);}
+    public int getHardiness(){return (hardiness);}
+    public int getMovement(){return (movement);}
+    public int getOffensiveRating(){return (offensiveRating);}
+    public int getDefensiveRating(){return (defensiveRating);}
+    public int getArmorRating(){return (armorRating);}
 
-        //derived status or ones that require a formula to calculate
-        public void modifyOffensiveRating(){
-            offensiveRating = /*weapon + */strength + level;
-        }
+    //derived status or ones that require a formula to calculate
+    public void modifyOffensiveRating(){
+        offensiveRating = /*weapon + */strength + level;
+    }
 
-        public void modifyDefensiveRating(){
-            defensiveRating = agility + level;
-        }
+    public void modifyDefensiveRating(){
+        defensiveRating = agility + level;
+    }
 
-        public void modifyArmorRating(){
-            armorRating = /*armor*/ + hardiness;
-        }
+    public void modifyArmorRating(){
+        armorRating = /*armor*/ + hardiness;
+    }
 
-        public void modifyMaxLife(){
-            maxLife = hardiness + level;
-        }
+    public void modifyMaxLife(){
+        maxLife = hardiness + level;
+    }
 
-        public void modifyMaxMana(){
-            maxMana = intellect + level;
-        }
+    public void modifyMaxMana(){
+        maxMana = intellect + level;
+    }
 
-        //////////////////////////
-        public void modifyStrength(int delta){
-            strength = strength + delta;
-            modifyOffensiveRating();
-        }
-        public void modifyAgility(int delta){
-            agility = agility +delta;
-            modifyDefensiveRating();
-        }
-        public void modifyHardiness(int delta){
-            hardiness = hardiness + delta;
-            modifyArmorRating();
-            modifyMaxLife();
-        }
-        public void modifyIntellect(int delta){
-            intellect = intellect + delta;
-            modifyMaxMana();
-        }
-        public void modifyLevel(int delta){
-            level = level + delta;
-            int prizes = delta * 10;
-            modifyStrength(prizes);
-            modifyAgility(prizes);
-            modifyIntellect(prizes);
-            modifyHardiness(prizes);
-            expReqLvUp = expReqLvUp +100;
-        }
+    //////////////////////////
+    public void modifyStrength(int delta){
+        strength = strength + delta;
+        modifyOffensiveRating();
+    }
+    public void modifyAgility(int delta){
+        agility = agility +delta;
+        modifyDefensiveRating();
+    }
+    public void modifyHardiness(int delta){
+        hardiness = hardiness + delta;
+        modifyArmorRating();
+        modifyMaxLife();
+    }
+    public void modifyIntellect(int delta){
+        intellect = intellect + delta;
+        modifyMaxMana();
+    }
+    public void modifyLevel(int delta){
+        level = level + delta;
+        int prizes = delta * 10;
+        modifyStrength(prizes);
+        modifyAgility(prizes);
+        modifyIntellect(prizes);
+        modifyHardiness(prizes);
+        lifeLeft = maxLife;
+        manaLeft = maxMana;
+        expReqLvUp = expReqLvUp +100;
+    }
 
-        public void modifyExperience(int delta){
-            experience = experience + delta;
-            while(experience >= expReqLvUp)
-            {
-                modifyLevel(1);
-                experience = experience - expReqLvUp;
-            }
+    public void modifyExperience(int delta){
+        experience = experience + delta;
+        while(experience >= expReqLvUp)
+        {
+            modifyLevel(1);
+            experience = experience - expReqLvUp;
         }
-        //////////////////////////
-        public void modifyMovement(int currentSpeed){
-            movement = currentSpeed;
-        }
+    }
+    //////////////////////////
+    public void modifyMovement(int currentSpeed){
+        movement = currentSpeed;
+    }
 
-        public void modifyLivesLeft(int delta){
-            if((lifeLeft + delta) <= 0 )//So livesLeft does not drop below zero
-            {
-                lifeLeft = 0;
-            }
-            else if((lifeLeft + delta) >= maxLife )//So livesLeft does not go beyond the max
-            {
-                lifeLeft = maxLife;
-            }
-            else{
-                lifeLeft = lifeLeft + delta;
-            }
+    public void modifyLifeLeft(int delta){
+        if((lifeLeft + delta) <= 0 )//So livesLeft does not drop below zero
+        {
+            lifeLeft = 0;
         }
+        else if((lifeLeft + delta) >= maxLife )//So livesLeft does not go beyond the max
+        {
+            lifeLeft = maxLife;
+        }
+        else{
+            lifeLeft = lifeLeft + delta;
+        }
+    }
 
-        public void modifyManaLeft(int delta){
-            if((manaLeft + delta) <= 0 )//So livesLeft does not drop below zero
-            {
-                manaLeft = 0;
-            }
-            else if((lifeLeft + delta) >= maxMana )//So livesLeft does not go beyond the max
-            {
-                manaLeft = maxMana;
-            }
-            else{
-                manaLeft = manaLeft + delta;
-            }
+    public void modifyLivesLeft(int delta){
+        livesLeft--;
+        if(livesLeft < 0){
+            //TODO: Implement GAME
+            System.out.println("Game Over");
         }
 
+        lifeLeft = maxLife;
+    }
 
-
-
+    public void modifyManaLeft(int delta){
+        if((manaLeft + delta) <= 0 )//So livesLeft does not drop below zero
+        {
+            manaLeft = 0;
+        }
+        else if((lifeLeft + delta) >= maxMana )//So livesLeft does not go beyond the max
+        {
+            manaLeft = maxMana;
+        }
+        else{
+            manaLeft = manaLeft + delta;
+        }
+    }
 }
 

@@ -15,20 +15,40 @@ import java.util.Map;
  */
 public class InventoryView extends View {
 
-	Inventory currentInventory;
 	private final int ITEM_HEIGHT = 30;
 	
-	public InventoryView(Inventory inventory) {
+	public InventoryView() {
 		super();
-        this.viewController = new InventoryViewController(this, inventory);
-		currentInventory = inventory;
+        this.viewController = new InventoryViewController(this);
 	}
+	
 	
 	@Override
 	public void render(Graphics g) {
 		
 		BufferedImage overImage = new BufferedImage(View.B_WIDTH, View.B_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		Graphics g2 = overImage.getGraphics();
+		
+		renderBackground(g2);
+		
+		renderIems(g2);
+		
+		g.drawImage(overImage, (int) (View.B_WIDTH * 0.1), (int) (View.B_HEIGHT * 0.1), (int) (View.B_WIDTH * 0.8), (int) (View.B_HEIGHT * 0.8), null);
+		
+	}
+	
+	private void renderBackground(Graphics g){
+		g.setColor(new Color(200,200,150));
+		g.fillRect(0, 0, B_WIDTH, B_HEIGHT);
+	}
+	
+	
+	private void renderItems(Graphics g){
+		
+		
+	}
+	
+	private void renderIems(Graphics g2){
 		
 		int itemNumber = 0;
 		int itemOffset = 1;
@@ -50,7 +70,7 @@ public class InventoryView extends View {
         g2.drawString(titleString, titleStringX, titleStringY);
         g2.drawRect(0, 0, B_WIDTH, ITEM_HEIGHT);
         
-		for (Map.Entry<Item, Integer> entry : currentInventory.getItems().entrySet()) {
+		for (Map.Entry<Item, Integer> entry : ((InventoryViewController) viewController).getInventory().getItems().entrySet()) {
 			
 			String string1 = entry.getKey().getName();
 			String string2 = entry.getKey().getDescription();
@@ -98,14 +118,6 @@ public class InventoryView extends View {
 			
 		}
 		
-		g.drawImage(overImage, (int) (View.B_WIDTH * 0.1), (int) (View.B_HEIGHT * 0.1), (int) (View.B_WIDTH * 0.8), (int) (View.B_HEIGHT * 0.8), null);
-		
 	}
 
-	public void setInventory(Inventory inventory) {
-		
-		currentInventory = inventory;
-	
-	}
-	
 }

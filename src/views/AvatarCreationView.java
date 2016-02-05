@@ -23,6 +23,8 @@ public class AvatarCreationView extends View {
 
 	@Override
 	public void render(Graphics g) {
+		clear(g); // clear the background
+		
 		// Boolean for blinking arrow on selected occupation
 
 		g.setColor(Color.BLACK);

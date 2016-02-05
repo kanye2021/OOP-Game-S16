@@ -13,21 +13,20 @@ public class Inventory {
 		return items;
 	}
 	
-	public void addItem(Item newItem) {
-		
+	public void addItem(Item newItem) {	
 		if (items.containsKey(newItem)) {
 			
 			items.put(newItem, items.get(newItem) + 1);
 
 		}
-		
 		else {
-			
 			items.put(newItem, 1);
-
 		}
-
 	}
 
 	
+	
+	public void removeItem(Item item) {
+		this.items.remove(item);
+	}
 }

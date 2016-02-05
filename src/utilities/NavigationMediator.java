@@ -1,6 +1,10 @@
 package utilities;
 
 import models.*;
+import models.area_effects.AreaEffect;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Bradley on 2/1/16.
@@ -8,17 +12,26 @@ import models.*;
 public class NavigationMediator {
     private Map map;
     private Entity entity;
+    private Timer timer;
+    boolean canMove;
+
 
     public NavigationMediator(Map map, Entity entity){
         this.map = map;
         this.entity = entity;
+        timer = new Timer();
+        canMove = true;
     }
 
     // Directions take the following form:
     // N, NE, E, SE, S SW, W, NW
     public void requestMovement(String direction){
-        System.out.println("Player is currently at (" + entity.getLocation()[0] + ", " + entity.getLocation()[1] + ")");
-        System.out.println("DIRECTION: " + direction);
+
+        // If the player has moved too recently do not allow it
+        if(!canMove){
+            return;
+        }
+
         // Assumes the entity has a location of the form int[] = {x, y}
         int[] currentLocation = entity.getLocation();
 
@@ -95,6 +108,20 @@ public class NavigationMediator {
         map.insertEntityAtLocation(desiredX, desiredY, entity);
 
         entity.moveTo(desiredX, desiredY, direction);
+        canMove = false;
+
+        // Set a timer to determine when the entity can move again.
+        // The delay is inversely proportionaly to the entity's movement statgs
+        int delay = 100-entity.getStats().getMovement();
+
+        // If the delay is less than 0, the entity defaults to the fastest movement of 5ms.
+        delay = delay > 0 ? delay : 5;
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                canMove = true;
+            }
+        }, delay);
 
 
 
