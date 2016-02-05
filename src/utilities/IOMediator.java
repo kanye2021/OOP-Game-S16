@@ -13,8 +13,9 @@ import java.awt.event.KeyEvent;
  */
 public class IOMediator {
 
-	static Map map = new Map();
-	static Entity entity = new Entity();
+
+	public static Map map = new Map();
+	public static Entity entity = new Entity();
 	
 	// This represents all of the views that the utilities.IOMediator can see. the utilities.IOMediator acts as a MUX and goes through these
 	// to modify the graphics and where the keyPresses go.
@@ -35,9 +36,8 @@ public class IOMediator {
         SAVE(new SaveGameView(map, entity)) {void render(Graphics g) {getView().render(g);}},
         LOAD(new LoadGameView()) {void render(Graphics g) {getView().render(g);}},
         EXIT(null) {void render(Graphics g) {getView().render(g);}},
-        
+        GAME() {void render(Graphics g) {getView().render(g);}},
         // TODO: REMOVE HACKY SHIT
-        GAME(new GameView(map, entity)) {void render(Graphics g) {getView().render(g);}},
         INVENTORY(new InventoryView(entity.getInventory())) {void render(Graphics g) {getView().render(g);}};
         
         abstract void render(Graphics g);
@@ -47,7 +47,11 @@ public class IOMediator {
         public View getView() {
         	return view;
         }
+        public void setView(View v) {
+            view = v;
+        }
 
+        private Views(){}
         private Views(View view) {
         	this.view = view;
         }
@@ -64,11 +68,6 @@ public class IOMediator {
     // Default view is views.StartMenuView
     private IOMediator() {
         activeView = Views.START_MENU;
-
-
-        // Put the entity (avatar) at its starting lcoation
-        map.insertEntityAtLocation(entity.getLocation()[0], entity.getLocation()[1], entity);
-        
     }
 
     // Static 'instance' method
