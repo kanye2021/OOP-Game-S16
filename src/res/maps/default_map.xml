@@ -9,6 +9,7 @@
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type="take-damage"></area-effect>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -21,12 +22,17 @@
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type="heal-damage"></area-effect>
+
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type = "instant-death"></area-effect>
+
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type="heal-damage"></area-effect>
         </tile>
         <tile>
             <terrain type="mountain"/>
@@ -36,36 +42,45 @@
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type = "instant-death"></area-effect>
         </tile>
         <tile>
             <terrain type="grass"/>
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type="take-damage"></area-effect>
         </tile>
         <tile>
             <terrain type="grass"/>
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type="take-damage"></area-effect>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type = "instant-death"></area-effect>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type = "level-up"></area-effect>
         </tile>
         <tile>
             <terrain type="grass"/>
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type = "level-up"></area-effect>
+
         </tile>
         <tile>
             <terrain type="grass"/>
         </tile>
         <tile>
             <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
+            <area-effect type = "level-up"></area-effect>
+
         </tile>
         <tile>
             <terrain type="sea"/>
