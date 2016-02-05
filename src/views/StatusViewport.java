@@ -13,13 +13,8 @@ import java.awt.geom.Rectangle2D;
 public class StatusViewport extends View {
     private Entity entity;
     // Constants representing the viepwport dimensions.
-    private final int AREA_WIDTH = View.B_WIDTH;
-//    private final int AREA_HEIGHT = View.B_HEIGHT * 1 / 4;
-    private final int AREA_HEIGHT = View.B_HEIGHT * 1 / 5;
-
-
-    private final int OFFSET_LEFT = 20;
-    private final int OFFSET_TOP = View.B_HEIGHT * 4 / 5 + 8;
+    private final int MARGIN_HORIZONTAL = 20;
+    private final int MARGIN_VERTICAL = View.B_HEIGHT * 4 / 5 + 8;
     private String resourceBasePath = "./src/res/etc/";
     private Font font;
     private Font smallFont;
@@ -27,15 +22,13 @@ public class StatusViewport extends View {
     private int borderRadius;
 
     public StatusViewport(Entity entity) {
-
         this.entity = entity;
         font = new Font("Courier New", 1, 24);
         smallFont = new Font("Courier New", 1, 18);
         resourceBasePath = resourceBasePath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
         borderRadius = 10;
     }
-
-
+    
     @Override
     public void render(Graphics g) {
         Stats stats = entity.getStats();
@@ -44,8 +37,7 @@ public class StatusViewport extends View {
         fm = g.getFontMetrics(font);
         g.setColor(new Color(32, 32, 32));
         g.fillRect(0, View.B_HEIGHT * 4 / 5, View.B_WIDTH, View.B_HEIGHT * 1 / 5);
-
-
+        
         // Display the entity's level
         drawLevel(g, stats);
 
@@ -77,8 +69,8 @@ public class StatusViewport extends View {
 
 
         // Display the Lives text
-        int levelX = View.B_WIDTH - (int) levelRect.getWidth() - OFFSET_LEFT;
-        int levelY = OFFSET_TOP+ font.getSize();
+        int levelX = View.B_WIDTH - (int) levelRect.getWidth() - MARGIN_HORIZONTAL;
+        int levelY = MARGIN_VERTICAL+ font.getSize();
 
         g.setColor(Color.WHITE);
         g.drawString(level, levelX, levelY);
@@ -91,8 +83,8 @@ public class StatusViewport extends View {
         // Set the font
         g.setFont(font);
 
-        int livesX = OFFSET_LEFT;
-        int livesY = OFFSET_TOP + font.getSize();
+        int livesX = MARGIN_HORIZONTAL;
+        int livesY = MARGIN_VERTICAL + font.getSize();
 
         g.setColor(Color.WHITE);
         g.drawString("Lives: ", livesX, livesY);
@@ -179,7 +171,6 @@ public class StatusViewport extends View {
         // Determine where to place the mana string.
         Rectangle2D manaRect = fm.getStringBounds("MP: ", g);
         int manaX = B_WIDTH /2 + 3;
-//        int manaY = OFFSET_TOP + font.getSize()  + 5 * (int) manaRect.getHeight() - 10;
         int manaY = B_HEIGHT - (int)manaRect.getHeight() - 10;
 
         // Display the Mana text
