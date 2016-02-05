@@ -13,7 +13,12 @@ public class TakeableItem extends Item {
 		
 		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png"),
 		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png"),
-		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png");
+		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png"),
+		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png"),
+		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png"),
+		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png"),
+		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png"),
+		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png");
 		
 		private String name;
 		private String description;
