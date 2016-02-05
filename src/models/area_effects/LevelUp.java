@@ -8,7 +8,7 @@ import models.Entity;
 public class LevelUp extends AreaEffect {
     @Override
     public void onTouch(Entity entity){
-        entity.getStats().modifyLevel(1);
+        entity.getStats().levelUp();
     }
 
     @Override
