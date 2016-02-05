@@ -77,7 +77,7 @@ public class AvatarCreationViewController extends ViewController {
 
     public static void createAvatarAndSaveGame(String occupation) {
         // Wanna ask if ppl think this is good.
-        System.out.println("Makin an avatar of occupation: " + occupation);
+        System.out.println("Making an avatar of occupation: " + occupation);
         Entity avatar = new Avatar(occupation);
         Map map = new Map();
         NavigationMediator nav = new NavigationMediator(map, avatar);
@@ -87,7 +87,11 @@ public class AvatarCreationViewController extends ViewController {
         GameView gameView = new GameView(map, avatar);
         IOMediator.Views.GAME.setView(gameView);
         IOMediator.setActiveView(IOMediator.Views.GAME);
-        Load_Save.getInstance().save(map, avatar);
+
+        // Saving
+        Load_Save.getInstance().setGameMap(map);
+        Load_Save.getInstance().setAvatar(avatar);
+        Load_Save.getInstance().save();
     }
 
 

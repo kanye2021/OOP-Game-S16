@@ -5,7 +5,9 @@ package models;
  */
 public class Avatar extends Entity {
 
+    public Avatar(){
 
+    }
     public Avatar(String occupation) {
         super(occupation);
     }

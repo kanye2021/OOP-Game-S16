@@ -1,9 +1,11 @@
 package views;
 
 import models.*;
+import models.area_effects.AreaEffect;
 import utilities.Observer;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 /**
@@ -37,7 +39,6 @@ public class AreaViewport extends View implements Observer {
 
     @Override
     public void render(Graphics g){
-
     	
         /*  There is essentially a transformation between two different coordinate systems. There is the logical coordinate
             system (the array of tiles in the map) and a visual coordinate system (what will be shown on the display).
@@ -91,8 +92,12 @@ public class AreaViewport extends View implements Observer {
 
 
                 Item item = map.getItemAtLocation(j, i);
+                
+                
+                
                 if(item!=null){
-                    ImageIcon item_icon = new ImageIcon(itemBaseFilepath + item.getImageName());
+                	
+                    ImageIcon item_icon = new ImageIcon(itemBaseFilepath + item.getPathToPicture());
                     Image itemImage = item_icon.getImage();
 
                     // Center the item in the tile

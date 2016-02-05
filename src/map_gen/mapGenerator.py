@@ -38,7 +38,15 @@ def getTerrainType():
         if (randFloat >= terrainType[1] and randFloat < terrainType[2]):
             return terrainType[0]
 
-def generate(mapSizeX, mapSizeY, numItems, outputFileName):
+def getItemType(numItemsToAdd, mapSize, totalItemCount):
+    if (random.random() < (float(numItemsToAdd) / float(mapSize))):
+        return random.randint(0, totalItemCount - 1)
+
+    return -1;
+
+def generate(mapSizeX, mapSizeY, numItemsToAdd, totalItemCount, outputFileName):
+    itemCount = 0
+
     root = Element("map")
     root.set('width', str(mapSizeX))
     root.set('height', str(mapSizeY))
@@ -47,27 +55,43 @@ def generate(mapSizeX, mapSizeY, numItems, outputFileName):
         row = SubElement(root, "row")
         for y in range(0, mapSizeY):
             element = SubElement(row, "tile")
+
             terrain = SubElement(element, "terrain")
-            terrain.set("type", getTerrainType())
+            terrainType = getTerrainType()
+            terrain.set("type", terrainType)
+
+            if (itemCount < numItemsToAdd):
+                itemType = getItemType(numItemsToAdd, mapSizeX * mapSizeY, totalItemCount)
+
+                if (itemType != -1):
+                    item = SubElement(element, "item")
+                    item.set("id", str(itemType))
+                    item.set("type", "take-able")
+
 
     outputFile = open(outputFileName + ".xml", "w")
     outputFile.write(prettify(root))
 
 if __name__ == "__main__":
 
-    # mapSizeX, mapSizeY, percentageGrass, numItems
+    # mapSizeX, mapSizeY, numItemsToAdd, totalItemCount, outputFileName
+
+    if (len(sys.argv) < 6):
+        print "Invalid number of parameters"
+        exit()
 
     mapSizeX = int(sys.argv[1])
     mapSizeY = int(sys.argv[2])
-    numItems = int(sys.argv[3])
-    outputFileName = sys.argv[4]
+    numItemsToAdd = int(sys.argv[3])
+    totalItemCount = int(sys.argv[4])
+    outputFileName = sys.argv[5]
 
     if (mapSizeX <= 0 or mapSizeY <= 0):
         print "The map size can not be negative"
         exit()
 
-    if (numItems > mapSizeX * mapSizeY):
+    if (numItemsToAdd > mapSizeX * mapSizeY):
         print "There are too many items for the current map size"
         exit()
 
-    generate(mapSizeX, mapSizeY, numItems, outputFileName)
+    generate(mapSizeX, mapSizeY, numItemsToAdd, totalItemCount, outputFileName)

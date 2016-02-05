@@ -15,59 +15,38 @@ public class StartMenuViewController extends ViewController {
 	// such as utilities.IOMediator.Views.CREATE_GAME;
 	public enum MenuOptions {
 		CREATE_GAME("Create Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.CREATE_GAME);};},
+
+		LOAD_GAME("Load Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.LOAD);};},
+
 		//INVENTORY("Open Inventory") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.INVENTORY);};},
 		//PAUSE("Open Pause Menu") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.PAUSE);};},
-		LOAD_GAME("Load Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
+
 		EXIT_GAME("Exit Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};};
 		
 		private String s;
-		
 		protected abstract void setView();
-		
 		private MenuOptions(String s) {
-			
 			this.s = s;
-			
 		}
-		
 		protected MenuOptions previous() {
-	    	
 	    	if (this.ordinal() == 0) {
-	    		
 	    		return MenuOptions.values()[MenuOptions.values().length - 1];
-	    		
 	    	}
-	    	
 	    	else {
-	    	
 	    		return MenuOptions.values()[this.ordinal() - 1];
-	    	
 	    	}
-	    	
 	    }
-	    
 	    protected MenuOptions next() {
-	    	
 	    	if (this.ordinal() == MenuOptions.values().length - 1) {
-	    		
 	    		return MenuOptions.values()[0];
-	    		
 	    	}
-	    	
 	    	else {
-	    	
 	    		return MenuOptions.values()[this.ordinal() + 1];
-	    	
 	    	}
-	    	
 	    }
-		
 		public String toString() {
-			
 			return s;
-			
 		}
-		
 	}
 
     private MenuOptions option;
@@ -85,29 +64,22 @@ public class StartMenuViewController extends ViewController {
     public void handleKeyPress(int key) {
 
         if (key == KeyEvent.VK_UP) {
-            System.out.println("Up pressed FROM SMVC");
-            option = option.previous();
+        
+        	option = option.previous();
 
         }
 
         else if (key == KeyEvent.VK_DOWN) {
-            System.out.println("Down pressed FROM SMVC");
+            
             option = option.next();
+        
         }
 
         else if (key == KeyEvent.VK_ENTER) {
-            System.out.println("Enter pressed FROM SMVC");
-            option.setView();
-
+            
+        	option.setView();
+            
         }
-        //TODO: REMOVE HAKCY ASS SHIT HOE
-        else if(key == KeyEvent.VK_Q){
-            IOMediator.setActiveView(IOMediator.Views.GAME);
-        }
-        else {
-            System.out.println("invalid key press FROM SMVC");
-        }
-
     }
 
     @Override

@@ -4,10 +4,8 @@ package utilities; /**
 
 
 import models.*;
-import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+import models.Entity;
+import org.w3c.dom.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -52,6 +50,23 @@ Layout of the XML file
 public class Load_Save {
 
     private static String currentFileName;
+    private final static String filePathExtension = "src/res/save_files/";
+    private static Map gameMap;
+    private static Entity avatar;
+
+
+    public static Entity getAvatar() {
+        return avatar;
+    }
+    public static Map getGameMap() {
+        return gameMap;
+    }
+    public static void setGameMap(Map map) {
+        gameMap = map;
+    }
+    public static void setAvatar(Entity a) {
+        avatar = a;
+    }
 
     // Singleton initilization
     private static Load_Save instance = new Load_Save();
@@ -72,9 +87,49 @@ public class Load_Save {
     public static String getCurrentFileName() {
         return currentFileName;
     }
+/*-----------------------------For Loading --------------------------------*/
+    public static void load(String fileName){
+        System.out.println("File name is: " + fileName);
+        loadAvatar(filePathExtension + fileName);
+    }
+    public static void loadAvatar(String filepath){
+        // Get the xml filepath string ensuring file separators are specific to the use's OS.
+        String file = filepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
+        Entity avatar = IOMediator.getInstance().entity;
+        Map m = IOMediator.getInstance().map;
+        try {
+            // Create a document from the xml file
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document doc = docBuilder.parse(new File(file));
+            doc.getDocumentElement().normalize();
 
+            NodeList entities = doc.getElementsByTagName("entity"); //used for future
+            System.out.println(entities.getLength());
+            for (int i = 0; i < entities.getLength(); i++){
+                Element entity = (Element) entities.item(i);
+                System.out.println(entity.getAttribute("type"));
+                if ( entity.getAttribute("type").equals("avatar") ){
+                    System.out.println("In here");
+                    int x = Integer.parseInt(entity.getAttribute("location_x"));
+                    int y = Integer.parseInt(entity.getAttribute("location_y"));
+                    avatar.updateLocation(x,y);
+                    avatar.updateOrientation(entity.getAttribute("orientation"));
+                    m.insertEntityAtLocation(x,y,avatar);
+                }
+                //TODO: Add the inventory and stats to this
+            }
+
+            System.out.println("Finish loading entity: " + avatar.getLocation()[0] + "," + avatar.getLocation()[1] + "," + avatar.getOrientation());
+        }catch(Exception e){
+            System.out.println("Problem parsing avatar");
+            e.printStackTrace();
+        }
+
+    }
+/*----------------------------------For Saving --------------------------------*/
     //For future use it will include map, items, stats
-    public static void save(Map main_map, Entity avatar) {
+    public static void save() {
         try{
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -87,7 +142,7 @@ public class Load_Save {
 
             // append child elements to root element
             mainRootElement.appendChild(getEntity(doc, avatar));
-            mainRootElement.appendChild(getMap(doc, main_map));
+            mainRootElement.appendChild(getMap(doc, gameMap));
 
             //Write to XML
             writeToXml(doc,filePath);
@@ -198,17 +253,21 @@ public class Load_Save {
         if (t.getItem() != null) {
             Element item = doc.createElement("item");
 
-            Attr desc = doc.createAttribute("description");
-            desc.setValue(t.getItem().getDescription());
-            item.setAttributeNode(desc);
+            //Attr desc = doc.createAttribute("description");
+            //desc.setValue(t.getItem().getDescription());
+            //item.setAttributeNode(desc);
 
             Attr iType = doc.createAttribute("type");
-            iType.setValue(t.getItem().getType());
+            iType.setValue(t.getItem().getType().toString());
             item.setAttributeNode(iType);
 
-            Attr name = doc.createAttribute("name");
-            name.setValue(t.getItem().getName());
-            item.setAttributeNode(name);
+            Attr id = doc.createAttribute("id");
+            id.setValue(Integer.toString(t.getItem().getID()));
+            item.setAttributeNode(id);
+            
+            //Attr name = doc.createAttribute("name");
+            //name.setValue(t.getItem().getName());
+            //item.setAttributeNode(name);
             tile.appendChild(item);
         }
         return tile;

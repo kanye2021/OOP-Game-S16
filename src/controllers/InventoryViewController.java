@@ -11,17 +11,21 @@ import java.awt.event.KeyEvent;
  */
 public class InventoryViewController extends ViewController {
 
-	int position = 0;
-	Inventory inventory;
+	private int position = 0;
 
-    public InventoryViewController(View view, Inventory inventory) {
+    public InventoryViewController(View view) {
         super(view);
-        this.inventory = inventory;
     }
 
     public int getActiveItem() {
     	
     	return position;
+    	
+    }
+    
+    public Inventory getInventory() {
+    	
+    	return IOMediator.entity.getInventory();
     	
     }
     
@@ -55,7 +59,7 @@ public class InventoryViewController extends ViewController {
     	
     	if (position < 0) {
     		
-    		position = inventory.getItems().size() - 1;
+    		position = getInventory().getItems().size() - 1;
     		
     	}
     	
@@ -65,7 +69,7 @@ public class InventoryViewController extends ViewController {
     	
     	position++;
     	
-    	if (position > inventory.getItems().size() - 1) {
+    	if (position > getInventory().getItems().size() - 1) {
     		
     		
     		position = 0;
