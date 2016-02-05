@@ -100,14 +100,13 @@ public class Map extends Observable {
                     if(itemNodes.getLength() > 0){
                         Element itemElement = (Element) itemNodes.item(0);
                         String itemType = itemElement.getAttribute("type");
-                        String itemDescription = itemElement.getAttribute("description");
-                        String itemName = itemElement.getAttribute("name");
+                        int id = Integer.parseInt(itemElement.getAttribute("id"));
 
                         //if statements for the different types of items
 
                         //if take-able
-                        if(itemType.equals("take-able")){
-                            item = new TakeableItem(itemName, itemType, itemDescription, 1);
+                        if(itemType.equals(Item.Type.TAKEABLE.toString())){
+                            item = new TakeableItem(id);
                         }
 
                     }
