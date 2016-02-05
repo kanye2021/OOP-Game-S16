@@ -105,6 +105,7 @@ public class Load_Save {
             doc.getDocumentElement().normalize();
 
             NodeList entities = doc.getElementsByTagName("entity"); //used for future
+            System.out.println(entities.getLength());
             for (int i = 0; i < entities.getLength(); i++){
                 Element entity = (Element) entities.item(i);
                 System.out.println(entity.getAttribute("type"));
@@ -114,11 +115,12 @@ public class Load_Save {
                     int y = Integer.parseInt(entity.getAttribute("location_y"));
                     avatar.updateLocation(x,y);
                     avatar.updateOrientation(entity.getAttribute("orientation"));
+                    m.insertEntityAtLocation(x,y,avatar);
                 }
                 //TODO: Add the inventory and stats to this
             }
 
-            System.out.println("All the stuff: " + avatar.getLocation()[0] + "," + avatar.getLocation()[1] + "," + avatar.getOrientation());
+            System.out.println("Finish loading entity: " + avatar.getLocation()[0] + "," + avatar.getLocation()[1] + "," + avatar.getOrientation());
         }catch(Exception e){
             System.out.println("Problem parsing avatar");
             e.printStackTrace();

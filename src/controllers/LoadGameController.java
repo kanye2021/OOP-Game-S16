@@ -61,9 +61,10 @@ public class LoadGameController extends ViewController{
             GameView gameView = new GameView(map, avatar);
             //TODO: Map will be taken care of by load file
             IOMediator.Views.GAME.setView(gameView);
-            //map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
+            // map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
         }
         Load_Save.getInstance().load(fileNames[myOption].getName()); //Going to grab information from XML
+
         IOMediator.setActiveView(IOMediator.Views.GAME);
 
     }
