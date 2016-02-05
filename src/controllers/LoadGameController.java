@@ -34,7 +34,6 @@ public class LoadGameController extends ViewController{
     }
 
     public void handleKeyPress(int key){
-        System.out.println("IN LGC");
         switch (key){
             case  KeyEvent.VK_UP:
                 if (myOption > 0) {
@@ -59,18 +58,14 @@ public class LoadGameController extends ViewController{
             NavigationMediator nav = new NavigationMediator(map, avatar);
             IOMediator.entity = avatar;
             IOMediator.map = map;
-            map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
             GameView gameView = new GameView(map, avatar);
+            //TODO: Map will be taken care of by load file
             IOMediator.Views.GAME.setView(gameView);
-            Load_Save.getInstance().save(map, avatar);
-
-            IOMediator.setActiveView(IOMediator.Views.GAME);
-        }else {
-            System.out.println(IOMediator.map.getMapHeight());
-            System.out.println(IOMediator.entity.getLocation());
-            Load_Save.getInstance().load(fileNames[myOption].getName()); //Going to grab information from XML
-            IOMediator.setActiveView(IOMediator.Views.GAME);
+            //map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
         }
+        Load_Save.getInstance().load(fileNames[myOption].getName()); //Going to grab information from XML
+        IOMediator.setActiveView(IOMediator.Views.GAME);
+
     }
     public void handleKeyRelease(int key){
 

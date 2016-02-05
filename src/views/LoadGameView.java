@@ -54,8 +54,6 @@ public class LoadGameView extends View{
             File file = listOfSaveFiles[i];
             if (file.isFile()) {
                 String fileName = file.getName();
-                g2d.drawString(fileName, 20, 30 + (i * 10)); // Sketchy distance thing to move each string by 10
-
                 Rectangle2D rectangle = fm.getStringBounds(fileName, g);
 
                 int boxX = View.B_WIDTH / 2 - BUTTON_WIDTH / 2;
