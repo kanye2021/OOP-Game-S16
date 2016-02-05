@@ -19,7 +19,7 @@ public class AreaViewport extends View implements Observer {
     private  String itemBaseFilepath = "./src/res/items/";
     private  String entityBaseFilepath = "./src/res/entitys/";
     private final int AREA_WIDTH = B_WIDTH;
-    private final int AREA_HEIGHT = B_HEIGHT * 3/4;
+    private final int AREA_HEIGHT = B_HEIGHT * 4/5;
     private final int TILE_SIZE = 50;
 
     public AreaViewport(Map map, Entity entity){

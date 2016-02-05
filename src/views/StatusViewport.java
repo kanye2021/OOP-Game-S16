@@ -14,34 +14,25 @@ public class StatusViewport extends View {
     private Entity entity;
     // Constants representing the viepwport dimensions.
     private final int AREA_WIDTH = View.B_WIDTH;
-    private final int AREA_HEIGHT = View.B_HEIGHT * 1 / 4;
+//    private final int AREA_HEIGHT = View.B_HEIGHT * 1 / 4;
+    private final int AREA_HEIGHT = View.B_HEIGHT * 1 / 5;
+
 
     private final int OFFSET_LEFT = 20;
-    private final int OFFSET_TOP = View.B_HEIGHT * 3 / 4 + 8;
+    private final int OFFSET_TOP = View.B_HEIGHT * 4 / 5 + 8;
     private String resourceBasePath = "./src/res/etc/";
     private Font font;
+    private Font smallFont;
     private FontMetrics fm;
-
-    // Stats to display
-    String level;
-    int exp;
-    int expToNextLvl;
-
-    int health;
-    int maxHealth;
-
-    int mana;
-    int maxMana;
-
-    int lives;
-
+    private int borderRadius;
 
     public StatusViewport(Entity entity) {
 
         this.entity = entity;
         font = new Font("Courier New", 1, 24);
+        smallFont = new Font("Courier New", 1, 18);
         resourceBasePath = resourceBasePath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-
+        borderRadius = 10;
     }
 
 
@@ -49,54 +40,59 @@ public class StatusViewport extends View {
     public void render(Graphics g) {
         Stats stats = entity.getStats();
 
-        // Get the new stats
-        level = "Level: " + stats.getLevel();
-        exp = stats.getExperience();
-        expToNextLvl = stats.getExpReqLvUp();
-        health = stats.getHealth();
-        maxHealth = stats.getMaxHealth();
-        mana = stats.getMana();
-        maxMana = stats.getMaxMana();
-        lives = stats.getLivesLeft();
-
-
         // Display a gray background.
         fm = g.getFontMetrics(font);
         g.setColor(new Color(32, 32, 32));
-        g.fillRect(0, View.B_HEIGHT * 3 / 4, View.B_WIDTH, View.B_HEIGHT * 1 / 4);
-
-
-        // Setup the font
-        g.setFont(font);
+        g.fillRect(0, View.B_HEIGHT * 4 / 5, View.B_WIDTH, View.B_HEIGHT * 1 / 5);
 
 
         // Display the entity's level
-        drawLevel(g);
+        drawLevel(g, stats);
 
         // Draw the entity's lives.
-        drawLives(g);
+        drawLives(g, stats);
 
         // Draw the health bar
-        drawHealthBar(g);
+        drawHealthBar(g, stats);
 
         // Draw the mana bar
-        drawManaBar(g);
+        drawManaBar(g, stats);
 
         // Draw the experience bar
-        drawExperienceBar(g);
+        drawExperienceBar(g, stats);
+
+        // Draw the strength,
+        drawCenteredStats(g, stats);
     }
 
-    private void drawLevel(Graphics g){
-        int levelX = OFFSET_LEFT;
-        int levelY = OFFSET_TOP + font.getSize();
+    private void drawLevel(Graphics g, Stats stats){
+        // Get the necessary stats
+        String level = "Level: " + stats.getLevel();
+
+        // Set the font
+        g.setFont(font);
+
+        // Determine the size the string takes up
+        Rectangle2D levelRect = fm.getStringBounds(level, g);
+
+
+        // Display the Lives text
+        int levelX = View.B_WIDTH - (int) levelRect.getWidth() - OFFSET_LEFT;
+        int levelY = OFFSET_TOP+ font.getSize();
+
         g.setColor(Color.WHITE);
         g.drawString(level, levelX, levelY);
     }
 
-    private void drawLives(Graphics g){
-        // Display the Lives text
-        int livesX = View.B_WIDTH * 3/4 + OFFSET_LEFT;
-        int livesY = OFFSET_TOP+ font.getSize();
+    private void drawLives(Graphics g, Stats stats){
+        // Get the necessary stats
+        int lives = stats.getLivesLeft();
+
+        // Set the font
+        g.setFont(font);
+
+        int livesX = OFFSET_LEFT;
+        int livesY = OFFSET_TOP + font.getSize();
 
         g.setColor(Color.WHITE);
         g.drawString("Lives: ", livesX, livesY);
@@ -113,18 +109,26 @@ public class StatusViewport extends View {
         int marginBtwnHearts = 10;
 
         int heartsX = livesX + widthOfLivesText;
-        int heartsY = OFFSET_TOP;
+        int heartsY = livesY - font.getSize();
         for(int i=0; i<lives; i++){
             g.drawImage(lifeImg, heartsX, heartsY, Display.getInstance());
             heartsX += lifeImg.getWidth(null) + marginBtwnHearts;
         }
     }
 
-    private void drawHealthBar(Graphics g){
+    private void drawHealthBar(Graphics g, Stats stats){
+
+        // Get the necessary stats
+        int health = stats.getHealth();
+        int maxHealth = stats.getMaxHealth();
+
+        // Set the font
+        g.setFont(font);
+
         // Determine how large text is and where to place the Health string
         Rectangle2D healthRect = fm.getStringBounds("EXP: ", g);
         int healthX = B_WIDTH * 1/4 - 45;
-        int healthY = OFFSET_TOP + font.getSize()  + 5 * (int) healthRect.getHeight() - 10;
+        int healthY = B_HEIGHT - (int)healthRect.getHeight() - 10;
 
         // Draw the health string.
         g.setColor(Color.WHITE);
@@ -139,24 +143,44 @@ public class StatusViewport extends View {
 
         // Draw the outline of the health bar.
         g.setColor(Color.LIGHT_GRAY);
-        g.drawRect(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
+        g.drawRoundRect(healthBarX, healthBarY, healthBarWidth, healthBarHeight, borderRadius, borderRadius);
 
 
         // Determine what fraction of the healthbar should be shown.
         double healthFraction = (double) health/ (double) maxHealth;
-        healthBarWidth = (int) (healthFraction * healthBarWidth);
+        int fillWidth = (int) (healthFraction * healthBarWidth);
 
         // Fill the healthbar
         g.setColor(Color.RED);
-        g.fillRect(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
+        g.fillRoundRect(healthBarX, healthBarY, fillWidth, healthBarHeight, borderRadius, borderRadius);
+
+        // Display the fraction of health
+        g.setFont(smallFont);
+        g.setColor(Color.WHITE);
+        String fraction = "(" + health + "/" + maxHealth + ")";
+
+        // Place the font at the right of the bar
+        Rectangle2D fractionRect = fm.getStringBounds(fraction, g);
+
+        int fractionX = healthBarX + healthBarWidth - (int) fractionRect.getWidth() + 15;
+        int fractionY = healthY - 2;
+        g.drawString(fraction, fractionX, fractionY);
     }
 
-    private void drawManaBar(Graphics g){
+    private void drawManaBar(Graphics g, Stats stats){
+
+        // Get the ncessary stats
+        int mana = stats.getMana();
+        int maxMana = stats.getMaxMana();
+
+        // Set the font
+        g.setFont(font);
 
         // Determine where to place the mana string.
         Rectangle2D manaRect = fm.getStringBounds("MP: ", g);
         int manaX = B_WIDTH /2 + 3;
-        int manaY = OFFSET_TOP + font.getSize()  + 5 * (int) manaRect.getHeight() - 10;
+//        int manaY = OFFSET_TOP + font.getSize()  + 5 * (int) manaRect.getHeight() - 10;
+        int manaY = B_HEIGHT - (int)manaRect.getHeight() - 10;
 
         // Display the Mana text
         g.setColor(Color.WHITE);
@@ -171,110 +195,182 @@ public class StatusViewport extends View {
 
         // Draw the outline of the mana bar.
         g.setColor(Color.LIGHT_GRAY);
-        g.drawRect(manaBarX, manaBarY, manaBarWidth, manaBarHeight);
+        g.drawRoundRect(manaBarX, manaBarY, manaBarWidth, manaBarHeight, borderRadius, borderRadius);
 
 
         // Determine what fraction of the mana bar should be shown.
         double manaFraction = (double) mana/ (double) maxMana;
-        manaBarWidth = (int) (manaFraction * manaBarWidth);
+        int fillWidth = (int) (manaFraction * manaBarWidth);
 
         // Fill the mana bar
         g.setColor(Color.BLUE);
-        g.fillRect(manaBarX, manaBarY, manaBarWidth, manaBarHeight);
+        g.fillRoundRect(manaBarX, manaBarY, fillWidth, manaBarHeight, borderRadius, borderRadius);
+
+        // Display the fraction of mana
+        g.setFont(smallFont);
+        g.setColor(Color.WHITE);
+        String fraction = "(" + mana + "/" + maxMana + ")";
+
+        // Place the font at the right of the bar
+        Rectangle2D fractionRect = fm.getStringBounds(fraction, g);
+
+        int fractionX = manaBarX + manaBarWidth - (int) fractionRect.getWidth() + 10;
+        int fractionY = manaY - 2;
+        g.drawString(fraction, fractionX, fractionY);
     }
 
-    private void drawExperienceBar(Graphics g){
+    private void drawExperienceBar(Graphics g, Stats stats){
+
+        // Get the necessary stats
+        int exp = stats.getExperience();
+        int expToNextLvl = stats.getExpReqLvUp();
+        int lastLvlExpReq = stats.getLastLvlExpReq();
+
+        // Set the font
+        g.setFont(font);
 
         // Determine where to place the exp string.
         Rectangle2D expRect = fm.getStringBounds("EXP: ", g);
         int expX = B_WIDTH * 1/4 - 45;
-        int expY = OFFSET_TOP + font.getSize()  + 6 * (int) expRect.getHeight() - 5;
-//
+        int expY = B_HEIGHT - 10;
+
         // Display the exp text
         g.setColor(Color.WHITE);
         g.drawString("EXP: ", expX, expY );
 
-////
+
         // Set the location and size of the exp bar.
         // A little trick to align the exp bar with the health bar (Since health is a longer word.)
         Rectangle2D healthRect = fm.getStringBounds("EXP: ", g);
-//
+
         int expBarX = (int) (expX + healthRect.getWidth());
         int expBarY = expY - (int)expRect.getHeight() + 8;
         int expBarHeight = (int) expRect.getHeight() - 5;
         int expBarWidth = B_WIDTH*1/2;
-//
+
         // Draw the outline of the exp bar.
         g.setColor(Color.LIGHT_GRAY);
-        g.drawRect(expBarX, expBarY, expBarWidth, expBarHeight);
-//
-//
+        g.drawRoundRect(expBarX, expBarY, expBarWidth, expBarHeight, borderRadius, borderRadius);
+
         // Determine what fraction of the exp bar should be shown.
-        double expFraction = (double) exp/ (double) expToNextLvl;
-        expBarWidth = (int) (expFraction * expBarWidth);
+        double expFraction = (double) (exp - lastLvlExpReq)/ (double) (expToNextLvl - lastLvlExpReq);
+        int fillWidth = (int) (expFraction * expBarWidth);
 
         // Fill the exp bar
         g.setColor(Color.YELLOW);
-        g.fillRect(expBarX, expBarY, expBarWidth, expBarHeight);
+        g.fillRoundRect(expBarX, expBarY, fillWidth, expBarHeight, borderRadius, borderRadius);
+
+        // Display the fraction of experience
+        g.setFont(smallFont);
+        g.setColor(Color.WHITE);
+        String fraction = "(" + exp + "/" + expToNextLvl + ")";
+
+        // Place the font at the right of the bar
+        Rectangle2D fractionRect = fm.getStringBounds(fraction, g);
+
+        int fractionX = expBarX + expBarWidth - (int) fractionRect.getWidth() + 15;
+        int fractionY = expY - 2;
+        g.drawString(fraction, fractionX, fractionY);
+
+    }
+
+    // Displays strength agility intellect hardines
+    private void drawCenteredStats(Graphics g, Stats stats){
+        // Get the ncessary stats
+        String strength = "Strength: " + stats.getStrength();
+        String agility = "Agility: " + stats.getAgility();
+        String intellect = "Intellect: " + stats.getIntellect();
+        String hardiness = "Hardiness: " + stats.getHardiness();
+        String offensiveRating = "Offense: " + stats.getOffensiveRating();
+        String defensiveRating = "Defense: " + stats.getDefensiveRating();
+        String armorRating = "Armor: " + stats.getArmorRating();
+        String movement = "Speed: " + stats.getMovement();
+
+
+        // Set the font
+        g.setFont(smallFont);
+
+        // Setup the rects for positioning
+        Rectangle2D strengthRect = fm.getStringBounds(strength, g);
+        Rectangle2D agilityRect = fm.getStringBounds(agility, g);
+        Rectangle2D intellectRect = fm.getStringBounds(intellect, g);
+        Rectangle2D hardinessRect = fm.getStringBounds(hardiness, g);
+        Rectangle2D offensiveRect = fm.getStringBounds(offensiveRating, g);
+        Rectangle2D defensiveRect = fm.getStringBounds(defensiveRating, g);
+        Rectangle2D armorRect = fm.getStringBounds(armorRating, g);
+        Rectangle2D movementRect = fm.getStringBounds(movement, g);
+
+
+        // Determine the width that all the stats will take up using the rectangles
+
+        // Get the dimensions of the first column and determine which is biggest;
+        int strengthWidth = (int) strengthRect.getWidth();
+        int agilityWidth = (int) agilityRect.getWidth();
+        int firstColumnWidth = strengthWidth > agilityWidth ? strengthWidth : agilityWidth;
+
+        // Get the width of the second column
+        int intellectWidth = (int) intellectRect.getWidth();
+        int hardinessWidth = (int) hardinessRect.getWidth();
+        int secondColumnWidth = intellectWidth > hardinessWidth ? intellectWidth : hardinessWidth;
+
+        // Get the dimensions of the third column
+        int offensiveWidth = (int) offensiveRect.getWidth();
+        int defensiveWidth = (int) defensiveRect.getWidth();
+        int thirdColumnWidth = offensiveWidth > defensiveWidth ? offensiveWidth : defensiveWidth;
+
+        // Ge the width of the fourth column
+        int armorWidth = (int) armorRect.getWidth();
+        int movementWidth = (int) movementRect.getWidth();
+        int fourthColumnWidth = armorWidth > movementWidth ? armorWidth : movementWidth;
+
+        // Set the margin between columns
+        int columnMargin = 5;
+
+        // Determine the total width and use it to postiion the first column
+        int totalWidth = firstColumnWidth + secondColumnWidth + thirdColumnWidth + fourthColumnWidth + columnMargin*3;
+
+        // Find the positioning of and draw strength
+        int strengthX = B_WIDTH/2 - totalWidth/2;
+        int strengthY = B_HEIGHT - 4*(int)strengthRect.getHeight() - 10;
+        g.drawString(strength, strengthX, strengthY);
+
+        // Find the positioning of and draw agility
+        int agilityX = strengthX;
+        int agilityY = strengthY + (int)agilityRect.getHeight();
+        g.drawString(agility, agilityX, agilityY);
+
+
+        // Draw the intellect
+        int intellectX = strengthX + (strengthWidth > agilityWidth ? strengthWidth : agilityWidth) + columnMargin;
+        int intellectY = strengthY;
+        g.drawString(intellect, intellectX, intellectY);
+
+        // Draw the hardiness
+        int hardinessX = intellectX;
+        int hardinessY = agilityY;
+        g.drawString(hardiness, hardinessX, hardinessY);
+
+
+
+        // Draw the offensive Rating
+        int offensiveX = intellectX + (intellectWidth > hardinessWidth ? intellectWidth : hardinessWidth) + columnMargin;
+        int offensiveY = strengthY;
+        g.drawString(offensiveRating, offensiveX, offensiveY);
+
+        // Draw the defensive Rating
+        int defensiveX = offensiveX;
+        int defensiveY = hardinessY;
+        g.drawString(defensiveRating, defensiveX, defensiveY);
+
+
+        // Draw the Armor
+        int armorX = offensiveX + (offensiveWidth > defensiveWidth ? offensiveWidth: defensiveWidth) +columnMargin;
+        int armorY = offensiveY;
+        g.drawString(armorRating, armorX, armorY);
+
+        // Draw the Speed
+        int speedX = armorX;
+        int speedY = defensiveY;
+        g.drawString(movement, speedX, speedY);
     }
 }
-
-
-
-//
-//
-//
-////        int x = 10;
-////        int y = 50;
-////        g.setColor(Color.LIGHT_GRAY);
-////        g.fillRect(0, View.B_HEIGHT*3/4, View.B_WIDTH, View.B_HEIGHT*1/4);
-////        g.setColor(Color.WHITE);
-////
-////        g.drawString("Level: ", x, View.B_HEIGHT*3/4 + y - 20);
-////        g.drawString(Integer.toString(stats.getLevel()), x+50, View.B_HEIGHT*3/4 + y - 20);
-////
-////        g.drawString("Exp: ", x, View.B_HEIGHT*3/4 + y);
-////        g.drawString(Integer.toString(stats.getExperience()), x+50, View.B_HEIGHT*3/4 + y);
-////        g.drawString("/", x+70, View.B_HEIGHT*3/4 + y);
-////        g.drawString(Integer.toString(stats.getExpReqLvUp()), x+80, View.B_HEIGHT*3/4 + y);
-////
-////
-////        g.drawString("Health", x, View.B_HEIGHT*3/4 + y+20);
-////        g.drawString(Integer.toString(stats.getHealth()), x+50, View.B_HEIGHT*3/4 + y+20);
-////        g.drawString("/", x+70, View.B_HEIGHT*3/4 + y+20);
-////        g.drawString(Integer.toString(stats.getMaxHealth()), x+80, View.B_HEIGHT*3/4+ y+ 20);
-////
-////        g.drawString("Mana", x, View.B_HEIGHT*3/4 + y+40);
-////        g.drawString(Integer.toString(stats.getMana()), x+50, View.B_HEIGHT*3/4 + y+40);
-////        g.drawString("/", x+70, View.B_HEIGHT*3/4 + y+40);
-////        g.drawString(Integer.toString(stats.getMaxMana()), x+80, View.B_HEIGHT*3/4 + y+40);
-////
-////        g.drawString("Lives: ", x, View.B_HEIGHT*3/4 + y+60);
-////        g.drawString(Integer.toString(stats.getLivesLeft()), x+50, View.B_HEIGHT*3/4 + y+60);
-////
-////
-////        g.drawString("Strength", x+120, View.B_HEIGHT*3/4 + y-20);
-////        g.drawString(Integer.toString(stats.getStrength()), x+195, View.B_HEIGHT*3/4 + y-20);
-////
-////        g.drawString("Hardiness", x+120, View.B_HEIGHT*3/4 + y+0);
-////        g.drawString(Integer.toString(stats.getHardiness()), x+195, View.B_HEIGHT*3/4 + y+0);
-////
-////        g.drawString("Agility", x+120, View.B_HEIGHT*3/4 + y+20);
-////        g.drawString(Integer.toString(stats.getAgility()), x+195, View.B_HEIGHT*3/4 + y+20);
-////
-////        g.drawString("Intellect", x+120, View.B_HEIGHT*3/4 + y+40);
-////        g.drawString(Integer.toString(stats.getIntellect()), x+195, View.B_HEIGHT*3/4 + y+40);
-////
-////        g.drawString("Offensive Rating", x+240, View.B_HEIGHT*3/4 + y-20);
-////        g.drawString(Integer.toString(stats.getOffensiveRating()), x+360, View.B_HEIGHT*3/4 + y-20);
-////
-////        g.drawString("Defensive Rating", x+240, View.B_HEIGHT*3/4 + y+0);
-////        g.drawString(Integer.toString(stats.getDefensiveRating()), x+360, View.B_HEIGHT*3/4 + y+0);
-////
-////        g.drawString("Armor Rating", x+240, View.B_HEIGHT*3/4 + y+20);
-////        g.drawString(Integer.toString(stats.getArmorRating()), x+360, View.B_HEIGHT*3/4 + y+20);
-////
-////        g.drawString("Movement", x+240, View.B_HEIGHT*3/4 + y+40);
-////        g.drawString(Integer.toString(stats.getMovement()), x+360, View.B_HEIGHT*3/4 + y+40);
-//    }
-//}
