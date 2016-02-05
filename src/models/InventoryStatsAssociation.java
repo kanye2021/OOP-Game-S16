@@ -12,7 +12,8 @@ public class InventoryStatsAssociation {
         avatarStats = avatar.getStats();
     }
 
-    public void updateStats(Item usedItem){
-        usedItem.statModifier();
+    //That applies the modifiers of items whether one time or equippable;
+    public void modifyStats(Item usedItem){
+
     }
 }

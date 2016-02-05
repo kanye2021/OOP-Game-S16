@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Inventory;
+import models.InventoryStatsAssociation;
 import utilities.IOMediator;
 import views.View;
 
@@ -13,6 +14,8 @@ public class InventoryViewController extends ViewController {
 
 	int position = 0;
 	Inventory inventory;
+    InventoryStatsAssociation avatarInvStats;
+
 
     public InventoryViewController(View view, Inventory inventory) {
         super(view);
@@ -40,6 +43,10 @@ public class InventoryViewController extends ViewController {
 
         else if (key == KeyEvent.VK_ESCAPE) {
         	IOMediator.setActiveView(IOMediator.Views.GAME);
+        }
+
+        else if(key == KeyEvent.VK_Z) {
+            useItem();
         }
         
     }
@@ -73,5 +80,7 @@ public class InventoryViewController extends ViewController {
     	}
     	
     }
-    
+
+    private void useItem() {
+    }
 }

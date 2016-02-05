@@ -11,6 +11,7 @@ public abstract class Item {
     protected String type;
     protected String description;
     protected int id;
+    protected int statModifier;
 
 
     //Overloaded Constructor that takes in name, type, description and id
@@ -67,9 +68,6 @@ public abstract class Item {
         return id + ": " + name + " | " + type;
     }
 
-    //Modifies stats when used
-    public void statModifier(){
 
-    }
 
 }
