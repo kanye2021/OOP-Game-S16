@@ -75,28 +75,38 @@ public class Map extends Observable {
                     terrain = new Terrain(terrainType);
 
                     // Get the areaEffect if there is one
-                    NodeList areaEffectNodes = tileElement.getElementsByTagName("areaEffect");
+                    NodeList areaEffectNodes = tileElement.getElementsByTagName("area-effect");
                     if(areaEffectNodes.getLength() > 0){
                         Element areaEffectElement = (Element) areaEffectNodes.item(0);
                         String areaEffectType = areaEffectElement.getAttribute("type");
-                        int areaEffectStatsModifier = Integer.parseInt(areaEffectElement.getAttribute("statsModifier"));
-                        areaEffect = new AreaEffect(areaEffectType, areaEffectStatsModifier);
+                        switch(areaEffectType){
+                            case "take-damage":
+                                areaEffect = new TakeDamage();
+                                break;
+                            case "heal-damage":
+                                areaEffect = new HealDamage();
+                                break;
+                            case "level-up":
+                                areaEffect = new LevelUp();
+                                break;
+                            case "instant-death":
+                                areaEffect = new InstantDeath();
+                                break;
+                        }
                     }
 
                     // Get the item if there is one
                     NodeList itemNodes = tileElement.getElementsByTagName("item");
                     if(itemNodes.getLength() > 0){
-                        System.out.println("Item is being added");
                         Element itemElement = (Element) itemNodes.item(0);
                         String itemType = itemElement.getAttribute("type");
-                        String itemDescription = itemElement.getAttribute("description");
-                        String itemName = itemElement.getAttribute("name");
+                        int id = Integer.parseInt(itemElement.getAttribute("id"));
 
                         //if statements for the different types of items
 
                         //if take-able
-                        if(itemType.equals("take-able")){
-                            item = new TakeableItem(itemName, itemType, itemDescription, 1);
+                        if(itemType.equals(Item.Type.TAKEABLE.toString())){
+                            item = new TakeableItem(id);
                         }
 
                     }

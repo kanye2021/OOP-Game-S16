@@ -14,10 +14,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
 import java.io.File;
-import java.io.StringReader;
-import java.io.StringWriter;
 
 /*
 Layout of the XML file
@@ -206,32 +203,32 @@ public class Load_Save {
         }
         //Area of Effect
         if (t.getAreaEffect() != null) {
-            Element areaEffect = doc.createElement("areaEffect");
+            Element areaEffect = doc.createElement("area-effect");
 
             Attr aType = doc.createAttribute("type");
             aType.setValue(t.getAreaEffect().getType());
             areaEffect.setAttributeNode(aType);
-
-            Attr stats = doc.createAttribute("statsModifier");
-            stats.setValue(Integer.toString(t.getAreaEffect().getstatsModifier())); //Returns an int for stat modifier needs to be converted to string
-            areaEffect.setAttributeNode(stats);
             tile.appendChild(areaEffect);
         }
         //Item
         if (t.getItem() != null) {
             Element item = doc.createElement("item");
 
-            Attr desc = doc.createAttribute("description");
-            desc.setValue(t.getItem().getDescription());
-            item.setAttributeNode(desc);
+            //Attr desc = doc.createAttribute("description");
+            //desc.setValue(t.getItem().getDescription());
+            //item.setAttributeNode(desc);
 
             Attr iType = doc.createAttribute("type");
-            iType.setValue(t.getItem().getType());
+            iType.setValue(t.getItem().getType().toString());
             item.setAttributeNode(iType);
 
-            Attr name = doc.createAttribute("name");
-            name.setValue(t.getItem().getName());
-            item.setAttributeNode(name);
+            Attr id = doc.createAttribute("id");
+            id.setValue(Integer.toString(t.getItem().getID()));
+            item.setAttributeNode(id);
+            
+            //Attr name = doc.createAttribute("name");
+            //name.setValue(t.getItem().getName());
+            //item.setAttributeNode(name);
             tile.appendChild(item);
         }
         return tile;

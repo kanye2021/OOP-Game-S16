@@ -33,7 +33,8 @@ public class Entity extends Observable {
         initEntity("smasher");
     }
     public Entity(String occupation){
-        initEntity(occupation);
+
+        //initEntity(occupation);
     }
 
     private void initEntity(String occupation) {

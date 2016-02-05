@@ -25,8 +25,6 @@ public class NavigationMediator {
     // Directions take the following form:
     // N, NE, E, SE, S SW, W, NW
     public void requestMovement(String direction){
-        System.out.println("Player is currently at (" + entity.getLocation()[0] + ", " + entity.getLocation()[1] + ")");
-        System.out.println("DIRECTION: " + direction);
 
         // If the player has moved too recently do not allow it
         if(!canMove){
