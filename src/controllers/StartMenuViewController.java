@@ -61,29 +61,22 @@ public class StartMenuViewController extends ViewController {
     public void handleKeyPress(int key) {
 
         if (key == KeyEvent.VK_UP) {
-            System.out.println("Up pressed FROM SMVC");
-            option = option.previous();
+        
+        	option = option.previous();
 
         }
 
         else if (key == KeyEvent.VK_DOWN) {
-            System.out.println("Down pressed FROM SMVC");
+            
             option = option.next();
+        
         }
 
         else if (key == KeyEvent.VK_ENTER) {
-            System.out.println("Enter pressed FROM SMVC");
-            option.setView();
-
+            
+        	option.setView();
+            
         }
-        //TODO: REMOVE HAKCY ASS SHIT HOE
-        else if(key == KeyEvent.VK_Q){
-            IOMediator.setActiveView(IOMediator.Views.GAME);
-        }
-        else {
-            System.out.println("invalid key press FROM SMVC");
-        }
-
     }
 
     @Override

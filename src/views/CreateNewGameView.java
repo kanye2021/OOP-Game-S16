@@ -30,7 +30,9 @@ public class CreateNewGameView extends View {
 
     @Override
     public void render(Graphics g) {
-        // Text
+        clear(g); // Clear the background
+
+    	// Text
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics fm = g.getFontMetrics(small);
         g.setColor(Color.white);
