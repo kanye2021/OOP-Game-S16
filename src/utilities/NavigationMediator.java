@@ -68,7 +68,7 @@ public class NavigationMediator {
                 break;
             case "NW":
                 desiredY-=1;
-                desiredX +=1;
+                desiredX-=1;
                 break;
         }
 
