@@ -1,9 +1,11 @@
 package views;
 
 import models.*;
+import models.area_effects.AreaEffect;
 import utilities.Observer;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 /**

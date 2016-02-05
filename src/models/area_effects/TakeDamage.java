@@ -1,4 +1,6 @@
-package models;
+package models.area_effects;
+
+import models.Entity;
 
 /**
  * Created by Bradley on 2/4/16.
