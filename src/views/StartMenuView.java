@@ -11,7 +11,7 @@ import java.awt.geom.Rectangle2D;
 public class StartMenuView extends View {
 
     private final int BUTTON_WIDTH = 200;
-    private final int BUTTON_HEIGHT = 50;
+    private final int BUTTON_HEIGHT = 32;
     
     //title
     private final String TITLE = "Kanye 2020";

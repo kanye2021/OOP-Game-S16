@@ -17,13 +17,13 @@ public class TakeableItem extends Item {
     /**
      *Returns true if it should be removed from the map
      */
-    @Override
+    //@Override
     public boolean onTouch(Entity entity) {
         entity.getInventory().addItem(this);
         return true;
     }
 
-    @Override
+    //@Override
     public String getImageName(){
         return "takeable-item.png";
     }
