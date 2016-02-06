@@ -13,7 +13,7 @@ public class TakeableItem extends Item {
 	
 	public enum Items {
 
-//		TEST_SOMETHING(new TakeableItem("a","b","c")),
+
 		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png"),
 		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png"),
 		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png"),
@@ -22,7 +22,7 @@ public class TakeableItem extends Item {
 		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png"),
 		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png"),
 		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png");
-		
+
 
 		private String name;
 		private String description;
@@ -35,8 +35,6 @@ public class TakeableItem extends Item {
 		//conditions.addItemCondition(TakeableItems.Items.STEEL_SWORD, 2, Conditions.AT_LEAST, Conditions.INVENTORY)
 		//conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 50, Conditions.POINTS)
 		//conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 0.5, Conditions.PERCENTAGE)
-		
-		
 		
 
 		private Items(String name, String description, String pathToPicture) {
@@ -76,9 +74,9 @@ public class TakeableItem extends Item {
     	super(item.ordinal(), Item.Type.TAKEABLE);
     }
 
-    /**
-     *Returns true if it should be removed from the map
-     */
+
+
+
     @Override
     public final boolean onTouch(Entity entity) {
         entity.getInventory().addItem(this);

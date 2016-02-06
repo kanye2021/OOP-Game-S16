@@ -2,6 +2,7 @@ package models;
 
 import java.util.*;
 
+import models.items.InteractiveItem;
 import models.items.TakeableItem;
 
 
@@ -100,23 +101,22 @@ public class Inventory {
 		return false;
 	}
 
-	public boolean getItem(TakeableItem.Items[] findItem){
-		
-		//for (TakeableItem.Items item : findItem) {
-			
-			//for (ItemNode item : items) {
-				
-				// Need to iterate through all items unfortunately. Then count them and make sure they are at least the required amount
-				
-			//}
-			
-		//}
-		
-		//for (int i = 0; i < items.length; i++) {
-			//if(items[i] != null && items[i].item.getID() == findItem)
-				//return true;
-		//}
+	public boolean getItem(TakeableItem findItem){
+		for (int i = 0; i < items.length; i++) {
+			if(items[i] != null && items[i].item.equals(findItem))
+				return true;
+		}
 		return false;
+	}
+
+	public int countItem(TakeableItem findItem){
+		int count = 0;
+		for(int i=0; i < items.length; i++){
+			if(items[i] != null && items[i].item.equals(findItem))
+				count++;
+		}
+
+		return count;
 	}
 
 	public class ItemNode{
