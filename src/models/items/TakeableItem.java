@@ -85,12 +85,10 @@ public class TakeableItem extends Item {
         return true;
     }
 
-	@Override
 	public String getName() {
 		return Items.values()[getID()].name;
 	}
 
-	@Override
 	public String getDescription() {
 		return Items.values()[getID()].description;
 	}

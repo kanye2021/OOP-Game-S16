@@ -32,12 +32,9 @@ public abstract class Item {
 	
     //Attributes that all Items will have
     protected int id;
-	//protected String name;
     protected Type type;
-    //protected String description;
-    //protected String pathToPicture;
-
-
+    protected String pathToPicture;
+    
     //Constructor
     protected Item(int id, Type type) {
     	this.id = id;
@@ -57,8 +54,6 @@ public abstract class Item {
     
     }
     
-    public abstract String getName();
-    public abstract String getDescription();
     public abstract String getPathToPicture();
 
     public abstract boolean onTouch(Entity entity);
@@ -78,13 +73,17 @@ public abstract class Item {
     	Item otherItem = (Item) o;
     	
     	if (this.getID() == otherItem.getID()) {
+    		
     		return true;
+    	
     	}
+    	
     	return false;
+    	
     }
 
     public String toString() {
-        return getID() + ": " + getName() + " | " + getType();
+        return getType() + ": " + getID();
     }
 
 }
