@@ -1,4 +1,6 @@
-package models;
+package models.items;
+
+import models.Entity;
 
 /**
  * Created by Bradley on 2/1/16.
@@ -33,9 +35,8 @@ public abstract class Item {
 
 	protected String name;
     protected Type type;
-    protected String description;
-    protected String pathToPicture;
-
+    //protected String description;
+    //protected String pathToPicture;
 
 
     //Overloaded Constructor that takes in name, type, description and id
@@ -48,11 +49,12 @@ public abstract class Item {
         this.pathToPicture = pathToPicture;
     }
 
+    //Constructor
     protected Item(int id, Type type) {
     	this.id = id;
     	this.type = type;
     }
-    
+
     //Getters
     public final int getID() {
     	
@@ -87,13 +89,9 @@ public abstract class Item {
     	Item otherItem = (Item) o;
     	
     	if (this.getID() == otherItem.getID()) {
-    		
     		return true;
-    		
     	}
-    	
     	return false;
-    	
     }
 
 

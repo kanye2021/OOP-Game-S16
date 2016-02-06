@@ -51,9 +51,9 @@ public class InventoryViewController extends ViewController {
         	IOMediator.setActiveView(IOMediator.Views.GAME);
         }
 
-//        else if(key == KeyEvent.VK_L) {
-//            useItem();
-//        }
+        else if(key == KeyEvent.VK_L) {
+            useItem();
+        }
         
     }
     
@@ -91,9 +91,9 @@ public class InventoryViewController extends ViewController {
     public int getPosition(){return position;}
 
     //Uses item in inventory
-//    private void useItem() {
-//        TakeableItem usedItem = getInventory().itemAt(position);
-//        avatarItemStats.useFromInv(usedItem);
-//    }
+    private void useItem() {
+        TakeableItem usedItem = getInventory().itemAt(position);
+        avatarItemStats.useFromInv(usedItem);
+    }
 }
 

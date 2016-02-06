@@ -1,7 +1,9 @@
 /**
  * Created by denzel on 2/3/16.
  */
-package models;
+package models.items;
+
+import models.Entity;
 
 import java.util.HashMap;
 
@@ -59,29 +61,29 @@ public class TakeableItem extends Item {
             }
 
 		}
-		
+
 		public int getID() {
-			
+
 			return ordinal();
-			
+
 		}
 		
 		public String getName() {
-			
+
 			return name;
-			
+
 		}
 		
 		public String getDescription() {
-			
+
 			return description;
-			
+
 		}
 		
 		public String getPathToPicture() {
-			
+
 			return pathToPicture;
-			
+
 		}
 
         public String getComponent(){
@@ -110,7 +112,6 @@ public class TakeableItem extends Item {
     	super(item.ordinal(), Item.Type.TAKEABLE);
     }
 
-    
     /**
      *Returns true if it should be removed from the map
      */
@@ -122,23 +123,17 @@ public class TakeableItem extends Item {
 
 	@Override
 	public String getName() {
-		
 		return Items.values()[getID()].name;
-		
 	}
 
 	@Override
 	public String getDescription() {
-
 		return Items.values()[getID()].description;
-		
 	}
 
 	@Override
 	public String getPathToPicture() {
-		
 		return Items.values()[getID()].pathToPicture;
-
 	}
 
 

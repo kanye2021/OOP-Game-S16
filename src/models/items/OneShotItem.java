@@ -1,7 +1,9 @@
 /**
  * Created by denzel on 2/3/16.
  */
-package models;
+package models.items;
+
+import models.Entity;
 
 /**
  * TakeableItem's main purpose is to be able to insert itself back into
@@ -12,7 +14,7 @@ package models;
 
 public class OneShotItem extends Item {
 
-    public static enum Effects {
+    public enum Effects {
 
         GAIN_HEALTH("stats","health", "5", "takeable-item.png"),
         LOSE_HEALTH("stats","health","-5", "takeable-item.png"),

@@ -1,9 +1,9 @@
 package models;
 
 import models.Entity;
-import models.Item;
 import models.Terrain;
 import models.area_effects.AreaEffect;
+import models.items.Item;
 
 /**
  * Created by Bradley on 2/1/16.

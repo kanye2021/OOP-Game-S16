@@ -5,6 +5,10 @@ import models.area_effects.HealDamage;
 import models.area_effects.InstantDeath;
 import models.area_effects.LevelUp;
 import models.area_effects.TakeDamage;
+import models.items.InteractiveItem;
+import models.items.Item;
+import models.items.OneShotItem;
+import models.items.TakeableItem;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -118,6 +122,13 @@ public class Map extends Observable {
                         }
                         else if(itemType.equals(Item.Type.ONE_SHOT.toString())){
                             item = new OneShotItem(OneShotItem.Effects.values()[id]);
+                        }
+                        else if(itemType.equals(Item.Type.INTERACTIVE.toString())){
+                            System.out.println("Interactive Item");
+                            item = new InteractiveItem(InteractiveItem.Quests.values()[id]);
+                        }
+                        else if(itemType.equals(Item.Type.OBSTACLE.toString())){
+                            //TODO: Need Obstactle Item
                         }
 
                     }
