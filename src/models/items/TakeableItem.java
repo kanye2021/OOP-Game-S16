@@ -17,6 +17,7 @@ public class TakeableItem extends Item {
 	public enum Items {
 
 		//EXAMPLE_TAKEABLE_ITEM("name", "description", "pathToFile", <StatModifications>)
+		
 		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
@@ -42,6 +43,7 @@ public class TakeableItem extends Item {
 				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		));
 		
+
 		private String name;
 		private String description;
 		private String pathToPicture;
