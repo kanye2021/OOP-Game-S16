@@ -46,15 +46,6 @@ public class TakeableItem extends Item {
 		private String description;
 		private String pathToPicture;
 		private StatModifications modifications;
-		
-		
-		//Conditions conditions;
-		//conditions.addItemCondition(Conditions.AT_LEAST, 2, TakeableItems.Items.IRON_SWORD, Conditions.INVENTORY)
-		//conditions.addItemCondition(TakeableItems.Items.DIAMOND_SWORD, 1, Conditions.AT_LEAST, Conditions.EQUIPPED)
-		//conditions.addItemCondition(TakeableItems.Items.STEEL_SWORD, 2, Conditions.AT_LEAST, Conditions.INVENTORY)
-		//conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 50, Conditions.POINTS)
-		//conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 0.5, Conditions.PERCENTAGE)
-		
 
 		private Items(String name, String description, String pathToPicture, StatModifications modifications) {
 

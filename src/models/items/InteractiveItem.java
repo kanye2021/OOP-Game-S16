@@ -1,6 +1,7 @@
 package models.items;
 
-import models.Conditions;
+import utilities.Condition;
+import utilities.Conditions;
 import models.Entity;
 
 /**
@@ -20,6 +21,8 @@ public class InteractiveItem extends Item {
         SAVE_JORGE("saveJorge","you have to kill jorge", new TakeableItem.Items[]{TakeableItem.Items.IRON_SWORD}, new int[]{1},"take-able.png"),
         DAVID_SQUARED("davidSquared","David^2 needs you for something", new TakeableItem.Items[]{TakeableItem.Items.IRON_SWORD,TakeableItem.Items.STEEL_SWORD}, new int[]{1,2},"take-able.png"),
         BRAGIO("saveJorge","you have to kill jorge", new TakeableItem.Items[]{TakeableItem.Items.IRON_SWORD}, new int[]{1},"take-able.png");
+
+
 
         private String name;
         private String description;
@@ -85,14 +88,19 @@ public class InteractiveItem extends Item {
 
     @Override
     public boolean onTouch(Entity entity) {
+        System.out.println("I'm in the ontouch");
 
-        Conditions condition = new Conditions();
-        condition.addItemConditions(entity,1, Conditions.booleanEnum.AT_LEAST, Conditions.EntityEnum.STRENGTH, Conditions.ItemEnum.ARMOR,);
-        System.out.println(Quests.values()[getID()].getRequiredItems());
+        Condition condition = new Condition(entity);
+        condition.addConditions(Condition.Comparison.AT_MOST,2, TakeableItem.Items.IRON_SWORD, Condition.ItemConditions.INVENTORY);
 
 
         //Check conditions and see if can activate items
-
+//        if(condition.checkConditions(condition)){
+//            System.out.println("You have activated the quest!");
+//        }
+        if(condition.checkConditions(condition)){
+            System.out.println("YOU DID THE THING!");
+        }
 
 
         return false;
