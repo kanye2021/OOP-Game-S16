@@ -11,27 +11,33 @@ public class TakeableItem extends Item {
 
 	public static enum Items {
 		
-		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png"),
-		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png"),
-		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png"),
-		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png"),
-		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png"),
-		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png"),
-		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png"),
-		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png");
+		WOOD_SWORD("Wood Sword", "A sword made of wood","primaryWeapon", "takeable-item.png"),
+		IRON_SWORD("Iron Sword", "A sword made of iron", "primaryWeapon", "takeable-item.png"),
+		STEEL_SWORD("Steel Sword", "A sword made of steel", "primaryWeapon", "takeable-item.png"),
+		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "primaryWeapon", "takeable-item.png"),
+		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "secondaryWeapon", "takeable-item.png"),
+		IRON_SHIELD("Iron Shield", "A Shield made of iron", "secondaryWeapon", "takeable-item.png"),
+		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "secondaryWeapon", "takeable-item.png"),
+		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "secondaryWeapon", "takeable-item.png");
 		
 		//a mini skirt for jorge in the jungle | jorge in the jungle figurine
 		
 		private String name;
 		private String description;
 		private String pathToPicture;
+		private String component;
 		
-		private Items(String name, String description, String pathToPicture) {
+		private Items(String name, String description, String component,String pathToPicture) {
 			
 			this.name = name;
 			this.description = description;
+			this.component = component;
 			this.pathToPicture = pathToPicture;
 			
+		}
+
+		public String getComponent(){
+			return component;
 		}
 		
 		public int getID() {
@@ -65,7 +71,7 @@ public class TakeableItem extends Item {
     	super(item.ordinal(), Item.Type.TAKEABLE);
     }
 
-    
+
     /**
      *Returns true if it should be removed from the map
      */
