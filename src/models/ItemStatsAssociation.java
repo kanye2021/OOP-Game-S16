@@ -27,7 +27,7 @@ public class ItemStatsAssociation {
     public void useFromInv(TakeableItem usedItem){
 
         //Apply and remove item from inventory
-        usedItem.modifyStats(avatar);
+        usedItem.modifyStatsReverse(avatar);
         avatarInventory.removeItem(usedItem);
 
         // /if it is equippable (otherwise it would just be used)
@@ -52,7 +52,7 @@ public class ItemStatsAssociation {
     //Unequip item and undo the stats it provided
     public void unequipItemStats(TakeableItem unequippedItem){
         //Undo stats from to be unequipped item and update
-        unequippedItem.modifyStatsInverse(avatar);
+        unequippedItem.modifyStats(avatar);
 
         //Unequip and add to inventory
         avatarEquippedItems.unequipItems(unequippedItem);

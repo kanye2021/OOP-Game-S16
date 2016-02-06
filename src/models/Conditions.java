@@ -7,26 +7,30 @@ import models.items.TakeableItem;
  */
 public class Conditions {
 
+    //Three types of known conditions
+    // Player is carrying something
+    // Player has something equipped
+    // Entity is somewhere on map (location), alive, or has some specific modifier
 
     //Boolean Enums
-    public enum Boolean{
+    public enum booleanEnum{
         AT_LEAST(){protected boolean compare(int count, Entity entity, TakeableItem item){
-            if(count >= entity.getInventory().getItemNode(item).amount){
+            if(count >= entity.getInventory().countItem(item)){
                 return true;
             }else{
                 return false;
             }
         }},
-        AT_MOST(){protected boolean compare(int count, Entity entity, TakeableItem item){
-            if(count == entity.getInventory().getItemNode(item).amount){
+        EXACTLY(){protected boolean compare(int count, Entity entity, TakeableItem item){
+            if(count == entity.getInventory().countItem(item)){
                 return true;
             }else{
                 return false;
             }
 
         }},
-        EXACTLY(){protected boolean compare(int count, Entity entity, TakeableItem item){
-            if(count <= entity.getInventory().getItemNode(item).amount){
+        AT_MOST(){protected boolean compare(int count, Entity entity, TakeableItem item){
+            if(count <= entity.getInventory().countItem(item)){
                 return true;
             }else{
                 return false;
@@ -36,58 +40,81 @@ public class Conditions {
 
         //Function to compare
         protected abstract boolean compare(int count, Entity entity, TakeableItem item);
+
+        public int getID() {
+            return ordinal();
+        }
     }
 
     //Entity Enums
     public enum EntityEnum{
-        STRENGTH(){protected void checkStat(){
-
+        STRENGTH(){protected int checkStat(Entity entity){
+            return entity.getStats().getStrength();
         }},
-        AGILITY(){protected void checkStat(){
-
+        AGILITY(){protected int checkStat(Entity entity){
+            return entity.getStats().getAgility();
         }},
-        INTELLECT(){protected void checkStat(){
-
+        INTELLECT(){protected int checkStat(Entity entity){
+            return entity.getStats().getIntellect();
         }};
 
         //Function to checkStat
-        protected abstract void checkStat();
+        protected abstract int checkStat(Entity entity);
+
+        public int getID() {
+            return ordinal();
+        }
     }
 
     //Item Enums
+
     public enum ItemEnum{
         ARMOR(){protected void checkComponent(){
-
+            //TODO: Need to get the components in for takeable
         }},
         WEAPON(){protected void checkComponent(){
-
+            //TODO: Need to get the components in for takeable
         }};
 
         //Function to check components
         protected abstract void checkComponent();
+
+        public int getID() {
+            return ordinal();
+        }
     }
 
     //Properties of the condition object
-    private Boolean bool;
+    private booleanEnum bool;
     private EntityEnum entityEnum;
     private ItemEnum itemEnum;
+    private Entity entity;
+    private int count;
+    private TakeableItem item;
 
     //Default constructor for the condition object
     public Conditions(){}
 
     //modify the conditions required for the Item to satisfy
-    private void addItemConditions(Boolean bool,EntityEnum entityEnum, ItemEnum item){
-
+    public void addItemConditions(Entity entity, int count, booleanEnum bool,EntityEnum entityEnum, ItemEnum itemEnum,TakeableItem item){
+        this.bool = bool;
+        this.entityEnum = entityEnum;
+        this.itemEnum = itemEnum;
+        this.count = count;
+        this.item = item;
     };
 
     //modify the conditions required for the Entity to satisfy
-    private void addEntityConditions(Boolean bool, EntityEnum entityEnum, ItemEnum item){
+    public void addEntityConditions(Entity entity, booleanEnum bool, EntityEnum entityEnum, ItemEnum item){
 
     };
 
     //be able to check the condition's attributes
-    private boolean checkComparision(Boolean bool, EntityEnum entityEnum, ItemEnum item){
+    public boolean checkComparision(){
         //If conditions hold through
+        if(booleanEnum.AT_LEAST.compare(this.count,this.entity,this.item)){
+
+        }
         return true;
 
         //Else return false

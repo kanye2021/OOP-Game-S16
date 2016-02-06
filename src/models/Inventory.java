@@ -116,6 +116,16 @@ public class Inventory {
 		return null;
 	}
 
+	public int countItem(TakeableItem findItem){
+		int count = 0;
+		for (int i = 0; i < items.length; i++) {
+			if(items[i] != null && items[i].item.equals(findItem))
+				count++;
+
+		}
+		return count;
+	}
+
 	public class ItemNode{
 		public TakeableItem item;
 		public int amount;

@@ -16,46 +16,33 @@ import java.util.HashMap;
  * the Entity's inventory when touched
  */
 public class TakeableItem extends Item {
-	//	public enum Items {
-//
-//
-//		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", "equippable","primaryWeapon", "2", "0"),
-//		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png", "equippable","primaryWeapon", "5", "0"),
-//		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", "equippable","primaryWeapon", "7", ""),
-//		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", "equippable","primaryWeapon", "10", "0"),
-//		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", "equippable","secondaryWeapon", "0", "2"),
-//		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", "equippable","secondaryWeapon", "0", "5"),
-//		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png", "equippable","secondaryWeapon", "0", "7"),
-//		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", "equippable","secondaryWeapon", "0", "10");
-//
-//		//a mini skirt for jorge in the jungle | jorge in the jungle figurine
-//
 	public enum Items {
-
-		//		TEST_SOMETHING(new TakeableItem("a","b","c")),
-		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+		//EXAMPLE_TAKEABLE_ITEM("name", "description", "pathToFile", <StatModifications>)
+		// Can be read as EXAMPLE_TAKEABLE_ITEM has "name", "description", "pathToFile", and StatModifications
+		
+		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png","equippable","primaryWeapon", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
-		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png","equippable","primaryWeapon", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
-		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png","equippable","primaryWeapon", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
-		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", "equippable", "primaryWeapon", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
-		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", "equippable", "secondaryWeapon", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
-		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", "equippable", "secondaryWeapon", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
-		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png", "equippable", "secondaryWeapon",	new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
-		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", "equippable", "secondaryWeapon", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		));
 
 
@@ -68,12 +55,12 @@ public class TakeableItem extends Item {
 		private boolean isEquippable;
 
 
-		//Conditions conditions;
-		//conditions.addItemCondition(Conditions.AT_LEAST, 2, TakeableItems.Items.IRON_SWORD, Conditions.INVENTORY)
-		//conditions.addItemCondition(TakeableItems.Items.DIAMOND_SWORD, 1, Conditions.AT_LEAST, Conditions.EQUIPPED)
-		//conditions.addItemCondition(TakeableItems.Items.STEEL_SWORD, 2, Conditions.AT_LEAST, Conditions.INVENTORY)
-		//conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 50, Conditions.POINTS)
-		//conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 0.5, Conditions.PERCENTAGE)
+//		Conditions conditions;
+//		conditions.addItemCondition(Conditions.AT_LEAST, 2, TakeableItems.Items.IRON_SWORD, Conditions.INVENTORY)
+//		conditions.addItemCondition(TakeableItems.Items.DIAMOND_SWORD, 1, Conditions.AT_LEAST, Conditions.EQUIPPED)
+//		conditions.addItemCondition(TakeableItems.Items.STEEL_SWORD, 2, Conditions.AT_LEAST, Conditions.INVENTORY)
+//		conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 50, Conditions.POINTS)
+//		conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 0.5, Conditions.PERCENTAGE)
 
 
 		private Items(String name, String description, String pathToPicture, String property, String component, StatModifications modifications) {
@@ -130,11 +117,12 @@ public class TakeableItem extends Item {
 	}
 
 
-	@Override
-	public final boolean onTouch(Entity entity) {
-		entity.getInventory().addItem(this);
-		return true;
-	}
+
+    @Override
+    public final boolean onTouch(Entity entity) {
+        entity.getInventory().addItem(this);
+        return true;
+    }
 
 	public String getName() {
 		return Items.values()[getID()].name;
@@ -155,13 +143,13 @@ public class TakeableItem extends Item {
 
 	public void modifyStats(Entity entity) {
 
-		Items.values()[getID()].modifications.modifyStats(entity);
+		Items.values()[getID()].modifications.modifyStats(entity, StatModification.DIRECTION.FORWARD);
 
 	}
 
-	public void modifyStatsInverse(Entity entity) {
+	public void modifyStatsReverse(Entity entity) {
 
-		Items.values()[getID()].modifications.modifyStatsInverse(entity);
+		Items.values()[getID()].modifications.modifyStats(entity, StatModification.DIRECTION.REVERSE);
 
 	}
 }

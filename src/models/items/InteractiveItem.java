@@ -1,5 +1,6 @@
 package models.items;
 
+import models.Conditions;
 import models.Entity;
 
 /**
@@ -85,13 +86,12 @@ public class InteractiveItem extends Item {
     @Override
     public boolean onTouch(Entity entity) {
 
+        Conditions condition = new Conditions();
+        //condition.addItemConditions(entity,1, Conditions.booleanEnum.AT_LEAST, Conditions.EntityEnum.STRENGTH, Conditions.ItemEnum.ARMOR, );
         System.out.println(Quests.values()[getID()].getRequiredItems());
 
 
         //Check conditions and see if can activate items
-//        if(entity.getInventory().getItem(Quests.values()[getID()].getRequiredItems())){
-//            System.out.println("You can pass");
-//        }
 
 
 
