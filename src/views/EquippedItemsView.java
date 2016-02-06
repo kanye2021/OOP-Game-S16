@@ -11,23 +11,62 @@ import java.awt.geom.Rectangle2D;
 
 public class EquippedItemsView extends View {
 
-    private final int RECT_XY_OFFSET = (int)(((double)TILE_SIZE)*1.5);
+    private final String TITLE = "Equipped Items";
+    private final String DESCRIPTION = "Press [ENTER] on your selected item to unequip";
     private final int RECT_W = B_WIDTH/3;
     private final int RECT_H = B_HEIGHT/2;
+    private final int TOP_PANE_H = B_HEIGHT/8;
     private final int ITEM_SLOT = (int)(((double)TILE_SIZE)*1.5);
+    private final int RECT_XY_OFFSET_TOP = (int)(((double)TILE_SIZE)*1.5);
+    private final int RECT_X_OFFSET = (int)(((double)TILE_SIZE)*1.5) ;
+    private final int RECT_Y_OFFSET = (int)(((double)TILE_SIZE)*1.5) + TOP_PANE_H ;
+    private Color secondary;
+    private Color primary;
+    private Font small;
+    private Font title;
+    private Font desc;
+
+
 
     public EquippedItemsView() {
         super();
         this.viewController = new EquippedItemsViewController(this);
+
+        small = new Font("Courier New", 1, 12);
+        desc = new Font("Courier New", 1, 14);
+        title = new Font("Courier New", Font.BOLD, 32);
+        secondary = (Color.red);
+        primary = (Color.lightGray);
+
     }
 
 
     @Override
     public void render(Graphics g) {
-        // Draw Outer Rectangle
-        g.setColor(Color.darkGray);
-        g.drawRoundRect(RECT_XY_OFFSET, RECT_XY_OFFSET , RECT_W, RECT_H, 5, 5);
-        g.fillRoundRect(RECT_XY_OFFSET, RECT_XY_OFFSET, RECT_W, RECT_H, 5, 5);
+        // Draw Top Pane
+        g.setColor(new Color(32, 32, 32));
+        g.drawRoundRect(RECT_XY_OFFSET_TOP, RECT_XY_OFFSET_TOP , RECT_W, TOP_PANE_H, 5, 5);
+        g.fillRoundRect(RECT_XY_OFFSET_TOP, RECT_XY_OFFSET_TOP, RECT_W, TOP_PANE_H, 5, 5);
+
+        // Draw Main Pane
+        g.drawRoundRect(RECT_X_OFFSET, RECT_Y_OFFSET,  RECT_W, RECT_H, 5, 5);
+        g.fillRoundRect(RECT_X_OFFSET, RECT_Y_OFFSET , RECT_W, RECT_H, 5, 5);
+
+        // Draw title and description text
+        g.setColor(primary);
+        FontMetrics fm = g.getFontMetrics(title);
+        g.setFont(title);
+        Rectangle2D rec = fm.getStringBounds(TITLE, g);
+        int titleY = RECT_XY_OFFSET_TOP + ((int) (rec.getHeight()) + fm.getAscent());
+        int titleX =  RECT_XY_OFFSET_TOP + RECT_W/2 - (int)rec.getWidth()/2;
+        g.drawString(TITLE, titleX, titleY );
+
+        fm = g.getFontMetrics(desc);
+        g.setFont(desc);
+        rec = fm.getStringBounds(DESCRIPTION, g);
+        int descY = (titleY + ((int) (rec.getHeight()) + fm.getAscent()));
+        int descX =  RECT_XY_OFFSET_TOP + RECT_W/2 - (int)rec.getWidth()/2;
+        g.drawString(DESCRIPTION, descX, descY );
 
         renderSlots(g);
 
@@ -41,22 +80,21 @@ public class EquippedItemsView extends View {
     }
 
     private void renderSlots(Graphics g) {
-        Color primary = (Color.lightGray);
-        Color secondary = (Color.red);
+
         g.setColor(primary);
         Graphics2D g2d = (Graphics2D)g;
         g2d.setStroke(new BasicStroke(2));
 
 
-        Font small = new Font("Helvetica", Font.ITALIC, 14);
         FontMetrics fm = g.getFontMetrics(small);
+        g.setFont(small);
 
-        int xFirstCol = RECT_XY_OFFSET + 1*RECT_W/4 - ITEM_SLOT/2;
-        int xSecondCol = RECT_XY_OFFSET + 2*RECT_W/4 - ITEM_SLOT/2;
-        int xThirdCol = RECT_XY_OFFSET + 3*RECT_W/4 - ITEM_SLOT/2;
+        int xFirstCol = RECT_X_OFFSET + 1*RECT_W/4 - ITEM_SLOT/2;
+        int xSecondCol = RECT_X_OFFSET + 2*RECT_W/4 - ITEM_SLOT/2;
+        int xThirdCol = RECT_X_OFFSET + 3*RECT_W/4 - ITEM_SLOT/2;
 
         // FIRST ROW
-        int yFirstRow = RECT_XY_OFFSET + RECT_H/6 - ITEM_SLOT/2;
+        int yFirstRow = RECT_Y_OFFSET + RECT_H/6 - ITEM_SLOT/2;
         //cape
         g.fillRect(xFirstCol, yFirstRow , ITEM_SLOT, ITEM_SLOT);
         if ( ((EquippedItemsViewController) viewController).getSelectedItem() == EquippedItemsViewController.EquippedItemOptSelections.CAPE  ) {
@@ -88,7 +126,7 @@ public class EquippedItemsView extends View {
 
 
         // SECOND ROW
-        int ySecondRow = RECT_XY_OFFSET + 3*RECT_H/6 - ITEM_SLOT/2;
+        int ySecondRow = RECT_Y_OFFSET + 3*RECT_H/6 - ITEM_SLOT/2;
         //primary weapon
         g.fillRect(xFirstCol, ySecondRow , ITEM_SLOT, ITEM_SLOT);
         if ( ((EquippedItemsViewController) viewController).getSelectedItem() == EquippedItemsViewController.EquippedItemOptSelections.PRIMARY  ) {
@@ -120,7 +158,7 @@ public class EquippedItemsView extends View {
 
 
         // THIRD ROW
-        int yThirdRow = RECT_XY_OFFSET + 5*RECT_H/6 - ITEM_SLOT/2;
+        int yThirdRow = RECT_Y_OFFSET + 5*RECT_H/6 - ITEM_SLOT/2;
         // gloves
         g.fillRect(xFirstCol, yThirdRow, ITEM_SLOT, ITEM_SLOT);
         if ( ((EquippedItemsViewController) viewController).getSelectedItem() == EquippedItemsViewController.EquippedItemOptSelections.GLOVES  ) {
