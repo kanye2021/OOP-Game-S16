@@ -19,6 +19,7 @@ public class OneShotItem extends Item {
 
     public enum Effects {
 
+    	//EXAMPLE_ONE_SHOT_ITEM("pathToFile", <StatModifications>)
     	GAIN_HEALTH("takeable-item.png", new StatModifications(
 				new StatModification(Stats.Type.HEALTH, 5, StatModification.NumberType.POINT)
 		)),
