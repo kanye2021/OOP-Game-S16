@@ -113,8 +113,67 @@ public class Stats {
         defensiveRating = agility + level;
         armorRating = armorModifier + hardiness;
     }
-
-
+    //Loaders for Stats
+    // ------ Primary Stats ------
+    public void loadLives (int lives) {
+        this.livesLeft = lives;
+    }
+    public void loadStr (int str) {
+        strength = str;
+    }
+    public void loadAgi(int agi){
+        agility = agi;
+    }
+    public void loadInt(int i){
+        intellect = i;
+    }
+    public void loadTough (int t){
+        hardiness = t;
+    }
+    public void loadExp(int e) {
+        experience = e;
+    }
+    public void loadMov (int m) {
+        movement = m;
+    }
+    // ------Derived Stats -----
+    public void loadLvl (int i) {
+        level = i;
+    }
+    public void loadHealth (int h) {
+        health = h;
+    }
+    public void loadMana (int m) {
+        mana = m;
+    }
+    public void loadOff (int o) {
+        offensiveRating = o;
+    }
+    public void loadDef (int d) {
+        defensiveRating = d;
+    }
+    public void loadArm (int a) {
+        armorRating = a;
+    }
+    //----Animation stuff
+    public void loadMaxHealth(int a){
+        maxHealth = a;
+    }
+    public void loadMaxMana (int m){
+        maxMana = m;
+    }
+    public void loadExpReqLvl(int e){
+        expReqLvUp = e;
+    }
+    public void loadLastLvlExp(int l){
+        lastLvlExpReq = l;
+    }
+    public void loadWeaponModifier (int w) {
+        weaponModifier = w;
+    }
+    public void loadArmorModifier (int a){
+        armorModifier = a;
+    }
     // Getters for primary stats
     public int getLivesLeft(){return livesLeft;}
     public int getStrength(){return (strength);}

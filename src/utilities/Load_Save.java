@@ -16,6 +16,7 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.InterruptedIOException;
 
 /*
 Layout of the XML file
@@ -226,10 +227,10 @@ public class Load_Save {
                     int y = Integer.parseInt(entity.getAttribute("location_y"));
                     avatar.updateLocation(x,y);
                     avatar.updateOrientation(entity.getAttribute("orientation"));
+                    loadStats(avatar.getStats(), entity); //Separate function to handle loading stats
                     //Adds avatar to the map
                     m.insertEntityAtLocation(x,y,avatar);
                 }
-                //TODO: Add the inventory and stats to this
             }
 
             System.out.println("Finish loading entity: " + avatar.getLocation()[0] + "," + avatar.getLocation()[1] + "," + avatar.getOrientation());
@@ -237,6 +238,37 @@ public class Load_Save {
             System.out.println("Problem parsing avatar");
             e.printStackTrace();
         }
+
+    }
+    public static void loadStats(Stats avatarStats, Element entity){
+        NodeList tmp = entity.getElementsByTagName("pStats"); //Hacky shit
+        Element pStats = (Element) tmp.item(0); //Basically needs to get the tag "pStats" from xml
+        NodeList tmp2 = entity.getElementsByTagName("dStats"); //Hacky shit
+        Element dStats = (Element) tmp2.item(0);
+
+        avatarStats.loadLives(Integer.parseInt(pStats.getAttribute("lives")));
+        avatarStats.loadStr(Integer.parseInt(pStats.getAttribute("strength")));
+        avatarStats.loadAgi(Integer.parseInt(pStats.getAttribute("agility")));
+        avatarStats.loadInt(Integer.parseInt(pStats.getAttribute("intellect")));
+        avatarStats.loadTough(Integer.parseInt(pStats.getAttribute("hardiness")));
+        avatarStats.loadExp(Integer.parseInt(pStats.getAttribute("experience")));
+        avatarStats.loadMov(Integer.parseInt(pStats.getAttribute("movement")));
+
+        avatarStats.loadLvl(Integer.parseInt(dStats.getAttribute("level")));
+        avatarStats.loadHealth(Integer.parseInt(dStats.getAttribute("health")));
+        avatarStats.loadMana(Integer.parseInt(dStats.getAttribute("mana")));
+        avatarStats.loadOff(Integer.parseInt(dStats.getAttribute("offensiveRating")));
+        avatarStats.loadDef(Integer.parseInt(dStats.getAttribute("defensiveRating")));
+        avatarStats.loadArm(Integer.parseInt(dStats.getAttribute("armorRating")));
+
+        avatarStats.loadMaxHealth(Integer.parseInt(dStats.getAttribute("maxHealth")));
+        avatarStats.loadMaxMana(Integer.parseInt(dStats.getAttribute("maxMana")));
+        avatarStats.loadExpReqLvl(Integer.parseInt(dStats.getAttribute("expReqLvUp")));
+        avatarStats.loadLastLvlExp(Integer.parseInt(dStats.getAttribute("lastLvlExpReq")));
+        avatarStats.loadWeaponModifier(Integer.parseInt(dStats.getAttribute("weaponModifier")));
+        avatarStats.loadArmorModifier(Integer.parseInt(dStats.getAttribute("armorModifier")));
+
+
 
     }
 /*----------------------------------For Saving --------------------------------*/
@@ -314,6 +346,94 @@ public class Load_Save {
     }
     private static Node getStats(Document doc, Stats stat){
         Element stats = doc.createElement("stats");
+
+        Element pStats = doc.createElement("pStats");
+    //-----Primary Stats----
+        Attr lives = doc.createAttribute("lives");
+        lives.setValue(Integer.toString(stat.getLivesLeft()));
+        pStats.setAttributeNode(lives);
+
+        Attr strength = doc.createAttribute("strength");
+        strength.setValue(Integer.toString(stat.getStrength()));
+        pStats.setAttributeNode(strength);
+
+        Attr agility = doc.createAttribute("agility");
+        agility.setValue(Integer.toString(stat.getAgility()));
+        pStats.setAttributeNode(agility);
+
+        Attr intellect = doc.createAttribute("intellect");
+        intellect.setValue(Integer.toString(stat.getIntellect()));
+        pStats.setAttributeNode(intellect);
+
+        Attr hardiness = doc.createAttribute("hardiness");
+        hardiness.setValue(Integer.toString(stat.getHardiness()));
+        pStats.setAttributeNode(hardiness);
+
+        Attr experience = doc.createAttribute("experience");
+        experience.setValue(Integer.toString(stat.getExperience()));
+        pStats.setAttributeNode(experience);
+
+        Attr movement = doc.createAttribute("movement");
+        movement.setValue(Integer.toString(stat.getMovement()));
+        pStats.setAttributeNode(movement);
+
+        stats.appendChild(pStats); //Add pstats into main stats
+
+        Element dStats = doc.createElement("dStats"); //Derived stats
+    //------Derived Stats
+        Attr level = doc.createAttribute("level");
+        level.setValue(Integer.toString(stat.getLevel()));
+        dStats.setAttributeNode(level);
+
+        Attr health = doc.createAttribute("health");
+        health.setValue(Integer.toString(stat.getHealth()));
+        dStats.setAttributeNode(health);
+
+        Attr mana = doc.createAttribute("mana");
+        mana.setValue(Integer.toString(stat.getMana()));
+        dStats.setAttributeNode(mana);
+
+        Attr offensiveRating = doc.createAttribute("offensiveRating");
+        offensiveRating.setValue(Integer.toString(stat.getOffensiveRating()));
+        dStats.setAttributeNode(offensiveRating);
+
+        Attr defensiveRating = doc.createAttribute("defensiveRating");
+        defensiveRating.setValue(Integer.toString(stat.getDefensiveRating()));
+        dStats.setAttributeNode(defensiveRating);
+
+        Attr armorRating = doc.createAttribute("armorRating");
+        armorRating.setValue(Integer.toString(stat.getArmorRating()));
+        dStats.setAttributeNode(armorRating);
+
+        // -----Other parameters
+
+        Attr expReqLvUp = doc.createAttribute("expReqLvUp");
+        expReqLvUp.setValue(Integer.toString(stat.getExpReqLvUp()));
+        dStats.setAttributeNode(expReqLvUp);
+
+        Attr lastLvlExpReq = doc.createAttribute("lastLvlExpReq");
+        lastLvlExpReq.setValue(Integer.toString(stat.getLastLvlExpReq()));
+        dStats.setAttributeNode(lastLvlExpReq);
+
+        Attr maxHealth = doc.createAttribute("maxHealth");
+        maxHealth.setValue(Integer.toString(stat.getMaxHealth()));
+        dStats.setAttributeNode(maxHealth);
+
+        Attr maxMana = doc.createAttribute("maxMana");
+        maxMana.setValue(Integer.toString(stat.getMaxMana()));
+        dStats.setAttributeNode(maxMana);
+
+        Attr weaponModifier = doc.createAttribute("weaponModifier");
+        weaponModifier.setValue(Integer.toString(stat.getWeaponModifier()));
+        dStats.setAttributeNode(weaponModifier);
+
+        Attr armorModifier = doc.createAttribute("armorModifier");
+        armorModifier.setValue(Integer.toString(stat.getArmorModifier()));
+        dStats.setAttributeNode(armorModifier);
+
+
+
+        stats.appendChild(dStats); //Add dstats into main stats
 
         return stats;
     }
