@@ -15,6 +15,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXParseException;
 
+import utilities.Load_Save;
 import utilities.Observable;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -35,122 +36,15 @@ public class Map extends Observable {
     private int changedY;
 
     public Map(){
-        initMapXML();
+        Load_Save.getInstance().loadMap(this, DEFAULT_MAP); //whenever it is initialized, the default map will be loaded
     }
-
-    private void initMapXML(){
-
-        try{
-            //TODO: Remove once done testing
-//            String tmp = "./src/res/save_files/SaveFile_1.xml";
-//            String filepath = tmp.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
-
-            // Get the xml filepath string ensuring file separators are specific to the use's OS.
-            //TODO: Uncomment when done testing
-            String filepath = DEFAULT_MAP.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
-
-            // Create a document from the xml file
-            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilder = documentBuilderFactory.newDocumentBuilder();
-            Document doc = docBuilder.parse(new File(filepath));
-
-            // Normalize
-            doc.getDocumentElement().normalize();
-
-            NodeList mapList = doc.getElementsByTagName("map"); //Maybe in the future we have multiple maps?
-            Element map = (Element) mapList.item(0); //Only 1 map element atm
-            // Get the width and height of the map
-            mapWidth = Integer.parseInt(map.getAttribute("width"));
-            mapHeight = Integer.parseInt(map.getAttribute("height"));
-
-            // Create an empty array of tiles
-            tiles = new Tile[mapHeight][mapWidth];
-
-            NodeList rows = doc.getElementsByTagName("row");
-
-            for(int i=0; i<rows.getLength(); i++){
-                Element row = (Element) rows.item(i);
-                NodeList tileNodes = row.getElementsByTagName("tile");
-
-                for(int j=0; j<tileNodes.getLength(); j++){
-                    Element tileElement = (Element) tileNodes.item(j);
-
-                    // Declare variables use to construct a tile
-                    Terrain terrain = null;
-                    AreaEffect areaEffect = null;
-                    Item item = null;
-                    Entity entity = null;
-
-                    // Get the terrain on the tile
-                    Element terrainElement = (Element) tileElement.getElementsByTagName("terrain").item(0);
-                    String terrainType = terrainElement.getAttribute("type");
-                    terrain = new Terrain(terrainType);
-
-                    // Get the areaEffect if there is one
-                    NodeList areaEffectNodes = tileElement.getElementsByTagName("area-effect");
-                    if(areaEffectNodes.getLength() > 0){
-                        Element areaEffectElement = (Element) areaEffectNodes.item(0);
-                        String areaEffectType = areaEffectElement.getAttribute("type");
-                        switch(areaEffectType){
-                            case "take-damage":
-                                areaEffect = new TakeDamage();
-                                break;
-                            case "heal-damage":
-                                areaEffect = new HealDamage();
-                                break;
-                            case "level-up":
-                                areaEffect = new LevelUp();
-                                break;
-                            case "instant-death":
-                                areaEffect = new InstantDeath();
-                                break;
-                        }
-                    }
-
-                    // Get the item if there is one
-                    NodeList itemNodes = tileElement.getElementsByTagName("item");
-                    if(itemNodes.getLength() > 0){
-                        Element itemElement = (Element) itemNodes.item(0);
-                        String itemType = itemElement.getAttribute("type");
-                        int id = Integer.parseInt(itemElement.getAttribute("id"));
-
-                        //if statements for the different types of items
-
-                        //if take-able
-                        if(itemType.equals(Item.Type.TAKEABLE.toString())){
-                            item = new TakeableItem(TakeableItem.Items.values()[id]);
-                        }
-                        else if(itemType.equals(Item.Type.ONE_SHOT.toString())){
-                            item = new OneShotItem(OneShotItem.Effects.values()[id]);
-                        }
-                        else if(itemType.equals(Item.Type.INTERACTIVE.toString())){
-                            System.out.println("Interactive Item");
-                            item = new InteractiveItem(InteractiveItem.Quests.values()[id]);
-                        }
-                        else if(itemType.equals(Item.Type.OBSTACLE.toString())){
-                            //TODO: Need Obstactle Item
-                        }
-
-                    }
-
-                    // Get any entities that are on the tile.
-                    NodeList entityNodes = tileElement.getElementsByTagName("entity");
-                    if(entityNodes.getLength() > 0){
-                        Element entityElement = (Element) entityNodes.item(0);
-                        //TODO: Load whatever attributes are necessary
-                        entity = new Entity();
-                    }
-
-                    tiles[i][j] = new Tile(terrain, areaEffect, item, entity);
-                }
-            }
-        }catch(SAXParseException e){
-            System.out.println("Error parsing");
-            e.printStackTrace();
-        }catch(Exception e){
-            System.out.println("Error parsing map again");
-            e.printStackTrace();
-        }
+    public void initMap(){
+        //Load_Save.getInstance().loadMap(DEFAULT_MAP);
+    }
+    public void setMapInfo(int width, int height, Tile[][] tileArray){
+        mapHeight = height;
+        mapWidth = width;
+        tiles = tileArray;
     }
     public Tile[][] getTiles() {
         return tiles;
@@ -215,8 +109,4 @@ public class Map extends Observable {
         return mapHeight;
     }
 
-    //TODO: Remove this after debugging
-    public static void main(String[] args){
-        Map m = new Map();
-    }
 }

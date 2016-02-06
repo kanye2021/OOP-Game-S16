@@ -72,6 +72,13 @@ def generate(mapSizeX, mapSizeY, numItemsToAdd, totalItemCount, outputFileName):
     outputFile = open(outputFileName + ".xml", "w")
     outputFile.write(prettify(root))
 
+
+def getTerrainType(x, y):
+    if (x % 6 == 0 and y > 4  and y < 10):
+        return "mountain"
+    else:
+        return "grass"
+
 if __name__ == "__main__":
 
     # mapSizeX, mapSizeY, numItemsToAdd, totalItemCount, outputFileName

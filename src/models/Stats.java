@@ -11,8 +11,6 @@ import java.util.TimerTask;
  * Created by ben on 2/2/16.
  */
 
-
-
 public class Stats {
     
     // Primary stats
@@ -40,7 +38,37 @@ public class Stats {
     private int weaponModifier;
     private int armorModifier;
 
-
+	public static enum Type {
+		
+		LIVES_LEFT("Lives left") {public void modify(Entity entity, int delta) {entity.getStats().modifyLivesLeft(delta);};},
+		LIFE_LEFT("Life left") {public void modify(Entity entity, int delta) {entity.getStats().modifyHealth(delta);};},
+		MANA_LEFT("Mana left") {public void modify(Entity entity, int delta) {entity.getStats().modifymana(delta);};},
+		EXPERIENCE("Experience") {public void modify(Entity entity, int delta) {entity.getStats().modifyExperience(delta);};},
+		MOVEMENT("Movement") {public void modify(Entity entity, int delta) {entity.getStats().actuallyModifyMovement(delta);};},
+		LEVEL("Level") {public void modify(Entity entity, int delta) {entity.getStats().modifyLevel(delta);};},
+		STRENGTH("Strength") {public void modify(Entity entity, int delta) {entity.getStats().modifyStrength(delta);};},
+		AGILITY("Agility") {public void modify(Entity entity, int delta) {entity.getStats().modifyAgility(delta);};},
+		INTELLECT("Intellect") {public void modify(Entity entity, int delta) {entity.getStats().modifyIntellect(delta);};},
+		HARDINESS("Hardiness") {public void modify(Entity entity, int delta) {entity.getStats().modifyHardiness(delta);};};
+		
+		private String s;
+		
+		public abstract void modify(Entity entity, int amount);
+		
+		private Type(String s) {
+			
+			this.s = s;
+			
+		}
+		
+		public String toString() {
+			
+			return s;
+			
+		}
+		
+	}
+	
     public Stats(){
         
         // Init primary stats
@@ -113,8 +141,67 @@ public class Stats {
         defensiveRating = agility + level;
         armorRating = armorModifier + hardiness;
     }
-
-
+    //Loaders for Stats
+    // ------ Primary Stats ------
+    public void loadLives (int lives) {
+        this.livesLeft = lives;
+    }
+    public void loadStr (int str) {
+        strength = str;
+    }
+    public void loadAgi(int agi){
+        agility = agi;
+    }
+    public void loadInt(int i){
+        intellect = i;
+    }
+    public void loadTough (int t){
+        hardiness = t;
+    }
+    public void loadExp(int e) {
+        experience = e;
+    }
+    public void loadMov (int m) {
+        movement = m;
+    }
+    // ------Derived Stats -----
+    public void loadLvl (int i) {
+        level = i;
+    }
+    public void loadHealth (int h) {
+        health = h;
+    }
+    public void loadMana (int m) {
+        mana = m;
+    }
+    public void loadOff (int o) {
+        offensiveRating = o;
+    }
+    public void loadDef (int d) {
+        defensiveRating = d;
+    }
+    public void loadArm (int a) {
+        armorRating = a;
+    }
+    //----Animation stuff
+    public void loadMaxHealth(int a){
+        maxHealth = a;
+    }
+    public void loadMaxMana (int m){
+        maxMana = m;
+    }
+    public void loadExpReqLvl(int e){
+        expReqLvUp = e;
+    }
+    public void loadLastLvlExp(int l){
+        lastLvlExpReq = l;
+    }
+    public void loadWeaponModifier (int w) {
+        weaponModifier = w;
+    }
+    public void loadArmorModifier (int a){
+        armorModifier = a;
+    }
     // Getters for primary stats
     public int getLivesLeft(){return livesLeft;}
     public int getStrength(){return (strength);}
@@ -190,11 +277,11 @@ public class Stats {
     }
     
     // TODO: Test with item that increases exprience
-    public void modifyExperience(int delta){
+    public void modifyExperience(final int delta){
         // Increases experience gradually so it "fills" the bar
-        int stopAtExp =  experience + delta;
+        final int stopAtExp =  experience + delta;
         int sign = delta > 0 ? 1 : -1;
-        int increment = sign * (expReqLvUp - lastLvlExpReq)/100; // keep the exp bar consistant at all levels.
+        final int increment = sign * (expReqLvUp - lastLvlExpReq)/100; // keep the exp bar consistant at all levels.
         TimerTask tasknew = new TimerTask() {
             @Override
             public void run() {
@@ -251,10 +338,10 @@ public class Stats {
     }
     
 
-    public void modifyHealth(int delta){
-        int stopAtHealth = health + delta;
+    public void modifyHealth(final int delta){
+        final int stopAtHealth = health + delta;
         int sign = delta > 0 ? 1 : -1;
-        int increment = sign * (maxHealth)/10;
+        final int increment = sign * (maxHealth)/10;
         TimerTask tasknew = new TimerTask() {
             @Override
             public void run() {
@@ -285,10 +372,10 @@ public class Stats {
     }
 
     // TODO: Test this with something that modifys mana.
-    public void modifymana(int delta){
-        int stopAtMana = mana + delta;
+    public void modifymana(final int delta){
+        final int stopAtMana = mana + delta;
         int sign = delta > 0 ? 1 : -1;
-        int increment = sign * (maxMana)/10;
+        final int increment = sign * (maxMana)/10;
         TimerTask tasknew = new TimerTask() {
             @Override
             public void run() {
@@ -318,6 +405,12 @@ public class Stats {
         timer.scheduleAtFixedRate(tasknew,100,delay);
     }
 
+    public void actuallyModifyMovement(int delta) {
+		
+		movement = this.getMovement() + delta;
+		movement = Math.max(movement, 0);
+		
+	}
     //derived status or ones that require a formula to calculate
     public void updateOffensiveRating(){
 

@@ -32,22 +32,9 @@ public abstract class Item {
 	
     //Attributes that all Items will have
     protected int id;
-
-	protected String name;
     protected Type type;
-    //protected String description;
-    //protected String pathToPicture;
-
-
-    //Overloaded Constructor that takes in name, type, description and id
-    //that construct a generic item
-    protected Item(int id, String name, Type type, String description, String pathToPicture){
-    	this.id  = id;
-    	this.name = name;
-        this.type = type;
-//        this.description = description;
-//        this.pathToPicture = pathToPicture;
-    }
+    protected String pathToPicture;
+    
 
     //Constructor
     protected Item(int id, Type type) {
@@ -68,8 +55,6 @@ public abstract class Item {
     
     }
     
-    public abstract String getName();
-    public abstract String getDescription();
     public abstract String getPathToPicture();
 
     public abstract boolean onTouch(Entity entity);
@@ -89,14 +74,18 @@ public abstract class Item {
     	Item otherItem = (Item) o;
     	
     	if (this.getID() == otherItem.getID()) {
+    		
     		return true;
+    	
     	}
+    	
     	return false;
+    	
     }
 
 
     public String toString() {
-        return getID() + ": " + getName() + " | " + getType();
+        return getType() + ": " + getID();
     }
 
 

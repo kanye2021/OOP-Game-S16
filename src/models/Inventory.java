@@ -1,4 +1,3 @@
-
 package models;
 
 import models.items.TakeableItem;
@@ -122,5 +121,4 @@ public class Inventory {
 		}
 	}
 }
-
 

@@ -3,7 +3,11 @@
  */
 package models.items;
 
+import utilities.StatModification;
+import utilities.StatModifications;
 import models.Entity;
+import models.Stats;
+import models.Inventory;
 
 import java.util.HashMap;
 
@@ -12,55 +16,69 @@ import java.util.HashMap;
  * the Entity's inventory when touched
  */
 public class TakeableItem extends Item {
+	//	public enum Items {
+//
+//
+//		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", "equippable","primaryWeapon", "2", "0"),
+//		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png", "equippable","primaryWeapon", "5", "0"),
+//		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", "equippable","primaryWeapon", "7", ""),
+//		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", "equippable","primaryWeapon", "10", "0"),
+//		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", "equippable","secondaryWeapon", "0", "2"),
+//		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", "equippable","secondaryWeapon", "0", "5"),
+//		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png", "equippable","secondaryWeapon", "0", "7"),
+//		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", "equippable","secondaryWeapon", "0", "10");
+//
+//		//a mini skirt for jorge in the jungle | jorge in the jungle figurine
+//
 	public enum Items {
-		
 
-		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", "equippable","primaryWeapon", "2", "0"),
-		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png", "equippable","primaryWeapon", "5", "0"),
-		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", "equippable","primaryWeapon", "7", ""),
-		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", "equippable","primaryWeapon", "10", "0"),
-		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", "equippable","secondaryWeapon", "0", "2"),
-		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", "equippable","secondaryWeapon", "0", "5"),
-		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png", "equippable","secondaryWeapon", "0", "7"),
-		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", "equippable","secondaryWeapon", "0", "10");
+		//		TEST_SOMETHING(new TakeableItem("a","b","c")),
+		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		)),
+		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		)),
+		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		)),
+		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		)),
+		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		)),
+		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		)),
+		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		)),
+		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		));
 
-		//a mini skirt for jorge in the jungle | jorge in the jungle figurine
-		
+
 		private String name;
 		private String description;
 		private String pathToPicture;
-        private String property;
-        private String component;
-        private String offensiveRating;
-        private String armorRating;
-        private boolean isEquippable;
-        private boolean isUsable;
+		private StatModifications modifications;
 
 
-		Items(String name, String description, String pathToPicture, String property, String component, String offfensiveRating, String armorRating) {
-			
+		//Conditions conditions;
+		//conditions.addItemCondition(Conditions.AT_LEAST, 2, TakeableItems.Items.IRON_SWORD, Conditions.INVENTORY)
+		//conditions.addItemCondition(TakeableItems.Items.DIAMOND_SWORD, 1, Conditions.AT_LEAST, Conditions.EQUIPPED)
+		//conditions.addItemCondition(TakeableItems.Items.STEEL_SWORD, 2, Conditions.AT_LEAST, Conditions.INVENTORY)
+		//conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 50, Conditions.POINTS)
+		//conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 0.5, Conditions.PERCENTAGE)
+
+
+		private Items(String name, String description, String pathToPicture, StatModifications modifications) {
+
 			this.name = name;
 			this.description = description;
 			this.pathToPicture = pathToPicture;
-
-            //Whatever the property(i.e. usable, equippable, etc.)
-            this.property = property;
-
-            //Set type of Item
-            this.component = component;
-			this.offensiveRating = offfensiveRating;
-			this.armorRating = armorRating;
-
-            //Check if equippable or usable
-            if(this.property.compareTo("equippable") == 1){
-                isEquippable = true;
-                isUsable = false;
-            }
-
-            else if(this.property.compareTo("usable") == 1) {
-                isEquippable = false;
-                isUsable = true;
-            }
+			this.modifications = modifications;
 
 		}
 
@@ -69,66 +87,43 @@ public class TakeableItem extends Item {
 			return ordinal();
 
 		}
-		
+
 		public String getName() {
 
 			return name;
 
 		}
-		
+
 		public String getDescription() {
 
 			return description;
 
 		}
-		
+
 		public String getPathToPicture() {
 
 			return pathToPicture;
 
 		}
 
-        public String getComponent(){
-            return component;
-        }
+	}
 
-        public int getOffensiveRating(){
-            return Integer.parseInt(offensiveRating);
-        }
+	//Constructor
+	public TakeableItem(Items item) {
+		super(item.ordinal(), Item.Type.TAKEABLE);
+	}
 
-        public int getArmorRating(){
-            return Integer.parseInt(armorRating);
-        }
-
-        public boolean getIsEquippable(){
-            return isEquippable;
-        }
-
-        public boolean getIsUsable() {
-            return isUsable;
-        }
-    }
-		
-    //Constructor
-    public TakeableItem(Items item) {
-    	super(item.ordinal(), Item.Type.TAKEABLE);
-    }
-
-    /**
-     *Returns true if it should be removed from the map
-     */
-    @Override
-    public final boolean onTouch(Entity entity) {
-        entity.getInventory().addItem(this);
-        return true;
-    }
 
 	@Override
+	public final boolean onTouch(Entity entity) {
+		entity.getInventory().addItem(this);
+		return true;
+	}
+
 	public String getName() {
 		return Items.values()[getID()].name;
 	}
 
-	@Override
 	public String getDescription() {
 		return Items.values()[getID()].description;
 	}
@@ -138,5 +133,16 @@ public class TakeableItem extends Item {
 		return Items.values()[getID()].pathToPicture;
 	}
 
+	public void modifyStats(Entity entity) {
 
+		Items.values()[getID()].modifications.modifyStats(entity);
+
+	}
+
+	public void modifyStatsInverse(Entity entity) {
+
+		Items.values()[getID()].modifications.modifyStatsInverse(entity);
+
+	}
 }
+

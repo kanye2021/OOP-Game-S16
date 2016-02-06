@@ -8,6 +8,7 @@ import models.Map;
 import utilities.IOMediator;
 import utilities.Load_Save;
 import utilities.NavigationMediator;
+import views.Display;
 import views.GameView;
 import views.LoadGameView;
 import views.View;
@@ -61,19 +62,15 @@ public class LoadGameController extends ViewController{
     }
     public boolean checkFolderList(){
         File folder = new File(saveFilePath);
-        System.out.println("F: " + folder.listFiles().length);
-        System.out.println("File: " + fileNames.length);
-
         if (folder.listFiles().length != fileNames.length){
-            System.out.println("They shouldn't be the same");
+            System.out.println("Mis match of files");
             return true;
         }else {
-            System.out.println("Good together");
             return false;
         }
     }
     public void loadGame(){
-        if (IOMediator.map == null) { //Case if there isn't a map and avatar created
+        if (IOMediator.map == null) { //Case if there isn't a map and avatar created (IE coming from AvatarCreationView)
             System.out.println("New Game!");
             Entity avatar = new Avatar();
             Map map = new Map();
@@ -81,7 +78,6 @@ public class LoadGameController extends ViewController{
             IOMediator.entity = avatar;
             IOMediator.map = map;
             GameView gameView = new GameView(map, avatar);
-            //TODO: Map will be taken care of by load file
             IOMediator.Views.GAME.setView(gameView);
             // map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
         }else {
@@ -90,8 +86,9 @@ public class LoadGameController extends ViewController{
         }
 
         Load_Save.getInstance().load(fileNames[myOption].getName()); //Going to grab information from XML
-
         IOMediator.setActiveView(IOMediator.Views.GAME);
+        Display.getInstance().repaint();
+
     }
 
     public void handleKeyRelease(int key){

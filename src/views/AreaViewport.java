@@ -89,6 +89,7 @@ public class AreaViewport extends View implements Observer {
                     continue;
 
                 ImageIcon ii = new ImageIcon(terrainBaseFilepath + t.getType() + ".png");
+
                 Image terrainImg = ii.getImage();
                 g.drawImage(terrainImg, displayX, displayY, Display.getInstance());
 

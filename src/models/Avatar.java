@@ -9,9 +9,10 @@ import models.items.TakeableItem;
  */
 public class Avatar extends Entity {
 
-    public Avatar(){
+    public Avatar() {
 
     }
+
     public Avatar(String occupation) {
         super(occupation);
     }
@@ -30,8 +31,7 @@ public class Avatar extends Entity {
         return "avatar";
     }
 
-    public void equipItem(Item item){
+    public void equipItem(Item item) {
         //TODO: equipped items
     }
 }
-
