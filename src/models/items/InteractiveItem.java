@@ -78,16 +78,6 @@ public class InteractiveItem extends Item {
     }
 
     @Override
-    public String getDescription() {
-        return null;
-    }
-
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
     public Type getType() {
         return super.getType();
     }
