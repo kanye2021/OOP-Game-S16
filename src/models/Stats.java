@@ -11,6 +11,8 @@ public class Stats {
 	public static enum Type {
 		
 		LIVES_LEFT("Lives left") {public void modify(Entity entity, int delta) {entity.getStats().modifyLivesLeft(delta);};},
+		LIFE_LEFT("Life left") {public void modify(Entity entity, int delta) {entity.getStats().modifyLifeLeft(delta);};},
+		MANA_LEFT("Mana left") {public void modify(Entity entity, int delta) {entity.getStats().modifyManaLeft(delta);};},
 		EXPERIENCE("Experience") {public void modify(Entity entity, int delta) {entity.getStats().modifyExperience(delta);};},
 		MOVEMENT("Movement") {public void modify(Entity entity, int delta) {entity.getStats().actuallyModifyMovement(delta);};},
 		LEVEL("Level") {public void modify(Entity entity, int delta) {entity.getStats().modifyLevel(delta);};},
