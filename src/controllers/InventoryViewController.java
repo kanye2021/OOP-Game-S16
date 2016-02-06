@@ -1,4 +1,7 @@
 package controllers;
+
+
+import models.items.TakeableItem;
 import controllers.ViewController;
 import models.ItemStatsAssociation;
 import models.Inventory;
@@ -13,8 +16,8 @@ import java.awt.event.KeyEvent;
 public class InventoryViewController extends ViewController {
 
 	private int position = 0;
-    private Inventory inventory;
-    private ItemStatsAssociation avatarItemStats;
+    public Inventory inventory;
+    public ItemStatsAssociation avatarItemStats;
 
 
 
@@ -33,6 +36,11 @@ public class InventoryViewController extends ViewController {
     	return IOMediator.entity.getInventory();
     	
     }
+
+    public ItemStatsAssociation getAvatarItemStats(){
+        return IOMediator.entity.getAvatarItemStats();
+    }
+
     
     @Override
     public void handleKeyPress(int key) {
@@ -51,7 +59,8 @@ public class InventoryViewController extends ViewController {
         	IOMediator.setActiveView(IOMediator.Views.GAME);
         }
 
-        else if(key == KeyEvent.VK_L) {
+        else if(key == KeyEvent.VK_ENTER) {
+            System.out.println("Enter pressed from IVC");
             useItem();
         }
         
@@ -87,13 +96,17 @@ public class InventoryViewController extends ViewController {
     	
     }
 
+    // Uses/Equips item in inventory
+    private void useItem() {
+        System.out.println(getInventory().getItemNodeAt(getPosition()).amount);
+
+        if(getInventory().isThereAnItemAt(getPosition())) {
+            getAvatarItemStats().useFromInv(getInventory().getItemNodeAt(getPosition()).item);
+        }
+    }
    
     public int getPosition(){return position;}
 
-    //Uses item in inventory
-    private void useItem() {
-        TakeableItem usedItem = getInventory().itemAt(position);
-        avatarItemStats.useFromInv(usedItem);
-    }
+
 }
 

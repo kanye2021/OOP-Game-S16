@@ -45,8 +45,8 @@ public abstract class Item {
     	this.id  = id;
     	this.name = name;
         this.type = type;
-        this.description = description;
-        this.pathToPicture = pathToPicture;
+//        this.description = description;
+//        this.pathToPicture = pathToPicture;
     }
 
     //Constructor

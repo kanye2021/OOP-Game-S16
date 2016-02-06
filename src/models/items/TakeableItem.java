@@ -16,13 +16,13 @@ public class TakeableItem extends Item {
 		
 
 		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", "equippable","primaryWeapon", "2", "0"),
-		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png", "equippable","primaryWeapon", "2", "0"),
-		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", "equippable","primaryWeapon", "2", "0"),
-		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", "equippable","primaryWeapon", "2", "0"),
-		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", "equippable","secondaryWeapon", "2", "0"),
-		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", "equippable","secondaryWeapon", "2", "0"),
-		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png", "equippable","secondaryWeapon", "2", "0"),
-		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", "equippable","secondaryWeapon", "2", "0");
+		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png", "equippable","primaryWeapon", "5", "0"),
+		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", "equippable","primaryWeapon", "7", ""),
+		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", "equippable","primaryWeapon", "10", "0"),
+		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", "equippable","secondaryWeapon", "0", "2"),
+		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", "equippable","secondaryWeapon", "0", "5"),
+		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png", "equippable","secondaryWeapon", "0", "7"),
+		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", "equippable","secondaryWeapon", "0", "10");
 
 		//a mini skirt for jorge in the jungle | jorge in the jungle figurine
 		
@@ -48,6 +48,8 @@ public class TakeableItem extends Item {
 
             //Set type of Item
             this.component = component;
+			this.offensiveRating = offfensiveRating;
+			this.armorRating = armorRating;
 
             //Check if equippable or usable
             if(this.property.compareTo("equippable") == 1){

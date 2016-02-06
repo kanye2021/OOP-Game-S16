@@ -93,9 +93,9 @@ public class InteractiveItem extends Item {
 
 
         //Check conditions and see if can activate items
-        if(entity.getInventory().getItem(Quests.values()[getID()].getRequiredItems())){
-            System.out.println("You can pass");
-        }
+//        if(entity.getInventory().getItem(Quests.values()[getID()].getRequiredItems())){
+//            System.out.println("You can pass");
+//        }
 
 
         return false;

@@ -5,8 +5,8 @@ import controllers.InventoryViewController;
 import controllers.PauseViewController;
 import models.Inventory;
 import models.Inventory.ItemNode;
-import models.Item;
-import models.TakeableItem;
+import models.items.Item;
+import models.items.TakeableItem;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;

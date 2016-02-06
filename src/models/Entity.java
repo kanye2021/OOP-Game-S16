@@ -24,6 +24,8 @@ public class Entity {
     protected String occupation;
     protected Stats stats;
     protected Inventory inventory;
+    protected EquippedItems equippedItems;
+    protected ItemStatsAssociation avatarItemStats;
     protected int[] location;
     protected String filePathExtension = "src/res/save_files/";
     protected String filePathName = "SaveFile_1.xml"; //tmp
@@ -33,7 +35,6 @@ public class Entity {
         initEntity("smasher");
     }
     public Entity(String occupation){
-
         initEntity(occupation);
     }
 
@@ -44,7 +45,9 @@ public class Entity {
         this.lastAtemptedDirection = "N";
         this.occupation = occupation;
         this.inventory = new Inventory();
+        this.equippedItems = new EquippedItems();
         this.stats = new Stats(occupation);
+        this.avatarItemStats = new ItemStatsAssociation(this);
         //Avatar parsing
 
     }
@@ -64,6 +67,8 @@ public class Entity {
     public Inventory getInventory(){
         return this.inventory;
     }
+    public EquippedItems getEquippedItems() { return this.equippedItems; }
+    public ItemStatsAssociation getAvatarItemStats(){ return this.avatarItemStats; }
     public void setOccupation(String occupation) {
         this.occupation = occupation;
     }
