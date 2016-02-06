@@ -101,10 +101,21 @@ public class Inventory {
 	}
 
 	public boolean getItem(TakeableItem.Items[] findItem){
-		for (int i = 0; i < items.length; i++) {
-			if(items[i] != null && items[i].item.equals(findItem))
-				return true;
-		}
+		
+		//for (TakeableItem.Items item : findItem) {
+			
+			//for (ItemNode item : items) {
+				
+				// Need to iterate through all items unfortunately. Then count them and make sure they are at least the required amount
+				
+			//}
+			
+		//}
+		
+		//for (int i = 0; i < items.length; i++) {
+			//if(items[i] != null && items[i].item.getID() == findItem)
+				//return true;
+		//}
 		return false;
 	}
 
