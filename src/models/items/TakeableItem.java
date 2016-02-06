@@ -33,28 +33,28 @@ public class TakeableItem extends Item {
 	public enum Items {
 
 		//		TEST_SOMETHING(new TakeableItem("a","b","c")),
-		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", new StatModifications(
+		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5)
 		)),
-		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png", new StatModifications(
+		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5)
 		)),
-		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", new StatModifications(
+		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5)
 		)),
-		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", new StatModifications(
+		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5)
 		)),
-		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", new StatModifications(
+		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5)
 		)),
-		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", new StatModifications(
+		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5)
 		)),
-		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png", new StatModifications(
+		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5)
 		)),
-		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", new StatModifications(
+		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png","equippable","secondaryWeapon", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5)
 		));
 
@@ -62,7 +62,10 @@ public class TakeableItem extends Item {
 		private String name;
 		private String description;
 		private String pathToPicture;
+		private String property;
+		private String component;
 		private StatModifications modifications;
+		private boolean isEquippable;
 
 
 		//Conditions conditions;
@@ -73,12 +76,17 @@ public class TakeableItem extends Item {
 		//conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 0.5, Conditions.PERCENTAGE)
 
 
-		private Items(String name, String description, String pathToPicture, StatModifications modifications) {
+		private Items(String name, String description, String pathToPicture, String property, String component, StatModifications modifications) {
 
 			this.name = name;
 			this.description = description;
 			this.pathToPicture = pathToPicture;
+			this.property = property;
+			this.component = component;
 			this.modifications = modifications;
+			if(property == "equippable"){
+				isEquippable = true;
+			}
 
 		}
 
@@ -104,6 +112,14 @@ public class TakeableItem extends Item {
 
 			return pathToPicture;
 
+		}
+
+		public String getComponent() {
+			return component;
+		};
+
+		public boolean getIsEquippable() {
+			return isEquippable;
 		}
 
 	}
@@ -132,6 +148,10 @@ public class TakeableItem extends Item {
 	public String getPathToPicture() {
 		return Items.values()[getID()].pathToPicture;
 	}
+
+	public boolean getIsEquippable(){ return Items.values()[getID()].isEquippable; }
+
+	public String getComponent(){ return Items.values()[getID()].component; }
 
 	public void modifyStats(Entity entity) {
 

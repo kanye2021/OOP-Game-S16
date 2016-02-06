@@ -107,7 +107,15 @@ public class Inventory {
 		}
 		return -1;
 	}
-	
+
+	public ItemNode getItemNode(TakeableItem findItem){
+		for (int i = 0; i < items.length; i++) {
+			if(items[i] != null && items[i].item.equals(findItem))
+				return items[i];
+		}
+		return null;
+	}
+
 	public class ItemNode{
 		public TakeableItem item;
 		public int amount;

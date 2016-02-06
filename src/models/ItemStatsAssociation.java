@@ -8,12 +8,14 @@ import models.items.TakeableItem;
  */
 public class ItemStatsAssociation {
     //Class Variables
+    Entity avatar;
     EquippedItems avatarEquippedItems;
     Inventory avatarInventory;
     Stats avatarStats;
 
     //Constructor
      public ItemStatsAssociation(Entity avatar){
+        this.avatar = avatar;
         avatarEquippedItems = avatar.getEquippedItems();
         avatarInventory = avatar.getInventory();
         avatarStats = avatar.getStats();
@@ -25,12 +27,8 @@ public class ItemStatsAssociation {
     public void useFromInv(TakeableItem usedItem){
 
         //Apply and remove item from inventory
-        avatarStats.setWeaponModifier(avatarStats.getWeaponModifier()+TakeableItem.Items.values()[usedItem.getID()].getOffensiveRating());
-        avatarStats.setArmorModifier(avatarStats.getArmorModifier()+TakeableItem.Items.values()[usedItem.getID()].getArmorRating());
-        avatarStats.updateOffensiveRating();
-        avatarStats.updateDefensiveRating();
-
-        boolean canRemove = avatarInventory.removeItem(usedItem);
+        usedItem.modifyStats(avatar);
+        avatarInventory.removeItem(usedItem);
 
         // /if it is equippable (otherwise it would just be used)
         if(TakeableItem.Items.values()[usedItem.getID()].getIsEquippable()) {
@@ -40,6 +38,7 @@ public class ItemStatsAssociation {
                 TakeableItem unequippedItem = avatarEquippedItems.checkItem(usedItem);
                 unequipItemStats(unequippedItem);
                 avatarEquippedItems.equipItems(usedItem);
+                avatarInventory.addItem(unequippedItem);
             }
 
             //If type of item is not equipped equip it
@@ -53,13 +52,10 @@ public class ItemStatsAssociation {
     //Unequip item and undo the stats it provided
     public void unequipItemStats(TakeableItem unequippedItem){
         //Undo stats from to be unequipped item and update
-        avatarStats.setWeaponModifier(avatarStats.getWeaponModifier()-TakeableItem.Items.values()[unequippedItem.getID()].getOffensiveRating());
-        avatarStats.setArmorModifier(avatarStats.getArmorModifier()-TakeableItem.Items.values()[unequippedItem.getID()].getArmorRating());
-        avatarStats.updateOffensiveRating();
-        avatarStats.updateDefensiveRating();
+        unequippedItem.modifyStatsInverse(avatar);
 
         //Unequip and add to inventory
         avatarEquippedItems.unequipItems(unequippedItem);
-        boolean canAdd = avatarInventory.addItem(unequippedItem);
+        avatarInventory.addItem(unequippedItem);
     }
 }
