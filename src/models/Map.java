@@ -119,6 +119,13 @@ public class Map extends Observable {
                         else if(itemType.equals(Item.Type.ONE_SHOT.toString())){
                             item = new OneShotItem(OneShotItem.Effects.values()[id]);
                         }
+                        else if(itemType.equals(Item.Type.INTERACTIVE.toString())){
+                            System.out.println("Interactive Item");
+                            item = new InteractiveItem(InteractiveItem.Quests.values()[id]);
+                        }
+                        else if(itemType.equals(Item.Type.OBSTACLE.toString())){
+                            //TODO: Need Obstactle Item
+                        }
 
                     }
 

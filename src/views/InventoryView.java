@@ -31,7 +31,7 @@ public class InventoryView extends View {
 		
 		renderBackground(g2);
 		
-		renderIems(g2);
+		renderItems(g2);
 		
 		g.drawImage(overImage, (int) (View.B_WIDTH * 0.1), (int) (View.B_HEIGHT * 0.1), (int) (View.B_WIDTH * 0.8), (int) (View.B_HEIGHT * 0.8), null);
 		
@@ -47,7 +47,7 @@ public class InventoryView extends View {
 		
 		
 	}
-	
+	/*
 	private void renderIems(Graphics g2){
 		
 		int itemNumber = 0;
@@ -118,6 +118,6 @@ public class InventoryView extends View {
 			
 		}
 		
-	}
+	}*/
 
 }

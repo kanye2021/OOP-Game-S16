@@ -12,7 +12,7 @@ public class Avatar extends Entity {
         super(occupation);
     }
 
-    public void dropItem(Item item) {
+    public void dropItem(TakeableItem item) {
         this.inventory.removeItem(item);
         // TODO: Drop item on the map..
         // Need to be able to insert item on map...

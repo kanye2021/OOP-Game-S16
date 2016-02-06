@@ -9,8 +9,9 @@ package models;
  */
 public class TakeableItem extends Item {
 
-	public static enum Items {
-		
+	public enum Items {
+
+//		TEST_SOMETHING(new TakeableItem("a","b","c")),
 		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png"),
 		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png"),
 		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png"),
@@ -20,42 +21,40 @@ public class TakeableItem extends Item {
 		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png"),
 		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png");
 		
-		//a mini skirt for jorge in the jungle | jorge in the jungle figurine
-		
+
 		private String name;
 		private String description;
 		private String pathToPicture;
-		
+
+
 		private Items(String name, String description, String pathToPicture) {
-			
 			this.name = name;
 			this.description = description;
 			this.pathToPicture = pathToPicture;
-			
 		}
-		
+
 		public int getID() {
-			
+
 			return ordinal();
-			
+
 		}
 		
 		public String getName() {
-			
+
 			return name;
-			
+
 		}
 		
 		public String getDescription() {
-			
+
 			return description;
-			
+
 		}
 		
 		public String getPathToPicture() {
-			
+
 			return pathToPicture;
-			
+
 		}
 		
 	}
@@ -65,7 +64,6 @@ public class TakeableItem extends Item {
     	super(item.ordinal(), Item.Type.TAKEABLE);
     }
 
-    
     /**
      *Returns true if it should be removed from the map
      */
@@ -77,22 +75,16 @@ public class TakeableItem extends Item {
 
 	@Override
 	public String getName() {
-		
 		return Items.values()[getID()].name;
-		
 	}
 
 	@Override
 	public String getDescription() {
-
 		return Items.values()[getID()].description;
-		
 	}
 
 	@Override
 	public String getPathToPicture() {
-		
 		return Items.values()[getID()].pathToPicture;
-
 	}
 }

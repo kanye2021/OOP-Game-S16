@@ -30,27 +30,18 @@ public abstract class Item {
 	
     //Attributes that all Items will have
     protected int id;
-	protected String name;
+	//protected String name;
     protected Type type;
-    protected String description;
-    protected String pathToPicture;
+    //protected String description;
+    //protected String pathToPicture;
 
 
-    //Overloaded Constructor that takes in name, type, description and id
-    //that construct a generic item
-    protected Item(int id, String name, Type type, String description, String pathToPicture){
-    	this.id  = id;
-    	this.name = name;
-        this.type = type;
-        this.description = description;
-        this.pathToPicture = pathToPicture;
-    }
-
+    //Constructor
     protected Item(int id, Type type) {
     	this.id = id;
     	this.type = type;
     }
-    
+
     //Getters
     public final int getID() {
     	
@@ -85,13 +76,9 @@ public abstract class Item {
     	Item otherItem = (Item) o;
     	
     	if (this.getID() == otherItem.getID()) {
-    		
     		return true;
-    		
     	}
-    	
     	return false;
-    	
     }
 
     public String toString() {

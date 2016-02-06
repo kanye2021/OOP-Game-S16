@@ -12,7 +12,7 @@ package models;
 
 public class OneShotItem extends Item {
 
-    public static enum Effects {
+    public enum Effects {
 
         GAIN_HEALTH("stats","health", "5", "takeable-item.png"),
         LOSE_HEALTH("stats","health","-5", "takeable-item.png"),
