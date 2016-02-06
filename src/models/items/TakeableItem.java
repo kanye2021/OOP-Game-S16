@@ -16,6 +16,7 @@ public class TakeableItem extends Item {
 	
 	public enum Items {
 
+
 //		TEST_SOMETHING(new TakeableItem("a","b","c")),
 		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5)
@@ -42,6 +43,7 @@ public class TakeableItem extends Item {
 			new StatModification(Stats.Type.MOVEMENT, 5)
 		));
 		
+
 		private String name;
 		private String description;
 		private String pathToPicture;
