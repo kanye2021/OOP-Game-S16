@@ -68,7 +68,7 @@ public class NavigationMediator {
                 break;
             case "NW":
                 desiredY-=1;
-                desiredX +=1;
+                desiredX-=1;
                 break;
         }
 
@@ -112,7 +112,7 @@ public class NavigationMediator {
 
         // Set a timer to determine when the entity can move again.
         // The delay is inversely proportionaly to the entity's movement statgs
-        int delay = 100-entity.getStats().getMovement();
+        int delay = 100-(entity.getStats().getMovement() / 5);
 
         // If the delay is less than 0, the entity defaults to the fastest movement of 5ms.
         delay = delay > 0 ? delay : 5;

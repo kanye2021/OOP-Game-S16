@@ -9,7 +9,7 @@ public class InstantDeath extends AreaEffect {
 
     @Override
     public void onTouch(Entity entity){
-        entity.getStats().modifyLivesLeft(-1);
+        entity.getStats().loseALife();
     }
 
     @Override

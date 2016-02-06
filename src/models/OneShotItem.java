@@ -73,7 +73,7 @@ public class OneShotItem extends Item {
     @Override
     public final boolean onTouch(Entity entity) {
         System.out.println("Modifying stats");
-        entity.getStats().modifyLifeLeft(Integer.parseInt(this.getDescription()));
+        entity.getStats().modifyHealth(Integer.parseInt(this.getDescription()));
         return true;
     }
 

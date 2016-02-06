@@ -34,7 +34,12 @@ public class IOMediator {
         UNIMPLEMENTED(null) {void render(Graphics g) {getView().render(g);}},
         
 
-        LOAD(new LoadGameView()) {void render(Graphics g) {getView().render(g);}},
+        LOAD(new LoadGameView()) {
+            void render(Graphics g) {
+                System.out.println("When is the view loaded");
+                getView().render(g);
+            }
+        },
         SAVE(new SaveGameView()) {void render(Graphics g) {getView().render(g);}}, // Not sure if having map and entity in constructor is "hacky" or not
         EXIT(null) {void render(Graphics g) {getView().render(g);}},
         GAME() {void render(Graphics g) {getView().render(g);}},

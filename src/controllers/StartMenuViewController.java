@@ -65,7 +65,7 @@ public class StartMenuViewController extends ViewController {
 
         if (key == KeyEvent.VK_UP) {
         
-        	option = option.previous();
+            option = option.previous();
 
         }
 
@@ -77,8 +77,8 @@ public class StartMenuViewController extends ViewController {
 
         else if (key == KeyEvent.VK_ENTER) {
             
-        	option.setView();
-            
+            option.setView();
+
         }
     }
 
