@@ -20,6 +20,10 @@ public class OneShotItem extends Item {
     public enum Effects {
 
     	//EXAMPLE_ONE_SHOT_ITEM("pathToFile", <StatModifications>)
+    	// Can be read as EXAMPLE_ONE_SHOT_ITEM has "pathToFile", and StatModifications
+    	
+    	//These things should create payloads, not statModifications. The reason is because a one shot item can do more than just modify the players stats
+    	
     	GAIN_HEALTH("takeable-item.png", new StatModifications(
 				new StatModification(Stats.Type.HEALTH, 5, StatModification.NumberType.POINT)
 		)),

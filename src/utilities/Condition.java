@@ -93,10 +93,6 @@ public class Condition {
         }else{
             return false;
         }
-//        System.out.println(this.count);
-//        System.out.println(this.item);
-//        System.out.println(this.conditions);
-
     }
 
 }

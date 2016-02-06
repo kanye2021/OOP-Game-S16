@@ -8,7 +8,7 @@ public class StatModification {
 	public static enum NumberType {
 		
 		POINT {protected int getModifierAmount(int initialStatNumber, int delta) {return delta;};},
-		PERCENTAGE {protected int getModifierAmount(int initialStatNumber, int delta) {return (int) (initialStatNumber * ((double) (delta) / 100));};};
+		PERCENTAGE {protected int getModifierAmount(int initialStatNumber, int delta) {return (int) (initialStatNumber * ((double) (delta - 100) / 100));};};
 		
 		protected abstract int getModifierAmount(int initialStatNumber, int delta);
 		

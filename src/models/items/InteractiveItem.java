@@ -88,7 +88,6 @@ public class InteractiveItem extends Item {
 
     @Override
     public boolean onTouch(Entity entity) {
-        System.out.println("I'm in the ontouch");
 
         Condition condition = new Condition(entity);
         condition.addConditions(Condition.Comparison.AT_MOST,2, TakeableItem.Items.IRON_SWORD, Condition.ItemConditions.INVENTORY);
