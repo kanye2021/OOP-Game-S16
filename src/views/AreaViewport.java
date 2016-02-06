@@ -17,10 +17,12 @@ public class AreaViewport extends View implements Observer {
     private Entity entity;
     private  String terrainBaseFilepath = "./src/res/terrain/";
     private  String areaEffectBaseFilepath = "./src/res/area-effects/";
-    private  String itemBaseFilepath = "./src/res/items/";
+    private  String obstacleItemBaseFilepath = "./src/res/items/obstacle/";
+    private  String interactiveItemBaseFilepath = "./src/res/items/interactive/";
+    private  String takeableItemBaseFilepath = "./src/res/items/takeable/";
     private  String entityBaseFilepath = "./src/res/entitys/";
     private final int AREA_WIDTH = B_WIDTH;
-    private final int AREA_HEIGHT = B_HEIGHT * 3/4;
+    private final int AREA_HEIGHT = B_HEIGHT * 4/5;
     private final int TILE_SIZE = 50;
 
     public AreaViewport(Map map, Entity entity){
@@ -34,7 +36,7 @@ public class AreaViewport extends View implements Observer {
         // Modify the filepaths based on the user's OS
         terrainBaseFilepath = terrainBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
         areaEffectBaseFilepath = areaEffectBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
-        itemBaseFilepath = itemBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
+        takeableItemBaseFilepath = takeableItemBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
         entityBaseFilepath = entityBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
     }
 
@@ -88,6 +90,7 @@ public class AreaViewport extends View implements Observer {
                 	continue;
                 
                 ImageIcon ii = new ImageIcon(terrainBaseFilepath + t.getType() + ".png");
+
                 Image terrainImg = ii.getImage();
                 g.drawImage(terrainImg, displayX, displayY, Display.getInstance());
 
@@ -98,7 +101,7 @@ public class AreaViewport extends View implements Observer {
                 
                 if(item!=null){
                 	
-                    ImageIcon item_icon = new ImageIcon(itemBaseFilepath + item.getPathToPicture());
+                    ImageIcon item_icon = new ImageIcon(takeableItemBaseFilepath + item.getPathToPicture());
                     Image itemImage = item_icon.getImage();
 
                     // Center the item in the tile

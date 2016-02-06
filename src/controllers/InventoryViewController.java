@@ -77,5 +77,6 @@ public class InventoryViewController extends ViewController {
     	}
     	
     }
-    
+   
+    public int getPosition(){return position;}
 }

@@ -1,5 +1,6 @@
 package controllers;
 
+import com.sun.xml.internal.fastinfoset.sax.SystemIdResolver;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import models.Avatar;
 import models.Entity;
@@ -7,6 +8,7 @@ import models.Map;
 import utilities.IOMediator;
 import utilities.Load_Save;
 import utilities.NavigationMediator;
+import views.Display;
 import views.GameView;
 import views.LoadGameView;
 import views.View;
@@ -24,11 +26,14 @@ public class LoadGameController extends ViewController{
     int myOption;
     public LoadGameController(LoadGameView lv){
         loadView = lv;
+        loadNewFolder();
+        myOption = 0;
+    }
+    public File[] loadNewFolder(){
         File folder = new File(saveFilePath);
         fileNames = folder.listFiles();
-        myOption = 0; //Option 0 is always the first one
+        return fileNames;
     }
-
     public int getActiveOptions(){
         return myOption;
     }
@@ -49,9 +54,23 @@ public class LoadGameController extends ViewController{
                 loadGame();
                 break;
         }
+        if (checkFolderList()) {
+            System.out.println("Call this");
+            loadNewFolder();
+            loadView.getNewFiles();
+        }
+    }
+    public boolean checkFolderList(){
+        File folder = new File(saveFilePath);
+        if (folder.listFiles().length != fileNames.length){
+            System.out.println("Mis match of files");
+            return true;
+        }else {
+            return false;
+        }
     }
     public void loadGame(){
-        if (IOMediator.map == null) { //Case if there isn't a map and avatar created
+        if (IOMediator.map == null) { //Case if there isn't a map and avatar created (IE coming from AvatarCreationView)
             System.out.println("New Game!");
             Entity avatar = new Avatar();
             Map map = new Map();
@@ -59,16 +78,17 @@ public class LoadGameController extends ViewController{
             IOMediator.entity = avatar;
             IOMediator.map = map;
             GameView gameView = new GameView(map, avatar);
-            //TODO: Map will be taken care of by load file
             IOMediator.Views.GAME.setView(gameView);
             // map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
         }else {
             IOMediator.getInstance().map.removeEntityFromLocation(IOMediator.getInstance().entity.getLocation()[0], IOMediator.getInstance().entity.getLocation()[1]);
             //Needs to remove the previous entity
         }
-        Load_Save.getInstance().load(fileNames[myOption].getName()); //Going to grab information from XML
 
+        Load_Save.getInstance().load(fileNames[myOption].getName()); //Going to grab information from XML
         IOMediator.setActiveView(IOMediator.Views.GAME);
+        Display.getInstance().repaint();
+
     }
 
     public void handleKeyRelease(int key){

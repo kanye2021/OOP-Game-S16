@@ -17,25 +17,17 @@ public class LoadGameView extends View{
     //--------File Path stuff -------
     private String saveFilePath ="src/res/save_files/";
     private File[] listOfSaveFiles;
-    private boolean firstRender;
-
+    private LoadGameController loadController;
     public LoadGameView(){
         this.viewController = new LoadGameController(this);
+        loadController = (LoadGameController) this.viewController;
         File folder = new File(saveFilePath);
         listOfSaveFiles = folder.listFiles();
-        firstRender = true;
+        //getNewFiles();
     }
-    public void printAllSaveFiles(){
-
-        for (File file : listOfSaveFiles) {
-            if (file.isFile()) {
-                System.out.println(file.getName());
-            }
-        }
-    }
-    public File[] getFiles(){
-        System.out.println("In the view: " + listOfSaveFiles.length);
-        return listOfSaveFiles;
+    public void getNewFiles(){ //Function is used to update the list of save files in the folder
+        listOfSaveFiles = loadController.loadNewFolder();
+        System.out.println("LGV: " + listOfSaveFiles.length);
     }
     public void render(Graphics g){
         renderFileButtons(g);

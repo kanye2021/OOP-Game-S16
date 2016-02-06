@@ -4,7 +4,9 @@ import controllers.AvatarCreationViewController;
 import controllers.CreateNewGameViewController;
 import controllers.StartMenuViewController;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 
 /**
@@ -13,8 +15,9 @@ import java.awt.geom.Rectangle2D;
 public class AvatarCreationView extends View {
 
 	private final String AVATAR_CREATE_TEXT = "Please select an Occupation";
-	private final int ARROW_HEIGHT = 20;
-	private final int ARROW_WIDTH = 75;
+
+
+
 
 	public AvatarCreationView(){
 		super();
@@ -25,7 +28,6 @@ public class AvatarCreationView extends View {
 	public void render(Graphics g) {
 		clear(g); // clear the background
 		
-		// Boolean for blinking arrow on selected occupation
 
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 100, 100);
@@ -44,6 +46,7 @@ public class AvatarCreationView extends View {
 
 		// Paint Occupation Titles + Descriptions
 		int stringX = 100;
+		int arrow_x_offset = stringX;
 		int stringY = View.B_HEIGHT/3;
 		int stringY2 = 0;
 		int prevY = 0;
@@ -62,17 +65,18 @@ public class AvatarCreationView extends View {
 			Color primaryColor = Color.white;
 
 			if (occupation == ((AvatarCreationViewController) viewController).getSelectedOccupation()) {
-				// THIS IS GOING TO LOOK LIKE AN ARROW I SWARE
-				g.fillRect(10, stringY , ARROW_WIDTH, ARROW_HEIGHT);
+				// Drawing Arrow next to selection
+				ImageIcon ii = new ImageIcon("./src/res/arrow.png");
+				Image arrow = ii.getImage();
+				arrow_x_offset-= arrow.getWidth(null) + 10;
+				g.drawImage(arrow, arrow_x_offset, stringY, Display.getInstance());
 			}
 
 			g.setColor(primaryColor);
-
 			g.setFont(title);
 			g.drawString(occupation.getText(), stringX, stringY);
 			g.setFont(small);
 			g.drawString(occupation.getDescription(), stringX, stringY2);
-			//g.drawRect(boxX, boxY, boxDX, boxDY);
 
 			prevY = stringY2;
 
