@@ -6,10 +6,37 @@ package models;
  * Created by ben on 2/2/16.
  */
 
-
-
 public class Stats {
 
+	public static enum Type {
+		
+		LIVES_LEFT("Lives left") {public void modify(Entity entity, int delta) {entity.getStats().modifyLivesLeft(delta);};},
+		EXPERIENCE("Experience") {public void modify(Entity entity, int delta) {entity.getStats().modifyExperience(delta);};},
+		MOVEMENT("Movement") {public void modify(Entity entity, int delta) {entity.getStats().actuallyModifyMovement(delta);};},
+		LEVEL("Level") {public void modify(Entity entity, int delta) {entity.getStats().modifyLevel(delta);};},
+		STRENGTH("Strength") {public void modify(Entity entity, int delta) {entity.getStats().modifyStrength(delta);};},
+		AGILITY("Agility") {public void modify(Entity entity, int delta) {entity.getStats().modifyAgility(delta);};},
+		INTELLECT("Intellect") {public void modify(Entity entity, int delta) {entity.getStats().modifyIntellect(delta);};},
+		HARDINESS("Hardiness") {public void modify(Entity entity, int delta) {entity.getStats().modifyHardiness(delta);};};
+		
+		private String s;
+		
+		public abstract void modify(Entity entity, int amount);
+		
+		private Type(String s) {
+			
+			this.s = s;
+			
+		}
+		
+		public String toString() {
+			
+			return s;
+			
+		}
+		
+	}
+	
     private int livesLeft = 0;
 
     private int lifeLeft = 0;
@@ -178,6 +205,13 @@ public class Stats {
         movement = currentSpeed;
     }
 
+    public void actuallyModifyMovement(int delta) {
+    	
+    	movement = this.getMovement() + delta;
+    	movement = Math.max(movement, 0);
+    	
+    }
+    
     public void modifyLifeLeft(int delta){
         if((lifeLeft + delta) <= 0 )//So livesLeft does not drop below zero
         {

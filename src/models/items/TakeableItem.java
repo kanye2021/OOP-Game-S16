@@ -3,7 +3,10 @@
  */
 package models.items;
 
+import utilities.StatModification;
+import utilities.StatModifications;
 import models.Entity;
+import models.Stats;
 
 /**
  * TakeableItem's main purpose is to be able to insert itself back into
@@ -14,19 +17,41 @@ public class TakeableItem extends Item {
 	public enum Items {
 
 //		TEST_SOMETHING(new TakeableItem("a","b","c")),
-		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png"),
-		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png"),
-		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png"),
-		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png"),
-		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png"),
-		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png"),
-		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png"),
-		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png");
+		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		)),
+		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		)),
+		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		)),
+		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png",
+		new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		)),
+		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png",
+		new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		)),
+		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png",
+		new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		)),
+		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png",
+		new StatModifications(
+				new StatModification(Stats.Type.MOVEMENT, 5)
+		)),
+		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png",
+		new StatModifications(
+			new StatModification(Stats.Type.MOVEMENT, 5)
+		));
 		
 
 		private String name;
 		private String description;
 		private String pathToPicture;
+		private StatModifications modifications;
 		
 		
 		//Conditions conditions;
@@ -39,10 +64,13 @@ public class TakeableItem extends Item {
 		
 		
 
-		private Items(String name, String description, String pathToPicture) {
+		private Items(String name, String description, String pathToPicture, StatModifications modifications) {
+
 			this.name = name;
 			this.description = description;
 			this.pathToPicture = pathToPicture;
+			this.modifications = modifications;
+			
 		}
 
 		public int getID() {
@@ -97,4 +125,17 @@ public class TakeableItem extends Item {
 	public String getPathToPicture() {
 		return Items.values()[getID()].pathToPicture;
 	}
+	
+	public void modifyStats(Entity entity) {
+		
+		Items.values()[getID()].modifications.modifyStats(entity);
+		
+	}
+	
+	public void modifyStatsInverse(Entity entity) {
+		
+		Items.values()[getID()].modifications.modifyStatsInverse(entity);
+		
+	}
+	
 }
