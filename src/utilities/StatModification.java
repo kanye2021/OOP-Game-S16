@@ -7,10 +7,10 @@ public class StatModification {
 
 	public static enum NumberType {
 		
-		POINT {protected int getModifierAmount(int initialStatNumber, double delta) {return (int) delta;};},
-		PERCENTAGE {protected int getModifierAmount(int initialStatNumber, double delta) {return (int) (initialStatNumber * (delta));};};
+		POINT {protected int getModifierAmount(int initialStatNumber, int delta) {return delta;};},
+		PERCENTAGE {protected int getModifierAmount(int initialStatNumber, int delta) {return (int) (initialStatNumber * ((double) (delta) / 100));};};
 		
-		protected abstract int getModifierAmount(int initialStatNumber, double delta);
+		protected abstract int getModifierAmount(int initialStatNumber, int delta);
 		
 	}
 	
@@ -36,10 +36,10 @@ public class StatModification {
 	}
 	
 	private Stats.Type statisticToModify;
-	private double delta;
+	private int delta;
 	private NumberType type;
 	
-	public StatModification(Stats.Type statisticToModify, double delta, NumberType type) {
+	public StatModification(Stats.Type statisticToModify, int delta, NumberType type) {
 		
 		this.statisticToModify = statisticToModify;
 		this.delta = delta;

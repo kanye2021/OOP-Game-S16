@@ -16,18 +16,18 @@ public class TakeableItem extends Item {
 	
 	public enum Items {
 
-//		TEST_SOMETHING(new TakeableItem("a","b","c")),
+		//EXAMPLE_TAKEABLE_ITEM("name", "description", "pathToFile", <StatModifications>)
 		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
+				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
 		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
+				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
 		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
+				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
 		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
+				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
 		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
