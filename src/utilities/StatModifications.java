@@ -24,21 +24,11 @@ public class StatModifications extends ArrayList<StatModification> {
 		
 	}
 	
-	public void modifyStats(Entity entity) {
+	public void modifyStats(Entity entity, StatModification.DIRECTION direction) {
 		
 		for (StatModification modification : this) {
 			
-			modification.getStatisticToModify().modify(entity, modification.getDelta());
-			
-		}
-		
-	}
-	
-	public void modifyStatsInverse(Entity entity) {
-		
-		for (StatModification modification : this) {
-			
-			modification.getStatisticToModify().modify(entity, -modification.getDelta());
+			modification.modifyStats(entity, direction);
 			
 		}
 		

@@ -19,29 +19,30 @@ public class OneShotItem extends Item {
 
     public enum Effects {
 
+    	//EXAMPLE_ONE_SHOT_ITEM("pathToFile", <StatModifications>)
     	GAIN_HEALTH("takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.LIFE_LEFT, 5)
+				new StatModification(Stats.Type.HEALTH, 5, StatModification.NumberType.POINT)
 		)),
 		LOSE_HEALTH("takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.LIFE_LEFT, -5)
+				new StatModification(Stats.Type.HEALTH, -5, StatModification.NumberType.POINT)
 		)),
 		GAIN_MANA("takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.MANA_LEFT, 5)
+				new StatModification(Stats.Type.MANA_LEFT, 5, StatModification.NumberType.POINT)
 		)),
 		LOSE_MANA("takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.MANA_LEFT, -5)
+				new StatModification(Stats.Type.MANA_LEFT, -5, StatModification.NumberType.POINT)
 		)),
 		GAIN_STRENGTH("takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.STRENGTH, 5)
+				new StatModification(Stats.Type.STRENGTH, 5, StatModification.NumberType.POINT)
 		)),
 		LOSE_STRENGTH("takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.STRENGTH, -5)
+				new StatModification(Stats.Type.STRENGTH, -5, StatModification.NumberType.POINT)
 		)),
 		GAIN_AGILITY("takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.AGILITY, 5)
+				new StatModification(Stats.Type.AGILITY, 5, StatModification.NumberType.POINT)
 		)),
 		LOSE_AGILITY("takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.AGILITY, -5)
+				new StatModification(Stats.Type.AGILITY, -5, StatModification.NumberType.POINT)
 		));
 
         //DO_OTHER_STUFF("notStats","na","Filler","Filler.png");
@@ -85,15 +86,15 @@ public class OneShotItem extends Item {
 
     public void modifyStats(Entity entity) {
 		
-		Effects.values()[getID()].modifications.modifyStats(entity);
+		Effects.values()[getID()].modifications.modifyStats(entity, StatModification.DIRECTION.FORWARD);
 		
 	}
 	
-	public void modifyStatsInverse(Entity entity) {
+	/*public void modifyStatsReverse(Entity entity) {
 		
-		Effects.values()[getID()].modifications.modifyStatsInverse(entity);
+		Effects.values()[getID()].modifications.modifyStats(entity, StatModification.DIRECTION.REVERSE);
 		
-	}
+	}*/
 
     public String getPathToPicture() {
         return Effects.values()[getID()].pathToPicture;

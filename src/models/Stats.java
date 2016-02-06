@@ -40,20 +40,51 @@ public class Stats {
 
 	public static enum Type {
 		
-		LIVES_LEFT("Lives left") {public void modify(Entity entity, int delta) {entity.getStats().modifyLivesLeft(delta);};},
-		LIFE_LEFT("Life left") {public void modify(Entity entity, int delta) {entity.getStats().modifyHealth(delta);};},
-		MANA_LEFT("Mana left") {public void modify(Entity entity, int delta) {entity.getStats().modifymana(delta);};},
-		EXPERIENCE("Experience") {public void modify(Entity entity, int delta) {entity.getStats().modifyExperience(delta);};},
-		MOVEMENT("Movement") {public void modify(Entity entity, int delta) {entity.getStats().actuallyModifyMovement(delta);};},
-		LEVEL("Level") {public void modify(Entity entity, int delta) {entity.getStats().modifyLevel(delta);};},
-		STRENGTH("Strength") {public void modify(Entity entity, int delta) {entity.getStats().modifyStrength(delta);};},
-		AGILITY("Agility") {public void modify(Entity entity, int delta) {entity.getStats().modifyAgility(delta);};},
-		INTELLECT("Intellect") {public void modify(Entity entity, int delta) {entity.getStats().modifyIntellect(delta);};},
-		HARDINESS("Hardiness") {public void modify(Entity entity, int delta) {entity.getStats().modifyHardiness(delta);};};
+		LIVES_LEFT("Lives left") {
+			public void modify(Entity entity, int delta) {entity.getStats().modifyLivesLeft(delta);};
+			public int get(Entity entity) {return entity.getStats().getLivesLeft();};
+		},
+		HEALTH("Life left") {
+			public void modify(Entity entity, int delta) {entity.getStats().modifyHealth(delta);};
+			public int get(Entity entity) {return entity.getStats().getHealth();};
+		},
+		MANA_LEFT("Mana left") {
+			public void modify(Entity entity, int delta) {entity.getStats().modifymana(delta);};
+			public int get(Entity entity) {return entity.getStats().getMana();};
+		},
+		EXPERIENCE("Experience") {
+			public void modify(Entity entity, int delta) {entity.getStats().modifyExperience(delta);};
+			public int get(Entity entity) {return entity.getStats().getExperience();};
+		},
+		MOVEMENT("Movement") {
+			public void modify(Entity entity, int delta) {entity.getStats().actuallyModifyMovement(delta);};
+			public int get(Entity entity) {return entity.getStats().getMovement();};
+		},
+		LEVEL("Level") {public void modify(Entity entity, int delta) {
+			entity.getStats().modifyLevel(delta);};
+			public int get(Entity entity) {return entity.getStats().getLevel();};
+		},
+		STRENGTH("Strength") {
+			public void modify(Entity entity, int delta) {entity.getStats().modifyStrength(delta);};
+			public int get(Entity entity) {return entity.getStats().getStrength();};
+		},
+		AGILITY("Agility") {
+			public void modify(Entity entity, int delta) {entity.getStats().modifyAgility(delta);};
+			public int get(Entity entity) {return entity.getStats().getAgility();};
+		},
+		INTELLECT("Intellect") {
+			public void modify(Entity entity, int delta) {entity.getStats().modifyIntellect(delta);};
+			public int get(Entity entity) {return entity.getStats().getIntellect();};
+		},
+		HARDINESS("Hardiness") {
+			public void modify(Entity entity, int delta) {entity.getStats().modifyHardiness(delta);};
+			public int get(Entity entity) {return entity.getStats().getHardiness();};
+		};
 		
 		private String s;
 		
 		public abstract void modify(Entity entity, int amount);
+		public abstract int get(Entity entity);
 		
 		private Type(String s) {
 			
