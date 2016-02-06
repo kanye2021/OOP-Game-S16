@@ -1,4 +1,4 @@
-package models;
+package models.items;
 
 /**
  * Created by denzel on 2/5/16.

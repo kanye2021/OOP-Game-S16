@@ -3,7 +3,7 @@ package views;
 import controllers.InventoryViewController;
 import controllers.PauseViewController;
 import models.Inventory;
-import models.Item;
+import models.items.Item;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;

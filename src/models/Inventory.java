@@ -2,6 +2,8 @@ package models;
 
 import java.util.*;
 
+import models.items.TakeableItem;
+
 
 /**
  * Created by Austin on 2/2/16.

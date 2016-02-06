@@ -2,6 +2,7 @@ package views;
 
 import models.*;
 import models.area_effects.AreaEffect;
+import models.items.Item;
 import utilities.Observer;
 
 import javax.swing.*;

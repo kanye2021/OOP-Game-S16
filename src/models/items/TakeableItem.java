@@ -1,7 +1,9 @@
 /**
  * Created by denzel on 2/3/16.
  */
-package models;
+package models.items;
+
+import models.Entity;
 
 /**
  * TakeableItem's main purpose is to be able to insert itself back into

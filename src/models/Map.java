@@ -5,6 +5,10 @@ import models.area_effects.HealDamage;
 import models.area_effects.InstantDeath;
 import models.area_effects.LevelUp;
 import models.area_effects.TakeDamage;
+import models.items.InteractiveItem;
+import models.items.Item;
+import models.items.OneShotItem;
+import models.items.TakeableItem;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

@@ -1,5 +1,8 @@
 package models;
 
+import models.items.Item;
+import models.items.TakeableItem;
+
 /**
  * Created by sergiopuleri on 2/4/16.
  */

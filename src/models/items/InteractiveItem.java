@@ -1,4 +1,6 @@
-package models;
+package models.items;
+
+import models.Entity;
 
 /**
  * Created by denzel on 2/5/16.

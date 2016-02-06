@@ -2,6 +2,7 @@ package utilities;
 
 import models.*;
 import models.area_effects.AreaEffect;
+import models.items.Item;
 
 import java.util.Timer;
 import java.util.TimerTask;
