@@ -15,6 +15,22 @@
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type="heal-damage"></area-effect>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type="take-damage"></area-effect>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type = "instant-death"></area-effect>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type="take-damage"></area-effect>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -24,6 +40,65 @@
         </tile>
         <tile>
             <terrain type="grass"/>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type = "instant-death"></area-effect>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type = "instant-death"></area-effect>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type = "instant-death"></area-effect>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+        </tile>
+        <tile>
+            <terrain type="mountain"/>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+        </tile>
+        <tile>
+            <terrain type="mountain"/>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type = "level-up"></area-effect>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type = "level-up"></area-effect>
+        </tile>
+        <tile>
+            <terrain type="sea"/>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type="heal-damage"></area-effect>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type = "instant-death"></area-effect>
+        </tile>
+        <tile>
+            <terrain type="sea"/>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type = "instant-death"></area-effect>
+        </tile>
+        <tile>
+            <terrain type="mountain"/>
+        </tile>
+        <tile>
+            <terrain type="mountain"/>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -59,7 +134,13 @@
             <terrain type="grass"/>
         </tile>
         <tile>
-            <terrain type="mountain"/>
+            <terrain type="grass"/>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -69,75 +150,7 @@
         </tile>
         <tile>
             <terrain type="sea"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="sea"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="mountain"/>
-        </tile>
-        <tile>
-            <terrain type="mountain"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="mountain"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="sea"/>
+            <area-effect type = "instant-death"></area-effect>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -179,6 +192,7 @@
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type = "instant-death"></area-effect>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -375,6 +389,7 @@
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type="heal-damage"></area-effect>
         </tile>
         <tile>
             <terrain type="mountain"/>
@@ -423,33 +438,40 @@
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type="take-damage"></area-effect>
         </tile>
         <tile>
             <terrain type="grass"/>
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type="heal-damage"></area-effect>
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type = "level-up"></area-effect>
         </tile>
         <tile>
             <terrain type="sea"/>
         </tile>
         <tile>
             <terrain type="mountain"/>
+            <area-effect type = "level-up"></area-effect>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type="take-damage"></area-effect>
         </tile>
         <tile>
             <terrain type="grass"/>
         </tile>
         <tile>
             <terrain type="grass"/>
+            <area-effect type="heal-damage"></area-effect>
         </tile>
         <tile>
             <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
+            <area-effect type="take-damage"></area-effect>
         </tile>
         <tile>
             <terrain type="mountain"/>

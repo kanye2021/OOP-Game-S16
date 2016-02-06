@@ -10,9 +10,9 @@ import java.util.HashMap;
  * the Entity's inventory when touched
  */
 public class TakeableItem extends Item {
-
-	public static enum Items {
+	public enum Items {
 		
+
 		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", "equippable","primaryWeapon", "2", "0"),
 		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png", "equippable","primaryWeapon", "2", "0"),
 		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", "equippable","primaryWeapon", "2", "0"),
@@ -21,7 +21,7 @@ public class TakeableItem extends Item {
 		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", "equippable","secondaryWeapon", "2", "0"),
 		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png", "equippable","secondaryWeapon", "2", "0"),
 		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", "equippable","secondaryWeapon", "2", "0");
-		
+
 		//a mini skirt for jorge in the jungle | jorge in the jungle figurine
 		
 		private String name;

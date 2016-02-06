@@ -21,7 +21,7 @@ public class ItemStatsAssociation {
     //That applies the modifiers of items whether one time or equippable;
     public void useFromInv(TakeableItem usedItem){
 
-        //Apply and removie item from inventory
+        //Apply and remove item from inventory
         avatarStats.modifyArmorRating(usedItem.getArmorRating());
         avatarStats.modifyOffensiveRating(usedItem.getOffensiveRating());
         avatarInventory.removeItem(usedItem);

@@ -35,7 +35,7 @@ public class CreateNewGameViewController extends ViewController {
             String getValue = createNewGameView.getSaveStateName().getText();
             System.out.println("THE SAVE STATE NAME IS: " + getValue);
 
-            Load_Save.getInstance().setCurrentFileName(getValue);
+            Load_Save.getInstance().setCurrentFileName(getValue + ".xml");
 
             // Remove the JTextField from the views.Display's JPanel
             Display.getInstance().remove(createNewGameView.getSaveStateName());

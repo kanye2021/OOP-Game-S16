@@ -1,9 +1,7 @@
 package controllers;
-
-
-import models.Inventory;
+import controllers.ViewController;
 import models.ItemStatsAssociation;
-import models.TakeableItem;
+import models.Inventory;
 import utilities.IOMediator;
 import views.View;
 
@@ -14,9 +12,10 @@ import java.awt.event.KeyEvent;
  */
 public class InventoryViewController extends ViewController {
 
-	int position = 0;
-	Inventory inventory;
-    ItemStatsAssociation avatarItemStats;
+	private int position = 0;
+    private Inventory inventory;
+    private ItemStatsAssociation avatarItemStats;
+
 
 
     public InventoryViewController(View view) {
@@ -52,7 +51,7 @@ public class InventoryViewController extends ViewController {
         	IOMediator.setActiveView(IOMediator.Views.GAME);
         }
 
-        else if(key == KeyEvent.VK_Z) {
+        else if(key == KeyEvent.VK_L) {
             useItem();
         }
         
@@ -69,7 +68,7 @@ public class InventoryViewController extends ViewController {
     	
     	if (position < 0) {
     		
-    		position = getInventory().getItems().size() - 1;
+    		position = getInventory().getSize() - 1;
     		
     	}
     	
@@ -79,19 +78,22 @@ public class InventoryViewController extends ViewController {
     	
     	position++;
     	
-    	if (position > getInventory().getItems().size() - 1) {
-
+    	if (position > getInventory().getSize() - 1) {
+    		
+    		
     		position = 0;
     	
     	}
     	
     }
 
+   
+    public int getPosition(){return position;}
+
     //Uses item in inventory
     private void useItem() {
         TakeableItem usedItem = getInventory().itemAt(position);
         avatarItemStats.useFromInv(usedItem);
     }
-
-
 }
+

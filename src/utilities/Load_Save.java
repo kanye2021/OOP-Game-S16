@@ -90,6 +90,7 @@ public class Load_Save {
 /*-----------------------------For Loading --------------------------------*/
     public static void load(String fileName){
         System.out.println("File name is: " + fileName);
+        currentFileName = fileName;
         loadAvatar(filePathExtension + fileName);
     }
     public static void loadAvatar(String filepath){
@@ -130,12 +131,13 @@ public class Load_Save {
 /*----------------------------------For Saving --------------------------------*/
     //For future use it will include map, items, stats
     public static void save() {
+        System.out.println("Saving: " + currentFileName);
         try{
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             Document doc = docBuilder.newDocument();
 
-            String filePath = "src/res/save_files/" + currentFileName + ".xml";
+            String filePath = "src/res/save_files/" + currentFileName;
 
             Element mainRootElement = doc.createElementNS(filePath, "Save_File"); //1 will be edited in the feature
             doc.appendChild(mainRootElement);
