@@ -47,7 +47,6 @@ public class TakeableItem extends Item {
 			new StatModification(Stats.Type.MOVEMENT, 5)
 		));
 		
-
 		private String name;
 		private String description;
 		private String pathToPicture;
@@ -60,8 +59,6 @@ public class TakeableItem extends Item {
 		//conditions.addItemCondition(TakeableItems.Items.STEEL_SWORD, 2, Conditions.AT_LEAST, Conditions.INVENTORY)
 		//conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 50, Conditions.POINTS)
 		//conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 0.5, Conditions.PERCENTAGE)
-		
-		
 		
 
 		private Items(String name, String description, String pathToPicture, StatModifications modifications) {
@@ -104,9 +101,9 @@ public class TakeableItem extends Item {
     	super(item.ordinal(), Item.Type.TAKEABLE);
     }
 
-    /**
-     *Returns true if it should be removed from the map
-     */
+
+
+
     @Override
     public final boolean onTouch(Entity entity) {
         entity.getInventory().addItem(this);

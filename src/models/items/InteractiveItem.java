@@ -47,7 +47,13 @@ public class InteractiveItem extends Item {
             return description;
         }
 
-        public TakeableItem.Items[] getRequiredItems(){
+        public TakeableItem[] getRequiredItems(){
+            TakeableItem items[] = new TakeableItem[this.items.length];
+            TakeableItem stuff;
+            for(int i=0;i<this.items.length;i++){
+                stuff = new TakeableItem(Quests.values()[getID()].items[i]);
+                items[i] = stuff;
+            }
             return items;
         }
 
@@ -79,13 +85,11 @@ public class InteractiveItem extends Item {
     @Override
     public boolean onTouch(Entity entity) {
 
-        System.out.println(entity.getInventory());
+        System.out.println(Quests.values()[getID()].getRequiredItems());
 
 
         //Check conditions and see if can activate items
-        if(entity.getInventory().getItem(Quests.values()[getID()].getRequiredItems())){
-            System.out.println("You can pass");
-        }
+       
 
 
         return false;
