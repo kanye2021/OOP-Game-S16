@@ -18,28 +18,28 @@ public class TakeableItem extends Item {
 
 //		TEST_SOMETHING(new TakeableItem("a","b","c")),
 		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
 		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
 		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
 		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
 		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
 		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
 		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png",	new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5)
+				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
 		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", new StatModifications(
-			new StatModification(Stats.Type.MOVEMENT, 5)
+				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		));
 		
 		private String name;
@@ -102,6 +102,7 @@ public class TakeableItem extends Item {
     @Override
     public final boolean onTouch(Entity entity) {
         entity.getInventory().addItem(this);
+        modifyStats(entity);
         return true;
     }
 
@@ -120,13 +121,13 @@ public class TakeableItem extends Item {
 	
 	public void modifyStats(Entity entity) {
 		
-		Items.values()[getID()].modifications.modifyStats(entity);
+		Items.values()[getID()].modifications.modifyStats(entity, StatModification.DIRECTION.FORWARD);
 		
 	}
 	
-	public void modifyStatsInverse(Entity entity) {
+	public void modifyStatsReverse(Entity entity) {
 		
-		Items.values()[getID()].modifications.modifyStatsInverse(entity);
+		Items.values()[getID()].modifications.modifyStats(entity, StatModification.DIRECTION.REVERSE);
 		
 	}
 	
