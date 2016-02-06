@@ -6,7 +6,11 @@ import models.items.TakeableItem;
  * Created by denzel on 2/5/16.
  */
 public class Conditions {
-
+	
+	//Three types of known conditions
+	// Player is carrying something
+	// Player has something equipped
+	// Entity is somewhere on map (location), alive, or has some specific modifier
 
     //Boolean Enums
     public enum booleanEnum{
