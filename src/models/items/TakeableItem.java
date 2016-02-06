@@ -26,24 +26,19 @@ public class TakeableItem extends Item {
 		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5)
 		)),
-		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png",
-		new StatModifications(
+		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5)
 		)),
-		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png",
-		new StatModifications(
+		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5)
 		)),
-		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png",
-		new StatModifications(
+		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5)
 		)),
-		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png",
-		new StatModifications(
+		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png",	new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5)
 		)),
-		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png",
-		new StatModifications(
+		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", new StatModifications(
 			new StatModification(Stats.Type.MOVEMENT, 5)
 		));
 		
