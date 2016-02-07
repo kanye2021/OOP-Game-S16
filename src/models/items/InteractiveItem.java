@@ -2,6 +2,7 @@ package models.items;
 
 import models.Stats;
 import models.Entity;
+import utilities.conditions.Condition;
 import utilities.conditions.Conditions;
 import utilities.conditions.InventoryCondition;
 import utilities.conditions.StatCondition;
@@ -15,15 +16,18 @@ public class InteractiveItem extends Item {
 
     public enum Quests{
 
-        SAVE_JORGE("takeable-item.png"),
+        SAVE_JORGE(new Conditions(new Condition() {
+        })"takeable-item.png"),
         DAVID_SQUARED("teddy_bear.png"),
         BRAGIO("teddy_bear.png");
 
 
+        private Conditions conditions;
         private String pathToPicture;
 
         //Enum constructor
-        Quests(String pathToPicture) {
+        Quests(Conditions conditions, String pathToPicture) {
+            this.conditions = conditions
             this.pathToPicture = pathToPicture;
         }
 
