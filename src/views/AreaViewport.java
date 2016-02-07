@@ -20,6 +20,7 @@ public class AreaViewport extends View implements Observer {
     private  String obstacleItemBaseFilepath = "./src/res/items/obstacle/";
     private  String interactiveItemBaseFilepath = "./src/res/items/interactive/";
     private  String takeableItemBaseFilepath = "./src/res/items/takeable/";
+    private  String oneshotItemBaseFilepath = "./src/res/items/oneshot/";
     private  String entityBaseFilepath = "./src/res/entitys/";
     private final int AREA_WIDTH = B_WIDTH;
     private final int AREA_HEIGHT = B_HEIGHT * 4/5;
@@ -37,6 +38,9 @@ public class AreaViewport extends View implements Observer {
         terrainBaseFilepath = terrainBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
         areaEffectBaseFilepath = areaEffectBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
         takeableItemBaseFilepath = takeableItemBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
+        obstacleItemBaseFilepath = obstacleItemBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
+        interactiveItemBaseFilepath = interactiveItemBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
+        oneshotItemBaseFilepath = oneshotItemBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
         entityBaseFilepath = entityBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
     }
 
@@ -100,7 +104,24 @@ public class AreaViewport extends View implements Observer {
 
 
                 if(item!=null){
-                    ImageIcon item_icon = new ImageIcon(takeableItemBaseFilepath + item.getPathToPicture());
+                    String filePath = takeableItemBaseFilepath;
+                    switch(item.getType()){
+                        case INTERACTIVE:
+                            //System.out.println("Interactive items file path: " + j + "," + i);
+                            filePath = interactiveItemBaseFilepath;
+                            break;
+                        case OBSTACLE:
+                            filePath = obstacleItemBaseFilepath;
+                            break;
+                        case TAKEABLE:
+                            filePath = takeableItemBaseFilepath;
+                            break;
+                        case ONE_SHOT:
+                            filePath = oneshotItemBaseFilepath;
+                            break;
+                    }
+
+                    ImageIcon item_icon = new ImageIcon(filePath + item.getPathToPicture());
                     Image itemImage = item_icon.getImage();
 
                     // Center the item in the tile

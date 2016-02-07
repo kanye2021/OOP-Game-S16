@@ -515,7 +515,7 @@ public class Load_Save {
         pStats.setAttributeNode( getStatAttr(doc,stat,"movement") );
 
         stats.appendChild(pStats);
-        
+
         //-----derived stats
         Element dStats = doc.createElement("dStats");
 
@@ -620,14 +620,17 @@ public class Load_Save {
         for (int i = 0; i < tiles.length; i++ ){
             Element row = doc.createElement("row");
             for (int j = 0; j < tiles[0].length; j++) {
-                row.appendChild(getTile(doc, tiles[i][j]));
+                row.appendChild(getTile(doc, tiles[i][j], i, j));
             }
             map.appendChild(row);
         }
         return map;
     }
-    private static Node getTile(Document doc, Tile t){
+    private static Node getTile(Document doc, Tile t, int y, int x){
         Element tile = doc.createElement("tile");
+//        Attr location = doc.createAttribute("location");
+//        location.setValue(x + "," + y);
+//        tile.setAttributeNode(location);
         ///Terrain
         Element terrain = doc.createElement("terrain");
 
