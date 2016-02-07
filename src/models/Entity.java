@@ -77,7 +77,7 @@ public class Entity extends Observable {
         lastAtemptedDirection = orientation;
     }
     public String getImageName(){
-        return "entity-" + lastAtemptedDirection + ".png" ;
+        return "entity-" + getOccupation() + "-" + lastAtemptedDirection + ".png" ;
     }
     /* ------End of Getters and Setters -----*/
 
