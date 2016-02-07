@@ -95,8 +95,8 @@ public class InteractiveItem extends Item {
         //Check conditions and see if can activate items
         if(condition.checkConditions(condition)){
             System.out.println("YOU DID THE THING!");
+            return true;
         }
-
 
         return false;
     }

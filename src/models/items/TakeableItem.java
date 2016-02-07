@@ -47,7 +47,9 @@ public class TakeableItem extends Item {
 		private String pathToPicture;
 		private StatModifications modifications;
 
+
 		private Items(String name, String description, String pathToPicture, StatModifications modifications) {
+
 
 			this.name = name;
 			this.description = description;
