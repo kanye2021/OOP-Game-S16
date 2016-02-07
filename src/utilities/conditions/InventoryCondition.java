@@ -53,9 +53,7 @@ public class InventoryCondition extends Condition {
     protected boolean checkCondition() {
         int requiredCount = this.count;
         int inventoryCount = entity.getInventory().getItemCount(items);
-
-        boolean der = itemComparison.isValid(inventoryCount, requiredCount);
-        System.out.println("ITEM CONDITION: " + der);
+        
         return (itemComparison.isValid(inventoryCount, requiredCount));
     }
 
