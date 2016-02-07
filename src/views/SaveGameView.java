@@ -17,7 +17,7 @@ public class SaveGameView extends View {
 
     private final int BUTTON_WIDTH = 200;
     private final int BUTTON_HEIGHT = 50;
-
+    private final int Y_OFFSET = View.B_HEIGHT/6;
 
     public SaveGameView() {
         super();
@@ -33,12 +33,13 @@ public class SaveGameView extends View {
         g.setFont(small);
 
 
+        int fraction = 1;
         for (SaveGameController.SaveOptions option : SaveGameController.SaveOptions.values()) {
 
             //Box Stuff
             Rectangle2D rectangle = fm.getStringBounds(option.toString(), g);
             int boxX = View.B_WIDTH / 2 - BUTTON_WIDTH / 2;
-            int boxY = (( (option.ordinal()+1)) * View.B_HEIGHT/4 ) - BUTTON_HEIGHT;
+            int boxY = Y_OFFSET + ((fraction)* View.B_HEIGHT/6 ) - BUTTON_HEIGHT/2;
             int boxDX = BUTTON_WIDTH;
             int boxDY = BUTTON_HEIGHT;
 
@@ -63,6 +64,8 @@ public class SaveGameView extends View {
             g.setColor(secondaryColor);
             g.drawString(option.getText(), stringX, stringY);
             g.drawRect(boxX, boxY, boxDX, boxDY);
+
+            fraction+=1;
 
         }
 
