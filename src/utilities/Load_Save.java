@@ -14,6 +14,7 @@ import org.xml.sax.SAXParseException;
 import views.Display;
 
 import javax.print.Doc;
+import javax.print.attribute.IntegerSyntax;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.*;
@@ -240,8 +241,10 @@ public class Load_Save {
                     avatar.updateLocation(x,y);
                     avatar.updateOrientation(entity.getAttribute("orientation"));
                     avatar.setOccupation(entity.getAttribute("occupation"));
+
                     loadStats(avatar.getStats(), entity); //Separate function to handle loading stats
                     loadInventory(avatar.getInventory(), entity);
+                    loadEquipped(avatar.getEquippedItems(), entity);
                     //Adds avatar to the map
                     m.insertEntityAtLocation(x,y,avatar);
                 }
@@ -297,7 +300,60 @@ public class Load_Save {
             TakeableItem newItem = new TakeableItem(TakeableItem.Items.values()[id]);
             avatarInv.loadItem(newItem,count,i);
         }
+    }
 
+    public static void loadEquipped(EquippedItems equip, Element entity){
+        NodeList tmp = entity.getElementsByTagName("equipped");
+        Element inv = (Element) tmp.item(0);
+
+        loadEquipItem(equip, entity, "head");
+        loadEquipItem(equip, entity, "chest");
+        loadEquipItem(equip, entity, "greaves");
+        loadEquipItem(equip, entity, "boots");
+        loadEquipItem(equip, entity, "secondary");
+        loadEquipItem(equip, entity, "primary");
+        loadEquipItem(equip, entity, "cape");
+        loadEquipItem(equip, entity, "gloves");
+        loadEquipItem(equip, entity, "necklace");
+
+    }
+    public static void loadEquipItem(EquippedItems equip, Element e, String type){
+        NodeList tList = e.getElementsByTagName(type);
+        //Retrieves the element in that tag of type (Ie "head") then gets the id value of that element (IE id of head)
+        int id = Integer.parseInt( ((Element) tList.item(0)).getAttribute("id"));
+        //If ID == -1 that means there is no item in that position if it isn't -1 then there is an item in that position
+        if (id != -1) {
+            TakeableItem newItem = new TakeableItem(TakeableItem.Items.values()[id]);
+            switch (type) {
+                case "head":
+                    equip.equipHead(newItem);
+                    break;
+                case "chest":
+                    equip.equipChest(newItem);
+                    break;
+                case "greaves":
+                    equip.equipGreaves(newItem);
+                    break;
+                case "boots":
+                    equip.equipBoots(newItem);
+                    break;
+                case "primary":
+                    equip.equipPrimaryWeapon(newItem);
+                    break;
+                case "secondary":
+                    equip.equipSecondaryWeapon(newItem);
+                    break;
+                case "cape":
+                    equip.equipCape(newItem);
+                    break;
+                case "gloves":
+                    equip.equipGreaves(newItem);
+                    break;
+                case "necklace":
+                    equip.equipNecklace(newItem);
+                    break;
+            }
+        }
     }
 /*----------------------------------For Saving --------------------------------*/
     //For future use it will include map, items, stats
@@ -393,10 +449,57 @@ public class Load_Save {
     }
     private static Node getEquippedItems(Document doc, EquippedItems equip) {
         Element equipped = doc.createElement("equipped");
-        //TODO: Need more info on equipped items
-        ///Attr equipSize
-
+        equipped.appendChild(getEquip(doc, equip, "head"));
+        equipped.appendChild(getEquip(doc, equip, "chest"));
+        equipped.appendChild(getEquip(doc, equip, "greaves"));
+        equipped.appendChild(getEquip(doc, equip, "boots"));
+        equipped.appendChild(getEquip(doc, equip, "primary"));
+        equipped.appendChild(getEquip(doc, equip, "secondary"));
+        equipped.appendChild(getEquip(doc, equip, "cape"));
+        equipped.appendChild(getEquip(doc, equip, "gloves"));
+        equipped.appendChild(getEquip(doc, equip, "necklace"));
         return equipped;
+    }
+    private static Node getEquip(Document doc, EquippedItems equip, String type){
+        Element part = doc.createElement(type);
+        TakeableItem item = null;
+        switch (type) {
+            case "head" :
+                item = equip.getHead();
+                break;
+            case "chest" :
+                item = equip.getChest();
+                break;
+            case "greaves" :
+                item = equip.getGreaves();
+                break;
+            case "boots":
+                item = equip.getBoots();
+                break;
+            case "primary":
+                item = equip.getPrimaryWeapon();
+                break;
+            case "secondary":
+                item = equip.getSecondaryWeapon();
+                break;
+            case "cape":
+                item = equip.getCape();
+                break;
+            case "gloves":
+                item = equip.getGloves();
+                break;
+            case "necklace":
+                item = equip.getNecklace();
+                break;
+        }
+        Attr id = doc.createAttribute("id");
+        if (item != null) { //If there exists an item get the ID
+            id.setValue(Integer.toString(item.getID()));
+        }else {
+            id.setValue("-1"); //Else set the id to -1 (representing no item at that position)
+        }
+        part.setAttributeNode(id);
+        return part;
     }
     private static Node getStats(Document doc, Stats stat){
         Element stats = doc.createElement("stats");
@@ -490,6 +593,15 @@ public class Load_Save {
         stats.appendChild(dStats); //Add dstats into main stats
 
         return stats;
+    }
+    private static Node getStatAttr(Document doc, Stats s, String type){
+        Attr sType = doc.createAttribute(type);
+        switch (type) {
+            case "lives":
+
+            break;
+        }
+        return sType;
     }
     private static Node getMap(Document doc, Map m){
         Element map = doc.createElement("map");
