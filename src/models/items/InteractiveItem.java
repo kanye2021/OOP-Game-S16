@@ -2,6 +2,8 @@ package models.items;
 
 import utilities.conditions.Condition;
 import models.Entity;
+import utilities.conditions.Conditions;
+import utilities.conditions.InventoryCondition;
 
 /**
  * Created by denzel on 2/5/16.
@@ -87,19 +89,20 @@ public class InteractiveItem extends Item {
 
     @Override
     public boolean onTouch(Entity entity) {
+        System.out.println("Count: " + 2);
+        System.out.println("Item in Invo count: " + entity.getInventory().getItemCount(TakeableItem.Items.WOOD_SWORD));
 
-        Condition condition = new Condition(entity);
-        condition.addConditions(Condition.ItemComparison.AT_LEAST, 2, TakeableItem.Items.WOOD_SWORD, Condition.ItemConditions.INVENTORY);
+        //ArrayList of condition to add onto
+        Conditions conditions = new Conditions(
+                new InventoryCondition(entity, InventoryCondition.ItemComparison.AT_LEAST,1, TakeableItem.Items.IRON_SWORD),
+                new InventoryCondition(entity, InventoryCondition.ItemComparison.AT_LEAST,1, TakeableItem.Items.WOOD_SWORD)
+        );
 
-        System.out.println(entity.getInventory().getCurrentSize());
-
-        //Check conditions and see if can activate items
-        if(condition.checkConditions(condition)){
-            System.out.println("YOU DID THE THING!");
-            return true;
+        if(conditions.checkCondition()){
+            System.out.println("Condition is true");
         }
-
         return false;
+
     }
 
 

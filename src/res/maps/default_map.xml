@@ -7,15 +7,15 @@
         </tile>
         <tile>
             <terrain type="grass"/>
-            <item id="0" type="obstacle"></item>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
             <item id="0" type="take-able"></item>
         </tile>
         <tile>
             <terrain type="grass"/>
-            <area-effect type="heal-damage"></area-effect>
+            <item id="1" type="take-able"></item>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+            <area-effect type="take-able"></area-effect>
         </tile>
         <tile>
             <terrain type="grass"/>
