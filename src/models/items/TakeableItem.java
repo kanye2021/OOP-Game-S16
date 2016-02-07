@@ -17,9 +17,6 @@ import java.util.HashMap;
  */
 public class TakeableItem extends Item {
 	public enum Items {
-		//EXAMPLE_TAKEABLE_ITEM("name", "description", "pathToFile", <StatModifications>)
-		// Can be read as EXAMPLE_TAKEABLE_ITEM has "name", "description", "pathToFile", and StatModifications
-		
 		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png","equippable","primaryWeapon", new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
@@ -50,7 +47,7 @@ public class TakeableItem extends Item {
 		private String description;
 		private String pathToPicture;
 		private String property;
-		private String component;
+		protected String component;
 		private StatModifications modifications;
 		private boolean isEquippable;
 

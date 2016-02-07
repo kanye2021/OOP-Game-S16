@@ -38,7 +38,6 @@ public class ItemStatsAssociation {
                 TakeableItem unequippedItem = avatarEquippedItems.checkItem(usedItem);
                 unequipItemStats(unequippedItem);
                 avatarEquippedItems.equipItems(usedItem);
-                avatarInventory.addItem(unequippedItem);
             }
 
             //If type of item is not equipped equip it
