@@ -42,6 +42,32 @@ public class LoadGameView extends View{
 
         g2d.setFont(new Font("Purisa", Font.PLAIN, 13));
 
+        //no saved games to list in for loop below
+        if (listOfSaveFiles.length == 0){
+            String message = "No Saved Games";
+            Rectangle2D rectangle = fm.getStringBounds(message, g);
+
+            int boxX = View.B_WIDTH / 2 - BUTTON_WIDTH / 2;
+            int boxY = BUTTON_HEIGHT + START_POSITION;
+            int boxDX = BUTTON_WIDTH;
+            int boxDY = BUTTON_HEIGHT;
+
+            int stringX = View.B_WIDTH / 2 - (int) (rectangle.getWidth() / 2);
+            int stringY = BUTTON_HEIGHT + (int) (rectangle.getHeight() / 2) + fm.getAscent() + START_POSITION;
+
+            Color primaryColor;
+            Color secondaryColor;
+            primaryColor = Color.WHITE;
+            secondaryColor = Color.BLACK;
+
+
+            g.setColor(primaryColor);
+            g.fillRect(boxX, boxY, boxDX, boxDY);
+            g.setColor(secondaryColor);
+            g.drawString(message, stringX, stringY);
+        }
+
+        //display list of files
         for (int i = 0; i < listOfSaveFiles.length; i++) {
             File file = listOfSaveFiles[i];
             if (file.isFile()) {
