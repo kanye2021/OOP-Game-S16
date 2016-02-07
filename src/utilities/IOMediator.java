@@ -49,13 +49,9 @@ public class IOMediator {
         abstract void render(Graphics g);
         
         private View view;
-        
-        public View getView() {
-        	return view;
-        }
-        public void setView(View v) {
-            view = v;
-        }
+
+        public View getView() { return view; }
+        public void setView(View v) { view = v; }
 
         private Views(){}
         private Views(View view) {
@@ -67,6 +63,7 @@ public class IOMediator {
     private static IOMediator ioMediator = new IOMediator();
     // If adding new views, add it as a static class property here.
     private static Views activeView;
+    private static Views previousView;
 
     // A private Constructor prevents any other
     // class from instantiating.
@@ -84,11 +81,14 @@ public class IOMediator {
 
     // Other methods protected by singleton-ness
     public static void setActiveView(Views view) {
+        previousView = activeView;
         activeView = view;
     }
     public static View getActiveView() {
         return activeView.getView();
     }
+
+    public static Views getPreviousView() { return previousView; }
 
     public static void keyPressed(KeyEvent e) {
 

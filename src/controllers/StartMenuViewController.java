@@ -21,7 +21,7 @@ public class StartMenuViewController extends ViewController {
 		//INVENTORY("Open Inventory") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.INVENTORY);};},
 		//PAUSE("Open Pause Menu") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.PAUSE);};},
 
-		EXIT_GAME("Exit Game") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};};
+		EXIT_GAME("Exit Game") {protected void setView() {System.exit(0);}};
 		
 		private String s;
 		protected abstract void setView();

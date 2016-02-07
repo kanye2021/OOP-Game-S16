@@ -238,6 +238,7 @@ public class Load_Save {
                     int y = Integer.parseInt(entity.getAttribute("location_y"));
                     avatar.updateLocation(x,y);
                     avatar.updateOrientation(entity.getAttribute("orientation"));
+                    avatar.setOccupation(entity.getAttribute("occupation"));
                     loadStats(avatar.getStats(), entity); //Separate function to handle loading stats
                     //Adds avatar to the map
                     m.insertEntityAtLocation(x,y,avatar);

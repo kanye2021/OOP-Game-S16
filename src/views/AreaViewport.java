@@ -30,7 +30,6 @@ public class AreaViewport extends View implements Observer {
         this.map = map;
         this.entity = entity;
         map.addObserver(this);
-        entity.addObserver(this);
 //        this.viewController = new controllers.GameViewController(this);
 
         // Modify the filepaths based on the user's OS
@@ -42,7 +41,7 @@ public class AreaViewport extends View implements Observer {
 
     @Override
     public void render(Graphics g){
-    	
+
         /*  There is essentially a transformation between two different coordinate systems. There is the logical coordinate
             system (the array of tiles in the map) and a visual coordinate system (what will be shown on the display).
         */
@@ -84,11 +83,11 @@ public class AreaViewport extends View implements Observer {
 
                 // Get the terrain at this location
                 Terrain t = map.getTerrainAtLocation(j, i);
-                
+
                 //OUT OF BOUNDS!!!!!!!!!!!!!!!!
-                if(t == null) 
-                	continue;
-                
+                if(t == null)
+                    continue;
+
                 ImageIcon ii = new ImageIcon(terrainBaseFilepath + t.getType() + ".png");
 
                 Image terrainImg = ii.getImage();
@@ -96,11 +95,10 @@ public class AreaViewport extends View implements Observer {
 
 
                 Item item = map.getItemAtLocation(j, i);
-                
-                
-                
+
+
+
                 if(item!=null){
-                	
                     ImageIcon item_icon = new ImageIcon(takeableItemBaseFilepath + item.getPathToPicture());
                     Image itemImage = item_icon.getImage();
 
@@ -142,8 +140,8 @@ public class AreaViewport extends View implements Observer {
     }
 
 
-    
-    
+
+
     @Override
     public void update(){
         //TODO: implement

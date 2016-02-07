@@ -31,6 +31,9 @@ public class LoadGameController extends ViewController{
     }
     public File[] loadNewFolder(){
         File folder = new File(saveFilePath);
+        if (!folder.exists()) {
+           folder.mkdir();
+        }
         fileNames = folder.listFiles();
         return fileNames;
     }
@@ -46,12 +49,17 @@ public class LoadGameController extends ViewController{
                 }
                 break;
             case  KeyEvent.VK_DOWN:
-                if (myOption < fileNames.length){
+                if (myOption < fileNames.length - 1){
                     myOption++;
                 }
                 break;
             case  KeyEvent.VK_ENTER:
-                loadGame();
+                if (fileNames.length != 0) {
+                    loadGame();
+                }
+                break;
+            case  KeyEvent.VK_ESCAPE:
+                IOMediator.setActiveView(IOMediator.getPreviousView());
                 break;
         }
         if (checkFolderList()) {
