@@ -151,6 +151,42 @@ public class EquippedItems{
     public void equipGloves(TakeableItem item){gloves = item;}
     public void equipNecklace(TakeableItem item){necklace = item;}
 
+    public TakeableItem getHead(){
+        return head;
+    }
+
+    public TakeableItem getBoots() {
+        return boots;
+    }
+
+    public TakeableItem getCape() {
+        return cape;
+    }
+
+    public TakeableItem getChest() {
+        return chest;
+    }
+
+    public TakeableItem getGloves() {
+        return gloves;
+    }
+
+    public TakeableItem getLegs() {
+        return legs;
+    }
+
+    public TakeableItem getNecklace() {
+        return necklace;
+    }
+
+    public TakeableItem getPrimaryWeapon() {
+        return primaryWeapon;
+    }
+
+    public TakeableItem getSecondaryWeapon() {
+        return secondaryWeapon;
+    }
+
     public void unequipHead(TakeableItem item){head = null;}
     public void unequipChest(TakeableItem item){chest = null;}
     public void unequipLegs(TakeableItem item){legs = null;}
