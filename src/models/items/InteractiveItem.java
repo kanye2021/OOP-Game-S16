@@ -15,6 +15,7 @@ public class InteractiveItem extends Item {
 
     public enum Quests{
 
+        //Test
         SAVE_JORGE("takeable-item.png"),
         DAVID_SQUARED("teddy_bear.png"),
         BRAGIO("teddy_bear.png");
