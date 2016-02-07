@@ -4,7 +4,6 @@ import controllers.DeathViewController;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
 
 /**
  * Created by Matthew on 2/6/2016.
@@ -24,37 +23,39 @@ public class DeathView extends View{
     @Override
     public void render(Graphics g) {
 
-        g.setFont(VIEW_FONT);
-        FontMetrics fm = g.getFontMetrics(VIEW_FONT);
+        Font f = new Font("Courier New", 1, 55);
+        g.setFont(f);
+        FontMetrics fm = g.getFontMetrics(f);
 
         int itemOffset = 1;
-
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 0, B_WIDTH - 1, B_HEIGHT - 1);
         g.setColor(Color.BLACK);
-        g.fillRect(10, 10, B_WIDTH - 21, B_HEIGHT - 21);
+        g.fillRect(0, 0, B_WIDTH , B_HEIGHT);
 
-        String titleString = "You have ran out of lifes! Game over!";
+        String titleString = "Game over!";
         Rectangle2D titleRectangle = fm.getStringBounds(titleString, g);
+
         int titleStringX = (int) (B_WIDTH / 2 - titleRectangle.getWidth() / 2);
-        int titleStringY = (int) (0 * 20 + titleRectangle.getHeight() / 2 + fm.getAscent() + 11);
+        int titleStringY = (int) (20 + titleRectangle.getHeight() / 2 + fm.getAscent() + 11);
 
         g.setColor(Color.WHITE);
         g.drawString(titleString, titleStringX, titleStringY);
-        g.drawRect(0, 0, B_WIDTH, 20);
 
+
+        Font smallF = new Font("Courier New", 1, 18);
+        g.setFont(smallF);
+        FontMetrics fm2 = g.getFontMetrics(smallF);
         int i = 0;
         for (DeathViewController.MenuOptions option : DeathViewController.MenuOptions.values()) {
             String message = option.toString();
-                Rectangle2D rectangle = fm.getStringBounds(message, g);
+                Rectangle2D rectangle = fm2.getStringBounds(message, g);
 
                 int boxX = View.B_WIDTH / 2 - BUTTON_WIDTH / 2;
-                int boxY = BUTTON_HEIGHT * i + START_POSITION;
+                int boxY = BUTTON_HEIGHT * i + titleStringY + 50;
                 int boxDX = BUTTON_WIDTH;
                 int boxDY = BUTTON_HEIGHT;
 
                 int stringX = View.B_WIDTH / 2 - (int) (rectangle.getWidth() / 2);
-                int stringY = i * BUTTON_HEIGHT + (int) (rectangle.getHeight() / 2) + fm.getAscent() + START_POSITION;
+                int stringY = i * BUTTON_HEIGHT + (int) (rectangle.getHeight() / 2) + fm2.getAscent() + titleStringY + 50;
 
                 Color primaryColor;
                 Color secondaryColor;
