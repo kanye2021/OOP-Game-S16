@@ -17,6 +17,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.FileFilter;
 
 /**
  * Created by dyeung on 2/4/16.
@@ -36,6 +37,7 @@ public class LoadGameController extends ViewController{
         if (!folder.exists()) {
            folder.mkdir();
         }
+
         File[] f = folder.listFiles();
         // Filter files.
         ArrayList<File> filteredFiles = new ArrayList<File>();
@@ -75,6 +77,7 @@ public class LoadGameController extends ViewController{
                 IOMediator.setActiveView(IOMediator.getPreviousView());
                 break;
         }
+        //Needs to check the number of files just in case there is a new saved file in the folder
         if (checkFolderList()) {
             System.out.println("Call this");
             loadNewFolder();

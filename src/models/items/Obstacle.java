@@ -9,13 +9,27 @@ public class Obstacle extends Item {
 
     //Enum of Obstacles
     public enum Obstacles{
-        Rock,
-        Wall,
-        Jorge;
+        Rock("grave.png"),
+        Wall("grave.png"),
+        Jorge("grave.png");
+
+
+        private String pathToPicture;
 
         public int getID() {
             return ordinal();
         }
+
+        public String getPathToPicture() {
+
+            return pathToPicture;
+
+        }
+        //Enum Constructor
+        Obstacles(String filePath){
+            pathToPicture = filePath;
+        }
+
     }
 
 
@@ -40,7 +54,7 @@ public class Obstacle extends Item {
 
     @Override
     public String getPathToPicture() {
-        return null;
+        return Obstacles.values()[getID()].getPathToPicture();
     }
 
 }

@@ -5,6 +5,7 @@ import controllers.LoadGameController;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
+import java.io.FileFilter;
 
 /**
  * Created by dyeung on 2/4/16.
@@ -17,16 +18,14 @@ public class LoadGameView extends View{
     //--------File Path stuff -------
     private String saveFilePath ="src/res/save_files/";
     private File[] listOfSaveFiles;
-    private LoadGameController loadController;
     public LoadGameView(){
         this.viewController = new LoadGameController(this);
-        loadController = (LoadGameController) this.viewController;
 //        File folder = new File(saveFilePath);
         listOfSaveFiles = ((LoadGameController)viewController).getFileNames();
         //getNewFiles();
     }
     public void getNewFiles(){ //Function is used to update the list of save files in the folder
-        listOfSaveFiles = loadController.loadNewFolder();
+        listOfSaveFiles = ((LoadGameController)this.viewController).loadNewFolder();
         System.out.println("LGV: " + listOfSaveFiles.length);
     }
     public void render(Graphics g){
