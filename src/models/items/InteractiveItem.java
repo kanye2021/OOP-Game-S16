@@ -1,9 +1,10 @@
 package models.items;
 
-import utilities.conditions.Condition;
+import models.Stats;
 import models.Entity;
 import utilities.conditions.Conditions;
 import utilities.conditions.InventoryCondition;
+import utilities.conditions.StatCondition;
 
 /**
  * Created by denzel on 2/5/16.
@@ -13,57 +14,21 @@ public class InteractiveItem extends Item {
     //Needs an enum
 
     public enum Quests{
-        /**
-         * have an enum where the ID will denote the
-         * name of the quest, description of the quest, items to look for, number of those items to get, picture
-         *
-         */
 
-        //TODO: Refactor this
-        SAVE_JORGE("saveJorge","you have to kill jorge", new TakeableItem.Items[]{TakeableItem.Items.IRON_SWORD}, new int[]{1},"take-able.png"),
-        DAVID_SQUARED("davidSquared","David^2 needs you for something", new TakeableItem.Items[]{TakeableItem.Items.IRON_SWORD,TakeableItem.Items.STEEL_SWORD}, new int[]{1,2},"take-able.png"),
-        BRAGIO("saveJorge","you have to kill jorge", new TakeableItem.Items[]{TakeableItem.Items.IRON_SWORD}, new int[]{1},"take-able.png");
+        SAVE_JORGE("takeable-item.png"),
+        DAVID_SQUARED("teddy_bear.png"),
+        BRAGIO("teddy_bear.png");
 
 
-        private String name;
-        private String description;
         private String pathToPicture;
-        private TakeableItem.Items items[];
-        private int numOfItems[];
 
         //Enum constructor
-        private Quests(String name, String description, TakeableItem.Items items[], int numOfItems[],String pathToPicture) {
-            this.name = name;
-            this.description = description;
-            this.items = items;
-            this.numOfItems = numOfItems;
+        Quests(String pathToPicture) {
             this.pathToPicture = pathToPicture;
         }
 
         public int getID() {
             return ordinal();
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getDescription(){
-            return description;
-        }
-
-        public TakeableItem[] getRequiredItems(){
-            TakeableItem items[] = new TakeableItem[this.items.length];
-            TakeableItem stuff;
-            for(int i=0;i<this.items.length;i++){
-                stuff = new TakeableItem(Quests.values()[getID()].items[i]);
-                items[i] = stuff;
-            }
-            return items;
-        }
-
-        public int[] getNumItems(){
-            return numOfItems;
         }
 
         public String getPathToPicture() {
@@ -89,17 +54,15 @@ public class InteractiveItem extends Item {
 
     @Override
     public boolean onTouch(Entity entity) {
-        System.out.println("Count: " + 2);
-        System.out.println("Item in Invo count: " + entity.getInventory().getItemCount(TakeableItem.Items.WOOD_SWORD));
-
         //ArrayList of condition to add onto
         Conditions conditions = new Conditions(
                 new InventoryCondition(entity, InventoryCondition.ItemComparison.AT_LEAST,1, TakeableItem.Items.IRON_SWORD),
-                new InventoryCondition(entity, InventoryCondition.ItemComparison.AT_LEAST,1, TakeableItem.Items.WOOD_SWORD)
+                new StatCondition(entity, StatCondition.StatsComparison.AT_LEAST,20, Stats.Type.STRENGTH)
+                //new InventoryCondition(entity, InventoryCondition.ItemComparison.AT_LEAST,1, TakeableItem.Items.WOOD_SWORD)
         );
 
         if(conditions.checkCondition()){
-            System.out.println("Condition is true");
+            System.out.println("You did the thing!");
         }
         return false;
 

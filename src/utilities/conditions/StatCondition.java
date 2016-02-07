@@ -51,7 +51,7 @@ public class StatCondition extends Condition {
     protected boolean checkCondition() {
        int entityStat = stats.get(entity);
        int requiredStat = this.requiredAmount;
-        
+
        return (comparison.isValid(entityStat, requiredStat));
 
     }
