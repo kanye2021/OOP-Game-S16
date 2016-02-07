@@ -2,6 +2,7 @@ package models.items;
 
 
 import models.Entity;
+import models.Inventory;
 import models.Stats;
 import utilities.conditions.Conditions;
 import utilities.conditions.InventoryCondition;
@@ -15,14 +16,11 @@ public class InteractiveItem extends Item {
 
     //Needs an enum
     public enum Quests{
-        
-//        SAVE_JORGE("boomerang.png",InventoryCondition.ItemComparison.AT_LEAST, 1, TakeableItem.Items.WOOD_SWORD),
-//        DAVID_SQUARED("take-able.png",InventoryCondition.ItemComparison.AT_LEAST, 1, TakeableItem.Items.WOOD_SWORD),
-//        BRAGIO("take-able.png",""InventoryCondition.ItemComparison.AT_LEAST, 1, TakeableItem.Items.WOOD_SWORD),
 
         SAVE_JORGE("boomerang.png","Kill the Jorge",InventoryCondition.ItemComparison.AT_LEAST, 1, TakeableItem.Items.WOOD_SWORD),
         DAVID_SQUARED("umbrella.png","David Squared Has a Mission for you",InventoryCondition.ItemComparison.AT_MOST, 2, TakeableItem.Items.WOOD_SWORD),
-        CHEN("roller.png","His name is Chen. Chen Ben.",InventoryCondition.ItemComparison.EXACTLY, 1, TakeableItem.Items.WOOD_SWORD);
+        CHEN("roller.png","His name is Chen. Chen Ben.",InventoryCondition.ItemComparison.EXACTLY, 1, TakeableItem.Items.WOOD_SWORD),
+        GATE_OF_KANYE("roller.png","The Legendary Gate of Kanye", InventoryCondition.ItemComparison.EXACTLY, 1, TakeableItem.Items.KEY_OF_KANYE);
 
 
         private InventoryCondition.ItemComparison comparison;
