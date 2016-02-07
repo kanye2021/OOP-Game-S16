@@ -4,10 +4,83 @@ import models.items.TakeableItem;
 /**
  * Created by ben on 2/5/16.
  */
+
 public class EquippedItems{
-    private TakeableItem head;
+
+	public static enum Equippable {
+
+		YES(true),
+		NO(false);
+
+		private boolean isEquippable;
+
+		private Equippable(boolean isEquippable) {
+
+			this.isEquippable = isEquippable;
+
+		}
+
+		public boolean getEquippable() {
+
+			return isEquippable;
+
+		}
+
+	}
+
+	public static enum ArmorComponent {
+
+		HEAD {
+            public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getHead();};
+            public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipHead(item);};
+            public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipHead();};
+        },
+		CHEST {
+        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getChest();};
+        	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipChest(item);};
+        	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipChest();};
+        },
+		GREAVES {
+        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getGreaves();};
+            public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipGreaves(item);};
+            public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipGreaves();};
+        },
+		BOOTS {
+        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getBoots();};
+        	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipBoots(item);};
+        	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipBoots();};
+        },
+		PRIMARY_WEAPON {
+        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getPrimaryWeapon();};
+        	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipPrimaryWeapon(item);};
+        	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipPrimaryWeapon();};
+        },
+		SECONDARY_WEAPON {
+        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getSecondaryWeapon();};
+        	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipSecondaryWeapon(item);};
+        	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipSecondaryWeapon();};
+        },
+		CAPE {
+        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getCape();};
+        	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipCape(item);};
+        	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipCape();};
+        },
+		GLOVES {
+        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getGloves();};
+        	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipGloves(item);};
+        	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipGloves();};
+        },
+		NECKLACE {
+        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getNecklace();};
+        	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipNecklace(item);};
+        	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipNecklace();};
+        };
+
+	}
+
+	private TakeableItem head;
     private TakeableItem chest;
-    private TakeableItem legs;
+    private TakeableItem greaves;
     private TakeableItem boots;
     private TakeableItem primaryWeapon;
     private TakeableItem secondaryWeapon;
@@ -15,127 +88,10 @@ public class EquippedItems{
     private TakeableItem gloves;
     private TakeableItem necklace;
     //need to put avatar to have the Equipped items object
-    public EquippedItems(){//constructor not really needed
-        head = null;
-        chest = null;
-        legs = null;
-        boots = null;
-        primaryWeapon = null;
-        secondaryWeapon = null;
-        cape = null;
-        gloves = null;
-        necklace = null;
-    }
-
-
-    public void equipItems(TakeableItem item){
-        if(TakeableItem.Items.values()[item.getID()].getComponent() == "head"){
-            equipHead(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "chest"){
-            equipChest(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "legs"){
-            equipLegs(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "boots"){
-            equipBoots(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "primaryWeapon"){
-            equipPrimaryWeapon(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "secondaryWeapon"){
-            equipSecondaryWeapon(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "cape"){
-            equipCape(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "gloves"){
-            equipGloves(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "necklace"){
-            equipNecklace(item);
-        }
-        else{
-            System.out.println("I already have a primary weapon");
-            System.out.println("How did you manage to get here?");
-        }
-    }
-
-    public void unequipItems(TakeableItem item){//typeE means type of Equipment
-        if(TakeableItem.Items.values()[item.getID()].getComponent() == "head"){
-            unequipHead(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "chest"){
-            unequipChest(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "legs"){
-            unequipLegs(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "boots"){
-            unequipBoots(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "primaryWeapon"){
-            unequipPrimaryWeapon(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "secondaryWeapon"){
-            unequipSecondaryWeapon(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "cape"){
-            unequipCape(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "gloves"){
-            unequipGloves(item);
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "necklace"){
-            unequipNecklace(item);
-        }
-        else{
-            System.out.println("How did you manage to get here?");
-        }
-    }
-
-    public TakeableItem checkItem(TakeableItem item){
-        if(TakeableItem.Items.values()[item.getID()].getComponent() == "head"){
-            return head;
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "chest"){
-            return chest;
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "legs"){
-            return legs;
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "boots"){
-            return boots;
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "primaryWeapon"){
-            return primaryWeapon;
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "secondaryWeapon"){
-            return secondaryWeapon;
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "cape"){
-            return cape;
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "gloves"){
-            return gloves;
-        }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "necklace"){
-            return necklace;
-        }
-        else{
-
-            System.out.println("How did you manage to get here?");
-            return null;
-        }
-    }
-    //true means something is there
-    //false means something it is empty
-    //commented out for now
 
     public void equipHead(TakeableItem item){head = item;}
     public void equipChest(TakeableItem item){chest = item;}
-    public void equipLegs(TakeableItem item){legs = item;}
+    public void equipGreaves(TakeableItem item){greaves = item;}
     public void equipBoots(TakeableItem item){boots = item;}
     public void equipPrimaryWeapon(TakeableItem item){primaryWeapon = item;}
     public void equipSecondaryWeapon(TakeableItem item){secondaryWeapon = item;}
@@ -143,16 +99,24 @@ public class EquippedItems{
     public void equipGloves(TakeableItem item){gloves = item;}
     public void equipNecklace(TakeableItem item){necklace = item;}
 
-    public void unequipHead(TakeableItem item){head = null;}
-    public void unequipChest(TakeableItem item){chest = null;}
-    public void unequipLegs(TakeableItem item){legs = null;}
-    public void unequipBoots(TakeableItem item){boots = null;}
-    public void unequipPrimaryWeapon(TakeableItem item){primaryWeapon = null;}
-    public void unequipSecondaryWeapon(TakeableItem item){secondaryWeapon = null;}
-    public void unequipCape(TakeableItem item){cape = null;}
-    public void unequipGloves(TakeableItem item){gloves = null;}
-    public void unequipNecklace(TakeableItem item){necklace = null;}
+    public void unequipHead(){head = null;}
+    public void unequipChest(){chest = null;}
+    public void unequipGreaves(){greaves = null;}
+    public void unequipBoots(){boots = null;}
+    public void unequipPrimaryWeapon(){primaryWeapon = null;}
+    public void unequipSecondaryWeapon(){secondaryWeapon = null;}
+    public void unequipCape(){cape = null;}
+    public void unequipGloves(){gloves = null;}
+    public void unequipNecklace(){necklace = null;}
 
-//function for avatar called get equipped items
-
+    public TakeableItem getHead(){return head;}
+    public TakeableItem getChest(){return chest;}
+    public TakeableItem getGreaves(){return greaves;}
+    public TakeableItem getBoots(){return boots;}
+    public TakeableItem getPrimaryWeapon(){return primaryWeapon;}
+    public TakeableItem getSecondaryWeapon(){return secondaryWeapon;}
+    public TakeableItem getCape(){return cape;}
+    public TakeableItem getGloves(){return gloves;}
+    public TakeableItem getNecklace(){return necklace;}
+    
 }
