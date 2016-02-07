@@ -39,6 +39,8 @@ public class Stats {
     private int weaponModifier;
     private int armorModifier;
 
+    private TimerTask currentTask;
+
 	public static enum Type {
 		
 		LIVES_LEFT("Lives left") {
@@ -129,6 +131,8 @@ public class Stats {
         defensiveRating = agility + level;
         armorRating = armorModifier + hardiness;
 
+        currentTask = null;
+
     }
     public Stats(String occupation){//Initializes the original stats from occupation
 
@@ -172,6 +176,8 @@ public class Stats {
         offensiveRating = weaponModifier + strength + level;
         defensiveRating = agility + level;
         armorRating = armorModifier + hardiness;
+
+        currentTask = null;
     }
     //Loaders for Stats
     // ------ Primary Stats ------
@@ -315,7 +321,13 @@ public class Stats {
         final int stopAtExp =  experience + delta;
         int sign = delta > 0 ? 1 : -1;
         final int increment = sign * (expReqLvUp - lastLvlExpReq)/100; // keep the exp bar consistant at all levels.
-        TimerTask tasknew = new TimerTask() {
+
+        // Terminate any existing tasks
+        if(currentTask != null){
+            currentTask.cancel();
+        }
+
+        currentTask = new TimerTask() {
             @Override
             public void run() {
                 boolean pastBoudnary = delta > 0 ? experience > stopAtExp : experience < stopAtExp;
@@ -336,7 +348,7 @@ public class Stats {
 
         // scheduling the task at fixed rate delay
         int delay = 10;
-        timer.scheduleAtFixedRate(tasknew,100,delay);
+        timer.scheduleAtFixedRate(currentTask,100,delay);
     }
     
     public void modifyMovement(int delta){
@@ -375,7 +387,13 @@ public class Stats {
         final int stopAtHealth = health + delta;
         int sign = delta > 0 ? 1 : -1;
         final int increment = sign * (maxHealth)/10;
-        TimerTask tasknew = new TimerTask() {
+
+        // Terminate any existing tasks
+        if(currentTask != null){
+            currentTask.cancel();
+        }
+
+        currentTask = new TimerTask() {
             @Override
             public void run() {
                 boolean pastBoundrary = delta > 0 ? health > stopAtHealth : health < stopAtHealth;
@@ -401,7 +419,7 @@ public class Stats {
 
         // scheduling the task at fixed rate delay
         int delay = 75;
-        timer.scheduleAtFixedRate(tasknew,100,delay);
+        timer.scheduleAtFixedRate(currentTask,100,delay);
     }
 
     // TODO: Test this with something that modifys mana.
@@ -409,7 +427,13 @@ public class Stats {
         final int stopAtMana = mana + delta;
         int sign = delta > 0 ? 1 : -1;
         final int increment = sign * (maxMana)/10;
-        TimerTask tasknew = new TimerTask() {
+
+        // Terminate any existing tasks
+        if(currentTask != null){
+            currentTask.cancel();
+        }
+
+        currentTask = new TimerTask() {
             @Override
             public void run() {
                 boolean pastBoundrary = delta > 0 ? mana > stopAtMana : mana < stopAtMana;
@@ -435,7 +459,7 @@ public class Stats {
 
         // scheduling the task at fixed rate delay
         int delay = 75;
-        timer.scheduleAtFixedRate(tasknew,100,delay);
+        timer.scheduleAtFixedRate(currentTask,100,delay);
     }
 
     public void actuallyModifyMovement(int delta) {
