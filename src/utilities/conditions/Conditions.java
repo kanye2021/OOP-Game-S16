@@ -1,4 +1,6 @@
-package utilities;
+package utilities.conditions;
+
+import utilities.conditions.Condition;
 
 import java.util.ArrayList;
 
@@ -12,12 +14,6 @@ public class Conditions extends ArrayList<Condition>{
         for(Condition conditions : conditionsList){
             add(conditions);
         }
-    }
-
-    //Overrides ArrayList method to add condition to the Conditions object
-    @Override
-    public boolean add(Condition condition) {
-        return super.add(condition);
     }
 }
 

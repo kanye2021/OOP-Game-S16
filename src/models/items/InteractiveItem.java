@@ -1,6 +1,6 @@
 package models.items;
 
-import utilities.Condition;
+import utilities.conditions.Condition;
 import models.Entity;
 
 /**

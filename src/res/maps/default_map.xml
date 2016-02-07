@@ -7,7 +7,7 @@
         </tile>
         <tile>
             <terrain type="grass"/>
-            <item id="0" type="take-able"></item>
+            <item id="0" type="obstacle"></item>
         </tile>
         <tile>
             <terrain type="grass"/>

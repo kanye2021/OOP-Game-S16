@@ -96,9 +96,10 @@ public class NavigationMediator {
         }
 
 
+        //TODO : Obstacle is never really invoked here
         // Check to see if there is an obstacle
         Item item = map.getItemAtLocation(desiredX, desiredY);
-        if(item !=null && item.getType().equals("obstacle")){
+        if(item !=null && item.getType().equals(Item.Type.OBSTACLE.toString())){
             System.out.println("Hey I'm in the navigationMediator");
             return;
         }
