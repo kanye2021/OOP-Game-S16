@@ -26,13 +26,14 @@ public class ItemStatsAssociation {
     //That applies the modifiers of items whether one time or equippable;
     public void useFromInventory(TakeableItem usedItem){
 
-    	EquippedItems.ArmorComponent componentType = usedItem.getComponent();
+
     	
         //Apply and remove item from inventory
 
         // /if it is equippable (otherwise it would just be used)
         
         if (usedItem.getEquippable()) {
+            EquippedItems.ArmorComponent componentType = usedItem.getComponent();
             usedItem.modifyStats(avatar);
             avatarInventory.removeItem(usedItem);
 
@@ -48,6 +49,10 @@ public class ItemStatsAssociation {
         	
         	componentType.equipComponent(avatar, usedItem);
         	
+        }
+        // Item is use-able/consumable
+        else {
+            //TODO: consume the item or s/t
         }
 
     }
