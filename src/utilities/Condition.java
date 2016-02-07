@@ -16,25 +16,25 @@ public class Condition {
 
     //Boolean Enums
     public enum Comparison {
-//        AT_LEAST() {
-//            protected boolean compare(int count, Entity entity, TakeableItem.Items item) {
-//                if (count >= entity.getInventory().getItemCount(item)) {
-//                    return true;
-//                } else {
-//                    return false;
-//                }
-//            }
-//        },
-//        EXACTLY() {
-//            protected boolean compare(int count, Entity entity, TakeableItem.Items item) {
-//                if (count == entity.getInventory().getItemCount(item)) {
-//                    return true;
-//                } else {
-//                    return false;
-//                }
-//
-//            }
-//        },
+        AT_LEAST() {
+            protected boolean compare(int count, Entity entity, TakeableItem.Items item) {
+                if (count >= entity.getInventory().getItemCount(item)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        EXACTLY() {
+            protected boolean compare(int count, Entity entity, TakeableItem.Items item) {
+                if (count == entity.getInventory().getItemCount(item)) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+        },
         AT_MOST() {
             protected boolean compare(int count, Entity entity, TakeableItem.Items item) {
                 if (count <= entity.getInventory().getItemCount(item)) {
@@ -46,11 +46,11 @@ public class Condition {
             }
         };
 
-        //Constructor
 
         //Function to compare
         protected abstract boolean compare(int count, Entity entity, TakeableItem.Items item);
 
+        //Returns the ordinal for the Enum
         public int getID() {
             return ordinal();
         }

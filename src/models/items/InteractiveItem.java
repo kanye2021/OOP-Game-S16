@@ -92,11 +92,7 @@ public class InteractiveItem extends Item {
         Condition condition = new Condition(entity);
         condition.addConditions(Condition.Comparison.AT_MOST,2, TakeableItem.Items.IRON_SWORD, Condition.ItemConditions.INVENTORY);
 
-
         //Check conditions and see if can activate items
-//        if(condition.checkConditions(condition)){
-//            System.out.println("You have activated the quest!");
-//        }
         if(condition.checkConditions(condition)){
             System.out.println("YOU DID THE THING!");
         }
