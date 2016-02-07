@@ -45,7 +45,8 @@ public class InteractiveItem extends Item {
 
     @Override
     public String getPathToPicture() {
-        return null;
+
+        return Quests.values()[getID()].getPathToPicture();
     }
 
     @Override
