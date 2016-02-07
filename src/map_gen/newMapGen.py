@@ -33,11 +33,34 @@ def getTerrain(content, mapWidth, mapHeight):
     return terrain
 
 # Returns an integer representing the type of item (position in the enum)
-def getItemType(numItemsToAdd, mapSize, totalItemCount):
-    if (random.random() < (float(numItemsToAdd) / float(mapSize))):
-        return random.randint(0, totalItemCount - 1)
+def getItemType(numItemsToAdd, mapSize):
 
-    return -1
+    # Generate a random number to determine if an item should be added here
+    if (random.random() < (float(numItemsToAdd) / float(mapSize))):
+        # Generate a random number between 0 and 3 to determine what type of item it is
+        itemType = random.randint(0, 3)
+        if(itemType == 0):
+            # This is a takeable item. There are 8 types of takable items
+            itemTypeString = "take-able"
+            itemId = random.randint(0, 7)
+            return {'type': itemTypeString, 'id': itemId}
+        elif(itemType == 1):
+            # This is a one-shot item. There are 8 types of takable items
+            itemTypeString = "one-shot"
+            itemId = random.randint(0, 7)
+            return {'type': itemTypeString, 'id': itemId}
+        elif(itemType == 2):
+            # This is an interactive item. There are 3 types of takable items
+            itemTypeString = "interactive"
+            itemId = random.randint(0, 2)
+            return {'type': itemTypeString, 'id': itemId}
+        elif(itemType == 3):
+            # This is an obstacle item. There are 3 types of takable items
+            itemTypeString = "obstacle"
+            itemId = random.randint(0, 2)
+            return {'type': itemTypeString, 'id': itemId}
+
+    return {'type': -1, 'id': -1}
 
 # Returns the type of area effect
 def getAreaEffectType(mapSize, numAreaEffectsToAdd):
@@ -55,7 +78,7 @@ def getAreaEffectType(mapSize, numAreaEffectsToAdd):
     return -1
 
 # Generate the XML file
-def generate(mapSizeX, mapSizeY, terrainArray, numItemsToAdd, totalItemCount, numAreaEffectsToAdd, outputFileName):
+def generate(mapSizeX, mapSizeY, terrainArray, numItemsToAdd, numAreaEffectsToAdd, outputFileName):
     root = Element("map")
     root.set('width', str(mapSizeX))
     root.set('height', str(mapSizeY))
@@ -71,11 +94,11 @@ def generate(mapSizeX, mapSizeY, terrainArray, numItemsToAdd, totalItemCount, nu
             terrain.set("type", terrainType)
 
             # Add an item (if applicable)
-            itemType = getItemType(numItemsToAdd, mapSizeX * mapSizeY, totalItemCount)
-            if (itemType != -1):
+            itemType = getItemType(numItemsToAdd, mapSizeX * mapSizeY)
+            if (itemType['id'] != -1):
                 item = SubElement(element, "item")
-                item.set("id", str(itemType))
-                item.set("type", "take-able")
+                item.set("id", str(itemType['id']))
+                item.set("type", itemType['type'])
 
             # Add an area effec (if applicable)
             areaEffectType = getAreaEffectType(mapSizeX * mapSizeY, numAreaEffectsToAdd)
@@ -105,5 +128,5 @@ if __name__ == "__main__":
     # TODO: Generate items and area effects in the same way (non random in a text file)
 
     # Generate the xml file
-    generate(mapWidth, mapHeight, terrain, 10, 7, 40, "generated_map")
+    generate(mapWidth, mapHeight, terrain, 20, 40, "default_map")
     print "Map successfully created!"
