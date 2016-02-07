@@ -2,13 +2,10 @@ package controllers;
 
 import models.Avatar;
 import models.Entity;
-import models.ItemStatsAssociation;
 import models.Map;
 import utilities.IOMediator;
 import utilities.Load_Save;
 import utilities.NavigationMediator;
-import views.CreateNewGameView;
-import views.Display;
 import views.GameView;
 import views.View;
 
@@ -85,6 +82,12 @@ public class AvatarCreationViewController extends ViewController {
         IOMediator.entity = avatar;
         IOMediator.map = map;
         map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
+
+        // TODO: DELETE
+//        // Create inventory view
+//        InventoryView inventoryView = new InventoryView(map, avatar);
+//        IOMediator.Views.INVENTORY.setView(inventoryView);
+
         GameView gameView = new GameView(map, avatar);
         IOMediator.Views.GAME.setView(gameView);
         IOMediator.setActiveView(IOMediator.Views.GAME);

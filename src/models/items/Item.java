@@ -18,15 +18,11 @@ public abstract class Item {
 		private String s;
 		
 		private Type(String s) {
-			
 			this.s = s;
-		
 		}
 		
 		public String toString() {
-			
 			return s;
-			
 		}
 	}
 	

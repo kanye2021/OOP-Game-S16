@@ -22,23 +22,15 @@ public class DeathViewController extends ViewController {
         protected abstract void setView();
 
         private MenuOptions(String s) {
-
             this.s = s;
-
         }
 
         protected MenuOptions previous() {
-
             if (this.ordinal() == 0) {
-
                 return MenuOptions.values()[MenuOptions.values().length - 1];
-
             }
-
             else {
-
                 return MenuOptions.values()[this.ordinal() - 1];
-
             }
 
         }

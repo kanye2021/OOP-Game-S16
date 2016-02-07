@@ -29,14 +29,14 @@ public class ItemStatsAssociation {
     	EquippedItems.ArmorComponent componentType = usedItem.getComponent();
     	
         //Apply and remove item from inventory
-        usedItem.modifyStats(avatar);
-        avatarInventory.removeItem(usedItem);
 
         // /if it is equippable (otherwise it would just be used)
         
         if (usedItem.getEquippable()) {
-        	
-        	TakeableItem oldItem = componentType.getCurrentEquippedItem(avatar);
+            usedItem.modifyStats(avatar);
+            avatarInventory.removeItem(usedItem);
+
+            TakeableItem oldItem = componentType.getCurrentEquippedItem(avatar);
         	
         	if (oldItem != null) {
         		
