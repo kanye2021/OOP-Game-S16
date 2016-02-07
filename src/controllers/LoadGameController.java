@@ -13,8 +13,6 @@ import views.LoadGameView;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.io.FileFilter;
 
 /**
  * Created by dyeung on 2/4/16.
@@ -103,11 +101,6 @@ public class LoadGameController extends ViewController{
             NavigationMediator nav = new NavigationMediator(map, avatar);
             IOMediator.entity = avatar;
             IOMediator.map = map;
-
-            // TODO: DELETE
-//            // Create inventory view
-//            InventoryView inventoryView = new InventoryView(map, avatar);
-//            IOMediator.Views.INVENTORY.setView(inventoryView);
 
             // Create the game view
             GameView gameView = new GameView(map, avatar);

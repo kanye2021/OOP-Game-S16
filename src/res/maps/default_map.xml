@@ -2112,6 +2112,7 @@
         </tile>
         <tile>
             <terrain type="grass"/>
+            <item id="8" type="take-able"/>
         </tile>
         <tile>
             <terrain type="grass"/>
