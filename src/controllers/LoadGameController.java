@@ -15,6 +15,8 @@ import views.View;
 
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.io.FileFilter;
 
 /**
@@ -35,12 +37,19 @@ public class LoadGameController extends ViewController{
         if (!folder.exists()) {
            folder.mkdir();
         }
-        fileNames = folder.listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File file) {
-                return !file.isHidden();
+
+        File[] f = folder.listFiles();
+        // Filter files.
+        ArrayList<File> filteredFiles = new ArrayList<File>();
+        for (int i = 0; i < f.length; i++) {
+            File current = f[i];
+            // If not .DS_Store and contains .xml use it
+            if (!current.getName().equals(".DS_Store") && current.getName().contains(".xml"))  {
+                filteredFiles.add(current);
             }
-        });
+        }
+        File[] files = new File[filteredFiles.size()];
+        fileNames = filteredFiles.toArray(files);
         return fileNames;
     }
     public int getActiveOptions(){
@@ -75,6 +84,11 @@ public class LoadGameController extends ViewController{
             loadView.getNewFiles();
         }
     }
+
+    public File[] getFileNames(){
+        return fileNames;
+    }
+
     public boolean checkFolderList(){
         File folder = new File(saveFilePath);
         if (folder.listFiles().length != fileNames.length){

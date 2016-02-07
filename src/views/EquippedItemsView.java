@@ -131,7 +131,6 @@ public class EquippedItemsView extends View {
             // Get image path for appropiate slot
             if (option.getImagePath() != "") {
                 // Load the equipped item image image
-                System.out.println("@@@@EQUIPPED AN ITEM WITH IMAGE PATH: " + option.getImagePath());
                 ii = new ImageIcon("./src/res/items/takeable/" + option.getImagePath());
                 i = ii.getImage();
                 // Draw the name of the item underneath it rly smallly

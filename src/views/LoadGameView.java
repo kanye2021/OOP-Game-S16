@@ -20,13 +20,8 @@ public class LoadGameView extends View{
     private File[] listOfSaveFiles;
     public LoadGameView(){
         this.viewController = new LoadGameController(this);
-        File folder = new File(saveFilePath);
-        listOfSaveFiles = folder.listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File file) {
-                return !file.isHidden();
-            }
-        });
+//        File folder = new File(saveFilePath);
+        listOfSaveFiles = ((LoadGameController)viewController).getFileNames();
         //getNewFiles();
     }
     public void getNewFiles(){ //Function is used to update the list of save files in the folder
@@ -44,7 +39,7 @@ public class LoadGameView extends View{
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.white);
 
-        g2d.setFont(new Font("Purisa", Font.PLAIN, 13));
+        g2d.setFont(new Font("Courier New", Font.PLAIN, 13));
 
         //no saved games to list in for loop below
         if (listOfSaveFiles.length == 0){
@@ -71,38 +66,55 @@ public class LoadGameView extends View{
             g.drawString(message, stringX, stringY);
         }
 
-        //display list of files
-        for (int i = 0; i < listOfSaveFiles.length; i++) {
-            File file = listOfSaveFiles[i];
-            if (file.isFile()) {
-                String fileName = file.getName();
-                Rectangle2D rectangle = fm.getStringBounds(fileName, g);
+        else {
 
-                int boxX = View.B_WIDTH / 2 - BUTTON_WIDTH / 2;
-                int boxY = BUTTON_HEIGHT * i + START_POSITION;
-                int boxDX = BUTTON_WIDTH;
-                int boxDY = BUTTON_HEIGHT;
+            // Draw title
+            Font titleFont = new Font("Courier New", Font.PLAIN, 28);
+            g.setFont(titleFont);
+            fm = g.getFontMetrics(titleFont);
+            String titleString = "Pick the save file you want to load";
+            Rectangle2D rec = fm.getStringBounds(titleString, g);
+            int xTitle = (View.B_WIDTH/2 - (int) (rec.getWidth()/2));
+            int yTitle = View.B_HEIGHT/6 + (int) (rec.getHeight() / 2) + fm.getAscent();
+            g.drawString(titleString, xTitle , yTitle );
+                       
+            int START_FILES = yTitle + (int) (rec.getHeight() / 2) + fm.getAscent();
+            fm = g.getFontMetrics(VIEW_FONT);
+            g.setFont(VIEW_FONT);
+            //display list of files
+            for (int i = 0; i < listOfSaveFiles.length; i++) {
+                File file = listOfSaveFiles[i];
+                // Exclude .DS_Store file lol.
+                if (file.isFile() && !file.getName().equals(".DS_Store")) {
+                    String fileName = file.getName();
+                    Rectangle2D rectangle = fm.getStringBounds(fileName, g);
 
-                int stringX = View.B_WIDTH / 2 - (int) (rectangle.getWidth() / 2);
-                int stringY = i * BUTTON_HEIGHT + (int) (rectangle.getHeight() / 2) + fm.getAscent() + START_POSITION;
+                    int boxX = View.B_WIDTH / 2 - BUTTON_WIDTH / 2;
+                    int boxY = BUTTON_HEIGHT * i + START_FILES;
+                    int boxDX = BUTTON_WIDTH;
+                    int boxDY = BUTTON_HEIGHT;
 
-                Color primaryColor;
-                Color secondaryColor;
+                    int stringX = View.B_WIDTH / 2 - (int) (rectangle.getWidth() / 2);
+                    int stringY = i * BUTTON_HEIGHT + (int) (rectangle.getHeight() / 2) + fm.getAscent() + START_FILES;
 
-                if (i == ( ((LoadGameController)this.viewController).getActiveOptions() ) ) {
-                    primaryColor = Color.WHITE;
-                    secondaryColor = Color.BLACK;
+                    Color primaryColor;
+                    Color secondaryColor;
 
-                } else {
-                    primaryColor = Color.BLACK;
-                    secondaryColor = Color.WHITE;
+                    if (i == (((LoadGameController) this.viewController).getActiveOptions())) {
+                        primaryColor = Color.WHITE;
+                        secondaryColor = Color.BLACK;
 
+                    } else {
+                        primaryColor = Color.BLACK;
+                        secondaryColor = Color.WHITE;
+
+                    }
+
+                    g.setColor(primaryColor);
+                    g.fillRect(boxX, boxY, boxDX, boxDY);
+                    g.setColor(secondaryColor);
+                    g.drawString(fileName, stringX, stringY);
                 }
-
-                g.setColor(primaryColor);
-                g.fillRect(boxX, boxY, boxDX, boxDY);
-                g.setColor(secondaryColor);
-                g.drawString(fileName, stringX, stringY);
             }
         }
     }
