@@ -1,11 +1,11 @@
 package models.items;
 
-import models.Map;
-import models.Stats;
+
 import models.Entity;
-import utilities.IOMediator;
+import models.Stats;
 import utilities.conditions.Conditions;
 import utilities.conditions.InventoryCondition;
+import utilities.conditions.StatCondition;
 
 
 /**
@@ -14,7 +14,6 @@ import utilities.conditions.InventoryCondition;
 public class InteractiveItem extends Item {
 
     //Needs an enum
-
     public enum Quests{
         
 //        SAVE_JORGE("boomerang.png",InventoryCondition.ItemComparison.AT_LEAST, 1, TakeableItem.Items.WOOD_SWORD),
@@ -66,6 +65,8 @@ public class InteractiveItem extends Item {
         return super.getType();
     }
 
+
+    //Getters
     public String getDescription(){return Quests.values()[getID()].description;}
     public InventoryCondition.ItemComparison getComparison(){ return Quests.values()[getID()].comparison;}
     public TakeableItem.Items getItem(){ return Quests.values()[getID()].item;}
@@ -75,7 +76,8 @@ public class InteractiveItem extends Item {
     @Override
     public boolean onTouch(Entity entity) {
         Conditions conditions = new Conditions(
-                new InventoryCondition(entity, this.getComparison(), this.getAmount(), this.getItem())
+                new InventoryCondition(entity, this.getComparison(), this.getAmount(), this.getItem()),
+                new StatCondition(entity, StatCondition.StatsComparison.AT_LEAST,50, Stats.Type.STRENGTH)
         );
 
 
