@@ -17,7 +17,7 @@ public class InventoryViewController extends ViewController {
 
 	private int position = 0;
     public Inventory inventory;
-    public ItemStatsAssociation avatarItemStats;
+    //public ItemStatsAssociation avatarItemStats;
 
 
 
@@ -66,7 +66,7 @@ public class InventoryViewController extends ViewController {
         else if(key == KeyEvent.VK_ENTER) {
             System.out.println("Enter pressed from IVC");
             if(getInventory().isThereAnItemAt(getPosition())) {
-                useItem();
+                useItem(getInventory().getItemAt(getPosition()));
             }
         }
         
@@ -103,8 +103,10 @@ public class InventoryViewController extends ViewController {
     }
 
     // Uses/Equips item in inventory
-    private void useItem() {
-        getAvatarItemStats().useFromInv(getInventory().getItemNodeAt(getPosition()).item);
+    private void useItem(TakeableItem item) {
+        
+    	getAvatarItemStats().useFromInventory(item);
+    
     }
    
     public int getPosition(){return position;}

@@ -31,50 +31,49 @@ public class EquippedItems{
 	public static enum ArmorComponent {
 
 		HEAD {
-            public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getHead();};
+            public TakeableItem getCurrentEquippedItem(Entity entity) {return entity.getEquippedItems().getHead();};
             public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipHead(item);};
             public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipHead();};
         },
 		CHEST {
-        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getChest();};
+        	public TakeableItem getCurrentEquippedItem(Entity entity) {return entity.getEquippedItems().getChest();};
         	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipChest(item);};
         	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipChest();};
         },
 		GREAVES {
-        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getGreaves();};
+        	public TakeableItem getCurrentEquippedItem(Entity entity) {return entity.getEquippedItems().getGreaves();};
             public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipGreaves(item);};
             public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipGreaves();};
         },
 		BOOTS {
-        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getBoots();};
+        	public TakeableItem getCurrentEquippedItem(Entity entity) {return entity.getEquippedItems().getBoots();};
         	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipBoots(item);};
         	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipBoots();};
         },
 		PRIMARY_WEAPON {
-        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getPrimaryWeapon();};
+        	public TakeableItem getCurrentEquippedItem(Entity entity) {return entity.getEquippedItems().getPrimaryWeapon();};
         	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipPrimaryWeapon(item);};
         	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipPrimaryWeapon();};
         },
 		SECONDARY_WEAPON {
-        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getSecondaryWeapon();};
+        	public TakeableItem getCurrentEquippedItem(Entity entity) {return entity.getEquippedItems().getSecondaryWeapon();};
         	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipSecondaryWeapon(item);};
         	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipSecondaryWeapon();};
         },
 		CAPE {
-        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getCape();};
+        	public TakeableItem getCurrentEquippedItem(Entity entity) {return entity.getEquippedItems().getCape();};
         	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipCape(item);};
         	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipCape();};
         },
 		GLOVES {
-        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getGloves();};
-        	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipGloves(item);};
-        	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipGloves();};
-        },
-		NECKLACE {
-        	public TakeableItem getComponent(Entity entity) {return entity.getEquippedItems().getNecklace();};
+        	public TakeableItem getCurrentEquippedItem(Entity entity) {return entity.getEquippedItems().getNecklace();};
         	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipNecklace(item);};
         	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipNecklace();};
         };
+
+        public abstract TakeableItem getCurrentEquippedItem(Entity entity);
+        public abstract void equipComponent(Entity entity, TakeableItem item);
+        public abstract void unequipComponent(Entity entity);
 
 	}
 
@@ -118,5 +117,5 @@ public class EquippedItems{
     public TakeableItem getCape(){return cape;}
     public TakeableItem getGloves(){return gloves;}
     public TakeableItem getNecklace(){return necklace;}
-    
+
 }

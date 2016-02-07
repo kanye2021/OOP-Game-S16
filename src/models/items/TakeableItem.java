@@ -15,28 +15,28 @@ import models.Stats;
  */
 public class TakeableItem extends Item {
 	public enum Items {
-		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		WOOD_SWORD("Wood Sword", "A sword made of wood", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
-		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		IRON_SWORD("Iron Sword", "A sword made of iron", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
-		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		STEEL_SWORD("Steel Sword", "A sword made of steel", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
-		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
-		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON, new StatModifications(
+		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
-		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON, new StatModifications(
+		IRON_SHIELD("Iron Shield", "A Shield made of iron", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
-		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON,	new StatModifications(
+		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON,	new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
-		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON, new StatModifications(
+		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		));
 
@@ -85,13 +85,13 @@ public class TakeableItem extends Item {
 		public EquippedItems.ArmorComponent getComponent() {
 
 			return component;
-			
+
 		};
 
 		public boolean getEquippable() {
-			
+
 			return isEquippable.getEquippable();
-		
+
 		}
 
 	}

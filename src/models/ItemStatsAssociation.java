@@ -24,37 +24,31 @@ public class ItemStatsAssociation {
 
 
     //That applies the modifiers of items whether one time or equippable;
-    public void useFromInv(TakeableItem usedItem){
+    public void useFromInventory(TakeableItem usedItem){
 
+    	EquippedItems.ArmorComponent componentType = usedItem.getComponent();
+    	
         //Apply and remove item from inventory
-        usedItem.modifyStatsReverse(avatar);
+        usedItem.modifyStats(avatar);
         avatarInventory.removeItem(usedItem);
 
         // /if it is equippable (otherwise it would just be used)
-        if(TakeableItem.Items.values()[usedItem.getID()].getIsEquippable()) {
-
-            //If you already have the type of item equipped, unequip current item, add unequippedItem to Inv and equip new Item)
-            if(avatarEquippedItems.checkItem(usedItem) != null) {
-                TakeableItem unequippedItem = avatarEquippedItems.checkItem(usedItem);
-                unequipItemStats(unequippedItem);
-                avatarEquippedItems.equipItems(usedItem);
-            }
-
-            //If type of item is not equipped equip it
-            else{
-                avatarEquippedItems.equipItems(usedItem);
-            }
+        
+        if (usedItem.getEquippable()) {
+        	
+        	TakeableItem oldItem = componentType.getCurrentEquippedItem(avatar);
+        	
+        	if (oldItem != null) {
+        		
+        		oldItem.modifyStatsReverse(avatar);
+        		componentType.unequipComponent(avatar);
+        		
+        	}
+        	
+        	componentType.equipComponent(avatar, usedItem);
+        	
         }
 
     }
 
-    //Unequip item and undo the stats it provided
-    public void unequipItemStats(TakeableItem unequippedItem){
-        //Undo stats from to be unequipped item and update
-        unequippedItem.modifyStats(avatar);
-
-        //Unequip and add to inventory
-        avatarEquippedItems.unequipItems(unequippedItem);
-        avatarInventory.addItem(unequippedItem);
-    }
 }
