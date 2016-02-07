@@ -46,6 +46,7 @@ public class GameViewController extends ViewController {
                 break;
             case KeyEvent.VK_C:
                 navMediator.requestMovement("SE");
+                break;
             case KeyEvent.VK_R:
                 // Tell GameView to render EquippedItemsView over it
                 ((GameView)IOMediator.Views.GAME.getView()).setShowEquippedItems(true);

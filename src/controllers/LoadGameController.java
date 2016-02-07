@@ -15,6 +15,7 @@ import views.View;
 
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileFilter;
 
 /**
  * Created by dyeung on 2/4/16.
@@ -34,7 +35,12 @@ public class LoadGameController extends ViewController{
         if (!folder.exists()) {
            folder.mkdir();
         }
-        fileNames = folder.listFiles();
+        fileNames = folder.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return !file.isHidden();
+            }
+        });
         return fileNames;
     }
     public int getActiveOptions(){
