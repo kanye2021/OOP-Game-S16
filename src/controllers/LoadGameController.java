@@ -68,6 +68,7 @@ public class LoadGameController extends ViewController{
                 IOMediator.setActiveView(IOMediator.getPreviousView());
                 break;
         }
+        //Needs to check the number of files just in case there is a new saved file in the folder
         if (checkFolderList()) {
             System.out.println("Call this");
             loadNewFolder();
