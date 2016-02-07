@@ -6,7 +6,7 @@
         </tile>
         <tile>
             <terrain type="grass"/>
-            <item id="0" type="interactive"></item>
+            <item id="2" type="interactive"></item>
         </tile>
         <tile>
             <terrain type="grass"/>
