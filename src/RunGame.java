@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by sergiopuleri on 2/1/16.
  */
-public class Driver extends JFrame implements ActionListener {
+public class RunGame extends JFrame implements ActionListener {
 
     private Timer timer;
     private final int DELAY = 15;
@@ -18,7 +18,7 @@ public class Driver extends JFrame implements ActionListener {
         super.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
-    public Driver() {
+    public RunGame() {
         init();
     }
 
@@ -47,7 +47,7 @@ public class Driver extends JFrame implements ActionListener {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Driver ex = new Driver();
+                RunGame ex = new RunGame();
                 ex.setVisible(true);
             }
         });
