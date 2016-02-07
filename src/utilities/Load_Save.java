@@ -185,6 +185,9 @@ public class Load_Save {
                         else if(itemType.equals(Item.Type.ONE_SHOT.toString())){
                             item = new OneShotItem(OneShotItem.Effects.values()[id]);
                         }
+                        else if(itemType.equals((Item.Type.INTERACTIVE.toString()))){
+                            item = new InteractiveItem(InteractiveItem.Quests.values()[id]);
+                        }
 
                     }
 

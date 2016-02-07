@@ -15,14 +15,14 @@ public class Conditions {
     //Boolean Enums
     public enum booleanEnum{
         AT_LEAST(){protected boolean compare(int count, Entity entity, TakeableItem item){
-            if(count >= entity.getInventory().countItem(item)){
+            if(count >= entity.getInventory().getItemNode(item).amount){
                 return true;
             }else{
                 return false;
             }
         }},
         EXACTLY(){protected boolean compare(int count, Entity entity, TakeableItem item){
-            if(count == entity.getInventory().countItem(item)){
+            if(count == entity.getInventory().getItemNode(item).amount){
                 return true;
             }else{
                 return false;
@@ -30,7 +30,7 @@ public class Conditions {
 
         }},
         AT_MOST(){protected boolean compare(int count, Entity entity, TakeableItem item){
-            if(count <= entity.getInventory().countItem(item)){
+            if(count <= entity.getInventory().getItemNode(item).amount){
                 return true;
             }else{
                 return false;

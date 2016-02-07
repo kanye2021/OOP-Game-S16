@@ -68,6 +68,7 @@ public class Map extends Observable {
         return tiles[y][x].getEntity();
     }
 
+
     //Mutator functions to tiles notify views.AreaViewport
     public void insertItemAtLocation(int x, int y, Item item){
         tiles[y][x].addItem(item);
