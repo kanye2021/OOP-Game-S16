@@ -16,7 +16,7 @@ import models.items.TakeableItem;
 public abstract class Condition {
 
     //Properties of the Condition object
-    protected Entity entity;
+    protected volatile Entity entity;
     protected Map map;
 
 
