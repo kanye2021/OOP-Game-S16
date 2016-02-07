@@ -39,7 +39,7 @@ public class TakeableItem extends Item {
 		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.HARDINESS, 25, StatModification.NumberType.POINT)
 		)),
-		KEY_OF_KANYE("Key of Kanye", "The Key required to open the Gate of Kanye", "bronze_sword.png", EquippedItems.Equippable.NO, null, null);
+		KEY_OF_KANYE("Key of Kanye", "The Key required to open the Gate of Kanye", "KanyeKey.png", EquippedItems.Equippable.NO, null, null);
 
 
 

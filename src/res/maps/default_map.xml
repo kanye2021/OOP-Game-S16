@@ -33,9 +33,11 @@
         </tile>
         <tile>
             <terrain type="grass"/>
+            <item id="8" type="take-able"></item>
         </tile>
         <tile>
             <terrain type="grass"/>
+            <item id="3" type="interactive"></item>
         </tile>
         <tile>
             <terrain type="grass"/>
