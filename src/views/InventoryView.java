@@ -261,7 +261,7 @@ public class InventoryView extends View {
 			g2.setColor(Color.BLACK);
 			for (int i = 0; i < lines; i++) {
 				
-				g2.drawString(output[i], INFO_VIEW_WIDTH/2 - fm.stringWidth(output[i])/2 , ypos);
+				g2.drawString(output[i], INFO_VIEW_WIDTH/2 - fm.stringWidth(output[i])/2 , INFO_Y_MARGIN + 25);
 				ypos += fm.getHeight();
 			}
 		}
