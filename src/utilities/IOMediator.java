@@ -32,7 +32,8 @@ public class IOMediator {
         PAUSE(new PauseView()) {void render(Graphics g) {getView().render(g);}},
         
         UNIMPLEMENTED(null) {void render(Graphics g) {getView().render(g);}},
-        
+
+        DEATH(new DeathView()) {void render(Graphics g) {getView().render(g);}},
 
         LOAD(new LoadGameView()) {
             void render(Graphics g) {

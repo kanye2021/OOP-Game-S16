@@ -59,6 +59,10 @@ public class InventoryViewController extends ViewController {
         	IOMediator.setActiveView(IOMediator.Views.GAME);
         }
 
+        else if (key == KeyEvent.VK_I){
+            IOMediator.setActiveView(IOMediator.Views.GAME);
+        }
+
         else if(key == KeyEvent.VK_ENTER) {
             System.out.println("Enter pressed from IVC");
             if(getInventory().isThereAnItemAt(getPosition())) {
