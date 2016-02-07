@@ -20,7 +20,7 @@ public class InteractiveItem extends Item {
         SAVE_JORGE("boomerang.png","Kill the Jorge",InventoryCondition.ItemComparison.AT_LEAST, 1, TakeableItem.Items.WOOD_SWORD),
         DAVID_SQUARED("umbrella.png","David Squared Has a Mission for you",InventoryCondition.ItemComparison.AT_MOST, 2, TakeableItem.Items.WOOD_SWORD),
         CHEN("roller.png","His name is Chen. Chen Ben.",InventoryCondition.ItemComparison.EXACTLY, 1, TakeableItem.Items.WOOD_SWORD),
-        GATE_OF_KANYE("roller.png","The Legendary Gate of Kanye", InventoryCondition.ItemComparison.EXACTLY, 1, TakeableItem.Items.KEY_OF_KANYE);
+        GATE_OF_KANYE("KanyeGate.png","The Legendary Gate of Kanye", InventoryCondition.ItemComparison.EXACTLY, 1, TakeableItem.Items.KEY_OF_KANYE);
 
 
         private InventoryCondition.ItemComparison comparison;
@@ -75,7 +75,7 @@ public class InteractiveItem extends Item {
     public boolean onTouch(Entity entity) {
         Conditions conditions = new Conditions(
                 new InventoryCondition(entity, this.getComparison(), this.getAmount(), this.getItem()),
-                new StatCondition(entity, StatCondition.StatsComparison.AT_LEAST,50, Stats.Type.STRENGTH)
+                new StatCondition(entity, StatCondition.StatsComparison.AT_LEAST,5, Stats.Type.LEVEL)
         );
 
 
