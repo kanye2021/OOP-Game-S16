@@ -90,7 +90,7 @@ public class OneShotItem extends Item {
 
     public void modifyStats(Entity entity) {
 		
-		Effects.values()[getID()].modifications.modifyStats(entity, StatModification.DIRECTION.FORWARD);
+		Effects.values()[getID()].modifications.modifyStats(entity, StatModification.Direction.FORWARD);
 		
 	}
 	

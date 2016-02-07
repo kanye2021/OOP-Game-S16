@@ -128,13 +128,13 @@ public class TakeableItem extends Item {
 
 	public void modifyStats(Entity entity) {
 
-		Items.values()[getID()].modifications.modifyStats(entity, StatModification.DIRECTION.FORWARD);
+		Items.values()[getID()].modifications.modifyStats(entity, StatModification.Direction.FORWARD);
 
 	}
 
 	public void modifyStatsReverse(Entity entity) {
 
-		Items.values()[getID()].modifications.modifyStats(entity, StatModification.DIRECTION.REVERSE);
+		Items.values()[getID()].modifications.modifyStats(entity, StatModification.Direction.REVERSE);
 
 	}
 }

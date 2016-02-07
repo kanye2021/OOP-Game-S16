@@ -42,6 +42,7 @@ public class ItemStatsAssociation {
         		
         		oldItem.modifyStatsReverse(avatar);
         		componentType.unequipComponent(avatar);
+        		avatarInventory.addItem(oldItem);
         		
         	}
         	

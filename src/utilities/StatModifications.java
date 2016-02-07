@@ -24,7 +24,7 @@ public class StatModifications extends ArrayList<StatModification> {
 		
 	}
 	
-	public void modifyStats(Entity entity, StatModification.DIRECTION direction) {
+	public void modifyStats(Entity entity, StatModification.Direction direction) {
 		
 		for (StatModification modification : this) {
 			
