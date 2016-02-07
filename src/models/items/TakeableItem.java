@@ -71,6 +71,7 @@ public class TakeableItem extends Item {
 			this.property = property;
 			this.component = component;
 			this.modifications = modifications;
+
 			if(property == "equippable"){
 				isEquippable = true;
 			}

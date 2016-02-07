@@ -99,7 +99,7 @@ public class InventoryViewController extends ViewController {
     // Uses/Equips item in inventory
     private void useItem() {
         System.out.println(getInventory().getItemNodeAt(getPosition()).amount);
-        System.out.println(TakeableItem.Items.values()[getInventory().getItemNodeAt(getPosition()).item.getID()].getIsEquippable());
+        System.out.println(TakeableItem.Items.values()[getInventory().getItemNodeAt(getPosition()).item.getID()].getComponent());
         System.out.println("poo" == "poo");
 
         if(getInventory().isThereAnItemAt(getPosition())) {
