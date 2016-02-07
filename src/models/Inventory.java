@@ -32,6 +32,16 @@ public class Inventory {
 		return MAX_INVENTORY;
 	}
 
+	public int getCurrentSize(){
+		int count = 0;
+		for(ItemNode item : items){
+			if(item!=null) {
+				count++;
+			}
+		}
+		return count;
+	}
+
 	public boolean isThereAnItemAt(int index) {
 		if (isOutOfBounds(index)) return false;
 		return (items[index] != null);
@@ -110,7 +120,6 @@ public class Inventory {
 		return false;
 	}
 
-	//TODO: Stupid thing but need to fix the null pointer exception
 	public ItemNode getItem(TakeableItem.Items findItem) {
 		//iterating through inventory items
 		for (ItemNode item : items) {

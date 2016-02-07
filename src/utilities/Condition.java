@@ -5,6 +5,7 @@ package utilities;
  */
 
 import models.Entity;
+import models.Inventory;
 import models.items.InteractiveItem;
 import models.items.TakeableItem;
 
@@ -12,13 +13,17 @@ import models.items.TakeableItem;
  * All Condition objects will have a condition Enum
  * extended onto each
  */
+
+//TODO: Maybe consider refactoring this to be only Avatar conditions
 public class Condition {
 
     //Boolean Enums
     public enum Comparison {
         AT_LEAST() {
-            protected boolean compare(int count, Entity entity, TakeableItem.Items item) {
-                if (count >= entity.getInventory().getItemCount(item)) {
+            protected boolean compare(int count, Entity entity, ItemConditions bag, TakeableItem.Items item) {
+                
+
+                if (count <= bag.INVENTORY.getBackpack(entity).getItemCount(item)) {
                     return true;
                 } else {
                     return false;
@@ -26,8 +31,8 @@ public class Condition {
             }
         },
         EXACTLY() {
-            protected boolean compare(int count, Entity entity, TakeableItem.Items item) {
-                if (count == entity.getInventory().getItemCount(item)) {
+            protected boolean compare(int count, Entity entity, ItemConditions bag, TakeableItem.Items item) {
+                if (count == bag.INVENTORY.getBackpack(entity).getItemCount(item)) {
                     return true;
                 } else {
                     return false;
@@ -36,8 +41,8 @@ public class Condition {
             }
         },
         AT_MOST() {
-            protected boolean compare(int count, Entity entity, TakeableItem.Items item) {
-                if (count <= entity.getInventory().getItemCount(item)) {
+            protected boolean compare(int count, Entity entity, ItemConditions bag, TakeableItem.Items item) {
+                if (count >= bag.INVENTORY.getBackpack(entity).getItemCount(item)) {
                     return true;
                 } else {
                     return false;
@@ -48,7 +53,7 @@ public class Condition {
 
 
         //Function to compare
-        protected abstract boolean compare(int count, Entity entity, TakeableItem.Items item);
+        protected abstract boolean compare(int count, Entity entity,ItemConditions bag, TakeableItem.Items item);
 
         //Returns the ordinal for the Enum
         public int getID() {
@@ -57,8 +62,16 @@ public class Condition {
     }
 
     public enum ItemConditions{
-        INVENTORY,
-        EQUIPPED;
+        INVENTORY(){
+            @Override
+            protected Inventory getBackpack(Entity entity) {
+                return entity.getInventory();
+                }
+            };
+
+
+        //Function to grab the "backpack" of the Entity
+        protected abstract Inventory getBackpack(Entity entity);
     }
 
     //TODO: Get the Map Conditions
@@ -71,7 +84,7 @@ public class Condition {
     //TODO: Need to abstract this into ItemConditions & MapConditions
     private int count;
     private TakeableItem.Items item;
-    private ItemConditions conditions;
+    private ItemConditions bag;
 
 
     //Constructor that passes in reference to the entity calling it
@@ -83,12 +96,12 @@ public class Condition {
         this.comparison = comparison;
         this.count = count;
         this.item = item;
-        this.conditions = itemConditions;
+        this.bag = itemConditions;
     }
 
     //Check the conditions
     public boolean checkConditions(Condition condition){
-        if(this.comparison.compare(1,this.entity,this.item)){
+        if(this.comparison.compare(this.count,this.entity,this.bag,this.item)){
             return true;
         }else{
             return false;

@@ -18,10 +18,10 @@ public class InteractiveItem extends Item {
          *
          */
 
+        //TODO: Refactor this
         SAVE_JORGE("saveJorge","you have to kill jorge", new TakeableItem.Items[]{TakeableItem.Items.IRON_SWORD}, new int[]{1},"take-able.png"),
         DAVID_SQUARED("davidSquared","David^2 needs you for something", new TakeableItem.Items[]{TakeableItem.Items.IRON_SWORD,TakeableItem.Items.STEEL_SWORD}, new int[]{1,2},"take-able.png"),
         BRAGIO("saveJorge","you have to kill jorge", new TakeableItem.Items[]{TakeableItem.Items.IRON_SWORD}, new int[]{1},"take-able.png");
-
 
 
         private String name;
@@ -90,8 +90,9 @@ public class InteractiveItem extends Item {
     public boolean onTouch(Entity entity) {
 
         Condition condition = new Condition(entity);
-        condition.addConditions(Condition.Comparison.AT_MOST,2, TakeableItem.Items.IRON_SWORD, Condition.ItemConditions.INVENTORY);
+        condition.addConditions(Condition.Comparison.AT_LEAST, 3, TakeableItem.Items.IRON_SWORD, Condition.ItemConditions.INVENTORY);
 
+        System.out.println(entity.getInventory().getCurrentSize());
         //Check conditions and see if can activate items
         if(condition.checkConditions(condition)){
             System.out.println("YOU DID THE THING!");

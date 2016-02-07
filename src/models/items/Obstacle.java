@@ -29,6 +29,7 @@ public class Obstacle extends Item {
     //the avatar to even on the same tile
     @Override
     public boolean onTouch(Entity entity) {
+
         return false;
     }
 

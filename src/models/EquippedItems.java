@@ -26,7 +26,9 @@ public class EquippedItems{
         gloves = null;
         necklace = null;
     }
-    public void equipItems(TakeableItem item){//ItemsStatsAssociation handles error checking
+
+
+    public void equipItems(TakeableItem item){
         if(TakeableItem.Items.values()[item.getID()].getComponent() == "head"){
             equipHead(item);
         }
@@ -128,17 +130,7 @@ public class EquippedItems{
     //true means something is there
     //false means something it is empty
     //commented out for now
-    /*
-    public TakeableItem checkHead(TakeableItem item){return head;}
-    public TakeableItem checkChest(TakeableItem item){return chest;}
-    public TakeableItem checkLegs(TakeableItem item){return legs;}
-    public TakeableItem checkBoots(TakeableItem item){return boots;}
-    public TakeableItem checkPrimaryWeapon(TakeableItem item){return primaryWeapon;}
-    public TakeableItem checkSecondaryWeapon(TakeableItem item){return secondaryWeapon;}
-    public TakeableItem checkCape(TakeableItem item){return cape;}
-    public TakeableItem checkGloves(TakeableItem item){return gloves;}
-    public TakeableItem checkNecklace(TakeableItem item){return necklace;}
-   */
+
     public void equipHead(TakeableItem item){head = item;}
     public void equipChest(TakeableItem item){chest = item;}
     public void equipLegs(TakeableItem item){legs = item;}
