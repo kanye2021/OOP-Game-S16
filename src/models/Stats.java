@@ -2,6 +2,7 @@
 package models;
 
 
+import utilities.IOMediator;
 import views.Display;
 
 import java.util.Timer;
@@ -271,6 +272,7 @@ public class Stats {
         if(livesLeft < 1){
             //TODO: Implement GAME
             System.out.println("Game Over");
+            IOMediator.setActiveView(IOMediator.Views.DEATH);
         }
 
         health = maxHealth;
