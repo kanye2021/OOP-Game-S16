@@ -59,7 +59,7 @@ public class EquippedItemsViewController extends ViewController{
 
     public EquippedItemsViewController(View v) {
         super(v);
-        selectedItem = EquippedItemOptSelections.CAPE;
+        selectedItem = EquippedItemOptSelections.HEAD;
     }
 
     private EquippedItemOptSelections selectedItem;
@@ -69,8 +69,7 @@ public class EquippedItemsViewController extends ViewController{
     }
 
     public static void unequipSlot(EquippedItems.ArmorComponent component) {
-        // TODO: When I call unequip, it just EquippedItems just sets to null.
-        // It needs to return that slot to inventory.
+
 
     	TakeableItem itemInSlot = component.getCurrentEquippedItem(IOMediator.entity);
     	

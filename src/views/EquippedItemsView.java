@@ -137,8 +137,8 @@ public class EquippedItemsView extends View {
                 // TODO: render a place holder image
             }
             Rectangle2D rec = fm.getStringBounds(option.getText(), g);
-            // If the text contains a space (e.g. "primary weapon") we want to render it differently
-            if (option.getText().contains(" ")) {
+            // If the text contains more than 5 letters (e.g. "primary weapon") we want to render it differently
+            if (option.getText().length() > 5) {
                 g.drawString(option.getText(), x, y + ITEM_SLOT + ((int) (rec.getHeight()) + fm.getAscent()));
             }
             else g.drawString(option.getText(), x + (int)rec.getWidth()/2, y + ITEM_SLOT + ((int) (rec.getHeight()) + fm.getAscent()));
