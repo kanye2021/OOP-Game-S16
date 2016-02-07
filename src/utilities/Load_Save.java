@@ -515,7 +515,7 @@ public class Load_Save {
         pStats.setAttributeNode( getStatAttr(doc,stat,"movement") );
 
         stats.appendChild(pStats);
-        
+
         //-----derived stats
         Element dStats = doc.createElement("dStats");
 
