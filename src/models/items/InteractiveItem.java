@@ -17,9 +17,9 @@ public class InteractiveItem extends Item {
 
     public enum Quests{
         
-        SAVE_JORGE("take-able.png",InventoryCondition.ItemComparison.AT_LEAST, 1, TakeableItem.Items.WOOD_SWORD);
-//        DAVID_SQUARED("teddy_bear.png"),
-//        BRAGIO("teddy_bear.png");
+        SAVE_JORGE("boomerang.png",InventoryCondition.ItemComparison.AT_LEAST, 1, TakeableItem.Items.WOOD_SWORD),
+        DAVID_SQUARED("take-able.png",InventoryCondition.ItemComparison.AT_LEAST, 1, TakeableItem.Items.WOOD_SWORD),
+        BRAGIO("take-able.png",InventoryCondition.ItemComparison.AT_LEAST, 1, TakeableItem.Items.WOOD_SWORD);
 
         private InventoryCondition.ItemComparison comparison;
         private int amount;
