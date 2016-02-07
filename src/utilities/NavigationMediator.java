@@ -3,6 +3,7 @@ package utilities;
 import models.*;
 import models.area_effects.AreaEffect;
 import models.items.Item;
+import models.items.Obstacle;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -102,7 +103,10 @@ public class NavigationMediator {
         if(item !=null && item.getType().equals(Item.Type.OBSTACLE)){
             return;
         }
-
+        //Checks to see if there is an interactive item that also has not fulfilled the conditions
+        if (item != null && item.equalsType(Item.Type.INTERACTIVE) && !item.onTouch(entity)) {
+            return;
+        }
         //----------------------If we got here we are okay to move so lets do it!----------------------------------
 
         // Remove the entity from it's current location and put it in the new one.
@@ -137,8 +141,8 @@ public class NavigationMediator {
 
         // Take care of activating any items that have been encountered.
         if(item!=null) {
-            boolean removeItem = item.onTouch(entity);
-            if(removeItem){
+            boolean questFinished = item.onTouch(entity);
+            if(questFinished){
                 map.removeItemFromLocation(currentLocation[0], currentLocation[1]);
             }
         }

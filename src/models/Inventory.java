@@ -8,7 +8,6 @@ import models.items.TakeableItem;
 public class Inventory {
 
 	private final int MAX_INVENTORY = 10;
-
 	private ItemNode[] items;
 
 	private boolean isOutOfBounds(int index) {
@@ -119,7 +118,7 @@ public class Inventory {
 		for (int i = 0; i < items.length; i++) {
 			if (items[i] != null) {
 				if (items[i].item.equals(newItem))
-					removeItemAt(i);
+					return removeItemAt(i);
 			}
 		}
 		return false;

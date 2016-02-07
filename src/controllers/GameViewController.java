@@ -1,7 +1,6 @@
 package controllers;
 
 import utilities.IOMediator;
-import utilities.Load_Save;
 import utilities.NavigationMediator;
 import views.GameView;
 import views.View;
@@ -52,7 +51,7 @@ public class GameViewController extends ViewController {
                 ((GameView)IOMediator.Views.GAME.getView()).setShowEquippedItems(true);
                 break;
             case KeyEvent.VK_I:
-            	IOMediator.setActiveView(IOMediator.Views.INVENTORY);
+                ((GameView)IOMediator.Views.GAME.getView()).setShowInventory(true);
             	break;
             case KeyEvent.VK_ESCAPE:
             	IOMediator.setActiveView(IOMediator.Views.PAUSE);

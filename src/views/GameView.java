@@ -1,6 +1,5 @@
 package views;
 
-import controllers.EquippedItemsViewController;
 import controllers.GameViewController;
 import controllers.ViewController;
 import models.Entity;
@@ -21,9 +20,12 @@ public class GameView extends View {
 
     private ViewController gameViewController;
     private ViewController equippedItemsViewController;
+    private ViewController inventoryViewController;
     // Adding Equipped Items view as part of game View to Overlay the view
     private EquippedItemsView equippedItemsView;
+    private InventoryView inventoryView;
     private boolean showEquippedItems;
+    private boolean showInventory;
 
     public GameView(Map map, Entity avatar){
         NavigationMediator mediator = new NavigationMediator(map, avatar);
@@ -34,7 +36,10 @@ public class GameView extends View {
 
         equippedItemsView = new EquippedItemsView();
         equippedItemsViewController = equippedItemsView.viewController;
+        inventoryView = new InventoryView(map, avatar);
+        inventoryViewController = inventoryView.getViewController();
         showEquippedItems = false;
+        showInventory = false;
 
 
         // Set the Load_Save Singleton to the current map and avatar
@@ -52,6 +57,10 @@ public class GameView extends View {
             viewController = equippedItemsViewController;
             equippedItemsView.render(g);
         }
+        else if(showInventory){
+            viewController = inventoryViewController;
+            inventoryView.render(g);
+        }
         else {
             viewController = gameViewController;
         }
@@ -63,5 +72,7 @@ public class GameView extends View {
     public void setShowEquippedItems(boolean b) {
         showEquippedItems = b;
     }
+    public void setShowInventory(boolean b) {showInventory = b; }
+    public boolean getShowInventory(){ return showInventory; }
 
 }
