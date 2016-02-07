@@ -61,7 +61,9 @@ public class InventoryViewController extends ViewController {
 
         else if(key == KeyEvent.VK_ENTER) {
             System.out.println("Enter pressed from IVC");
-            useItem();
+            if(getInventory().isThereAnItemAt(getPosition())) {
+                useItem();
+            }
         }
         
     }
@@ -98,13 +100,7 @@ public class InventoryViewController extends ViewController {
 
     // Uses/Equips item in inventory
     private void useItem() {
-        System.out.println(getInventory().getItemNodeAt(getPosition()).amount);
-        System.out.println(TakeableItem.Items.values()[getInventory().getItemNodeAt(getPosition()).item.getID()].getComponent());
-        System.out.println("poo" == "poo");
-
-        if(getInventory().isThereAnItemAt(getPosition())) {
-            getAvatarItemStats().useFromInv(getInventory().getItemNodeAt(getPosition()).item);
-        }
+        getAvatarItemStats().useFromInv(getInventory().getItemNodeAt(getPosition()).item);
     }
    
     public int getPosition(){return position;}

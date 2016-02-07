@@ -41,10 +41,10 @@ public class EquippedItems{
         else if(TakeableItem.Items.values()[item.getID()].getComponent() == "boots"){
             equipBoots(item);
         }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "primary weapon"){
+        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "primaryWeapon"){
             equipPrimaryWeapon(item);
         }
-        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "secondary weapon"){
+        else if(TakeableItem.Items.values()[item.getID()].getComponent() == "secondaryWeapon"){
             equipSecondaryWeapon(item);
         }
         else if(TakeableItem.Items.values()[item.getID()].getComponent() == "cape"){
@@ -57,6 +57,7 @@ public class EquippedItems{
             equipNecklace(item);
         }
         else{
+            System.out.println("I already have a primary weapon");
             System.out.println("How did you manage to get here?");
         }
     }
@@ -123,6 +124,7 @@ public class EquippedItems{
             return necklace;
         }
         else{
+
             System.out.println("How did you manage to get here?");
             return null;
         }
