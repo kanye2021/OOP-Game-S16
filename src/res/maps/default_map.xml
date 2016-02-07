@@ -13,7 +13,7 @@
         </tile>
         <tile>
             <terrain type="grass"/>
-            <area-effect type="level-up"/>
+            <area-effect type="heal-damage"></area-effect>
         </tile>
         <tile>
             <terrain type="grass"/>

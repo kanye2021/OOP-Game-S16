@@ -35,6 +35,7 @@ public abstract class Item {
     protected Type type;
     protected String pathToPicture;
     
+
     //Constructor
     protected Item(int id, Type type) {
     	this.id = id;
@@ -86,5 +87,7 @@ public abstract class Item {
     public String toString() {
         return getType() + ": " + getID();
     }
+
+
 
 }
