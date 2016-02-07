@@ -145,22 +145,22 @@ public class Stats {
         movement = 10;
 
         if(occupation == "smasher") {
-            strength = 12;
+            strength = 20;
             agility = 10;
-            intellect = 8;
-            hardiness = 10;
+            intellect = 10;
+            hardiness = 15;
         }
         else if(occupation == "summoner"){
             strength = 10;
-            agility = 8;
-            intellect = 12;
-            hardiness = 10;
+            agility = 5;
+            intellect = 20;
+            hardiness = 15;
         }
         else if(occupation == "sneak"){
-            strength = 10;
-            agility = 12;
+            strength = 15;
+            agility = 20;
             intellect = 10;
-            hardiness = 10;
+            hardiness = 5;
         }
 
         // Set up necessary parameters
