@@ -1,7 +1,6 @@
 package models.items;
 
 import utilities.Condition;
-import utilities.Conditions;
 import models.Entity;
 
 /**
@@ -90,9 +89,10 @@ public class InteractiveItem extends Item {
     public boolean onTouch(Entity entity) {
 
         Condition condition = new Condition(entity);
-        condition.addConditions(Condition.Comparison.AT_LEAST, 3, TakeableItem.Items.IRON_SWORD, Condition.ItemConditions.INVENTORY);
+        condition.addConditions(Condition.ItemComparison.AT_LEAST, 2, TakeableItem.Items.WOOD_SWORD, Condition.ItemConditions.INVENTORY);
 
         System.out.println(entity.getInventory().getCurrentSize());
+
         //Check conditions and see if can activate items
         if(condition.checkConditions(condition)){
             System.out.println("YOU DID THE THING!");

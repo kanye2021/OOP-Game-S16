@@ -6,7 +6,6 @@ package utilities;
 
 import models.Entity;
 import models.Inventory;
-import models.items.InteractiveItem;
 import models.items.TakeableItem;
 
 /**
@@ -17,12 +16,10 @@ import models.items.TakeableItem;
 //TODO: Maybe consider refactoring this to be only Avatar conditions
 public class Condition {
 
-    //Boolean Enums
-    public enum Comparison {
+    //Item conditions
+    public enum ItemComparison {
         AT_LEAST() {
             protected boolean compare(int count, Entity entity, ItemConditions bag, TakeableItem.Items item) {
-                
-
                 if (count <= bag.INVENTORY.getBackpack(entity).getItemCount(item)) {
                     return true;
                 } else {
@@ -51,7 +48,6 @@ public class Condition {
             }
         };
 
-
         //Function to compare
         protected abstract boolean compare(int count, Entity entity,ItemConditions bag, TakeableItem.Items item);
 
@@ -69,17 +65,18 @@ public class Condition {
                 }
             };
 
+        //TODO Get Equipped Items after Austin refactors it
 
         //Function to grab the "backpack" of the Entity
         protected abstract Inventory getBackpack(Entity entity);
     }
 
-    //TODO: Get the Map Conditions
+    //TODO: Get the Entity Conditions
 
 
     //Properties of the Condition object
     private Entity entity;
-    private Comparison comparison;
+    private ItemComparison comparison;
 
     //TODO: Need to abstract this into ItemConditions & MapConditions
     private int count;
@@ -92,7 +89,7 @@ public class Condition {
 
     //Adding conditions
     //condition.addConditions(AT_LEAST,2,Takeable.Items.WOOD_SWORD,ItemConditions.INVENTORY)
-    public void addConditions(Comparison comparison, int count, TakeableItem.Items item, ItemConditions itemConditions){
+    public void addConditions(ItemComparison comparison, int count, TakeableItem.Items item, ItemConditions itemConditions){
         this.comparison = comparison;
         this.count = count;
         this.item = item;

@@ -33,7 +33,7 @@ public class Conditions extends ArrayList<Condition>{
 //
 //
 //    //Boolean Enums
-//    public enum Comparison{
+//    public enum ItemComparison{
 //        AT_LEAST(){protected boolean compare(int count, Entity entity, TakeableItem.Items item){
 //            if(count >= entity.getInventory().getItemCount(item)){
 //                return true;
@@ -72,14 +72,14 @@ public class Conditions extends ArrayList<Condition>{
 //    }
 //
 //    //Properties of the condition object
-//    private Comparison comparison;
+//    private ItemComparison comparison;
 //    private Entity entity;
 //    private int count;
 //    private TakeableItem item;
 //
 //
 //    //Conditions conditions;
-//    //conditions.addItemCondition(entity, Conditions.Comparison.AT_LEAST, 2, TakeableItems.Items.IRON_SWORD, Conditions.Location.INVENTORY)
+//    //conditions.addItemCondition(entity, Conditions.ItemComparison.AT_LEAST, 2, TakeableItems.Items.IRON_SWORD, Conditions.Location.INVENTORY)
 //    //conditions.addItemCondition(entity, Conditions.COMPARISON.AT_LEAST, 2, TakeableItems.Items.IRON_SWORD, Conditions.Location.EQUIPPED)
 //    //conditions.addItemCondition(entity, Conditions.COMPARISON.AT_LEAST, 2, TakeableItems.Items.IRON_SWORD, Conditions.Location.INVENTORY)
 //    //conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 50, Conditions.POINTS)
@@ -89,7 +89,7 @@ public class Conditions extends ArrayList<Condition>{
 //    public Conditions(){}
 //
 //    //modify the conditions required for the Item to satisfy
-//    public void addItemConditions(Entity entity, Comparison comparison, int count, TakeableItem.Items item, EntityLocation location){
+//    public void addItemConditions(Entity entity, ItemComparison comparison, int count, TakeableItem.Items item, EntityLocation location){
 //        this.bool = bool;
 //        this.entityEnum = entityEnum;
 //        this.itemEnum = itemEnum;
