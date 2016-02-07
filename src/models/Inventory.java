@@ -1,8 +1,8 @@
 package models;
 
-import java.util.*;
-
 import models.items.TakeableItem;
+
+import java.util.*;
 
 
 /**
@@ -120,6 +120,15 @@ public class Inventory {
 		return null;
 	}
 
+
+	public ItemNode getItemNode(TakeableItem findItem){
+		for (int i = 0; i < items.length; i++) {
+			if(items[i] != null && items[i].item.equals(findItem))
+				return items[i];
+		}
+		return null;
+	}
+
 	public int getItemCount(TakeableItem.Items findItem) {
 
 		ItemNode item = getItem(findItem);
@@ -135,7 +144,7 @@ public class Inventory {
 
 
 	}
-	
+
 	public class ItemNode{
 		public TakeableItem item;
 		public int amount;
@@ -150,28 +159,3 @@ public class Inventory {
 	}
 }
 
-/*
-public class Inventory {
-
-	private HashMap<TakeableItem, Integer> items = new HashMap<TakeableItem, Integer>();
-
-	public HashMap<TakeableItem, Integer> getItems(){
-		return items;
-	}
-	
-	public void addItem(TakeableItem newItem) {	
-		if (items.containsKey(newItem)) {
-			
-			items.put(newItem, items.get(newItem) + 1);
-
-		}
-		else {
-			items.put(newItem, 1);
-		}
-	}
-	
-	
-	public void removeItem(TakeableItem item) {
-		this.items.remove(item);
-	}
-}*/

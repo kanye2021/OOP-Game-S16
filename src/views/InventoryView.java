@@ -1,3 +1,4 @@
+
 package views;
 
 import controllers.InventoryViewController;
@@ -125,3 +126,4 @@ public class InventoryView extends View {
 	}
 
 }
+

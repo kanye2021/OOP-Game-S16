@@ -1,5 +1,9 @@
 package controllers;
 
+
+import models.items.TakeableItem;
+import controllers.ViewController;
+import models.ItemStatsAssociation;
 import models.Inventory;
 import utilities.IOMediator;
 import views.View;
@@ -12,6 +16,10 @@ import java.awt.event.KeyEvent;
 public class InventoryViewController extends ViewController {
 
 	private int position = 0;
+    public Inventory inventory;
+    public ItemStatsAssociation avatarItemStats;
+
+
 
     public InventoryViewController(View view) {
         super(view);
@@ -28,6 +36,11 @@ public class InventoryViewController extends ViewController {
     	return IOMediator.entity.getInventory();
     	
     }
+
+    public ItemStatsAssociation getAvatarItemStats(){
+        return IOMediator.entity.getAvatarItemStats();
+    }
+
     
     @Override
     public void handleKeyPress(int key) {
@@ -44,6 +57,11 @@ public class InventoryViewController extends ViewController {
 
         else if (key == KeyEvent.VK_ESCAPE) {
         	IOMediator.setActiveView(IOMediator.Views.GAME);
+        }
+
+        else if(key == KeyEvent.VK_ENTER) {
+            System.out.println("Enter pressed from IVC");
+            useItem();
         }
         
     }
@@ -77,6 +95,21 @@ public class InventoryViewController extends ViewController {
     	}
     	
     }
+
+    // Uses/Equips item in inventory
+    private void useItem() {
+        System.out.println(getInventory().getItemNodeAt(getPosition()).amount);
+        System.out.println(TakeableItem.Items.values()[getInventory().getItemNodeAt(getPosition()).item.getID()].getComponent());
+        System.out.println("poo" == "poo");
+
+        if(getInventory().isThereAnItemAt(getPosition())) {
+            getAvatarItemStats().useFromInv(getInventory().getItemNodeAt(getPosition()).item);
+        }
+    }
    
     public int getPosition(){return position;}
+
+
 }
+
+

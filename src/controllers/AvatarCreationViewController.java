@@ -2,6 +2,7 @@ package controllers;
 
 import models.Avatar;
 import models.Entity;
+import models.ItemStatsAssociation;
 import models.Map;
 import utilities.IOMediator;
 import utilities.Load_Save;
