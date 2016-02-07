@@ -55,7 +55,15 @@ public class Inventory {
 			return null;
 		return items[index];
 	}
-
+	public boolean loadItem(TakeableItem newItem, int count, int index) {
+		if (index == MAX_INVENTORY) {
+			return false;
+		}else{
+			items[index] = new ItemNode(newItem , count);
+			System.out.println("Added item:" + newItem.getName());
+		}
+		return true;
+	}
 	//return true if you can put the item in the Inventory
 	public boolean addItem(TakeableItem newItem) {
 		int nextEmptySpace = MAX_INVENTORY;
@@ -163,6 +171,10 @@ public class Inventory {
 			this.item = item;
 			this.amount = amount;
 		}
+		public int getCount(){
+			return amount;
+		}
+
 	}
 }
 

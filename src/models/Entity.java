@@ -17,8 +17,6 @@ public class Entity {
     protected EquippedItems equippedItems;
     protected ItemStatsAssociation avatarItemStats;
     protected int[] location;
-    protected String filePathExtension = "src/res/save_files/";
-    protected String filePathName = "SaveFile_1.xml"; //tmp
 
     public Entity() {
         // Default to smasher

@@ -13,6 +13,7 @@ import org.xml.sax.SAXParseException;
 
 import views.Display;
 
+import javax.print.Doc;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.*;
@@ -240,6 +241,7 @@ public class Load_Save {
                     avatar.updateOrientation(entity.getAttribute("orientation"));
                     avatar.setOccupation(entity.getAttribute("occupation"));
                     loadStats(avatar.getStats(), entity); //Separate function to handle loading stats
+                    loadInventory(avatar.getInventory(), entity);
                     //Adds avatar to the map
                     m.insertEntityAtLocation(x,y,avatar);
                 }
@@ -253,9 +255,9 @@ public class Load_Save {
 
     }
     public static void loadStats(Stats avatarStats, Element entity){
-        NodeList tmp = entity.getElementsByTagName("pStats"); //Hacky shit
+        NodeList tmp = entity.getElementsByTagName("pStats"); //Hacky
         Element pStats = (Element) tmp.item(0); //Basically needs to get the tag "pStats" from xml
-        NodeList tmp2 = entity.getElementsByTagName("dStats"); //Hacky shit
+        NodeList tmp2 = entity.getElementsByTagName("dStats"); //Hacky
         Element dStats = (Element) tmp2.item(0);
 
         avatarStats.loadLives(Integer.parseInt(pStats.getAttribute("lives")));
@@ -281,6 +283,20 @@ public class Load_Save {
         avatarStats.loadArmorModifier(Integer.parseInt(dStats.getAttribute("armorModifier")));
 
 
+
+    }
+    public static void loadInventory(Inventory avatarInv, Element entity){
+        NodeList tmp = entity.getElementsByTagName("inventory"); //Hacky
+        Element inv = (Element) tmp.item(0);
+
+        NodeList items = inv.getElementsByTagName("item");
+        for (int i = 0; i <items.getLength(); i++){
+            Element iItem = (Element) items.item(i); //Returns the element of each item
+            int id = Integer.parseInt(iItem.getAttribute("id"));
+            int count = Integer.parseInt(iItem.getAttribute("count"));
+            TakeableItem newItem = new TakeableItem(TakeableItem.Items.values()[id]);
+            avatarInv.loadItem(newItem,count,i);
+        }
 
     }
 /*----------------------------------For Saving --------------------------------*/
@@ -348,13 +364,39 @@ public class Load_Save {
         //Get stats and inventory of the entity
         type.appendChild( getInventory(doc, e.getInventory()) );
         type.appendChild(getStats (doc, e.getStats()) );
+        type.appendChild(getEquippedItems(doc, e.getEquippedItems()));
 
         return type;
     }
     private static Node getInventory(Document doc, Inventory inv){
         Element inventory = doc.createElement("inventory");
 
+        Attr invSize = doc.createAttribute("size");
+        invSize.setValue(Integer.toString(inv.getCurrentSize()));
+        inventory.setAttributeNode(invSize);
+
+        for (int i = 0; i < inv.getCurrentSize(); i++) {
+            Element iItem = doc.createElement("item");
+
+            Attr id = doc.createAttribute("id");
+            id.setValue(Integer.toString(inv.getItemAt(i).getID()));
+            iItem.setAttributeNode(id);
+
+            Attr count = doc.createAttribute("count");
+            count.setValue((Integer.toString(inv.getItemNodeAt(i).getCount())));
+            iItem.setAttributeNode(count);
+
+            inventory.appendChild(iItem);
+        }
+
         return inventory;
+    }
+    private static Node getEquippedItems(Document doc, EquippedItems equip) {
+        Element equipped = doc.createElement("equipped");
+        //TODO: Need more info on equipped items
+        ///Attr equipSize
+
+        return equipped;
     }
     private static Node getStats(Document doc, Stats stat){
         Element stats = doc.createElement("stats");
