@@ -1,7 +1,5 @@
 package models;
 
-import java.util.*;
-
 import models.items.TakeableItem;
 
 
@@ -20,6 +18,7 @@ public class Inventory {
 
 
 	public Inventory() {
+		System.out.println("Inventory Created");
 		items = new ItemNode[MAX_INVENTORY];
 
 		for (int i = 0; i < MAX_INVENTORY; i++) {
@@ -113,7 +112,7 @@ public class Inventory {
 	public ItemNode getItem(TakeableItem.Items findItem) {
 		//iterating through inventory items
 		for (ItemNode item : items) {
-			if (item.item.getID() == findItem.getID()) {
+			if (item!=null && item.item.getID() == findItem.getID()) {
 				return item;
 			}
 		}
