@@ -1,7 +1,5 @@
 package controllers;
 
-import com.sun.xml.internal.fastinfoset.sax.SystemIdResolver;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import models.Avatar;
 import models.Entity;
 import models.Map;
@@ -11,7 +9,6 @@ import utilities.NavigationMediator;
 import views.Display;
 import views.GameView;
 import views.LoadGameView;
-import views.View;
 
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -106,6 +103,13 @@ public class LoadGameController extends ViewController{
             NavigationMediator nav = new NavigationMediator(map, avatar);
             IOMediator.entity = avatar;
             IOMediator.map = map;
+
+            // TODO: DELETE
+//            // Create inventory view
+//            InventoryView inventoryView = new InventoryView(map, avatar);
+//            IOMediator.Views.INVENTORY.setView(inventoryView);
+
+            // Create the game view
             GameView gameView = new GameView(map, avatar);
             IOMediator.Views.GAME.setView(gameView);
             // map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
