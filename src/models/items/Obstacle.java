@@ -13,9 +13,19 @@ public class Obstacle extends Item {
         Wall,
         Jorge;
 
+
+        private String pathToPicture;
+
         public int getID() {
             return ordinal();
         }
+
+        public String getPathToPicture() {
+
+            return pathToPicture;
+
+        }
+
     }
 
 
