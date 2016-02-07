@@ -9,9 +9,9 @@ public class Obstacle extends Item {
 
     //Enum of Obstacles
     public enum Obstacles{
-        Rock("grave.png"),
-        Wall("grave.png"),
-        Jorge("grave.png");
+        GRAVE("grave.png"),
+        STATUE("statue.png"),
+        Jorge("octopus.png");
 
 
         private String pathToPicture;
@@ -22,12 +22,12 @@ public class Obstacle extends Item {
 
         public String getPathToPicture() {
 
-            return pathToPicture;
+            return this.pathToPicture;
 
         }
         //Enum Constructor
         Obstacles(String filePath){
-            pathToPicture = filePath;
+            this.pathToPicture = filePath;
         }
 
     }

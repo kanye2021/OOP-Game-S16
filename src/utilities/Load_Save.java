@@ -190,7 +190,7 @@ public class Load_Save {
                         else if(itemType.equals((Item.Type.INTERACTIVE.toString()))){
                             item = new InteractiveItem(InteractiveItem.Quests.values()[id]);
                         }else if(itemType.equals(Item.Type.OBSTACLE.toString())){
-                            item = new Obstacle(Obstacle.Obstacles.Jorge);
+                            item = new Obstacle(Obstacle.Obstacles.values()[id]);
                         }else{
                             System.out.println("What the fuck");
                         }

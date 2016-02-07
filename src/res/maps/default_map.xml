@@ -14,16 +14,18 @@
         </tile>
         <tile>
             <terrain type="grass"/>
+            <item id="0" type="obstacle"></item>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
+        </tile>
+        <tile>
+            <terrain type="grass"/>
             <item id="1" type="obstacle"></item>
         </tile>
         <tile>
             <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
-        </tile>
-        <tile>
-            <terrain type="grass"/>
+            <item id="2" type="obstacle"></item>
         </tile>
         <tile>
             <terrain type="grass"/>
