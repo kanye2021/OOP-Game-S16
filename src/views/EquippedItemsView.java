@@ -7,6 +7,7 @@ package views;
 import controllers.AvatarCreationViewController;
 import controllers.EquippedItemsViewController;
 import models.EquippedItems;
+import models.items.TakeableItem;
 import utilities.IOMediator;
 
 import javax.swing.*;
@@ -29,6 +30,8 @@ public class EquippedItemsView extends View {
     private final int RECT_Y_OFFSET = (int)(((double)TILE_SIZE)*1.5) + TOP_PANE_H ;
     private Color secondary;
     private Color primary;
+    private Color rlySmallColor;
+    private Font rlySmall;
     private Font small;
     private Font title;
     private Font desc;
@@ -40,10 +43,12 @@ public class EquippedItemsView extends View {
         this.viewController = new EquippedItemsViewController(this);
 
         small = new Font("Courier New", 1, 12);
+        rlySmall = new Font("Courier New", Font.BOLD, 10);
         desc = new Font("Courier New", 1, 14);
         title = new Font("Courier New", Font.BOLD, 32);
         secondary = (Color.red);
         primary = (Color.lightGray);
+        rlySmallColor = Color.white;
 
     }
 
@@ -84,10 +89,6 @@ public class EquippedItemsView extends View {
     }
 
     private void renderSlots(Graphics g) {
-        // Set color and font
-        g.setColor(primary);
-        FontMetrics fm = g.getFontMetrics(small);
-        g.setFont(small);
 
         //
         int xFirstCol = RECT_X_OFFSET + 1*RECT_W/4 - ITEM_SLOT/2;
@@ -97,11 +98,12 @@ public class EquippedItemsView extends View {
         int ySecondRow = RECT_Y_OFFSET + 3*RECT_H/6 - ITEM_SLOT/2;
         int yThirdRow = RECT_Y_OFFSET + 5*RECT_H/6 - ITEM_SLOT/2;
 
-
+        Rectangle2D rec;
         int x;
         int y;
         int colCount = 1;
-
+        Image i;
+        ImageIcon ii;
         for (EquippedItemsViewController.EquippedItemOptSelections option : EquippedItemsViewController.EquippedItemOptSelections.values()) {
             if(option.ordinal() < 3){
                 y = yFirstRow;
@@ -118,7 +120,7 @@ public class EquippedItemsView extends View {
                 x = xThirdCol;
             }
             colCount++;
-
+            // Draw slots
             g.fillRect(x, y , ITEM_SLOT, ITEM_SLOT);
             if ( ((EquippedItemsViewController) viewController).getSelectedItem() == option  ) {
                 g.setColor(secondary);
@@ -126,19 +128,39 @@ public class EquippedItemsView extends View {
                 g.setColor(primary);
 
             }
+            // Get image path for appropiate slot
             if (option.getImagePath() != "") {
                 // Load the equipped item image image
                 System.out.println("@@@@EQUIPPED AN ITEM WITH IMAGE PATH: " + option.getImagePath());
-                ImageIcon ii = new ImageIcon("./src/res/items/takeable/" + option.getImagePath());
-                Image i = ii.getImage();
-                g.drawImage(i, x +(ITEM_SLOT - IMG_SIZE)/2, y + (ITEM_SLOT - IMG_SIZE)/2, IMG_SIZE, IMG_SIZE, Display.getInstance());
+                ii = new ImageIcon("./src/res/items/takeable/" + option.getImagePath());
+                i = ii.getImage();
+                // Draw the name of the item underneath it rly smallly
+                TakeableItem currentEquipped = option.getComponent();
+                String itemName = currentEquipped.getName();
+                g.setColor(rlySmallColor);
+                FontMetrics fm = g.getFontMetrics(rlySmall);
+                g.setFont(rlySmall);
+                rec = fm.getStringBounds(itemName, g);
+                g.drawString(itemName, x +(ITEM_SLOT - (int)rec.getWidth())/2, y + ITEM_SLOT - ((int) (rec.getHeight())/2));
+
+
+
             } else {
                 // No item equipped for this slot
-                // TODO: render a place holder image
+                // Render a place holder image
+                 ii = new ImageIcon("./src/res/items/takeable/placeholder.png");
+                 i = ii.getImage();
             }
-            Rectangle2D rec = fm.getStringBounds(option.getText(), g);
-            // If the text contains a space (e.g. "primary weapon") we want to render it differently
-            if (option.getText().contains(" ")) {
+            // Draw image
+            g.drawImage(i, x +(ITEM_SLOT - IMG_SIZE)/2, y + (ITEM_SLOT - IMG_SIZE)/2, IMG_SIZE, IMG_SIZE, Display.getInstance());
+
+            g.setColor(primary);
+            FontMetrics fm = g.getFontMetrics(small);
+            g.setFont(small);
+            // Draw equipment slot text
+            rec = fm.getStringBounds(option.getText(), g);
+            // If the text contains more than 5 letters (e.g. "primary weapon") we want to render it differently
+            if (option.getText().length() > 5) {
                 g.drawString(option.getText(), x, y + ITEM_SLOT + ((int) (rec.getHeight()) + fm.getAscent()));
             }
             else g.drawString(option.getText(), x + (int)rec.getWidth()/2, y + ITEM_SLOT + ((int) (rec.getHeight()) + fm.getAscent()));
