@@ -6,10 +6,8 @@ package models.items;
 import utilities.StatModification;
 import utilities.StatModifications;
 import models.Entity;
+import models.EquippedItems;
 import models.Stats;
-import models.Inventory;
-
-import java.util.HashMap;
 
 /**
  * TakeableItem's main purpose is to be able to insert itself back into
@@ -17,63 +15,46 @@ import java.util.HashMap;
  */
 public class TakeableItem extends Item {
 	public enum Items {
-		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png","equippable","primaryWeapon", new StatModifications(
+		WOOD_SWORD("Wood Sword", "A sword made of wood", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
-		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png","equippable","primaryWeapon", new StatModifications(
+		IRON_SWORD("Iron Sword", "A sword made of iron", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
-		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png","equippable","primaryWeapon", new StatModifications(
+		STEEL_SWORD("Steel Sword", "A sword made of steel", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
-		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", "equippable", "primaryWeapon", new StatModifications(
+		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
 		)),
-		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", "equippable", "secondaryWeapon", new StatModifications(
+		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
-		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", "equippable", "secondaryWeapon", new StatModifications(
+		IRON_SHIELD("Iron Shield", "A Shield made of iron", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
-		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png", "equippable", "secondaryWeapon",	new StatModifications(
+		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON,	new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		)),
-		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", "equippable", "secondaryWeapon", new StatModifications(
+		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "takeable-item.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
 		));
-
 
 		private String name;
 		private String description;
 		private String pathToPicture;
-		private String property;
-		protected String component;
+		private EquippedItems.Equippable isEquippable;
+		protected EquippedItems.ArmorComponent component;
 		private StatModifications modifications;
-		private boolean isEquippable;
 
-
-//		Conditions conditions;
-//		conditions.addItemCondition(Conditions.AT_LEAST, 2, TakeableItems.Items.IRON_SWORD, Conditions.INVENTORY)
-//		conditions.addItemCondition(TakeableItems.Items.DIAMOND_SWORD, 1, Conditions.AT_LEAST, Conditions.EQUIPPED)
-//		conditions.addItemCondition(TakeableItems.Items.STEEL_SWORD, 2, Conditions.AT_LEAST, Conditions.INVENTORY)
-//		conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 50, Conditions.POINTS)
-//		conditions.addEntityCondition(Conditions.HEALTH, Conditions.AT_LEAST, 0.5, Conditions.PERCENTAGE)
-
-
-		private Items(String name, String description, String pathToPicture, String property, String component, StatModifications modifications) {
-
-
+		private Items(String name, String description, String pathToPicture, EquippedItems.Equippable isEquippable, EquippedItems.ArmorComponent component, StatModifications modifications) {
 
 			this.name = name;
 			this.description = description;
 			this.pathToPicture = pathToPicture;
-			this.property = property;
+			this.isEquippable = isEquippable;
 			this.component = component;
 			this.modifications = modifications;
-
-			if(property == "equippable"){
-				isEquippable = true;
-			}
 
 		}
 
@@ -101,12 +82,16 @@ public class TakeableItem extends Item {
 
 		}
 
-		public String getComponent() {
+		public EquippedItems.ArmorComponent getComponent() {
+
 			return component;
+			
 		};
 
-		public boolean getIsEquippable() {
-			return isEquippable;
+		public boolean getEquippable() {
+			
+			return isEquippable.getEquippable();
+		
 		}
 
 	}
@@ -137,9 +122,9 @@ public class TakeableItem extends Item {
 		return Items.values()[getID()].pathToPicture;
 	}
 
-	public boolean getIsEquippable(){ return Items.values()[getID()].isEquippable; }
+	public boolean getEquippable(){ return Items.values()[getID()].getEquippable(); }
 
-	public String getComponent(){ return Items.values()[getID()].component; }
+	public EquippedItems.ArmorComponent getComponent(){ return Items.values()[getID()].component; }
 
 	public void modifyStats(Entity entity) {
 
