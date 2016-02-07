@@ -66,6 +66,11 @@ public class EquippedItems{
         	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipCape();};
         },
 		GLOVES {
+        	public TakeableItem getCurrentEquippedItem(Entity entity) {return entity.getEquippedItems().getGloves();};
+        	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipGloves(item);};
+        	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipGloves();};
+        },
+        NECKLACE {
         	public TakeableItem getCurrentEquippedItem(Entity entity) {return entity.getEquippedItems().getNecklace();};
         	public void equipComponent(Entity entity, TakeableItem item) {entity.getEquippedItems().equipNecklace(item);};
         	public void unequipComponent(Entity entity) {entity.getEquippedItems().unequipNecklace();};

@@ -25,6 +25,7 @@ public class AreaViewport extends View implements Observer {
     private final int AREA_HEIGHT = B_HEIGHT * 4/5;
     private final int TILE_SIZE = 50;
 
+
     public AreaViewport(Map map, Entity entity){
         super();
         this.map = map;

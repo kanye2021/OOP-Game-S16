@@ -12,6 +12,7 @@ public abstract class View {
     // Constants
     public static int B_WIDTH = 1200;
     public static int B_HEIGHT = 812;
+    public final int TILE_SIZE = 50;
 
     public static Font VIEW_FONT = new Font("Helvetica", Font.BOLD, 14);
     

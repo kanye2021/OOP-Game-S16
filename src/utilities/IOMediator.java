@@ -28,7 +28,7 @@ public class IOMediator {
     	
         START_MENU(new StartMenuView()) {void render(Graphics g) {getView().render(g);}},
         CREATE_GAME(new CreateNewGameView()) {void render(Graphics g) {getView().render(g);}},
-        AVATAR_CREATION(new AvatarCreationView()) {void render(Graphics g) {getView().render(g);}},
+        AVATAR_CREATION(new AvatarCreationView()) {void render(Graphics g) {;}},
         PAUSE(new PauseView()) {void render(Graphics g) {getView().render(g);}},
         
         UNIMPLEMENTED(null) {void render(Graphics g) {getView().render(g);}},
@@ -46,6 +46,7 @@ public class IOMediator {
         GAME() {void render(Graphics g) {getView().render(g);}},
         // TODO: REMOVE HACKY SHIT
         INVENTORY(new InventoryView()) {void render(Graphics g) {getView().render(g);}};
+//        EQUIPPED_ITEMS() {void render(Graphics g) {;}};
         
         abstract void render(Graphics g);
         

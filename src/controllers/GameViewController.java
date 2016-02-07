@@ -3,6 +3,7 @@ package controllers;
 import utilities.IOMediator;
 import utilities.Load_Save;
 import utilities.NavigationMediator;
+import views.GameView;
 import views.View;
 
 import java.awt.event.KeyEvent;
@@ -13,11 +14,10 @@ import java.awt.event.KeyEvent;
  */
 public class GameViewController extends ViewController {
     private NavigationMediator navMediator;
-//    private Load_Save l_s;
+
     public GameViewController(View view, NavigationMediator navigationMediator){
         super(view);
         this.navMediator = navigationMediator;
-//        this.l_s = new Load_Save("SaveGame_1.xml");
     }
 
     @Override
@@ -46,6 +46,9 @@ public class GameViewController extends ViewController {
                 break;
             case KeyEvent.VK_C:
                 navMediator.requestMovement("SE");
+            case KeyEvent.VK_R:
+                // Tell GameView to render EquippedItemsView over it
+                ((GameView)IOMediator.Views.GAME.getView()).setShowEquippedItems(true);
                 break;
             case KeyEvent.VK_I:
             	IOMediator.setActiveView(IOMediator.Views.INVENTORY);
