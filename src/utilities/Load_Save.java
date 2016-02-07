@@ -505,62 +505,26 @@ public class Load_Save {
         Element stats = doc.createElement("stats");
 
         Element pStats = doc.createElement("pStats");
-    //-----Primary Stats----
-        Attr lives = doc.createAttribute("lives");
-        lives.setValue(Integer.toString(stat.getLivesLeft()));
-        pStats.setAttributeNode(lives);
 
-        Attr strength = doc.createAttribute("strength");
-        strength.setValue(Integer.toString(stat.getStrength()));
-        pStats.setAttributeNode(strength);
+        pStats.setAttributeNode( getStatAttr(doc,stat,"lives") );
+        pStats.setAttributeNode( getStatAttr(doc,stat,"strength") );
+        pStats.setAttributeNode( getStatAttr(doc,stat,"agility") );
+        pStats.setAttributeNode( getStatAttr(doc,stat,"intellect") );
+        pStats.setAttributeNode( getStatAttr(doc,stat,"hardiness") );
+        pStats.setAttributeNode( getStatAttr(doc,stat,"experience") );
+        pStats.setAttributeNode( getStatAttr(doc,stat,"movement") );
 
-        Attr agility = doc.createAttribute("agility");
-        agility.setValue(Integer.toString(stat.getAgility()));
-        pStats.setAttributeNode(agility);
+        stats.appendChild(pStats);
+        
+        //-----derived stats
+        Element dStats = doc.createElement("dStats");
 
-        Attr intellect = doc.createAttribute("intellect");
-        intellect.setValue(Integer.toString(stat.getIntellect()));
-        pStats.setAttributeNode(intellect);
-
-        Attr hardiness = doc.createAttribute("hardiness");
-        hardiness.setValue(Integer.toString(stat.getHardiness()));
-        pStats.setAttributeNode(hardiness);
-
-        Attr experience = doc.createAttribute("experience");
-        experience.setValue(Integer.toString(stat.getExperience()));
-        pStats.setAttributeNode(experience);
-
-        Attr movement = doc.createAttribute("movement");
-        movement.setValue(Integer.toString(stat.getMovement()));
-        pStats.setAttributeNode(movement);
-
-        stats.appendChild(pStats); //Add pstats into main stats
-
-        Element dStats = doc.createElement("dStats"); //Derived stats
-    //------Derived Stats
-        Attr level = doc.createAttribute("level");
-        level.setValue(Integer.toString(stat.getLevel()));
-        dStats.setAttributeNode(level);
-
-        Attr health = doc.createAttribute("health");
-        health.setValue(Integer.toString(stat.getHealth()));
-        dStats.setAttributeNode(health);
-
-        Attr mana = doc.createAttribute("mana");
-        mana.setValue(Integer.toString(stat.getMana()));
-        dStats.setAttributeNode(mana);
-
-        Attr offensiveRating = doc.createAttribute("offensiveRating");
-        offensiveRating.setValue(Integer.toString(stat.getOffensiveRating()));
-        dStats.setAttributeNode(offensiveRating);
-
-        Attr defensiveRating = doc.createAttribute("defensiveRating");
-        defensiveRating.setValue(Integer.toString(stat.getDefensiveRating()));
-        dStats.setAttributeNode(defensiveRating);
-
-        Attr armorRating = doc.createAttribute("armorRating");
-        armorRating.setValue(Integer.toString(stat.getArmorRating()));
-        dStats.setAttributeNode(armorRating);
+        dStats.setAttributeNode( getStatAttr(doc,stat,"level"));
+        dStats.setAttributeNode( getStatAttr(doc,stat,"health"));
+        dStats.setAttributeNode( getStatAttr(doc,stat,"mana"));
+        dStats.setAttributeNode( getStatAttr(doc,stat,"offensiveRating"));
+        dStats.setAttributeNode( getStatAttr(doc,stat,"defensiveRating"));
+        dStats.setAttributeNode( getStatAttr(doc,stat,"armorRating"));
 
         // -----Other parameters
 
@@ -594,12 +558,49 @@ public class Load_Save {
 
         return stats;
     }
-    private static Node getStatAttr(Document doc, Stats s, String type){
+    private static Attr getStatAttr(Document doc, Stats s, String type){
         Attr sType = doc.createAttribute(type);
         switch (type) {
             case "lives":
-
-            break;
+                sType.setValue(Integer.toString(s.getLivesLeft()));
+                break;
+            case "strength":
+                sType.setValue(Integer.toString(s.getStrength()));
+                break;
+            case "agility":
+                sType.setValue(Integer.toString(s.getAgility()));
+                break;
+            case "intellect":
+                sType.setValue(Integer.toString(s.getIntellect()));
+                break;
+            case "hardiness":
+                sType.setValue(Integer.toString(s.getHardiness()));
+                break;
+            case "experience":
+                sType.setValue(Integer.toString(s.getExperience()));
+                break;
+            case "movement":
+                sType.setValue(Integer.toString(s.getMovement()));
+                break;
+            //// Dervied Stats
+            case "level":
+                sType.setValue(Integer.toString(s.getLevel()));
+                break;
+            case "health":
+                sType.setValue(Integer.toString(s.getHealth()));
+                break;
+            case "mana":
+                sType.setValue(Integer.toString(s.getMana()));
+                break;
+            case "offensiveRating":
+                sType.setValue(Integer.toString(s.getOffensiveRating()));
+                break;
+            case "defensiveRating":
+                sType.setValue(Integer.toString(s.getDefensiveRating()));
+                break;
+            case "armorRating":
+                sType.setValue(Integer.toString(s.getArmorRating()));
+                break;
         }
         return sType;
     }
