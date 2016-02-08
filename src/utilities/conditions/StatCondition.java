@@ -8,48 +8,24 @@ import models.items.TakeableItem;
  * Created by denzel on 2/6/16.
  */
 public class StatCondition extends Condition {
-    public enum StatsComparison{
-        AT_LEAST(){
-            protected boolean isValid(int entityStat, int requiredStat) {
-                return entityStat >= requiredStat;
-            }
-        },
-        EXACTLY(){
-            protected boolean isValid(int entityStat, int requiredStat) {
-                return entityStat == requiredStat;
-            }
-        },
-        AT_MOST(){
-            protected boolean isValid(int entityStat, int requiredStat) {
-                return entityStat <= requiredStat;
-            }
-        };
-
-        protected abstract boolean isValid(int entityStat, int requiredStat);
-
-        //Returns the ordinal for the Enum
-        public int getID() {
-            return ordinal();
-        }
-    }
-
 
     //Properties of StatCondition
-    private StatsComparison comparison;
-    private Stats.Type stats;
+    private Condition.Entities entity;
+    private Condition.Comparison comparison;
+    private Stats.Type stat;
     private int requiredAmount;
 
     //Constructor
-    public StatCondition(Entity entity, StatsComparison comparison, int requiredAmount, Stats.Type stats){
+    public StatCondition(Condition.Entities entity, Condition.Comparison comparison, int requiredAmount, Stats.Type stat){
         this.entity = entity;
         this.comparison = comparison;
-        this.stats = stats;
+        this.stat = stat;
         this.requiredAmount = requiredAmount;
     }
 
     @Override
     protected boolean checkCondition() {
-       int entityStat = stats.get(entity);
+       int entityStat = stat.get(entity.getEntity());
        int requiredStat = this.requiredAmount;
 
        return (comparison.isValid(entityStat, requiredStat));
