@@ -5112,7 +5112,7 @@
         </tile>
         <tile>
             <terrain type="grass"/>
-            <item id="2" type="take-able"/>
+            <item id="20" type="take-able"/>
         </tile>
         <tile>
             <item id="8" type="take-able"/>
