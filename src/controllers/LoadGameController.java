@@ -1,7 +1,5 @@
 package controllers;
 
-import com.sun.xml.internal.fastinfoset.sax.SystemIdResolver;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import models.Avatar;
 import models.Entity;
 import models.Map;
@@ -11,10 +9,10 @@ import utilities.NavigationMediator;
 import views.Display;
 import views.GameView;
 import views.LoadGameView;
-import views.View;
 
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Created by dyeung on 2/4/16.
@@ -22,10 +20,11 @@ import java.io.File;
 public class LoadGameController extends ViewController{
     LoadGameView loadView;
     File[] fileNames;
-    private String saveFilePath ="src/res/save_files/";
+    private String saveFilePath ="./src/res/save_files/";
     int myOption;
     public LoadGameController(LoadGameView lv){
         loadView = lv;
+        saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
         loadNewFolder();
         myOption = 0;
     }
@@ -34,7 +33,19 @@ public class LoadGameController extends ViewController{
         if (!folder.exists()) {
            folder.mkdir();
         }
-        fileNames = folder.listFiles();
+
+        File[] f = folder.listFiles();
+        // Filter files.
+        ArrayList<File> filteredFiles = new ArrayList<File>();
+        for (int i = 0; i < f.length; i++) {
+            File current = f[i];
+            // If not .DS_Store and contains .xml use it
+            if (!current.getName().equals(".DS_Store") && current.getName().contains(".xml"))  {
+                filteredFiles.add(current);
+            }
+        }
+        File[] files = new File[filteredFiles.size()];
+        fileNames = filteredFiles.toArray(files);
         return fileNames;
     }
     public int getActiveOptions(){
@@ -62,12 +73,18 @@ public class LoadGameController extends ViewController{
                 IOMediator.setActiveView(IOMediator.getPreviousView());
                 break;
         }
+        //Needs to check the number of files just in case there is a new saved file in the folder
         if (checkFolderList()) {
             System.out.println("Call this");
             loadNewFolder();
             loadView.getNewFiles();
         }
     }
+
+    public File[] getFileNames(){
+        return fileNames;
+    }
+
     public boolean checkFolderList(){
         File folder = new File(saveFilePath);
         if (folder.listFiles().length != fileNames.length){
@@ -85,6 +102,8 @@ public class LoadGameController extends ViewController{
             NavigationMediator nav = new NavigationMediator(map, avatar);
             IOMediator.entity = avatar;
             IOMediator.map = map;
+
+            // Create the game view
             GameView gameView = new GameView(map, avatar);
             IOMediator.Views.GAME.setView(gameView);
             // map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);

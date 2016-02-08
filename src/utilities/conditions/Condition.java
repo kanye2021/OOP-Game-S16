@@ -6,7 +6,6 @@ package utilities.conditions;
 
 import models.Entity;
 import models.Map;
-import models.items.TakeableItem;
 
 /**
  * All Condition objects will have a condition Enum
@@ -16,9 +15,8 @@ import models.items.TakeableItem;
 public abstract class Condition {
 
     //Properties of the Condition object
-    protected Entity entity;
+    protected volatile Entity entity;
     protected Map map;
-
 
     //Check the conditions
     protected abstract boolean checkCondition();

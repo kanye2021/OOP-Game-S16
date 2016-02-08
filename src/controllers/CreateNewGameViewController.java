@@ -4,6 +4,7 @@ import utilities.IOMediator;
 import utilities.Load_Save;
 import views.CreateNewGameView;
 import views.Display;
+import views.LoadGameView;
 import views.View;
 
 import java.awt.event.KeyEvent;
@@ -34,7 +35,10 @@ public class CreateNewGameViewController extends ViewController {
             System.out.println("enter pressed FROM Create new VC");
             String getValue = createNewGameView.getSaveStateName().getText();
             System.out.println("THE SAVE STATE NAME IS: " + getValue);
-
+            if (getValue.isEmpty()) {
+                System.out.println("File name is empty");
+                getValue = "No_File_Name";
+            }
             Load_Save.getInstance().setCurrentFileName(getValue + ".xml");
 
             // Remove the JTextField from the views.Display's JPanel

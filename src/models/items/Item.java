@@ -18,15 +18,11 @@ public abstract class Item {
 		private String s;
 		
 		private Type(String s) {
-			
 			this.s = s;
-		
 		}
 		
 		public String toString() {
-			
 			return s;
-			
 		}
 	}
 	
@@ -54,6 +50,7 @@ public abstract class Item {
     	return type;
     
     }
+
     
     public abstract String getPathToPicture();
 
@@ -82,7 +79,13 @@ public abstract class Item {
     	return false;
     	
     }
-
+    public boolean equalsType(Item.Type type) {
+        if (type ==  this.getType()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     public String toString() {
         return getType() + ": " + getID();

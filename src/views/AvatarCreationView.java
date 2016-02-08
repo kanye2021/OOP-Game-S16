@@ -34,7 +34,7 @@ public class AvatarCreationView extends View {
 
 		// Text
 		Font small = new Font("Helvetica", Font.ITALIC, 14);
-		Font title = new Font("Helvetica", Font.BOLD, 20);
+		Font title = new Font("Courier New", Font.BOLD, 28);
 		FontMetrics fm = g.getFontMetrics(title);
 		g.setColor(Color.white);
 		g.setFont(title);

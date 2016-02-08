@@ -17,10 +17,11 @@ public class EquippedItemsViewController extends ViewController{
 
 
     public enum EquippedItemOptSelections {
-        HEAD("Head") {protected void unequip(){unequipSlot(EquippedItems.ArmorComponent.HEAD);} public String getImagePath(){if(IOMediator.entity.getEquippedItems().getHead()!=null)return IOMediator.entity.getEquippedItems().getHead().getPathToPicture(); else return "";}
-            public TakeableItem getComponent() {return EquippedItems.ArmorComponent.HEAD.getCurrentEquippedItem(IOMediator.entity);}},
+
         CAPE("Cape") {protected void unequip(){unequipSlot(EquippedItems.ArmorComponent.CAPE);} public String getImagePath(){if(IOMediator.entity.getEquippedItems().getCape()!=null)return IOMediator.entity.getEquippedItems().getCape().getPathToPicture(); else return "";}
             public TakeableItem getComponent() {return EquippedItems.ArmorComponent.CAPE.getCurrentEquippedItem(IOMediator.entity);}},
+        HEAD("Head") {protected void unequip(){unequipSlot(EquippedItems.ArmorComponent.HEAD);} public String getImagePath(){if(IOMediator.entity.getEquippedItems().getHead()!=null)return IOMediator.entity.getEquippedItems().getHead().getPathToPicture(); else return "";}
+            public TakeableItem getComponent() {return EquippedItems.ArmorComponent.HEAD.getCurrentEquippedItem(IOMediator.entity);}},
         NECKLACE("Necklace") {protected void unequip(){unequipSlot(EquippedItems.ArmorComponent.NECKLACE);} public String getImagePath(){if(IOMediator.entity.getEquippedItems().getNecklace()!=null)return IOMediator.entity.getEquippedItems().getNecklace().getPathToPicture(); else return "";}
             public TakeableItem getComponent() {return EquippedItems.ArmorComponent.NECKLACE.getCurrentEquippedItem(IOMediator.entity);}},
         PRIMARY("Primary Weapon") {protected void unequip(){unequipSlot(EquippedItems.ArmorComponent.PRIMARY_WEAPON);}public String getImagePath(){if(IOMediator.entity.getEquippedItems().getPrimaryWeapon()!=null)return IOMediator.entity.getEquippedItems().getPrimaryWeapon().getPathToPicture(); else return "";}

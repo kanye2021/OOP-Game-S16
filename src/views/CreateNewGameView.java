@@ -33,17 +33,17 @@ public class CreateNewGameView extends View {
         clear(g); // Clear the background
 
     	// Text
-        Font small = new Font("Helvetica", Font.BOLD, 14);
-        FontMetrics fm = g.getFontMetrics(small);
+        Font title = new Font("Courier New", Font.BOLD, 28);
+        FontMetrics fm = g.getFontMetrics(title);
         g.setColor(Color.white);
-        g.setFont(small);
+        g.setFont(title);
         Rectangle2D r1 = fm.getStringBounds(NEW_GAME_TEXT, g);
         int x = (View.B_WIDTH - (int)r1.getWidth())/2;
-        int y = (View.B_HEIGHT - (int)r1.getHeight())/2 + fm.getAscent();
+        int y = (View.B_HEIGHT - (int)r1.getHeight())/7 + fm.getAscent();
         g.drawString(NEW_GAME_TEXT, x, y);
 
         // Text Field
-        int ytextField = y + 10;
+        int ytextField = y + 150;
         int xtextField = x;
         // Only want to create JTextField on the first render, and add it to the JPanel.
         if (firstRender) {
@@ -58,6 +58,11 @@ public class CreateNewGameView extends View {
 
 
         // Label Text
+        Font small = new Font("Helvetica", Font.ITALIC, 14);
+        fm = g.getFontMetrics(small);
+        g.setColor(Color.white);
+        g.setFont(small);
+        Rectangle2D r2 = fm.getStringBounds(NEW_GAME_TEXT, g);
         int yLabelText = ytextField + 10 + fm.getAscent() + saveStateName.getBounds().height;
         int xLabelText = xtextField;
         g.drawString(SAVE_NAME_TEXT, xLabelText, yLabelText);

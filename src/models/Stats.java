@@ -40,6 +40,7 @@ public class Stats {
     private int armorModifier;
 
     private TimerTask currentTask;
+    private String lastTaskType;
 
 	public static enum Type {
 		
@@ -132,6 +133,7 @@ public class Stats {
         armorRating = armorModifier + hardiness;
 
         currentTask = null;
+        lastTaskType = "";
 
     }
     public Stats(String occupation){//Initializes the original stats from occupation
@@ -143,22 +145,22 @@ public class Stats {
         movement = 10;
 
         if(occupation == "smasher") {
-            strength = 12;
+            strength = 20;
             agility = 10;
-            intellect = 8;
-            hardiness = 10;
+            intellect = 10;
+            hardiness = 15;
         }
         else if(occupation == "summoner"){
             strength = 10;
-            agility = 8;
-            intellect = 12;
-            hardiness = 10;
+            agility = 5;
+            intellect = 20;
+            hardiness = 15;
         }
         else if(occupation == "sneak"){
-            strength = 10;
-            agility = 12;
+            strength = 15;
+            agility = 20;
             intellect = 10;
-            hardiness = 10;
+            hardiness = 5;
         }
 
         // Set up necessary parameters
@@ -323,10 +325,11 @@ public class Stats {
         final int increment = sign * (expReqLvUp - lastLvlExpReq)/100; // keep the exp bar consistant at all levels.
 
         // Terminate any existing tasks
-        if(currentTask != null){
+        if(currentTask!=null && lastTaskType.equals("modifyExperience"))
             currentTask.cancel();
-        }
 
+
+        lastTaskType="modifyExperience";
         currentTask = new TimerTask() {
             @Override
             public void run() {
@@ -341,6 +344,7 @@ public class Stats {
                     }
                     Display.getInstance().repaint();
                     this.cancel();
+                    lastTaskType="";
                 }
             }
         };
@@ -389,10 +393,12 @@ public class Stats {
         final int increment = sign * (maxHealth)/10;
 
         // Terminate any existing tasks
-        if(currentTask != null){
+        if(currentTask != null && lastTaskType.equals("modifyHealth")){
             currentTask.cancel();
         }
 
+
+        lastTaskType = "modifyHealth";
         currentTask = new TimerTask() {
             @Override
             public void run() {
@@ -412,6 +418,7 @@ public class Stats {
                     }
                     Display.getInstance().repaint();
                     this.cancel();
+                    lastTaskType="";
                 }
             }
         };
@@ -429,10 +436,12 @@ public class Stats {
         final int increment = sign * (maxMana)/10;
 
         // Terminate any existing tasks
-        if(currentTask != null){
+        if(currentTask!=null && lastTaskType.equals("modifyMana")){
             currentTask.cancel();
         }
 
+
+        lastTaskType = "modifyMana";
         currentTask = new TimerTask() {
             @Override
             public void run() {
@@ -452,6 +461,7 @@ public class Stats {
 
                     Display.getInstance().repaint();
                     this.cancel();
+                    lastTaskType="";
                 }
             }
         };

@@ -16,29 +16,32 @@ import models.Stats;
 public class TakeableItem extends Item {
 	public enum Items {
 		WOOD_SWORD("Wood Sword", "A sword made of wood", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
+				new StatModification(Stats.Type.STRENGTH, 5, StatModification.NumberType.POINT)
 		)),
 		IRON_SWORD("Iron Sword", "A sword made of iron", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
+				new StatModification(Stats.Type.STRENGTH, 10, StatModification.NumberType.POINT)
 		)),
 		STEEL_SWORD("Steel Sword", "A sword made of steel", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
+				new StatModification(Stats.Type.STRENGTH, 20, StatModification.NumberType.POINT)
 		)),
 		DIAMOND_SWORD("Diamond Sword", "A sword made of diamond. Totally not stolen from Minecraft", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 50, StatModification.NumberType.PERCENTAGE)
+				new StatModification(Stats.Type.STRENGTH, 50, StatModification.NumberType.POINT)
 		)),
 		WOOD_SHIELD("Wood Shield", "A Shield made of wood", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON, new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
+				new StatModification(Stats.Type.HARDINESS, 5, StatModification.NumberType.POINT)
 		)),
 		IRON_SHIELD("Iron Shield", "A Shield made of iron", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON, new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
+				new StatModification(Stats.Type.HARDINESS, 10, StatModification.NumberType.POINT)
 		)),
 		STEEL_SHIELD("Steel Shield", "A Shield made of steel", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON,	new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
+				new StatModification(Stats.Type.HARDINESS, 15, StatModification.NumberType.POINT)
 		)),
 		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON, new StatModifications(
-				new StatModification(Stats.Type.MOVEMENT, 5, StatModification.NumberType.POINT)
-		));
+				new StatModification(Stats.Type.HARDINESS, 25, StatModification.NumberType.POINT)
+		)),
+		KEY_OF_KANYE("Key of Kanye", "The Key required to open the Gate of Kanye", "KanyeKey.png", EquippedItems.Equippable.NO, null, null);
+
+
 
 		private String name;
 		private String description;
