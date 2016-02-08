@@ -6,8 +6,8 @@ package models;
 
 public class Entity {
 
-    protected final int START_X = 10;
-    protected final int START_Y = 5;
+    protected final int START_X = 24;
+    protected final int START_Y = 35;
 
     //Entity properties
     protected String lastAtemptedDirection;
