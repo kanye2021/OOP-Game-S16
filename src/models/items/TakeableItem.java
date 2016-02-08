@@ -39,40 +39,40 @@ public class TakeableItem extends Item {
 		DIAMOND_SHIELD("Diamond Shield", "A Shield made of diamond", "/armor/secondary/Shield.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.SECONDARY_WEAPON, new StatModifications(
 				new StatModification(Stats.Type.HARDINESS, 25, StatModification.NumberType.POINT)
 		)),
-		WOOD_HELM("Wood Helm", "A helm made of wood", "/armor/head/WoodHelm.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		WOOD_HELM("Wood Helm", "A helm made of wood", "/armor/head/WoodHelm.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.HEAD, new StatModifications(
 				new StatModification(Stats.Type.HARDINESS, 5, StatModification.NumberType.POINT)
 		)),
-		IRON_HELM("Iron Helm", "A helm made of iron", "/armor/head/IronHelm.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		IRON_HELM("Iron Helm", "A helm made of iron", "/armor/head/IronHelm.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.HEAD, new StatModifications(
 				new StatModification(Stats.Type.HARDINESS, 10, StatModification.NumberType.POINT)
 		)),
-		STEEL_HELM("Steel Helm", "A helm made of steel", "/armor/head/SteelHelm.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		STEEL_HELM("Steel Helm", "A helm made of steel", "/armor/head/SteelHelm.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.HEAD, new StatModifications(
 				new StatModification(Stats.Type.HARDINESS, 20, StatModification.NumberType.POINT)
 		)),
-		DIAMOND_HELM("Diamond Helm", "A helm made of diamond. Totally not stolen from Minecraft", "/armor/head/DiamondHelm.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		DIAMOND_HELM("Diamond Helm", "A helm made of diamond. Totally not stolen from Minecraft", "/armor/head/DiamondHelm.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.HEAD, new StatModifications(
 				new StatModification(Stats.Type.HARDINESS, 50, StatModification.NumberType.POINT)
 		)),
-		WOOD_LEGS("Wood Legs", "A plateleg made of wood", "/armor/legs/WoodPlatelegs.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		WOOD_LEGS("Wood Legs", "A plateleg made of wood", "/armor/legs/WoodPlatelegs.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.GREAVES, new StatModifications(
 				new StatModification(Stats.Type.HARDINESS, 5, StatModification.NumberType.POINT)
 		)),
-		IRON_LEGS("Iron Legs", "A plateleg made of iron", "/armor/legs/IronPlatelegs.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		IRON_LEGS("Iron Legs", "A plateleg made of iron", "/armor/legs/IronPlatelegs.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.GREAVES, new StatModifications(
 				new StatModification(Stats.Type.HARDINESS, 10, StatModification.NumberType.POINT)
 		)),
-		STEEL_LEGS("Steel Legs", "A plateleg made of steel", "/armor/legs/SteelPlatelegs.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		STEEL_LEGS("Steel Legs", "A plateleg made of steel", "/armor/legs/SteelPlatelegs.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.GREAVES, new StatModifications(
 				new StatModification(Stats.Type.HARDINESS, 20, StatModification.NumberType.POINT)
 		)),
-		DIAMOND_LEGS("Diamond Legs", "A plateleg made of diamond. Totally not stolen from Minecraft", "/armor/legs/DiamondPlatelegs.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		DIAMOND_LEGS("Diamond Legs", "A plateleg made of diamond. Totally not stolen from Minecraft", "/armor/legs/DiamondPlatelegs.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.GREAVES, new StatModifications(
 				new StatModification(Stats.Type.HARDINESS, 50, StatModification.NumberType.POINT)
 		)),
-		WOOD_BODY("Wood Body", "A platebody made of wood", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		WOOD_BODY("Wood Body", "A platebody made of wood", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.CHEST, new StatModifications(
 				new StatModification(Stats.Type.HARDINESS, 5, StatModification.NumberType.POINT)
 		)),
-		IRON_BODY("Iron Body", "A platebody made of iron", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		IRON_BODY("Iron Body", "A platebody made of iron", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.CHEST, new StatModifications(
 				new StatModification(Stats.Type.HARDINESS, 10, StatModification.NumberType.POINT)
 		)),
-		STEEL_BODY("Steel Body", "A platebody made of steel", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		STEEL_BODY("Steel Body", "A platebody made of steel", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.CHEST, new StatModifications(
 				new StatModification(Stats.Type.HARDINESS, 20, StatModification.NumberType.POINT)
 		)),
-		DIAMOND_BODY("Diamond Body", "A platebody made of diamond. Totally not stolen from Minecraft", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.PRIMARY_WEAPON, new StatModifications(
+		DIAMOND_BODY("Diamond Body", "A platebody made of diamond. Totally not stolen from Minecraft", "bronze_sword.png", EquippedItems.Equippable.YES, EquippedItems.ArmorComponent.CHEST, new StatModifications(
 				new StatModification(Stats.Type.HARDINESS, 50, StatModification.NumberType.POINT)
 		)),
 		KEY_OF_KANYE("Key of Kanye", "The Key required to open the Gate of Kanye", "KanyeKey.png", EquippedItems.Equippable.NO, null, null);
