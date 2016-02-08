@@ -29,5 +29,5 @@ find $PWD -name "*.java" > sources.txt && mkdir bin &&  javac -d bin @sources.tx
 ```
 - Then, to run the game, run:
 ```bash
-cd bin && java RunGame && cd .. && rm -rf bin
+cd bin && java RunGame && cd ..
 ```
