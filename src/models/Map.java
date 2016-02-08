@@ -17,6 +17,7 @@ import org.xml.sax.SAXParseException;
 
 import utilities.Load_Save;
 import utilities.Observable;
+import views.Decal;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -61,7 +62,13 @@ public class Map extends Observable {
         return tiles[y][x].getAreaEffect();
     }
 
-    public Item getItemAtLocation(int x, int y){
+    public Decal getDecalAtLocation(int x, int y) {
+
+        return tiles[y][x].getDecal();
+
+    }
+
+    public Item getItemAtLocation(int x, int y) {
         return tiles[y][x].getItem();
     }
 

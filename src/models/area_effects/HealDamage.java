@@ -16,6 +16,4 @@ public class HealDamage extends AreaEffect {
     @Override
     public String getType(){ return "heal-damage"; }
 
-    @Override
-    public String getImageName() { return "red-cross.png"; }
 }

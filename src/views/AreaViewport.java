@@ -15,11 +15,13 @@ import java.awt.*;
 public class AreaViewport extends View implements Observer {
     private Map map;
     private Entity entity;
-    private  String terrainBaseFilepath = "./src/res/terrain/";
-    private  String areaEffectBaseFilepath = "./src/res/area-effects/";
-    private  String takeableItemBaseFilepath = "./src/res/items/takeable/";
-    private  String oneshotItemBaseFilepath = "./src/res/items/oneshot/";
-    private  String entityBaseFilepath = "./src/res/entitys/";
+
+    private String terrainBaseFilepath = "./src/res/terrain/";
+    private String decalBaseFilepath = "./src/res/decals/";
+    private String takeableItemBaseFilepath = "./src/res/items/takeable/";
+    private String oneshotItemBaseFilepath = "./src/res/items/oneshot/";
+    private String entityBaseFilepath = "./src/res/entitys/";
+
     private String obstacleItemBaseFilepath = "./src/res/items/obstacle/";
     private String interactiveItemBaseFilepath = "./src/res/items/interactive/";
     private final int AREA_WIDTH = B_WIDTH;
@@ -35,13 +37,14 @@ public class AreaViewport extends View implements Observer {
 //        this.viewController = new controllers.GameViewController(this);
 
         // Modify the filepaths based on the user's OS
-        terrainBaseFilepath = terrainBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
-        areaEffectBaseFilepath = areaEffectBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
-        takeableItemBaseFilepath = takeableItemBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
-        obstacleItemBaseFilepath = obstacleItemBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
-        interactiveItemBaseFilepath = interactiveItemBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
-        oneshotItemBaseFilepath = oneshotItemBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
-        entityBaseFilepath = entityBaseFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
+
+        terrainBaseFilepath = terrainBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
+        decalBaseFilepath = decalBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
+        takeableItemBaseFilepath = takeableItemBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
+        obstacleItemBaseFilepath = obstacleItemBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
+        interactiveItemBaseFilepath = interactiveItemBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
+        oneshotItemBaseFilepath = oneshotItemBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
+        entityBaseFilepath = entityBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
     }
 
     @Override
@@ -130,10 +133,11 @@ public class AreaViewport extends View implements Observer {
                     g.drawImage(itemImage, displayX + offsetX, displayY + offsetY, Display.getInstance());
                 }
 
-                // Display areaEffects
-                AreaEffect areaEffect = map.getAreaEffectAtLocation(j, i);
-                if(areaEffect!=null){
-                    ImageIcon area_effect_icon = new ImageIcon(areaEffectBaseFilepath + areaEffect.getImageName());
+                // Display decals
+                Decal decal = map.getDecalAtLocation(j, i);
+                if (decal != null) {
+                    ImageIcon area_effect_icon = new ImageIcon(decalBaseFilepath + decal.getPathToFile());
+
                     Image areaEffectImage = area_effect_icon.getImage();
 
                     // Center the decal in the tile

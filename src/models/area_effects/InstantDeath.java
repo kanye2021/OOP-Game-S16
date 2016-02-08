@@ -17,8 +17,4 @@ public class InstantDeath extends AreaEffect {
         return "instant-death";
     }
 
-    @Override
-    public String getImageName(){
-        return "skull-and-crossbones.png";
-    }
 }

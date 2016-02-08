@@ -10,7 +10,7 @@ import models.items.*;
 
 import org.w3c.dom.*;
 import org.xml.sax.SAXParseException;
-
+import views.Decal;
 import views.Display;
 
 import javax.print.Doc;
@@ -143,6 +143,7 @@ public class Load_Save {
                     // Declare variables use to construct a tile
                     Terrain terrain = null;
                     AreaEffect areaEffect = null;
+                    Decal decal = null;
                     Item item = null;
                     Entity entity = null;
 
@@ -170,6 +171,14 @@ public class Load_Save {
                                 areaEffect = new InstantDeath();
                                 break;
                         }
+                    }
+
+                    //Decal
+                    NodeList decalNodes = tileElement.getElementsByTagName("decal");
+                    if (decalNodes.getLength() > 0) {
+                        Element decalElement = (Element) decalNodes.item(0);
+                        int id = Integer.parseInt(decalElement.getAttribute("id"));
+                        decal = new Decal(Decal.Types.values()[id]);
                     }
 
                     // Get the item if there is one
@@ -206,7 +215,7 @@ public class Load_Save {
                         entity = new Entity();
                     }
 
-                    tiles[i][j] = new Tile(terrain, areaEffect, item, entity);
+                    tiles[i][j] = new Tile(terrain, areaEffect, decal, item, entity);
                 }
             }// End of for loops
             inputMap.setMapInfo(mapHeight, mapWidth, tiles);
@@ -653,6 +662,18 @@ public class Load_Save {
             areaEffect.setAttributeNode(aType);
             tile.appendChild(areaEffect);
         }
+
+        //Decal
+        if (t.getDecal() != null) {
+            Element decal = doc.createElement("decal");
+
+            Attr aType = doc.createAttribute("id");
+            aType.setValue(Integer.toString(t.getDecal().getID()));
+            decal.setAttributeNode(aType);
+            tile.appendChild(decal);
+
+        }
+
         //Item
         if (t.getItem() != null) {
             Element item = doc.createElement("item");

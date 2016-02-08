@@ -16,8 +16,4 @@ public class LevelUp extends AreaEffect {
         return "level-up";
     }
 
-    @Override
-    public String getImageName(){
-        return "gold-star.png";
-    }
 }
