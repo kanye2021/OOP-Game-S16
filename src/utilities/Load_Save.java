@@ -3,14 +3,12 @@ package utilities; /**
  */
 
 
-import models.*;
 import models.Entity;
+import models.*;
 import models.area_effects.*;
 import models.items.*;
-
 import org.w3c.dom.*;
 import org.xml.sax.SAXParseException;
-
 import views.Display;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -18,7 +16,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
 import java.io.File;
 
 /*
@@ -65,12 +62,15 @@ public class Load_Save {
     public static Entity getAvatar() {
         return avatar;
     }
+
     public static Map getGameMap() {
         return gameMap;
     }
+
     public static void setGameMap(Map map) {
         gameMap = map;
     }
+
     public static void setAvatar(Entity a) {
         avatar = a;
     }
@@ -84,7 +84,7 @@ public class Load_Save {
     }
 
     private Load_Save() {
-        filePathExtension = filePathExtension.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
+        filePathExtension = filePathExtension.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
         currentFileName = "";
     }
 
@@ -95,8 +95,9 @@ public class Load_Save {
     public static String getCurrentFileName() {
         return currentFileName;
     }
-/*-----------------------------For Loading --------------------------------*/
-    public static void load(String fileName){
+
+    /*-----------------------------For Loading --------------------------------*/
+    public static void load(String fileName) {
         System.out.println("File name is: " + fileName);
         currentFileName = fileName;
         String filePath = filePathExtension + fileName;
@@ -105,11 +106,12 @@ public class Load_Save {
         //In this case the loadMap will just load the static map in IOMediator
         Display.getInstance().repaint(); //To repaint the entity back on the map
     }
-    public static void loadMap(Map inputMap, String fileName){ //Function will load the map in xml (Through fileName) to the inputMap
-        try{
+
+    public static void loadMap(Map inputMap, String fileName) { //Function will load the map in xml (Through fileName) to the inputMap
+        try {
             // Get the xml filepath string ensuring file separators are specific to the use's OS.
             //TODO: Uncomment when done testing
-            String filepath = fileName.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
+            String filepath = fileName.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
 
             // Create a document from the xml file
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -130,11 +132,11 @@ public class Load_Save {
 
             NodeList rows = doc.getElementsByTagName("row");
 
-            for(int i=0; i<rows.getLength(); i++){
+            for (int i = 0; i < rows.getLength(); i++) {
                 Element row = (Element) rows.item(i);
                 NodeList tileNodes = row.getElementsByTagName("tile");
 
-                for(int j=0; j<tileNodes.getLength(); j++){
+                for (int j = 0; j < tileNodes.getLength(); j++) {
                     Element tileElement = (Element) tileNodes.item(j);
 
                     // Declare variables use to construct a tile
@@ -150,10 +152,10 @@ public class Load_Save {
 
                     // Get the areaEffect if there is one
                     NodeList areaEffectNodes = tileElement.getElementsByTagName("area-effect");
-                    if(areaEffectNodes.getLength() > 0){
+                    if (areaEffectNodes.getLength() > 0) {
                         Element areaEffectElement = (Element) areaEffectNodes.item(0);
                         String areaEffectType = areaEffectElement.getAttribute("type");
-                        switch(areaEffectType){
+                        switch (areaEffectType) {
                             case "take-damage":
                                 areaEffect = new TakeDamageAreaEffect();
                                 break;
@@ -171,7 +173,7 @@ public class Load_Save {
 
                     // Get the item if there is one
                     NodeList itemNodes = tileElement.getElementsByTagName("item");
-                    if(itemNodes.getLength() > 0){
+                    if (itemNodes.getLength() > 0) {
                         Element itemElement = (Element) itemNodes.item(0);
                         String itemType = itemElement.getAttribute("type");
                         int id = Integer.parseInt(itemElement.getAttribute("id"));
@@ -179,17 +181,15 @@ public class Load_Save {
                         //if statements for the different types of items
 
                         //if take-able
-                        if(itemType.equals(Item.Type.TAKEABLE.toString())){
+                        if (itemType.equals(Item.Type.TAKEABLE.toString())) {
                             item = new TakeableItem(TakeableItem.Items.values()[id]);
-                        }
-                        else if(itemType.equals(Item.Type.ONE_SHOT.toString())){
+                        } else if (itemType.equals(Item.Type.ONE_SHOT.toString())) {
                             item = new OneShotItem(OneShotItem.Effects.values()[id]);
-                        }
-                        else if(itemType.equals((Item.Type.INTERACTIVE.toString()))){
+                        } else if (itemType.equals((Item.Type.INTERACTIVE.toString()))) {
                             item = new InteractiveItem(InteractiveItem.Quests.values()[id]);
-                        }else if(itemType.equals(Item.Type.OBSTACLE.toString())){
+                        } else if (itemType.equals(Item.Type.OBSTACLE.toString())) {
                             item = new Obstacle(Obstacle.Obstacles.values()[id]);
-                        }else{
+                        } else {
                             System.out.println("What the fuck");
                         }
 
@@ -197,7 +197,7 @@ public class Load_Save {
 
                     // Get any entities that are on the tile.
                     NodeList entityNodes = tileElement.getElementsByTagName("entity");
-                    if(entityNodes.getLength() > 0){
+                    if (entityNodes.getLength() > 0) {
                         Element entityElement = (Element) entityNodes.item(0);
                         //TODO: Load whatever attributes are necessary
                         entity = new Entity();
@@ -208,18 +208,19 @@ public class Load_Save {
             }// End of for loops
             inputMap.setMapInfo(mapHeight, mapWidth, tiles);
 
-        }catch(SAXParseException e){
+        } catch (SAXParseException e) {
             System.out.println("Error parsing");
             e.printStackTrace();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error parsing map again");
             e.printStackTrace();
         }
 
     }
-    public static void loadAvatar(String filepath){
+
+    public static void loadAvatar(String filepath) {
         // Get the xml filepath string ensuring file separators are specific to the use's OS.
-        String file = filepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
+        String file = filepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
         Entity avatar = IOMediator.getInstance().entity;
         Map m = IOMediator.getInstance().map;
         try {
@@ -231,12 +232,12 @@ public class Load_Save {
 
             NodeList entities = doc.getElementsByTagName("entity"); //used for future
             //Checks the type of the entity and sets information
-            for (int i = 0; i < entities.getLength(); i++){
+            for (int i = 0; i < entities.getLength(); i++) {
                 Element entity = (Element) entities.item(i);
-                if ( entity.getAttribute("type").equals("avatar") ){
+                if (entity.getAttribute("type").equals("avatar")) {
                     int x = Integer.parseInt(entity.getAttribute("location_x"));
                     int y = Integer.parseInt(entity.getAttribute("location_y"));
-                    avatar.updateLocation(x,y);
+                    avatar.updateLocation(x, y);
                     avatar.updateOrientation(entity.getAttribute("orientation"));
                     avatar.setOccupation(entity.getAttribute("occupation"));
 
@@ -244,18 +245,19 @@ public class Load_Save {
                     loadInventory(avatar.getInventory(), entity);
                     loadEquipped(avatar.getEquippedItems(), entity);
                     //Adds avatar to the map
-                    m.insertEntityAtLocation(x,y,avatar);
+                    m.insertEntityAtLocation(x, y, avatar);
                 }
             }
 
             System.out.println("Finish loading entity: " + avatar.getLocation()[0] + "," + avatar.getLocation()[1] + "," + avatar.getOrientation());
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Problem parsing avatar");
             e.printStackTrace();
         }
 
     }
-    public static void loadStats(Stats avatarStats, Element entity){
+
+    public static void loadStats(Stats avatarStats, Element entity) {
         NodeList tmp = entity.getElementsByTagName("pStats"); //Hacky
         Element pStats = (Element) tmp.item(0); //Basically needs to get the tag "pStats" from xml
         NodeList tmp2 = entity.getElementsByTagName("dStats"); //Hacky
@@ -284,23 +286,23 @@ public class Load_Save {
         avatarStats.loadArmorModifier(Integer.parseInt(dStats.getAttribute("armorModifier")));
 
 
-
     }
-    public static void loadInventory(Inventory avatarInv, Element entity){
+
+    public static void loadInventory(Inventory avatarInv, Element entity) {
         NodeList tmp = entity.getElementsByTagName("inventory"); //Hacky
         Element inv = (Element) tmp.item(0);
 
         NodeList items = inv.getElementsByTagName("item");
-        for (int i = 0; i <items.getLength(); i++){
+        for (int i = 0; i < items.getLength(); i++) {
             Element iItem = (Element) items.item(i); //Returns the element of each item
             int id = Integer.parseInt(iItem.getAttribute("id"));
             int count = Integer.parseInt(iItem.getAttribute("count"));
             TakeableItem newItem = new TakeableItem(TakeableItem.Items.values()[id]);
-            avatarInv.loadItem(newItem,count,i);
+            avatarInv.loadItem(newItem, count, i);
         }
     }
 
-    public static void loadEquipped(EquippedItems equip, Element entity){
+    public static void loadEquipped(EquippedItems equip, Element entity) {
         NodeList tmp = entity.getElementsByTagName("equipped");
         Element inv = (Element) tmp.item(0);
 
@@ -315,10 +317,11 @@ public class Load_Save {
         loadEquipItem(equip, entity, "necklace");
 
     }
-    public static void loadEquipItem(EquippedItems equip, Element e, String type){
+
+    public static void loadEquipItem(EquippedItems equip, Element e, String type) {
         NodeList tList = e.getElementsByTagName(type);
         //Retrieves the element in that tag of type (Ie "head") then gets the id value of that element (IE id of head)
-        int id = Integer.parseInt( ((Element) tList.item(0)).getAttribute("id"));
+        int id = Integer.parseInt(((Element) tList.item(0)).getAttribute("id"));
         //If ID == -1 that means there is no item in that position if it isn't -1 then there is an item in that position
         if (id != -1) {
             TakeableItem newItem = new TakeableItem(TakeableItem.Items.values()[id]);
@@ -353,11 +356,12 @@ public class Load_Save {
             }
         }
     }
-/*----------------------------------For Saving --------------------------------*/
+
+    /*----------------------------------For Saving --------------------------------*/
     //For future use it will include map, items, stats
     public static void save() {
         System.out.println("Saving: " + currentFileName);
-        try{
+        try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             Document doc = docBuilder.newDocument();
@@ -372,8 +376,8 @@ public class Load_Save {
             mainRootElement.appendChild(getMap(doc, gameMap));
 
             //Write to XML
-            writeToXml(doc,filePath);
-        }catch(Exception e) {
+            writeToXml(doc, filePath);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -383,14 +387,15 @@ public class Load_Save {
     private static Node getEntity(Document doc, Entity e) {
         Element entity = doc.createElement("entities");
 
-    //----  Get Type, location and orientation      ------
-        entity.appendChild(getEntityInfo(doc,e));
+        //----  Get Type, location and orientation      ------
+        entity.appendChild(getEntityInfo(doc, e));
 
         //TODO: Future cases of multiple entities
 
         return entity;
     }
-    private static Node getEntityInfo(Document doc, Entity e){
+
+    private static Node getEntityInfo(Document doc, Entity e) {
         Element type = doc.createElement("entity");
 
         //Get attributes such as location, orientation and type
@@ -416,13 +421,14 @@ public class Load_Save {
         type.setAttributeNode(occupation);
 
         //Get stats and inventory of the entity
-        type.appendChild( getInventory(doc, e.getInventory()) );
-        type.appendChild(getStats (doc, e.getStats()) );
+        type.appendChild(getInventory(doc, e.getInventory()));
+        type.appendChild(getStats(doc, e.getStats()));
         type.appendChild(getEquippedItems(doc, e.getEquippedItems()));
 
         return type;
     }
-    private static Node getInventory(Document doc, Inventory inv){
+
+    private static Node getInventory(Document doc, Inventory inv) {
         Element inventory = doc.createElement("inventory");
 
         Attr invSize = doc.createAttribute("size");
@@ -445,6 +451,7 @@ public class Load_Save {
 
         return inventory;
     }
+
     private static Node getEquippedItems(Document doc, EquippedItems equip) {
         Element equipped = doc.createElement("equipped");
         equipped.appendChild(getEquip(doc, equip, "head"));
@@ -458,17 +465,18 @@ public class Load_Save {
         equipped.appendChild(getEquip(doc, equip, "necklace"));
         return equipped;
     }
-    private static Node getEquip(Document doc, EquippedItems equip, String type){
+
+    private static Node getEquip(Document doc, EquippedItems equip, String type) {
         Element part = doc.createElement(type);
         TakeableItem item = null;
         switch (type) {
-            case "head" :
+            case "head":
                 item = equip.getHead();
                 break;
-            case "chest" :
+            case "chest":
                 item = equip.getChest();
                 break;
-            case "greaves" :
+            case "greaves":
                 item = equip.getGreaves();
                 break;
             case "boots":
@@ -493,36 +501,37 @@ public class Load_Save {
         Attr id = doc.createAttribute("id");
         if (item != null) { //If there exists an item get the ID
             id.setValue(Integer.toString(item.getID()));
-        }else {
+        } else {
             id.setValue("-1"); //Else set the id to -1 (representing no item at that position)
         }
         part.setAttributeNode(id);
         return part;
     }
-    private static Node getStats(Document doc, Stats stat){
+
+    private static Node getStats(Document doc, Stats stat) {
         Element stats = doc.createElement("stats");
 
         Element pStats = doc.createElement("pStats");
 
-        pStats.setAttributeNode( getStatAttr(doc,stat,"lives") );
-        pStats.setAttributeNode( getStatAttr(doc,stat,"strength") );
-        pStats.setAttributeNode( getStatAttr(doc,stat,"agility") );
-        pStats.setAttributeNode( getStatAttr(doc,stat,"intellect") );
-        pStats.setAttributeNode( getStatAttr(doc,stat,"hardiness") );
-        pStats.setAttributeNode( getStatAttr(doc,stat,"experience") );
-        pStats.setAttributeNode( getStatAttr(doc,stat,"movement") );
+        pStats.setAttributeNode(getStatAttr(doc, stat, "lives"));
+        pStats.setAttributeNode(getStatAttr(doc, stat, "strength"));
+        pStats.setAttributeNode(getStatAttr(doc, stat, "agility"));
+        pStats.setAttributeNode(getStatAttr(doc, stat, "intellect"));
+        pStats.setAttributeNode(getStatAttr(doc, stat, "hardiness"));
+        pStats.setAttributeNode(getStatAttr(doc, stat, "experience"));
+        pStats.setAttributeNode(getStatAttr(doc, stat, "movement"));
 
         stats.appendChild(pStats);
 
         //-----derived stats
         Element dStats = doc.createElement("dStats");
 
-        dStats.setAttributeNode( getStatAttr(doc,stat,"level"));
-        dStats.setAttributeNode( getStatAttr(doc,stat,"health"));
-        dStats.setAttributeNode( getStatAttr(doc,stat,"mana"));
-        dStats.setAttributeNode( getStatAttr(doc,stat,"offensiveRating"));
-        dStats.setAttributeNode( getStatAttr(doc,stat,"defensiveRating"));
-        dStats.setAttributeNode( getStatAttr(doc,stat,"armorRating"));
+        dStats.setAttributeNode(getStatAttr(doc, stat, "level"));
+        dStats.setAttributeNode(getStatAttr(doc, stat, "health"));
+        dStats.setAttributeNode(getStatAttr(doc, stat, "mana"));
+        dStats.setAttributeNode(getStatAttr(doc, stat, "offensiveRating"));
+        dStats.setAttributeNode(getStatAttr(doc, stat, "defensiveRating"));
+        dStats.setAttributeNode(getStatAttr(doc, stat, "armorRating"));
 
         // -----Other parameters
 
@@ -551,12 +560,12 @@ public class Load_Save {
         dStats.setAttributeNode(armorModifier);
 
 
-
         stats.appendChild(dStats); //Add dstats into main stats
 
         return stats;
     }
-    private static Attr getStatAttr(Document doc, Stats s, String type){
+
+    private static Attr getStatAttr(Document doc, Stats s, String type) {
         Attr sType = doc.createAttribute(type);
         switch (type) {
             case "lives":
@@ -602,20 +611,21 @@ public class Load_Save {
         }
         return sType;
     }
-    private static Node getMap(Document doc, Map m){
+
+    private static Node getMap(Document doc, Map m) {
         Element map = doc.createElement("map");
         Tile[][] tiles = m.getTiles();
         int getHeight = tiles.length;
         int getWidth = tiles[0].length;
         Attr width = doc.createAttribute("width");
-        width.setValue( Integer.toString(getWidth) );
+        width.setValue(Integer.toString(getWidth));
         map.setAttributeNode(width);
 
         Attr height = doc.createAttribute("height");
-        height.setValue( Integer.toString(getHeight) );
+        height.setValue(Integer.toString(getHeight));
         map.setAttributeNode(height);
 
-        for (int i = 0; i < tiles.length; i++ ){
+        for (int i = 0; i < tiles.length; i++) {
             Element row = doc.createElement("row");
             for (int j = 0; j < tiles[0].length; j++) {
                 row.appendChild(getTile(doc, tiles[i][j], i, j));
@@ -624,7 +634,8 @@ public class Load_Save {
         }
         return map;
     }
-    private static Node getTile(Document doc, Tile t, int y, int x){
+
+    private static Node getTile(Document doc, Tile t, int y, int x) {
         Element tile = doc.createElement("tile");
 //        Attr location = doc.createAttribute("location");
 //        location.setValue(x + "," + y);
@@ -639,7 +650,7 @@ public class Load_Save {
 
         //Entity
         if (t.getEntity() != null) {
-        //TODO: Still not sure what will be stored here
+            //TODO: Still not sure what will be stored here
         }
         //Area of Effect
         if (t.getAreaEffect() != null) {
@@ -665,7 +676,7 @@ public class Load_Save {
             Attr id = doc.createAttribute("id");
             id.setValue(Integer.toString(t.getItem().getID()));
             item.setAttributeNode(id);
-            
+
             //Attr name = doc.createAttribute("name");
             //name.setValue(t.getItem().getName());
             //item.setAttributeNode(name);
@@ -675,7 +686,7 @@ public class Load_Save {
     }
 
     //----------Function to transform saved (doc) into Xml and the Console -------
-    public static void writeToXml(Document doc, String fileName){
+    public static void writeToXml(Document doc, String fileName) {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         try {
             Transformer transformer = transformerFactory.newTransformer();

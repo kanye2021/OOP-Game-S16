@@ -22,7 +22,8 @@ public class Entity {
         // Default to smasher
         initEntity("smasher");
     }
-    public Entity(String occupation){
+
+    public Entity(String occupation) {
         initEntity(occupation);
     }
 
@@ -39,38 +40,56 @@ public class Entity {
         //Avatar parsing
 
     }
+
     /*----------Get and Setters --------*/
-    public int[] getLocation(){
+    public int[] getLocation() {
         return location;
     }
-    public String getOrientation(){
+
+    public String getOrientation() {
         return this.lastAtemptedDirection;
     }
-    public String getOccupation(){
+
+    public String getOccupation() {
         return this.occupation;
     }
-    public Stats getStats(){
+
+    public Stats getStats() {
         return this.stats;
     }
-    public Inventory getInventory(){
+
+    public Inventory getInventory() {
         return this.inventory;
     }
-    public EquippedItems getEquippedItems() { return this.equippedItems; }
-    public ItemStatsAssociation getAvatarItemStats(){ return this.avatarItemStats; }
+
+    public EquippedItems getEquippedItems() {
+        return this.equippedItems;
+    }
+
+    public ItemStatsAssociation getAvatarItemStats() {
+        return this.avatarItemStats;
+    }
+
     public void setOccupation(String occupation) {
         this.occupation = occupation;
     }
-    public void updateLocation(int x, int y){
+
+    public void updateLocation(int x, int y) {
         this.location[0] = x;
         this.location[1] = y;
     }
+
     // Each "type" (subclass) of entity will override this method to return its type.
-    public String getType() {return "entity";}
-    public void updateOrientation(String orientation){
+    public String getType() {
+        return "entity";
+    }
+
+    public void updateOrientation(String orientation) {
         lastAtemptedDirection = orientation;
     }
-    public String getImageName(){
-        return "entity-" + getOccupation() + "-" + lastAtemptedDirection + ".png" ;
+
+    public String getImageName() {
+        return "entity-" + getOccupation() + "-" + lastAtemptedDirection + ".png";
     }
     /* ------End of Getters and Setters -----*/
 
@@ -83,7 +102,6 @@ public class Entity {
 
 
     }
-
 
 
 }

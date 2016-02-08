@@ -1,4 +1,3 @@
-
 package models;
 
 import models.items.Item;

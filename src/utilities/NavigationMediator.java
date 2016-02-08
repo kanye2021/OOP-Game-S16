@@ -1,9 +1,10 @@
 package utilities;
 
-import models.*;
+import models.Entity;
+import models.Map;
+import models.Terrain;
 import models.area_effects.AreaEffect;
 import models.items.Item;
-import models.items.Obstacle;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -18,7 +19,7 @@ public class NavigationMediator {
     boolean canMove;
 
 
-    public NavigationMediator(Map map, Entity entity){
+    public NavigationMediator(Map map, Entity entity) {
         this.map = map;
         this.entity = entity;
         timer = new Timer();
@@ -27,10 +28,10 @@ public class NavigationMediator {
 
     // Directions take the following form:
     // N, NE, E, SE, S SW, W, NW
-    public void requestMovement(String direction){
+    public void requestMovement(String direction) {
 
         // If the player has moved too recently do not allow it
-        if(!canMove){
+        if (!canMove) {
             return;
         }
 
@@ -47,30 +48,34 @@ public class NavigationMediator {
         int desiredX = currentLocation[0];
         int desiredY = currentLocation[1];
 
-        switch(direction){
-            case "N": desiredY -=1;
+        switch (direction) {
+            case "N":
+                desiredY -= 1;
                 break;
-            case "S": desiredY +=1;
+            case "S":
+                desiredY += 1;
                 break;
-            case "E": desiredX +=1;
+            case "E":
+                desiredX += 1;
                 break;
-            case "W": desiredX -=1;
+            case "W":
+                desiredX -= 1;
                 break;
             case "NE":
-                desiredY-=1;
-                desiredX+=1;
+                desiredY -= 1;
+                desiredX += 1;
                 break;
             case "SE":
-                desiredY+=1;
-                desiredX+=1;
+                desiredY += 1;
+                desiredX += 1;
                 break;
             case "SW":
-                desiredY+=1;
-                desiredX-=1;
+                desiredY += 1;
+                desiredX -= 1;
                 break;
             case "NW":
-                desiredY-=1;
-                desiredX-=1;
+                desiredY -= 1;
+                desiredX -= 1;
                 break;
         }
 
@@ -78,29 +83,28 @@ public class NavigationMediator {
         //-----------------First check to see if it is possible to move here.-------------------------------------
 
         // The user is trying to move outside the range of the map, DO NOT ALLOW THIS (DUH).
-        if(desiredX < 0 || desiredX >= map.getMapWidth() || desiredY < 0 || desiredY >= map.getMapHeight()){
+        if (desiredX < 0 || desiredX >= map.getMapWidth() || desiredY < 0 || desiredY >= map.getMapHeight()) {
             return;
         }
 
 
         // Check to see if the terrain is passable. For this iteration, we can only pass through grass.
         Terrain terrain = map.getTerrainAtLocation(desiredX, desiredY);
-        if(!terrain.getType().equals("grass")){
+        if (!terrain.getType().equals("grass")) {
             return;
         }
 
 
         // Check to see if there is another entity blocking the path.
         Entity entityOnTile = map.getEntityAtLocation(desiredX, desiredY);
-        if(entityOnTile!=null){
+        if (entityOnTile != null) {
             return;
         }
 
 
-
         // Check to see if there is an obstacle
         Item item = map.getItemAtLocation(desiredX, desiredY);
-        if(item !=null && item.getType().equals(Item.Type.OBSTACLE)){
+        if (item != null && item.getType().equals(Item.Type.OBSTACLE)) {
             return;
         }
         //Checks to see if there is an interactive item that also has not fulfilled the conditions
@@ -118,7 +122,7 @@ public class NavigationMediator {
 
         // Set a timer to determine when the entity can move again.
         // The delay is inversely proportionaly to the entity's movement statgs
-        int delay = 100-(entity.getStats().getMovement() / 5);
+        int delay = 100 - (entity.getStats().getMovement() / 5);
 
         // If the delay is less than 0, the entity defaults to the fastest movement of 5ms.
         delay = delay > 0 ? delay : 5;
@@ -130,26 +134,25 @@ public class NavigationMediator {
         }, delay);
 
 
-
         //----------------------------Take care of anything that resulted from the move.---------------------------
 
         // Trigger any area effects
         AreaEffect areaEffect = map.getAreaEffectAtLocation(desiredX, desiredY);
-        if(areaEffect!=null){
+        if (areaEffect != null) {
             areaEffect.onTouch(entity);
         }
 
         // Take care of activating any items that have been encountered.
-        if(item!=null) {
+        if (item != null) {
             boolean questFinished = item.onTouch(entity);
-            if(questFinished){
+            if (questFinished) {
                 map.removeItemFromLocation(currentLocation[0], currentLocation[1]);
             }
         }
 
     }
 
-    public void returnItemToMap(int x, int y, Item item){
+    public void returnItemToMap(int x, int y, Item item) {
         map.insertItemAtLocation(x, y, item);
     }
 

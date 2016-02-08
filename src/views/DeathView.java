@@ -8,7 +8,7 @@ import java.awt.geom.Rectangle2D;
 /**
  * Created by Matthew on 2/6/2016.
  */
-public class DeathView extends View{
+public class DeathView extends View {
 
     //----------View Design stuff --------
     private final int BUTTON_WIDTH = 200;
@@ -29,7 +29,7 @@ public class DeathView extends View{
 
         int itemOffset = 1;
         g.setColor(Color.BLACK);
-        g.fillRect(0, 0, B_WIDTH , B_HEIGHT);
+        g.fillRect(0, 0, B_WIDTH, B_HEIGHT);
 
         String titleString = "Game over!";
         Rectangle2D titleRectangle = fm.getStringBounds(titleString, g);
@@ -47,33 +47,33 @@ public class DeathView extends View{
         int i = 0;
         for (DeathViewController.MenuOptions option : DeathViewController.MenuOptions.values()) {
             String message = option.toString();
-                Rectangle2D rectangle = fm2.getStringBounds(message, g);
+            Rectangle2D rectangle = fm2.getStringBounds(message, g);
 
-                int boxX = View.B_WIDTH / 2 - BUTTON_WIDTH / 2;
-                int boxY = BUTTON_HEIGHT * i + titleStringY + 50;
-                int boxDX = BUTTON_WIDTH;
-                int boxDY = BUTTON_HEIGHT;
+            int boxX = View.B_WIDTH / 2 - BUTTON_WIDTH / 2;
+            int boxY = BUTTON_HEIGHT * i + titleStringY + 50;
+            int boxDX = BUTTON_WIDTH;
+            int boxDY = BUTTON_HEIGHT;
 
-                int stringX = View.B_WIDTH / 2 - (int) (rectangle.getWidth() / 2);
-                int stringY = i * BUTTON_HEIGHT + (int) (rectangle.getHeight() / 2) + fm2.getAscent() + titleStringY + 50;
+            int stringX = View.B_WIDTH / 2 - (int) (rectangle.getWidth() / 2);
+            int stringY = i * BUTTON_HEIGHT + (int) (rectangle.getHeight() / 2) + fm2.getAscent() + titleStringY + 50;
 
-                Color primaryColor;
-                Color secondaryColor;
+            Color primaryColor;
+            Color secondaryColor;
 
-                if (option == ( ((DeathViewController)this.viewController).getActiveItem() ) ) {
-                    primaryColor = Color.WHITE;
-                    secondaryColor = Color.BLACK;
+            if (option == (((DeathViewController) this.viewController).getActiveItem())) {
+                primaryColor = Color.WHITE;
+                secondaryColor = Color.BLACK;
 
-                } else {
-                    primaryColor = Color.BLACK;
-                    secondaryColor = Color.WHITE;
+            } else {
+                primaryColor = Color.BLACK;
+                secondaryColor = Color.WHITE;
 
-                }
+            }
 
-                g.setColor(primaryColor);
-                g.fillRect(boxX, boxY, boxDX, boxDY);
-                g.setColor(secondaryColor);
-                g.drawString(message, stringX, stringY);
+            g.setColor(primaryColor);
+            g.fillRect(boxX, boxY, boxDX, boxDY);
+            g.setColor(secondaryColor);
+            g.drawString(message, stringX, stringY);
             ++i;
         }
     }

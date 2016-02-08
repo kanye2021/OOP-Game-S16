@@ -3,7 +3,6 @@ package models.items;
 
 import models.Entity;
 import models.Stats;
-import utilities.IOMediator;
 import utilities.conditions.Condition;
 import utilities.conditions.Conditions;
 import utilities.conditions.InventoryCondition;
@@ -16,21 +15,21 @@ import utilities.conditions.StatCondition;
 public class InteractiveItem extends Item {
 
     //Needs an enum
-    public enum Quests{
+    public enum Quests {
 
-        SAVE_JORGE("boomerang.png","Kill the Jorge", new Conditions(
+        SAVE_JORGE("boomerang.png", "Kill the Jorge", new Conditions(
                 new InventoryCondition(Condition.Entities.AVATAR, Condition.Comparison.AT_LEAST, 1, TakeableItem.Items.WOOD_SWORD),
                 new StatCondition(Condition.Entities.AVATAR, Condition.Comparison.AT_LEAST, 5, Stats.Type.LEVEL)
         )),
-        DAVID_SQUARED("umbrella.png","David Squared Has a Mission for you", new Conditions(
+        DAVID_SQUARED("umbrella.png", "David Squared Has a Mission for you", new Conditions(
                 new InventoryCondition(Condition.Entities.AVATAR, Condition.Comparison.AT_MOST, 2, TakeableItem.Items.WOOD_SWORD),
                 new StatCondition(Condition.Entities.AVATAR, Condition.Comparison.AT_LEAST, 5, Stats.Type.LEVEL)
         )),
-        CHEN("roller.png","His name is Chen. Chen Ben.", new Conditions(
+        CHEN("roller.png", "His name is Chen. Chen Ben.", new Conditions(
                 new InventoryCondition(Condition.Entities.AVATAR, Condition.Comparison.EXACTLY, 1, TakeableItem.Items.WOOD_SWORD),
                 new StatCondition(Condition.Entities.AVATAR, Condition.Comparison.AT_LEAST, 5, Stats.Type.LEVEL)
         )),
-        GATE_OF_KANYE("KanyeGate.png","The Legendary Gate of Kanye", new Conditions(
+        GATE_OF_KANYE("KanyeGate.png", "The Legendary Gate of Kanye", new Conditions(
                 new InventoryCondition(Condition.Entities.AVATAR, Condition.Comparison.EXACTLY, 1, TakeableItem.Items.KEY_OF_KANYE),
                 new StatCondition(Condition.Entities.AVATAR, Condition.Comparison.AT_LEAST, 5, Stats.Type.LEVEL)
         ));
@@ -40,7 +39,7 @@ public class InteractiveItem extends Item {
         private Conditions conditions;
 
         //Enum constructor
-        Quests(String pathToPicture,String description, Conditions conditions) {
+        Quests(String pathToPicture, String description, Conditions conditions) {
             this.pathToPicture = pathToPicture;
             this.description = description;
             this.conditions = conditions;
@@ -49,6 +48,7 @@ public class InteractiveItem extends Item {
         public int getID() {
             return ordinal();
         }
+
         public String getPathToPicture() {
             return pathToPicture;
         }
@@ -56,7 +56,7 @@ public class InteractiveItem extends Item {
     }
 
     //Class Constructor
-    public InteractiveItem(Quests quests){
+    public InteractiveItem(Quests quests) {
         super(quests.ordinal(), Type.INTERACTIVE);
     }
 
@@ -67,9 +67,13 @@ public class InteractiveItem extends Item {
     }
 
     //Getters
-    public String getDescription(){return Quests.values()[getID()].description;}
+    public String getDescription() {
+        return Quests.values()[getID()].description;
+    }
 
-    public boolean checkCondition() {return Quests.values()[getID()].conditions.checkCondition();}
+    public boolean checkCondition() {
+        return Quests.values()[getID()].conditions.checkCondition();
+    }
 
     @Override
     public boolean onTouch(Entity entity) {
@@ -79,7 +83,7 @@ public class InteractiveItem extends Item {
         if (condition) {
             System.out.println("You did the thing!");
             return true;
-        } else{
+        } else {
             System.out.println(this.getDescription());
             System.out.println("You had one job...");
         }

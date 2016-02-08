@@ -14,26 +14,50 @@ import java.awt.event.KeyEvent;
 public class IOMediator {
 
 
-	public static Map map;
-	public static Entity entity;
-	
-	// This represents all of the views that the utilities.IOMediator can see. the utilities.IOMediator acts as a MUX and goes through these
-	// to modify the graphics and where the keyPresses go.
-	
-	// The code works as follows:
-	// the single argument that the enum takes is a new view.
-	// The view's render function is mapped to the enum's render such that START_MENU.render(g) -> views.StartMenuView->render(g)
-	
-    public static enum Views {
-    	
-        START_MENU(new StartMenuView()) {void render(Graphics g) {getView().render(g);}},
-        CREATE_GAME(new CreateNewGameView()) {void render(Graphics g) {getView().render(g);}},
-        AVATAR_CREATION(new AvatarCreationView()) {void render(Graphics g) {;}},
-        PAUSE(new PauseView()) {void render(Graphics g) {getView().render(g);}},
-        
-        UNIMPLEMENTED(null) {void render(Graphics g) {getView().render(g);}},
+    public static Map map;
+    public static Entity entity;
 
-        DEATH(new DeathView()) {void render(Graphics g) {getView().render(g);}},
+    // This represents all of the views that the utilities.IOMediator can see. the utilities.IOMediator acts as a MUX and goes through these
+    // to modify the graphics and where the keyPresses go.
+
+    // The code works as follows:
+    // the single argument that the enum takes is a new view.
+    // The view's render function is mapped to the enum's render such that START_MENU.render(g) -> views.StartMenuView->render(g)
+
+    public static enum Views {
+
+        START_MENU(new StartMenuView()) {
+            void render(Graphics g) {
+                getView().render(g);
+            }
+        },
+        CREATE_GAME(new CreateNewGameView()) {
+            void render(Graphics g) {
+                getView().render(g);
+            }
+        },
+        AVATAR_CREATION(new AvatarCreationView()) {
+            void render(Graphics g) {
+                ;
+            }
+        },
+        PAUSE(new PauseView()) {
+            void render(Graphics g) {
+                getView().render(g);
+            }
+        },
+
+        UNIMPLEMENTED(null) {
+            void render(Graphics g) {
+                getView().render(g);
+            }
+        },
+
+        DEATH(new DeathView()) {
+            void render(Graphics g) {
+                getView().render(g);
+            }
+        },
 
         LOAD(new LoadGameView()) {
             void render(Graphics g) {
@@ -41,25 +65,44 @@ public class IOMediator {
                 getView().render(g);
             }
         },
-        SAVE(new SaveGameView()) {void render(Graphics g) {getView().render(g);}}, // Not sure if having map and entity in constructor is "hacky" or not
-        EXIT(null) {void render(Graphics g) {getView().render(g);}},
-        GAME() {void render(Graphics g) {getView().render(g);}};
+        SAVE(new SaveGameView()) {
+            void render(Graphics g) {
+                getView().render(g);
+            }
+        }, // Not sure if having map and entity in constructor is "hacky" or not
+        EXIT(null) {
+            void render(Graphics g) {
+                getView().render(g);
+            }
+        },
+        GAME() {
+            void render(Graphics g) {
+                getView().render(g);
+            }
+        };
         // TODO: REMOVE HACKY SHIT
 //        INVENTORY() {void render(Graphics g) {getView().render(g);}};
 //        EQUIPPED_ITEMS() {void render(Graphics g) {;}};
-        
+
         abstract void render(Graphics g);
-        
+
         private View view;
 
-        public View getView() { return view; }
-        public void setView(View v) { view = v; }
-
-        private Views(){}
-        private Views(View view) {
-        	this.view = view;
+        public View getView() {
+            return view;
         }
-        
+
+        public void setView(View v) {
+            view = v;
+        }
+
+        private Views() {
+        }
+
+        private Views(View view) {
+            this.view = view;
+        }
+
     }
 
     private static IOMediator ioMediator = new IOMediator();
@@ -86,11 +129,14 @@ public class IOMediator {
         previousView = activeView;
         activeView = view;
     }
+
     public static View getActiveView() {
         return activeView.getView();
     }
 
-    public static Views getPreviousView() { return previousView; }
+    public static Views getPreviousView() {
+        return previousView;
+    }
 
     public static void keyPressed(KeyEvent e) {
 
@@ -99,9 +145,7 @@ public class IOMediator {
         if (activeView != null) {
             // If we have an active view, send key press to its controller
             activeView.getView().getViewController().handleKeyPress(key);
-        }
-
-        else {
+        } else {
             System.out.println("no active view lol?");
         }
     }

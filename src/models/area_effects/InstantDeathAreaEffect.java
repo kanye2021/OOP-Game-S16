@@ -8,17 +8,17 @@ import models.Entity;
 public class InstantDeathAreaEffect extends AreaEffect {
 
     @Override
-    public void onTouch(Entity entity){
+    public void onTouch(Entity entity) {
         entity.getStats().loseALife();
     }
 
     @Override
-    public String getType(){
+    public String getType() {
         return "instant-death";
     }
 
     @Override
-    public String getImageName(){
+    public String getImageName() {
         return "skull-and-crossbones.png";
     }
 }

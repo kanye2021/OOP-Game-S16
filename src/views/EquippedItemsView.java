@@ -4,11 +4,8 @@ package views;
  * Created by sergiopuleri on 2/5/16.
  */
 
-import controllers.AvatarCreationViewController;
 import controllers.EquippedItemsViewController;
-import models.EquippedItems;
 import models.items.TakeableItem;
-import utilities.IOMediator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,15 +16,15 @@ public class EquippedItemsView extends View {
 
     private final String TITLE = "Equipped Items";
     private final String DESCRIPTION = "Press [ENTER] on your selected item to unequip";
-    private final int RECT_W = B_WIDTH/3;
-    private final int RECT_H = B_HEIGHT/2;
-    private final int TOP_PANE_H = B_HEIGHT/8;
-    private final int ITEM_SLOT = (int)(((double)TILE_SIZE)*1.5);
+    private final int RECT_W = B_WIDTH / 3;
+    private final int RECT_H = B_HEIGHT / 2;
+    private final int TOP_PANE_H = B_HEIGHT / 8;
+    private final int ITEM_SLOT = (int) (((double) TILE_SIZE) * 1.5);
     // image length and width is 80% of the item slot size.
-    private final int IMG_SIZE = (int) ((double)ITEM_SLOT*.80);
-    private final int RECT_XY_OFFSET_TOP = (int)(((double)TILE_SIZE)*1.5);
-    private final int RECT_X_OFFSET = (int)(((double)TILE_SIZE)*1.5) ;
-    private final int RECT_Y_OFFSET = (int)(((double)TILE_SIZE)*1.5) + TOP_PANE_H ;
+    private final int IMG_SIZE = (int) ((double) ITEM_SLOT * .80);
+    private final int RECT_XY_OFFSET_TOP = (int) (((double) TILE_SIZE) * 1.5);
+    private final int RECT_X_OFFSET = (int) (((double) TILE_SIZE) * 1.5);
+    private final int RECT_Y_OFFSET = (int) (((double) TILE_SIZE) * 1.5) + TOP_PANE_H;
     private Color secondary;
     private Color primary;
     private Color rlySmallColor;
@@ -35,7 +32,6 @@ public class EquippedItemsView extends View {
     private Font small;
     private Font title;
     private Font desc;
-
 
 
     public EquippedItemsView() {
@@ -58,12 +54,12 @@ public class EquippedItemsView extends View {
 
         // Draw Top Pane
         g.setColor(new Color(32, 32, 32));
-        g.drawRoundRect(RECT_XY_OFFSET_TOP, RECT_XY_OFFSET_TOP , RECT_W, TOP_PANE_H, 5, 5);
+        g.drawRoundRect(RECT_XY_OFFSET_TOP, RECT_XY_OFFSET_TOP, RECT_W, TOP_PANE_H, 5, 5);
         g.fillRoundRect(RECT_XY_OFFSET_TOP, RECT_XY_OFFSET_TOP, RECT_W, TOP_PANE_H, 5, 5);
 
         // Draw Main Pane
-        g.drawRoundRect(RECT_X_OFFSET, RECT_Y_OFFSET,  RECT_W, RECT_H, 5, 5);
-        g.fillRoundRect(RECT_X_OFFSET, RECT_Y_OFFSET , RECT_W, RECT_H, 5, 5);
+        g.drawRoundRect(RECT_X_OFFSET, RECT_Y_OFFSET, RECT_W, RECT_H, 5, 5);
+        g.fillRoundRect(RECT_X_OFFSET, RECT_Y_OFFSET, RECT_W, RECT_H, 5, 5);
 
         // Draw title
         g.setColor(primary);
@@ -71,16 +67,16 @@ public class EquippedItemsView extends View {
         g.setFont(title);
         Rectangle2D rec = fm.getStringBounds(TITLE, g);
         int titleY = RECT_XY_OFFSET_TOP + ((int) (rec.getHeight()) + fm.getAscent());
-        int titleX =  RECT_XY_OFFSET_TOP + RECT_W/2 - (int)rec.getWidth()/2;
-        g.drawString(TITLE, titleX, titleY );
+        int titleX = RECT_XY_OFFSET_TOP + RECT_W / 2 - (int) rec.getWidth() / 2;
+        g.drawString(TITLE, titleX, titleY);
 
         // Draw Description text
         fm = g.getFontMetrics(desc);
         g.setFont(desc);
         rec = fm.getStringBounds(DESCRIPTION, g);
         int descY = (titleY + ((int) (rec.getHeight()) + fm.getAscent()));
-        int descX =  RECT_XY_OFFSET_TOP + RECT_W/2 - (int)rec.getWidth()/2;
-        g.drawString(DESCRIPTION, descX, descY );
+        int descX = RECT_XY_OFFSET_TOP + RECT_W / 2 - (int) rec.getWidth() / 2;
+        g.drawString(DESCRIPTION, descX, descY);
 
         // Draw slots + equipped item images
         renderSlots(g);
@@ -91,12 +87,12 @@ public class EquippedItemsView extends View {
     private void renderSlots(Graphics g) {
 
         //
-        int xFirstCol = RECT_X_OFFSET + 1*RECT_W/4 - ITEM_SLOT/2;
-        int xSecondCol = RECT_X_OFFSET + 2*RECT_W/4 - ITEM_SLOT/2;
-        int xThirdCol = RECT_X_OFFSET + 3*RECT_W/4 - ITEM_SLOT/2;
-        int yFirstRow = RECT_Y_OFFSET + RECT_H/6 - ITEM_SLOT/2;
-        int ySecondRow = RECT_Y_OFFSET + 3*RECT_H/6 - ITEM_SLOT/2;
-        int yThirdRow = RECT_Y_OFFSET + 5*RECT_H/6 - ITEM_SLOT/2;
+        int xFirstCol = RECT_X_OFFSET + 1 * RECT_W / 4 - ITEM_SLOT / 2;
+        int xSecondCol = RECT_X_OFFSET + 2 * RECT_W / 4 - ITEM_SLOT / 2;
+        int xThirdCol = RECT_X_OFFSET + 3 * RECT_W / 4 - ITEM_SLOT / 2;
+        int yFirstRow = RECT_Y_OFFSET + RECT_H / 6 - ITEM_SLOT / 2;
+        int ySecondRow = RECT_Y_OFFSET + 3 * RECT_H / 6 - ITEM_SLOT / 2;
+        int yThirdRow = RECT_Y_OFFSET + 5 * RECT_H / 6 - ITEM_SLOT / 2;
 
         Rectangle2D rec;
         int x;
@@ -105,26 +101,26 @@ public class EquippedItemsView extends View {
         Image i;
         ImageIcon ii;
         for (EquippedItemsViewController.EquippedItemOptSelections option : EquippedItemsViewController.EquippedItemOptSelections.values()) {
-            if(option.ordinal() < 3){
+            if (option.ordinal() < 3) {
                 y = yFirstRow;
             } else if (option.ordinal() >= 3 && option.ordinal() < 6) {
                 y = ySecondRow;
             } else {
                 y = yThirdRow;
             }
-            if (colCount % 3 ==  1) {
+            if (colCount % 3 == 1) {
                 x = xFirstCol;
-            } else if(colCount % 3 ==  2) {
+            } else if (colCount % 3 == 2) {
                 x = xSecondCol;
             } else {
                 x = xThirdCol;
             }
             colCount++;
             // Draw slots
-            g.fillRect(x, y , ITEM_SLOT, ITEM_SLOT);
-            if ( ((EquippedItemsViewController) viewController).getSelectedItem() == option  ) {
+            g.fillRect(x, y, ITEM_SLOT, ITEM_SLOT);
+            if (((EquippedItemsViewController) viewController).getSelectedItem() == option) {
                 g.setColor(secondary);
-                g.drawRect(x - 3, y - 3 , ITEM_SLOT + 6, ITEM_SLOT + 6);
+                g.drawRect(x - 3, y - 3, ITEM_SLOT + 6, ITEM_SLOT + 6);
                 g.setColor(primary);
 
             }
@@ -140,18 +136,17 @@ public class EquippedItemsView extends View {
                 FontMetrics fm = g.getFontMetrics(rlySmall);
                 g.setFont(rlySmall);
                 rec = fm.getStringBounds(itemName, g);
-                g.drawString(itemName, x +(ITEM_SLOT - (int)rec.getWidth())/2, y + ITEM_SLOT - ((int) (rec.getHeight())/2));
-
+                g.drawString(itemName, x + (ITEM_SLOT - (int) rec.getWidth()) / 2, y + ITEM_SLOT - ((int) (rec.getHeight()) / 2));
 
 
             } else {
                 // No item equipped for this slot
                 // Render a place holder image
-                 ii = new ImageIcon("./src/res/items/takeable/placeholder.png");
-                 i = ii.getImage();
+                ii = new ImageIcon("./src/res/items/takeable/placeholder.png");
+                i = ii.getImage();
             }
             // Draw image
-            g.drawImage(i, x +(ITEM_SLOT - IMG_SIZE)/2, y + (ITEM_SLOT - IMG_SIZE)/2, IMG_SIZE, IMG_SIZE, Display.getInstance());
+            g.drawImage(i, x + (ITEM_SLOT - IMG_SIZE) / 2, y + (ITEM_SLOT - IMG_SIZE) / 2, IMG_SIZE, IMG_SIZE, Display.getInstance());
 
             g.setColor(primary);
             FontMetrics fm = g.getFontMetrics(small);
@@ -161,8 +156,8 @@ public class EquippedItemsView extends View {
             // If the text contains more than 5 letters (e.g. "primary weapon") we want to render it differently
             if (option.getText().length() > 5) {
                 g.drawString(option.getText(), x, y + ITEM_SLOT + ((int) (rec.getHeight()) + fm.getAscent()));
-            }
-            else g.drawString(option.getText(), x + (int)rec.getWidth()/2, y + ITEM_SLOT + ((int) (rec.getHeight()) + fm.getAscent()));
+            } else
+                g.drawString(option.getText(), x + (int) rec.getWidth() / 2, y + ITEM_SLOT + ((int) (rec.getHeight()) + fm.getAscent()));
         }
 
     }

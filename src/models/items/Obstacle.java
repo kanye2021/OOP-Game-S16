@@ -8,7 +8,7 @@ import models.Entity;
 public class Obstacle extends Item {
 
     //Enum of Obstacles
-    public enum Obstacles{
+    public enum Obstacles {
         GRAVE("grave.png"),
         STATUE("statue.png"),
         Jorge("octopus.png");
@@ -25,8 +25,9 @@ public class Obstacle extends Item {
             return this.pathToPicture;
 
         }
+
         //Enum Constructor
-        Obstacles(String filePath){
+        Obstacles(String filePath) {
             this.pathToPicture = filePath;
         }
 
@@ -34,7 +35,7 @@ public class Obstacle extends Item {
 
 
     //Constructor
-    public Obstacle(Obstacles obstacles){
+    public Obstacle(Obstacles obstacles) {
         super(obstacles.ordinal(), Type.OBSTACLE);
     }
 
@@ -45,11 +46,6 @@ public class Obstacle extends Item {
     public boolean onTouch(Entity entity) {
 
         return false;
-    }
-
-    @Override
-    public Type getType() {
-        return super.getType();
     }
 
     @Override

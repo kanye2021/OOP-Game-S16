@@ -9,88 +9,88 @@ import models.Entity;
 
 public abstract class Item {
 
-	public static enum Type {
-		TAKEABLE("take-able"),
-		ONE_SHOT("one-shot"),
-		INTERACTIVE("interactive"),
-		OBSTACLE("obstacle");
-		
-		private String s;
-		
-		private Type(String s) {
-			this.s = s;
-		}
-		
-		public String toString() {
-			return s;
-		}
-	}
-	
+    public enum Type {
+        TAKE_ABLE("take-able"),
+        ONE_SHOT("one-shot"),
+        INTERACTIVE("interactive"),
+        OBSTACLE("obstacle");
+
+        private String s;
+
+        Type(String s) {
+            this.s = s;
+        }
+
+        public String toString() {
+            return s;
+        }
+    }
+
     //Attributes that all Items will have
     protected int id;
     protected Type type;
-    protected String pathToPicture;
-    
 
     //Constructor
     protected Item(int id, Type type) {
-    	this.id = id;
-    	this.type = type;
+        this.id = id;
+        this.type = type;
     }
 
     //Getters
     public final int getID() {
-    	
-    	return id;
-    	
-    }
-    
-    public Type getType() {
-        
-    	return type;
-    
+
+        return id;
+
     }
 
-    
+    public final Type getType() {
+
+        return type;
+
+    }
+
+
     public abstract String getPathToPicture();
 
     public abstract boolean onTouch(Entity entity);
 
     //Do not touch
     @Override
-	public int hashCode() {
+    public final int hashCode() {
 
-    	return id;
+        return id;
 
     }
 
     //Do not touch
     @Override
-    public boolean equals(Object o) {
-    	
-    	Item otherItem = (Item) o;
-    	
-    	if (this.getID() == otherItem.getID()) {
-    		
-    		return true;
-    	
-    	}
-    	
-    	return false;
-    	
-    }
-    public boolean equalsType(Item.Type type) {
-        if (type ==  this.getType()){
-            return true;
-        }else{
-            return false;
+    public final boolean equals(Object o) {
+
+        if (o instanceof Item) {
+
+            Item otherItem = (Item) o;
+
+            if (this.getID() == otherItem.getID()) {
+
+                return true;
+
+            }
+
         }
+
+        return false;
+
+    }
+
+    public final boolean equalsType(Item.Type type) {
+
+        return type == this.getType();
+
     }
 
     public String toString() {
         return getType() + ": " + getID();
     }
-
 
 
 }

@@ -28,7 +28,7 @@ public class StatusViewport extends View {
         resourceBasePath = resourceBasePath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
         borderRadius = 10;
     }
-    
+
     @Override
     public void render(Graphics g) {
         Stats stats = entity.getStats();
@@ -37,7 +37,7 @@ public class StatusViewport extends View {
         fm = g.getFontMetrics(font);
         g.setColor(new Color(32, 32, 32));
         g.fillRect(0, View.B_HEIGHT * 4 / 5, View.B_WIDTH, View.B_HEIGHT * 1 / 5);
-        
+
         // Display the entity's level
         drawLevel(g, stats);
 
@@ -57,7 +57,7 @@ public class StatusViewport extends View {
         drawCenteredStats(g, stats);
     }
 
-    private void drawLevel(Graphics g, Stats stats){
+    private void drawLevel(Graphics g, Stats stats) {
         // Get the necessary stats
         String level = "Level: " + stats.getLevel();
 
@@ -70,13 +70,13 @@ public class StatusViewport extends View {
 
         // Display the Lives text
         int levelX = View.B_WIDTH - (int) levelRect.getWidth() - MARGIN_HORIZONTAL;
-        int levelY = MARGIN_VERTICAL+ font.getSize();
+        int levelY = MARGIN_VERTICAL + font.getSize();
 
         g.setColor(Color.WHITE);
         g.drawString(level, levelX, levelY);
     }
 
-    private void drawLives(Graphics g, Stats stats){
+    private void drawLives(Graphics g, Stats stats) {
         // Get the necessary stats
         int lives = stats.getLivesLeft();
 
@@ -102,13 +102,13 @@ public class StatusViewport extends View {
 
         int heartsX = livesX + widthOfLivesText;
         int heartsY = livesY - font.getSize();
-        for(int i=0; i<lives; i++){
+        for (int i = 0; i < lives; i++) {
             g.drawImage(lifeImg, heartsX, heartsY, Display.getInstance());
             heartsX += lifeImg.getWidth(null) + marginBtwnHearts;
         }
     }
 
-    private void drawHealthBar(Graphics g, Stats stats){
+    private void drawHealthBar(Graphics g, Stats stats) {
 
         // Get the necessary stats
         int health = stats.getHealth();
@@ -119,19 +119,19 @@ public class StatusViewport extends View {
 
         // Determine how large text is and where to place the Health string
         Rectangle2D healthRect = fm.getStringBounds("EXP: ", g);
-        int healthX = B_WIDTH * 1/4 - 45;
-        int healthY = B_HEIGHT - (int)healthRect.getHeight() - 10;
+        int healthX = B_WIDTH * 1 / 4 - 45;
+        int healthY = B_HEIGHT - (int) healthRect.getHeight() - 10;
 
         // Draw the health string.
         g.setColor(Color.WHITE);
-        g.drawString("HP: ", healthX, healthY );
+        g.drawString("HP: ", healthX, healthY);
 
 
         // Set the location and size of the health bar.
         int healthBarX = (int) (healthX + healthRect.getWidth());
-        int healthBarY = healthY - (int)healthRect.getHeight() + 8;
+        int healthBarY = healthY - (int) healthRect.getHeight() + 8;
         int healthBarHeight = (int) healthRect.getHeight() - 5;
-        int healthBarWidth = B_WIDTH*1/4 - 35;
+        int healthBarWidth = B_WIDTH * 1 / 4 - 35;
 
         // Draw the outline of the health bar.
         g.setColor(Color.LIGHT_GRAY);
@@ -139,7 +139,7 @@ public class StatusViewport extends View {
 
 
         // Determine what fraction of the healthbar should be shown.
-        double healthFraction = (double) health/ (double) maxHealth;
+        double healthFraction = (double) health / (double) maxHealth;
         int fillWidth = (int) (healthFraction * healthBarWidth);
 
         // Fill the healthbar
@@ -159,7 +159,7 @@ public class StatusViewport extends View {
         g.drawString(fraction, fractionX, fractionY);
     }
 
-    private void drawManaBar(Graphics g, Stats stats){
+    private void drawManaBar(Graphics g, Stats stats) {
 
         // Get the ncessary stats
         int mana = stats.getMana();
@@ -170,19 +170,19 @@ public class StatusViewport extends View {
 
         // Determine where to place the mana string.
         Rectangle2D manaRect = fm.getStringBounds("MP: ", g);
-        int manaX = B_WIDTH /2 + 3;
-        int manaY = B_HEIGHT - (int)manaRect.getHeight() - 10;
+        int manaX = B_WIDTH / 2 + 3;
+        int manaY = B_HEIGHT - (int) manaRect.getHeight() - 10;
 
         // Display the Mana text
         g.setColor(Color.WHITE);
-        g.drawString("MP: ", manaX, manaY );
+        g.drawString("MP: ", manaX, manaY);
 
 
         // Set the location and size of the mana bar.
         int manaBarX = (int) (manaX + manaRect.getWidth());
-        int manaBarY = manaY - (int)manaRect.getHeight() + 8;
+        int manaBarY = manaY - (int) manaRect.getHeight() + 8;
         int manaBarHeight = (int) manaRect.getHeight() - 5;
-        int manaBarWidth = B_WIDTH*1/4 - 35;
+        int manaBarWidth = B_WIDTH * 1 / 4 - 35;
 
         // Draw the outline of the mana bar.
         g.setColor(Color.LIGHT_GRAY);
@@ -190,7 +190,7 @@ public class StatusViewport extends View {
 
 
         // Determine what fraction of the mana bar should be shown.
-        double manaFraction = (double) mana/ (double) maxMana;
+        double manaFraction = (double) mana / (double) maxMana;
         int fillWidth = (int) (manaFraction * manaBarWidth);
 
         // Fill the mana bar
@@ -210,7 +210,7 @@ public class StatusViewport extends View {
         g.drawString(fraction, fractionX, fractionY);
     }
 
-    private void drawExperienceBar(Graphics g, Stats stats){
+    private void drawExperienceBar(Graphics g, Stats stats) {
 
         // Get the necessary stats
         int exp = stats.getExperience();
@@ -222,12 +222,12 @@ public class StatusViewport extends View {
 
         // Determine where to place the exp string.
         Rectangle2D expRect = fm.getStringBounds("EXP: ", g);
-        int expX = B_WIDTH * 1/4 - 45;
+        int expX = B_WIDTH * 1 / 4 - 45;
         int expY = B_HEIGHT - 10;
 
         // Display the exp text
         g.setColor(Color.WHITE);
-        g.drawString("EXP: ", expX, expY );
+        g.drawString("EXP: ", expX, expY);
 
 
         // Set the location and size of the exp bar.
@@ -235,16 +235,16 @@ public class StatusViewport extends View {
         Rectangle2D healthRect = fm.getStringBounds("EXP: ", g);
 
         int expBarX = (int) (expX + healthRect.getWidth());
-        int expBarY = expY - (int)expRect.getHeight() + 8;
+        int expBarY = expY - (int) expRect.getHeight() + 8;
         int expBarHeight = (int) expRect.getHeight() - 5;
-        int expBarWidth = B_WIDTH*1/2;
+        int expBarWidth = B_WIDTH * 1 / 2;
 
         // Draw the outline of the exp bar.
         g.setColor(Color.LIGHT_GRAY);
         g.drawRoundRect(expBarX, expBarY, expBarWidth, expBarHeight, borderRadius, borderRadius);
 
         // Determine what fraction of the exp bar should be shown.
-        double expFraction = (double) (exp - lastLvlExpReq)/ (double) (expToNextLvl - lastLvlExpReq);
+        double expFraction = (double) (exp - lastLvlExpReq) / (double) (expToNextLvl - lastLvlExpReq);
         int fillWidth = (int) (expFraction * expBarWidth);
 
         // Fill the exp bar
@@ -266,7 +266,7 @@ public class StatusViewport extends View {
     }
 
     // Displays strength agility intellect hardines
-    private void drawCenteredStats(Graphics g, Stats stats){
+    private void drawCenteredStats(Graphics g, Stats stats) {
         // Get the ncessary stats
         String strength = "Strength: " + stats.getStrength();
         String agility = "Agility: " + stats.getAgility();
@@ -318,16 +318,16 @@ public class StatusViewport extends View {
         int columnMargin = 5;
 
         // Determine the total width and use it to postiion the first column
-        int totalWidth = firstColumnWidth + secondColumnWidth + thirdColumnWidth + fourthColumnWidth + columnMargin*3;
+        int totalWidth = firstColumnWidth + secondColumnWidth + thirdColumnWidth + fourthColumnWidth + columnMargin * 3;
 
         // Find the positioning of and draw strength
-        int strengthX = B_WIDTH/2 - totalWidth/2;
-        int strengthY = B_HEIGHT - 4*(int)strengthRect.getHeight() - 10;
+        int strengthX = B_WIDTH / 2 - totalWidth / 2;
+        int strengthY = B_HEIGHT - 4 * (int) strengthRect.getHeight() - 10;
         g.drawString(strength, strengthX, strengthY);
 
         // Find the positioning of and draw agility
         int agilityX = strengthX;
-        int agilityY = strengthY + (int)agilityRect.getHeight();
+        int agilityY = strengthY + (int) agilityRect.getHeight();
         g.drawString(agility, agilityX, agilityY);
 
 
@@ -342,7 +342,6 @@ public class StatusViewport extends View {
         g.drawString(hardiness, hardinessX, hardinessY);
 
 
-
         // Draw the offensive Rating
         int offensiveX = intellectX + (intellectWidth > hardinessWidth ? intellectWidth : hardinessWidth) + columnMargin;
         int offensiveY = strengthY;
@@ -355,7 +354,7 @@ public class StatusViewport extends View {
 
 
         // Draw the Armor
-        int armorX = offensiveX + (offensiveWidth > defensiveWidth ? offensiveWidth: defensiveWidth) +columnMargin;
+        int armorX = offensiveX + (offensiveWidth > defensiveWidth ? offensiveWidth : defensiveWidth) + columnMargin;
         int armorY = offensiveY;
         g.drawString(armorRating, armorX, armorY);
 

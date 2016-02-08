@@ -5,34 +5,37 @@ import controllers.LoadGameController;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
-import java.io.FileFilter;
 
 /**
  * Created by dyeung on 2/4/16.
  */
-public class LoadGameView extends View{
+public class LoadGameView extends View {
     //----------View Design stuff --------
     private final int BUTTON_WIDTH = 200;
     private final int BUTTON_HEIGHT = 50;
     private final int START_POSITION = 100;
     //--------File Path stuff -------
-    private String saveFilePath ="src/res/save_files/";
+    private String saveFilePath = "src/res/save_files/";
     private File[] listOfSaveFiles;
-    public LoadGameView(){
-        saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
+
+    public LoadGameView() {
+        saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
         this.viewController = new LoadGameController(this);
 //        File folder = new File(saveFilePath);
-        listOfSaveFiles = ((LoadGameController)viewController).getFileNames();
+        listOfSaveFiles = ((LoadGameController) viewController).getFileNames();
         //getNewFiles();
     }
-    public void getNewFiles(){ //Function is used to update the list of save files in the folder
-        listOfSaveFiles = ((LoadGameController)this.viewController).loadNewFolder();
+
+    public void getNewFiles() { //Function is used to update the list of save files in the folder
+        listOfSaveFiles = ((LoadGameController) this.viewController).loadNewFolder();
         System.out.println("LGV: " + listOfSaveFiles.length);
     }
-    public void render(Graphics g){
+
+    public void render(Graphics g) {
         renderFileButtons(g);
     }
-    private void renderFileButtons(Graphics g){
+
+    private void renderFileButtons(Graphics g) {
 
         g.setFont(VIEW_FONT);
         FontMetrics fm = g.getFontMetrics(VIEW_FONT);
@@ -43,7 +46,7 @@ public class LoadGameView extends View{
         g2d.setFont(new Font("Courier New", Font.PLAIN, 13));
 
         //no saved games to list in for loop below
-        if (listOfSaveFiles.length == 0){
+        if (listOfSaveFiles.length == 0) {
             String message = "No Saved Games";
             Rectangle2D rectangle = fm.getStringBounds(message, g);
 
@@ -65,9 +68,7 @@ public class LoadGameView extends View{
             g.fillRect(boxX, boxY, boxDX, boxDY);
             g.setColor(secondaryColor);
             g.drawString(message, stringX, stringY);
-        }
-
-        else {
+        } else {
 
             // Draw title
             Font titleFont = new Font("Courier New", Font.PLAIN, 28);
@@ -75,10 +76,10 @@ public class LoadGameView extends View{
             fm = g.getFontMetrics(titleFont);
             String titleString = "Pick the save file you want to load";
             Rectangle2D rec = fm.getStringBounds(titleString, g);
-            int xTitle = (View.B_WIDTH/2 - (int) (rec.getWidth()/2));
-            int yTitle = View.B_HEIGHT/6 + (int) (rec.getHeight() / 2) + fm.getAscent();
-            g.drawString(titleString, xTitle , yTitle );
-                       
+            int xTitle = (View.B_WIDTH / 2 - (int) (rec.getWidth() / 2));
+            int yTitle = View.B_HEIGHT / 6 + (int) (rec.getHeight() / 2) + fm.getAscent();
+            g.drawString(titleString, xTitle, yTitle);
+
             int START_FILES = yTitle + (int) (rec.getHeight() / 2) + fm.getAscent();
             fm = g.getFontMetrics(VIEW_FONT);
             g.setFont(VIEW_FONT);

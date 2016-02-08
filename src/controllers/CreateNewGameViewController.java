@@ -4,7 +4,6 @@ import utilities.IOMediator;
 import utilities.Load_Save;
 import views.CreateNewGameView;
 import views.Display;
-import views.LoadGameView;
 import views.View;
 
 import java.awt.event.KeyEvent;
@@ -30,7 +29,7 @@ public class CreateNewGameViewController extends ViewController {
         if (key == KeyEvent.VK_ENTER) {
             // Get handle to our view.
             // Need to cast as a views.CreateNewGameView
-            CreateNewGameView createNewGameView = ((CreateNewGameView)view);
+            CreateNewGameView createNewGameView = ((CreateNewGameView) view);
 
             System.out.println("enter pressed FROM Create new VC");
             String getValue = createNewGameView.getSaveStateName().getText();
@@ -46,9 +45,7 @@ public class CreateNewGameViewController extends ViewController {
             // Then proceed to avatar create view
             IOMediator.getInstance().setActiveView(IOMediator.Views.AVATAR_CREATION);
 
-        }
-        
-        else {
+        } else {
 //            System.out.println("invalid key press FROM CREATE NEW VC");
         }
 

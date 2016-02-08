@@ -14,8 +14,18 @@ public class DeathViewController extends ViewController {
 
     public enum MenuOptions {
 
-        MAIN_MENU("Main Menu") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.START_MENU);};},
-        EXIT_GAME("Exit Game") {protected void setView() {System.exit(0);};};
+        MAIN_MENU("Main Menu") {
+            protected void setView() {
+                IOMediator.setActiveView(IOMediator.Views.START_MENU);
+            }
+
+            ;},
+        EXIT_GAME("Exit Game") {
+            protected void setView() {
+                System.exit(0);
+            }
+
+            ;};
 
         private String s;
 
@@ -28,8 +38,7 @@ public class DeathViewController extends ViewController {
         protected MenuOptions previous() {
             if (this.ordinal() == 0) {
                 return MenuOptions.values()[MenuOptions.values().length - 1];
-            }
-            else {
+            } else {
                 return MenuOptions.values()[this.ordinal() - 1];
             }
 
@@ -41,9 +50,7 @@ public class DeathViewController extends ViewController {
 
                 return MenuOptions.values()[0];
 
-            }
-
-            else {
+            } else {
 
                 return MenuOptions.values()[this.ordinal() + 1];
 
@@ -57,7 +64,7 @@ public class DeathViewController extends ViewController {
 
         }
 
-        }
+    }
 
     MenuOptions option;
 
@@ -77,17 +84,11 @@ public class DeathViewController extends ViewController {
 
         if (key == KeyEvent.VK_UP) {
             option = option.previous();
-        }
-
-        else if (key == KeyEvent.VK_DOWN) {
+        } else if (key == KeyEvent.VK_DOWN) {
             option = option.next();
-        }
-
-        else if (key == KeyEvent.VK_ESCAPE) {
+        } else if (key == KeyEvent.VK_ESCAPE) {
             IOMediator.setActiveView(IOMediator.Views.START_MENU);
-        }
-
-        else if (key == KeyEvent.VK_ENTER) {
+        } else if (key == KeyEvent.VK_ENTER) {
             option.setView();
         }
 

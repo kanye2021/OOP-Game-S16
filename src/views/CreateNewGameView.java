@@ -17,14 +17,13 @@ public class CreateNewGameView extends View {
     private boolean firstRender;
 
 
-
-    public CreateNewGameView(){
+    public CreateNewGameView() {
         super();
         this.viewController = new CreateNewGameViewController(this);
         firstRender = true;
     }
 
-    public JTextField getSaveStateName(){
+    public JTextField getSaveStateName() {
         return saveStateName;
     }
 
@@ -32,14 +31,14 @@ public class CreateNewGameView extends View {
     public void render(Graphics g) {
         clear(g); // Clear the background
 
-    	// Text
+        // Text
         Font title = new Font("Courier New", Font.BOLD, 28);
         FontMetrics fm = g.getFontMetrics(title);
         g.setColor(Color.white);
         g.setFont(title);
         Rectangle2D r1 = fm.getStringBounds(NEW_GAME_TEXT, g);
-        int x = (View.B_WIDTH - (int)r1.getWidth())/2;
-        int y = (View.B_HEIGHT - (int)r1.getHeight())/7 + fm.getAscent();
+        int x = (View.B_WIDTH - (int) r1.getWidth()) / 2;
+        int y = (View.B_HEIGHT - (int) r1.getHeight()) / 7 + fm.getAscent();
         g.drawString(NEW_GAME_TEXT, x, y);
 
         // Text Field
@@ -47,8 +46,8 @@ public class CreateNewGameView extends View {
         int xtextField = x;
         // Only want to create JTextField on the first render, and add it to the JPanel.
         if (firstRender) {
-            saveStateName= new JTextField(20);
-            saveStateName.setBounds(xtextField, ytextField, 200,40);
+            saveStateName = new JTextField(20);
+            saveStateName.setBounds(xtextField, ytextField, 200, 40);
             saveStateName.setVisible(true);
             Display.getInstance().add(saveStateName);
             firstRender = false;
@@ -70,7 +69,6 @@ public class CreateNewGameView extends View {
         Toolkit.getDefaultToolkit().sync();
 
     }
-
 
 
 }

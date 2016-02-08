@@ -14,14 +14,14 @@ import java.awt.event.KeyEvent;
 public class GameViewController extends ViewController {
     private NavigationMediator navMediator;
 
-    public GameViewController(View view, NavigationMediator navigationMediator){
+    public GameViewController(View view, NavigationMediator navigationMediator) {
         super(view);
         this.navMediator = navigationMediator;
     }
 
     @Override
-    public void handleKeyPress(int key){
-        switch(key){
+    public void handleKeyPress(int key) {
+        switch (key) {
             case KeyEvent.VK_RIGHT:
                 navMediator.requestMovement("E");
                 break;
@@ -48,48 +48,48 @@ public class GameViewController extends ViewController {
                 break;
             case KeyEvent.VK_R:
                 // Tell GameView to render EquippedItemsView over it
-                ((GameView)IOMediator.Views.GAME.getView()).setShowEquippedItems(true);
+                ((GameView) IOMediator.Views.GAME.getView()).setShowEquippedItems(true);
                 break;
             case KeyEvent.VK_I:
-                ((GameView)IOMediator.Views.GAME.getView()).setShowInventory(true);
-            	break;
+                ((GameView) IOMediator.Views.GAME.getView()).setShowInventory(true);
+                break;
             case KeyEvent.VK_ESCAPE:
-            	IOMediator.setActiveView(IOMediator.Views.PAUSE);
-            	break;
+                IOMediator.setActiveView(IOMediator.Views.PAUSE);
+                break;
 //            case KeyEvent.VK_S:
 //                navMediator.save();
 //                break;
 
             case KeyEvent.VK_NUMPAD1:
-            	navMediator.requestMovement("SW");
-            	break;
+                navMediator.requestMovement("SW");
+                break;
             case KeyEvent.VK_NUMPAD2:
-            	navMediator.requestMovement("S");
-            	break;
+                navMediator.requestMovement("S");
+                break;
             case KeyEvent.VK_NUMPAD3:
-            	navMediator.requestMovement("SE");
-            	break;
+                navMediator.requestMovement("SE");
+                break;
             case KeyEvent.VK_NUMPAD6:
-            	navMediator.requestMovement("E");
-            	break;
+                navMediator.requestMovement("E");
+                break;
             case KeyEvent.VK_NUMPAD9:
-            	navMediator.requestMovement("NE");
-            	break;
+                navMediator.requestMovement("NE");
+                break;
             case KeyEvent.VK_NUMPAD8:
-            	navMediator.requestMovement("N");
-            	break;
+                navMediator.requestMovement("N");
+                break;
             case KeyEvent.VK_NUMPAD7:
-            	navMediator.requestMovement("NW");
-            	break;
+                navMediator.requestMovement("NW");
+                break;
             case KeyEvent.VK_NUMPAD4:
-            	navMediator.requestMovement("W");
-            	break;
-                
+                navMediator.requestMovement("W");
+                break;
+
         }
     }
 
     @Override
-    public void handleKeyRelease(int key){
+    public void handleKeyRelease(int key) {
 
     }
 

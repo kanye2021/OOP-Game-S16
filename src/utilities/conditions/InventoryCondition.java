@@ -1,7 +1,5 @@
 package utilities.conditions;
 
-import models.Entity;
-import models.Inventory;
 import models.items.TakeableItem;
 
 /**
@@ -15,7 +13,7 @@ public class InventoryCondition extends Condition {
     private int count;
     private TakeableItem.Items item;
 
-    public InventoryCondition(Condition.Entities entity, Condition.Comparison itemComparison, int count, TakeableItem.Items item){
+    public InventoryCondition(Condition.Entities entity, Condition.Comparison itemComparison, int count, TakeableItem.Items item) {
         this.entity = entity;
         this.itemComparison = itemComparison;
         this.count = count;

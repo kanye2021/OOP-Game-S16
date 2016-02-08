@@ -7,17 +7,17 @@ import models.Entity;
  */
 public class LevelUpAreaEffect extends AreaEffect {
     @Override
-    public void onTouch(Entity entity){
+    public void onTouch(Entity entity) {
         entity.getStats().levelUp();
     }
 
     @Override
-    public String getType(){
+    public String getType() {
         return "level-up";
     }
 
     @Override
-    public String getImageName(){
+    public String getImageName() {
         return "gold-star.png";
     }
 }

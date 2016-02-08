@@ -1,9 +1,9 @@
 package utilities;
 
-import java.awt.ActiveEvent;
+import java.awt.*;
 
 public interface payload extends ActiveEvent {
 
-	public void execute();
-	
+    public void execute();
+
 }

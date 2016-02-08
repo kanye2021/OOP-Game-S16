@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 /**
  * Created by sergiopuleri on 2/1/16.
  */
-public class Display extends JPanel  {
+public class Display extends JPanel {
 
     private static Display display = new Display();
 
@@ -18,7 +18,7 @@ public class Display extends JPanel  {
         initDisplay();
     }
 
-    public static Display getInstance(){
+    public static Display getInstance() {
         return display;
     }
 
@@ -43,11 +43,11 @@ public class Display extends JPanel  {
     }
 
 
-
     // Global key listener. Application wide. Not on just a focused compenent.
     // http://stackoverflow.com/questions/286727/unresponsive-keylistener-for-jframe
     private class MyDispatcher implements KeyEventDispatcher {
         IOMediator ioMediator = IOMediator.getInstance();
+
         @Override
         public boolean dispatchKeyEvent(KeyEvent e) {
             if (e.getID() == KeyEvent.KEY_PRESSED) {

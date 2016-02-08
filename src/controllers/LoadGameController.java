@@ -17,22 +17,24 @@ import java.util.ArrayList;
 /**
  * Created by dyeung on 2/4/16.
  */
-public class LoadGameController extends ViewController{
+public class LoadGameController extends ViewController {
     LoadGameView loadView;
     File[] fileNames;
-    private String saveFilePath ="./src/res/save_files/";
+    private String saveFilePath = "./src/res/save_files/";
     int myOption;
-    public LoadGameController(LoadGameView lv){
+
+    public LoadGameController(LoadGameView lv) {
         loadView = lv;
-        saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
+        saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
         loadNewFolder();
         myOption = 0;
-        saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
+        saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
     }
-    public File[] loadNewFolder(){
+
+    public File[] loadNewFolder() {
         File folder = new File(saveFilePath);
         if (!folder.exists()) {
-           folder.mkdir();
+            folder.mkdir();
         }
 
         File[] f = folder.listFiles();
@@ -41,7 +43,7 @@ public class LoadGameController extends ViewController{
         for (int i = 0; i < f.length; i++) {
             File current = f[i];
             // If not .DS_Store and contains .xml use it
-            if (!current.getName().equals(".DS_Store") && current.getName().contains(".xml"))  {
+            if (!current.getName().equals(".DS_Store") && current.getName().contains(".xml")) {
                 filteredFiles.add(current);
             }
         }
@@ -49,28 +51,29 @@ public class LoadGameController extends ViewController{
         fileNames = filteredFiles.toArray(files);
         return fileNames;
     }
-    public int getActiveOptions(){
+
+    public int getActiveOptions() {
         return myOption;
     }
 
-    public void handleKeyPress(int key){
-        switch (key){
-            case  KeyEvent.VK_UP:
+    public void handleKeyPress(int key) {
+        switch (key) {
+            case KeyEvent.VK_UP:
                 if (myOption > 0) {
                     myOption--;
                 }
                 break;
-            case  KeyEvent.VK_DOWN:
-                if (myOption < fileNames.length - 1){
+            case KeyEvent.VK_DOWN:
+                if (myOption < fileNames.length - 1) {
                     myOption++;
                 }
                 break;
-            case  KeyEvent.VK_ENTER:
+            case KeyEvent.VK_ENTER:
                 if (fileNames.length != 0) {
                     loadGame();
                 }
                 break;
-            case  KeyEvent.VK_ESCAPE:
+            case KeyEvent.VK_ESCAPE:
                 IOMediator.setActiveView(IOMediator.getPreviousView());
                 break;
         }
@@ -82,20 +85,21 @@ public class LoadGameController extends ViewController{
         }
     }
 
-    public File[] getFileNames(){
+    public File[] getFileNames() {
         return fileNames;
     }
 
-    public boolean checkFolderList(){
+    public boolean checkFolderList() {
         File folder = new File(saveFilePath);
-        if (folder.listFiles().length != fileNames.length){
+        if (folder.listFiles().length != fileNames.length) {
             System.out.println("Mis match of files");
             return true;
-        }else {
+        } else {
             return false;
         }
     }
-    public void loadGame(){
+
+    public void loadGame() {
         if (IOMediator.map == null) { //Case if there isn't a map and avatar created (IE coming from AvatarCreationView)
             System.out.println("New Game!");
             Entity avatar = new Avatar();
@@ -108,7 +112,7 @@ public class LoadGameController extends ViewController{
             GameView gameView = new GameView(map, avatar);
             IOMediator.Views.GAME.setView(gameView);
             // map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
-        }else {
+        } else {
             IOMediator.getInstance().map.removeEntityFromLocation(IOMediator.getInstance().entity.getLocation()[0], IOMediator.getInstance().entity.getLocation()[1]);
             //Needs to remove the previous entity
         }
@@ -119,7 +123,7 @@ public class LoadGameController extends ViewController{
 
     }
 
-    public void handleKeyRelease(int key){
+    public void handleKeyRelease(int key) {
 
     }
 }

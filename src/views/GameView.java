@@ -30,7 +30,7 @@ public class GameView extends View {
     private boolean showEquippedItems;
     private boolean showInventory;
 
-    public GameView(Map map, Entity avatar){
+    public GameView(Map map, Entity avatar) {
         NavigationMediator mediator = new NavigationMediator(map, avatar);
         areaViewport = new AreaViewport(map, avatar);
         gameViewController = new GameViewController(this, mediator);
@@ -52,19 +52,17 @@ public class GameView extends View {
     }
 
     @Override
-    public void render(Graphics g){
+    public void render(Graphics g) {
         areaViewport.render(g);
         statusViewport.render(g);
 
         if (showEquippedItems) {
             viewController = equippedItemsViewController;
             equippedItemsView.render(g);
-        }
-        else if(showInventory){
+        } else if (showInventory) {
             viewController = inventoryViewController;
             inventoryView.render(g);
-        }
-        else {
+        } else {
             viewController = gameViewController;
         }
     }
@@ -72,10 +70,17 @@ public class GameView extends View {
     public boolean getShowEquppiedItems() {
         return showEquippedItems;
     }
+
     public void setShowEquippedItems(boolean b) {
         showEquippedItems = b;
     }
-    public void setShowInventory(boolean b) {showInventory = b; }
-    public boolean getShowInventory(){ return showInventory; }
+
+    public void setShowInventory(boolean b) {
+        showInventory = b;
+    }
+
+    public boolean getShowInventory() {
+        return showInventory;
+    }
 
 }

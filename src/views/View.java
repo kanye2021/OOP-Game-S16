@@ -15,10 +15,10 @@ public abstract class View {
     public final int TILE_SIZE = 50;
 
     public static Font VIEW_FONT = new Font("Helvetica", Font.BOLD, 14);
-    
+
     protected ViewController viewController;
 
-    public ViewController getViewController(){
+    public ViewController getViewController() {
         return viewController;
     }
 
@@ -28,8 +28,8 @@ public abstract class View {
     public abstract void render(Graphics g);
 
     public final void clear(Graphics g) {
-    	g.setColor(Color.BLACK);
-    	g.fillRect(0, 0, B_WIDTH, B_HEIGHT);
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, B_WIDTH, B_HEIGHT);
     }
-    
+
 }

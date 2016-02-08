@@ -9,13 +9,17 @@ public class HealDamageAreaEffect extends AreaEffect {
     private final int AMOUNT_OF_DAMAGE = 5;
 
     @Override
-    public void onTouch(Entity entity){
+    public void onTouch(Entity entity) {
         entity.getStats().modifyHealth(AMOUNT_OF_DAMAGE);
     }
 
     @Override
-    public String getType(){ return "heal-damage"; }
+    public String getType() {
+        return "heal-damage";
+    }
 
     @Override
-    public String getImageName() { return "red-cross.png"; }
+    public String getImageName() {
+        return "red-cross.png";
+    }
 }

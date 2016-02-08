@@ -20,10 +20,24 @@ public class AvatarCreationViewController extends ViewController {
     // This enum represents the menu options available on this screen. The setView() function maps to an individual view
     // such as utilities.IOMediator.Views.CREATE_GAME;
     public enum OccupationOptions {
-        SMASHER("Smasher", "specialized in hand-to-hand combat") {protected void selectOccupation() {createAvatarAndSaveGame("smasher");};},
-        SUMMONER("Summoner", "specialized in spell-casting") {protected void selectOccupation() {createAvatarAndSaveGame("summoner");};},
-        SNEAK("Sneak", "specialized in ranged weapons, evading detection, finding/removing traps") {protected void selectOccupation() {
-            createAvatarAndSaveGame("sneak");};};
+        SMASHER("Smasher", "specialized in hand-to-hand combat") {
+            protected void selectOccupation() {
+                createAvatarAndSaveGame("smasher");
+            }
+
+            ;},
+        SUMMONER("Summoner", "specialized in spell-casting") {
+            protected void selectOccupation() {
+                createAvatarAndSaveGame("summoner");
+            }
+
+            ;},
+        SNEAK("Sneak", "specialized in ranged weapons, evading detection, finding/removing traps") {
+            protected void selectOccupation() {
+                createAvatarAndSaveGame("sneak");
+            }
+
+            ;};
 
         private String text;
         private String description;
@@ -38,8 +52,7 @@ public class AvatarCreationViewController extends ViewController {
         protected OccupationOptions previous() {
             if (this.ordinal() == 0) {
                 return OccupationOptions.values()[OccupationOptions.values().length - 1];
-            }
-            else {
+            } else {
                 return OccupationOptions.values()[this.ordinal() - 1];
             }
         }
@@ -47,22 +60,28 @@ public class AvatarCreationViewController extends ViewController {
         protected OccupationOptions next() {
             if (this.ordinal() == OccupationOptions.values().length - 1) {
                 return OccupationOptions.values()[0];
-            }
-            else {
+            } else {
                 return OccupationOptions.values()[this.ordinal() + 1];
             }
 
         }
 
-        public String getText() { return text; }
-        public String getDescription() { return description; }
+        public String getText() {
+            return text;
+        }
+
+        public String getDescription() {
+            return description;
+        }
 
     }
+
     private OccupationOptions selectedOccupation;
 
     public OccupationOptions getSelectedOccupation() {
         return selectedOccupation;
     }
+
     public AvatarCreationViewController() {
         super();
     }
@@ -105,9 +124,7 @@ public class AvatarCreationViewController extends ViewController {
         if (key == KeyEvent.VK_UP) {
             System.out.println("Up pressed FROM SMVC");
             selectedOccupation = selectedOccupation.previous();
-        }
-
-        else if (key == KeyEvent.VK_DOWN) {
+        } else if (key == KeyEvent.VK_DOWN) {
             System.out.println("Down pressed FROM SMVC");
             selectedOccupation = selectedOccupation.next();
         }

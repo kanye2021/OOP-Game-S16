@@ -1,9 +1,5 @@
 package utilities.conditions;
 
-import models.Entity;
-import models.Map;
-import utilities.conditions.Condition;
-
 import java.util.ArrayList;
 
 /**

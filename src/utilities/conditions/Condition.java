@@ -1,8 +1,9 @@
-package utilities.conditions;
-
 /**
- * Created by denzel on 2/6/16.
+ * Created by denzel
+ * on 2/6/16.
  */
+
+package utilities.conditions;
 
 import models.Entity;
 import models.Map;
@@ -17,7 +18,11 @@ public abstract class Condition {
 
     public enum Entities {
 
-        AVATAR() {public Entity getEntity() {return IOMediator.entity;}};
+        AVATAR() {
+            public Entity getEntity() {
+                return IOMediator.entity;
+            }
+        };
 
         public abstract Entity getEntity();
 
@@ -25,17 +30,17 @@ public abstract class Condition {
 
     //The Item Comparison Enum
     public enum Comparison {
-        AT_LEAST(){
+        AT_LEAST() {
             protected boolean isValid(int inventoryCount, int requiredCount) {
                 return inventoryCount >= requiredCount;
             }
         },
-        EXACTLY(){
+        EXACTLY() {
             protected boolean isValid(int inventoryCount, int requiredCount) {
                 return inventoryCount == requiredCount;
             }
         },
-        AT_MOST(){
+        AT_MOST() {
             protected boolean isValid(int inventoryCount, int requiredCount) {
                 return inventoryCount <= requiredCount;
             }

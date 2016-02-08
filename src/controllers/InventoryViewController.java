@@ -18,7 +18,7 @@ import java.awt.event.KeyEvent;
 public class InventoryViewController extends ViewController {
 
     public static final int ITEMS_PER_ROW = 10;
-	private int position = 0;
+    private int position = 0;
     public Map map;
     public Entity entity;
     public Inventory inventory;
@@ -33,102 +33,87 @@ public class InventoryViewController extends ViewController {
     }
 
     public int getActiveItem() {
-    	return position;
-    }
-    
-    public Inventory getInventory() {
-    	
-    	return inventory;
-    	
+        return position;
     }
 
-    public ItemStatsAssociation getAvatarItemStats(){
+    public Inventory getInventory() {
+
+        return inventory;
+
+    }
+
+    public ItemStatsAssociation getAvatarItemStats() {
         return entity.getAvatarItemStats();
     }
 
-    
+
     @Override
     public void handleKeyPress(int key) {
 
         if (key == KeyEvent.VK_LEFT) {
             System.out.println("Up pressed FROM IVC");
             moveSelectedLeft();
-        }
-
-        else if (key == KeyEvent.VK_RIGHT) {
+        } else if (key == KeyEvent.VK_RIGHT) {
             System.out.println("Down pressed FROM IVC");
             moveSelectedRight();
-        }
-
-        else if (key == KeyEvent.VK_UP) {
+        } else if (key == KeyEvent.VK_UP) {
             System.out.println("Up pressed FROM IVC");
             moveSelectedUp();
-        }
-
-        else if (key == KeyEvent.VK_DOWN) {
+        } else if (key == KeyEvent.VK_DOWN) {
             System.out.println("Down pressed FROM IVC");
             moveSelectedDown();
-        }
-
-        else if (key == KeyEvent.VK_ESCAPE || key == KeyEvent.VK_I ) {
-            ((GameView)IOMediator.Views.GAME.getView()).setShowInventory(false);
-        }
-
-        else if (key == KeyEvent.VK_R) {
-            ((GameView)IOMediator.Views.GAME.getView()).setShowInventory(false);
-            ((GameView)IOMediator.Views.GAME.getView()).setShowEquippedItems(true);
-        }
-
-
-        else if(key == KeyEvent.VK_ENTER) {
+        } else if (key == KeyEvent.VK_ESCAPE || key == KeyEvent.VK_I) {
+            ((GameView) IOMediator.Views.GAME.getView()).setShowInventory(false);
+        } else if (key == KeyEvent.VK_R) {
+            ((GameView) IOMediator.Views.GAME.getView()).setShowInventory(false);
+            ((GameView) IOMediator.Views.GAME.getView()).setShowEquippedItems(true);
+        } else if (key == KeyEvent.VK_ENTER) {
             System.out.println("Enter pressed from IVC");
-            if(inventory.isThereAnItemAt(getPosition())) {
+            if (inventory.isThereAnItemAt(getPosition())) {
                 useItem(inventory.getItemAt(getPosition()));
             }
-        }
-
-        else if(key == KeyEvent.VK_D){
-            if(getInventory().isThereAnItemAt(getPosition())){
+        } else if (key == KeyEvent.VK_D) {
+            if (getInventory().isThereAnItemAt(getPosition())) {
                 dropItem(inventory.getItemAt(getPosition()));
             }
         }
-        
+
     }
-    
+
     @Override
     public void handleKeyRelease(int key) {
 
     }
 
-    private void dropItem(TakeableItem item){
-        if(inventory.removeItem(item)){
+    private void dropItem(TakeableItem item) {
+        if (inventory.removeItem(item)) {
             map.insertItemAtLocation(entity.getLocation()[0], entity.getLocation()[1], item);
         }
     }
-    
+
     private void moveSelectedLeft() {
 
-    	position--;
+        position--;
 
         if (position % ITEMS_PER_ROW == ITEMS_PER_ROW - 1 || position == -1) {
 
             position = position + ITEMS_PER_ROW;
 
         }
-    	
+
     }
-    
+
     private void moveSelectedRight() {
-    	
-    	position++;
-    	
-    	if (position % ITEMS_PER_ROW == 0) {
-    		
-    		
-    		position = position - ITEMS_PER_ROW;
-    	
-    	}
-    	
+
+        position++;
+
+        if (position % ITEMS_PER_ROW == 0) {
+
+
+            position = position - ITEMS_PER_ROW;
+
+        }
+
     }
 
     private void moveSelectedUp() {
@@ -157,12 +142,14 @@ public class InventoryViewController extends ViewController {
 
     // Uses/Equips item in inventory
     private void useItem(TakeableItem item) {
-        
-    	getAvatarItemStats().useFromInventory(item);
-    
+
+        getAvatarItemStats().useFromInventory(item);
+
     }
-   
-    public int getPosition(){return position;}
+
+    public int getPosition() {
+        return position;
+    }
 
 
 }
