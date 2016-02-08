@@ -107,14 +107,14 @@ public class InventoryViewController extends ViewController {
     }
     
     private void moveSelectedLeft() {
-    	
+
     	position--;
-    	
-    	if (position < 0) {
-    		
-    		position = getInventory().getSize() - 1;
-    		
-    	}
+
+        if (position % ITEMS_PER_ROW == ITEMS_PER_ROW - 1 || position == -1) {
+
+            position = position + ITEMS_PER_ROW;
+
+        }
     	
     }
     
@@ -122,10 +122,10 @@ public class InventoryViewController extends ViewController {
     	
     	position++;
     	
-    	if (position > getInventory().getSize() - 1) {
+    	if (position % ITEMS_PER_ROW == 0) {
     		
     		
-    		position = 0;
+    		position = position - ITEMS_PER_ROW;
     	
     	}
     	
