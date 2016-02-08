@@ -1,3 +1,4 @@
+
 echo "Adding java files to be compiled"
 find src -name "*.java" > sources.txt
 echo "Creating bin "
