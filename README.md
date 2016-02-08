@@ -5,7 +5,7 @@ Objected Oriented Programming Spring 2016, Iteration 1.
 - Sergio Puleri
 - Bradley Treuherz
 - Denzel Mathews
-- Chen Ben
+- Ben Chen
 - David Peguero
 - Austin Seber
 - David Yeung
