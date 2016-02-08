@@ -172,7 +172,7 @@ public class InventoryView extends View {
 			g.setFont(largeFont);
 			g.setColor(Color.BLACK);
 			FontMetrics fm = g.getFontMetrics();
-			g.drawString("?", xMid - fm.stringWidth("?")/2, ypos + fm.getHeight());
+			//g.drawString("?", xMid - fm.stringWidth("?")/2, ypos + fm.getHeight());
 		}
 		else{
 			

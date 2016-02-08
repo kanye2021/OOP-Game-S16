@@ -124,7 +124,7 @@ public class EquippedItemsView extends View {
             g.fillRect(x, y , ITEM_SLOT, ITEM_SLOT);
             if ( ((EquippedItemsViewController) viewController).getSelectedItem() == option  ) {
                 g.setColor(secondary);
-                g.drawRect(x, y , ITEM_SLOT, ITEM_SLOT);
+                g.drawRect(x - 3, y - 3 , ITEM_SLOT + 6, ITEM_SLOT + 6);
                 g.setColor(primary);
 
             }

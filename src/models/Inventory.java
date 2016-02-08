@@ -7,7 +7,7 @@ import models.items.TakeableItem;
  */
 public class Inventory {
 
-	private final int MAX_INVENTORY = 10;
+	private final int MAX_INVENTORY = 30;
 	private ItemNode[] items;
 
 	private boolean isOutOfBounds(int index) {
