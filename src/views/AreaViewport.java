@@ -1,3 +1,8 @@
+/**
+ * Created by Bradley
+ * on 2/2/16.
+ */
+
 package views;
 
 import models.Entity;
@@ -10,9 +15,6 @@ import utilities.Observer;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by Bradley on 2/2/16.
- */
 public class AreaViewport extends View implements Observer {
     private Map map;
     private Entity entity;
@@ -113,7 +115,7 @@ public class AreaViewport extends View implements Observer {
                         case OBSTACLE:
                             filePath = obstacleItemBaseFilepath;
                             break;
-                        case TAKEABLE:
+                        case TAKE_ABLE:
                             filePath = takeableItemBaseFilepath;
                             break;
                         case ONE_SHOT:

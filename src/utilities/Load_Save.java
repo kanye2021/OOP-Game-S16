@@ -1,6 +1,8 @@
-package utilities; /**
+/**
  * Created by dyeung on 2/2/16.
  */
+
+package utilities;
 
 
 import models.Entity;
@@ -50,7 +52,7 @@ Layout of the XML file
 
  */
 
-// This class is a Singleotn
+// This class is a Singleton
 public class Load_Save {
 
     private static String currentFileName;
@@ -181,7 +183,7 @@ public class Load_Save {
                         //if statements for the different types of items
 
                         //if take-able
-                        if (itemType.equals(Item.Type.TAKEABLE.toString())) {
+                        if (itemType.equals(Item.Type.TAKE_ABLE.toString())) {
                             item = new TakeableItem(TakeableItem.Items.values()[id]);
                         } else if (itemType.equals(Item.Type.ONE_SHOT.toString())) {
                             item = new OneShotItem(OneShotItem.Effects.values()[id]);
