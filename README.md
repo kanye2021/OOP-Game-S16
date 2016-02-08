@@ -1,5 +1,17 @@
 # OOP-Game-S16
-Objected Oriented Programming Spring 2016
+Objected Oriented Programming Spring 2016, Iteration 1.
+
+**Team KANYE 2020**
+- Sergio Puleri
+- Denzel Mathews
+- Chen Ben
+- David Peguero
+- Austin Seber
+- Bradley Treuherz
+- David Yeung
+- Mathew Tschiggfire
+- Phillip Smith
+- Jorge Varela
 
 
 ## How to run
