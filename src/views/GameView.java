@@ -12,6 +12,9 @@ import java.awt.*;
 /**
  * Created by Bradley on 2/2/16.
  */
+
+// Make an enum for these sub views
+
 public class GameView extends View {
     private AreaViewport areaViewport;
     private StatusViewport statusViewport;

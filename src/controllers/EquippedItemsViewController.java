@@ -107,6 +107,9 @@ public class EquippedItemsViewController extends ViewController{
             System.out.println("Up pressed FROM EIVC");
             selectedItem = selectedItem.previous();
         }
+
+
+
         else if (key == KeyEvent.VK_DOWN || key == KeyEvent.VK_RIGHT) {
             System.out.println("Down pressed FROM EIVC");
             selectedItem = selectedItem.next();
@@ -114,6 +117,11 @@ public class EquippedItemsViewController extends ViewController{
 
         else if (key == KeyEvent.VK_ESCAPE || key == KeyEvent.VK_R ) {
             ((GameView)IOMediator.Views.GAME.getView()).setShowEquippedItems(false);
+        }
+
+        else if (key == KeyEvent.VK_I ) {
+            ((GameView)IOMediator.Views.GAME.getView()).setShowEquippedItems(false);
+            ((GameView)IOMediator.Views.GAME.getView()).setShowInventory(true);
         }
 
     }

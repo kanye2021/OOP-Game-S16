@@ -63,6 +63,12 @@ public class InventoryViewController extends ViewController {
             ((GameView)IOMediator.Views.GAME.getView()).setShowInventory(false);
         }
 
+        else if (key == KeyEvent.VK_R) {
+            ((GameView)IOMediator.Views.GAME.getView()).setShowInventory(false);
+            ((GameView)IOMediator.Views.GAME.getView()).setShowEquippedItems(true);
+        }
+
+
         else if(key == KeyEvent.VK_ENTER) {
             System.out.println("Enter pressed from IVC");
             if(inventory.isThereAnItemAt(getPosition())) {
