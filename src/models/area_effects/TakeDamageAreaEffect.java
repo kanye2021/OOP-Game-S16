@@ -18,8 +18,4 @@ public class TakeDamageAreaEffect extends AreaEffect {
         return "take-damage";
     }
 
-    @Override
-    public String getImageName() {
-        return "skull-and-crossbones.png";
-    }
 }

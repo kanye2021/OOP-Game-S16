@@ -2,6 +2,7 @@ package models;
 
 import models.area_effects.AreaEffect;
 import models.items.Item;
+import views.Decal;
 
 /**
  * Created by Bradley on 2/1/16.
@@ -9,12 +10,14 @@ import models.items.Item;
 public class Tile {
     private Terrain terrain;
     private AreaEffect areaEffect;
+    private Decal decal;
     private Item item;
     private Entity entity;
 
-    public Tile(Terrain terrain, AreaEffect areaEffect, Item item, Entity entity) {
+    public Tile(Terrain terrain, AreaEffect areaEffect, Decal decal, Item item, Entity entity) {
         this.terrain = terrain;
         this.areaEffect = areaEffect;
+        this.decal = decal;
         this.item = item;
         this.entity = entity;
     }
@@ -27,7 +30,14 @@ public class Tile {
         return areaEffect;
     }
 
+    public Decal getDecal() {
+
+        return decal;
+
+    }
+
     public Item getItem() {
+
         return item;
     }
 
@@ -41,6 +51,12 @@ public class Tile {
 
     public void removeAreaEffect() {
         areaEffect = null;
+    }
+
+    public void removeDecal() {
+
+        decal = null;
+
     }
 
     public void removeEntity() {

@@ -262,6 +262,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="take-damage"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -361,6 +362,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="instant-death"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -618,6 +620,7 @@
         <tile>
             <terrain type="sea"/>
             <area-effect type="instant-death"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="sea"/>
@@ -676,6 +679,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="take-damage"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -1049,7 +1053,6 @@
         </tile>
         <tile>
             <terrain type="sea"/>
-            <area-effect type="level-up"/>
         </tile>
         <tile>
             <terrain type="sea"/>
@@ -1215,6 +1218,7 @@
         <tile>
             <terrain type="sea"/>
             <area-effect type="heal-damage"/>
+            <decal id="0"></decal>
         </tile>
         <tile>
             <terrain type="sea"/>
@@ -1338,6 +1342,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="instant-death"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -2149,6 +2154,7 @@
         <tile>
             <terrain type="sea"/>
             <area-effect type="heal-damage"/>
+            <decal id="0"></decal>
         </tile>
         <tile>
             <terrain type="sea"/>
@@ -2362,6 +2368,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="heal-damage"/>
+            <decal id="0"></decal>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -2655,6 +2662,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="instant-death"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -2905,7 +2913,6 @@
         </tile>
         <tile>
             <terrain type="sea"/>
-            <area-effect type="level-up"/>
         </tile>
         <tile>
             <terrain type="sea"/>
@@ -3288,7 +3295,6 @@
         </tile>
         <tile>
             <terrain type="mountain"/>
-            <area-effect type="level-up"/>
         </tile>
         <tile>
             <terrain type="mountain"/>
@@ -3472,6 +3478,7 @@
         <tile>
             <terrain type="mountain"/>
             <area-effect type="instant-death"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="mountain"/>
@@ -3813,6 +3820,7 @@
         <tile>
             <terrain type="mountain"/>
             <area-effect type="take-damage"/>
+            <decal id="1"></decal>
         </tile>
     </row>
     <row>
@@ -4094,6 +4102,7 @@
         <tile>
             <terrain type="mountain"/>
             <area-effect type="take-damage"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="mountain"/>
@@ -4136,6 +4145,7 @@
         <tile>
             <terrain type="mountain"/>
             <area-effect type="heal-damage"/>
+            <decal id="0"></decal>
         </tile>
         <tile>
             <terrain type="mountain"/>
@@ -4391,6 +4401,7 @@
         <tile>
             <terrain type="mountain"/>
             <area-effect type="heal-damage"/>
+            <decal id="0"></decal>
         </tile>
         <tile>
             <terrain type="mountain"/>
@@ -5055,6 +5066,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="heal-damage"/>
+            <decal id="0"></decal>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -5120,6 +5132,7 @@
         </tile>
         <tile>
             <area-effect type="level-up"/>
+            <decal id="2"></decal>
             <terrain type="grass"/>
         </tile>
         <tile>
@@ -5253,6 +5266,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="heal-damage"/>
+            <decal id="0"></decal>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -5533,6 +5547,7 @@
         <tile>
             <terrain type="sea"/>
             <area-effect type="instant-death"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="mountain"/>
@@ -5791,6 +5806,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="instant-death"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -5818,6 +5834,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="heal-damage"/>
+            <decal id="0"></decal>
         </tile>
         <tile>
             <terrain type="sea"/>
@@ -5979,7 +5996,6 @@
         </tile>
         <tile>
             <terrain type="sea"/>
-            <area-effect type="level-up"/>
         </tile>
         <tile>
             <terrain type="sea"/>
@@ -6218,6 +6234,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="take-damage"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -6317,6 +6334,7 @@
         <tile>
             <terrain type="sea"/>
             <area-effect type="take-damage"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="sea"/>
@@ -6385,6 +6403,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="instant-death"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="mountain"/>
@@ -7027,6 +7046,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="instant-death"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="mountain"/>
@@ -7150,6 +7170,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="heal-damage"/>
+            <decal id="0"></decal>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -7377,6 +7398,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="take-damage"/>
+            <decal id="1"></decal>
         </tile>
         <tile>
             <terrain type="grass"/>
@@ -7471,6 +7493,7 @@
         <tile>
             <terrain type="grass"/>
             <area-effect type="heal-damage"/>
+            <decal id="0"></decal>
         </tile>
         <tile>
             <terrain type="grass"/>

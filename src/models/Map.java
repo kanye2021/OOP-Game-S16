@@ -4,6 +4,7 @@ import models.area_effects.AreaEffect;
 import models.items.Item;
 import utilities.Load_Save;
 import utilities.Observable;
+import views.Decal;
 
 /**
  * Created by Bradley on 2/1/16.
@@ -45,6 +46,12 @@ public class Map extends Observable {
 
     public AreaEffect getAreaEffectAtLocation(int x, int y) {
         return tiles[y][x].getAreaEffect();
+    }
+
+    public Decal getDecalAtLocation(int x, int y) {
+
+        return tiles[y][x].getDecal();
+
     }
 
     public Item getItemAtLocation(int x, int y) {
