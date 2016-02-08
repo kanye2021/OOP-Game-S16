@@ -15,12 +15,11 @@ import java.awt.geom.Rectangle2D;
 public class AvatarCreationView extends View {
 
 	private final String AVATAR_CREATE_TEXT = "Please select an Occupation";
-
-
-
+	private String arrowFilePath = "./src/res/arrow.png";
 
 	public AvatarCreationView(){
 		super();
+		arrowFilePath = arrowFilePath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
 		this.viewController = new AvatarCreationViewController(this);
 	}
 
@@ -66,7 +65,7 @@ public class AvatarCreationView extends View {
 
 			if (occupation == ((AvatarCreationViewController) viewController).getSelectedOccupation()) {
 				// Drawing Arrow next to selection
-				ImageIcon ii = new ImageIcon("./src/res/arrow.png");
+				ImageIcon ii = new ImageIcon(arrowFilePath);
 				Image arrow = ii.getImage();
 				arrow_x_offset-= arrow.getWidth(null) + 10;
 				g.drawImage(arrow, arrow_x_offset, stringY, Display.getInstance());

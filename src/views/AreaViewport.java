@@ -17,11 +17,11 @@ public class AreaViewport extends View implements Observer {
     private Entity entity;
     private  String terrainBaseFilepath = "./src/res/terrain/";
     private  String areaEffectBaseFilepath = "./src/res/area-effects/";
-    private  String obstacleItemBaseFilepath = "./src/res/items/obstacle/";
-    private  String interactiveItemBaseFilepath = "./src/res/items/interactive/";
     private  String takeableItemBaseFilepath = "./src/res/items/takeable/";
     private  String oneshotItemBaseFilepath = "./src/res/items/oneshot/";
     private  String entityBaseFilepath = "./src/res/entitys/";
+    private String obstacleItemBaseFilepath = "./src/res/items/obstacle/";
+    private String interactiveItemBaseFilepath = "./src/res/items/interactive/";
     private final int AREA_WIDTH = B_WIDTH;
     private final int AREA_HEIGHT = B_HEIGHT * 4/5;
     private final int TILE_SIZE = 50;

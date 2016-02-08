@@ -49,8 +49,7 @@ public class InventoryView extends View {
 	private final int INFO_VIEW_Y_START = ITEM_VIEW_Y_START + ITEM_VIEW_HEIGHT;
 	private final int INFO_VIEW_WIDTH = INVENTORY_VIEW_WIDTH;
 	private final int INFO_VIEW_HEIGHT = INVENTORY_VIEW_HEIGHT - ITEM_VIEW_HEIGHT;
-	
-	
+
 	private final int INFO_X_MARGIN = 40;
 	private final int INFO_Y_MARGIN = (int)(INFO_VIEW_HEIGHT*0.2);
 	private final int INFO_ELEMENT_HEIGHT = (int)(INFO_VIEW_HEIGHT - INFO_Y_MARGIN*2);
@@ -61,8 +60,11 @@ public class InventoryView extends View {
 	private Font largeFont;
 	private Font titleFont;
 
+	private String takeableItemRootFilepath = "./src/res/items/takeable/";
+
 	public InventoryView(Map map, Entity entity) {
 		super();
+		takeableItemRootFilepath = takeableItemRootFilepath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
         this.viewController = new InventoryViewController(this, map, entity);
 		font = new Font("Courier New", 1, 24);
 		smallFont = new Font("Courier New", 1, 18);
@@ -180,6 +182,7 @@ public class InventoryView extends View {
             ImageIcon im = new ImageIcon(ITEM_IMAGE_LOCATION + itemNode.item.getPathToPicture());
 			g.drawImage(im.getImage(),xpos , ypos, this.ITEM_WIDTH ,this.ITEM_HEIGHT ,null);
 
+
 			
 			//draw amount
 			g.setFont(smallFont);
@@ -281,11 +284,5 @@ public class InventoryView extends View {
 		}
 		
 	}
-
-
-
-
-	
-	
 }
 
