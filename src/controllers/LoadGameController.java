@@ -20,10 +20,11 @@ import java.util.ArrayList;
 public class LoadGameController extends ViewController{
     LoadGameView loadView;
     File[] fileNames;
-    private String saveFilePath ="src/res/save_files/";
+    private String saveFilePath ="./src/res/save_files/";
     int myOption;
     public LoadGameController(LoadGameView lv){
         loadView = lv;
+        saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
         loadNewFolder();
         myOption = 0;
     }
