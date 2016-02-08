@@ -5,19 +5,20 @@ import models.Entity;
 /**
  * Created by Bradley on 2/4/16.
  */
-public class LevelUp extends AreaEffect {
+public class InstantDeathAreaEffect extends AreaEffect {
+
     @Override
     public void onTouch(Entity entity){
-        entity.getStats().levelUp();
+        entity.getStats().loseALife();
     }
 
     @Override
     public String getType(){
-        return "level-up";
+        return "instant-death";
     }
 
     @Override
     public String getImageName(){
-        return "gold-star.png";
+        return "skull-and-crossbones.png";
     }
 }

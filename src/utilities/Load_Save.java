@@ -13,8 +13,6 @@ import org.xml.sax.SAXParseException;
 
 import views.Display;
 
-import javax.print.Doc;
-import javax.print.attribute.IntegerSyntax;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.*;
@@ -22,7 +20,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import java.io.File;
-import java.io.InterruptedIOException;
 
 /*
 Layout of the XML file
@@ -158,16 +155,16 @@ public class Load_Save {
                         String areaEffectType = areaEffectElement.getAttribute("type");
                         switch(areaEffectType){
                             case "take-damage":
-                                areaEffect = new TakeDamage();
+                                areaEffect = new TakeDamageAreaEffect();
                                 break;
                             case "heal-damage":
-                                areaEffect = new HealDamage();
+                                areaEffect = new HealDamageAreaEffect();
                                 break;
                             case "level-up":
-                                areaEffect = new LevelUp();
+                                areaEffect = new LevelUpAreaEffect();
                                 break;
                             case "instant-death":
-                                areaEffect = new InstantDeath();
+                                areaEffect = new InstantDeathAreaEffect();
                                 break;
                         }
                     }

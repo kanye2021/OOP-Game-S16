@@ -5,7 +5,7 @@ import models.Entity;
 /**
  * Created by Bradley on 2/4/16.
  */
-public class HealDamage extends AreaEffect {
+public class HealDamageAreaEffect extends AreaEffect {
     private final int AMOUNT_OF_DAMAGE = 5;
 
     @Override

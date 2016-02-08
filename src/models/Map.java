@@ -1,27 +1,10 @@
 package models;
 
 import models.area_effects.AreaEffect;
-import models.area_effects.HealDamage;
-import models.area_effects.InstantDeath;
-import models.area_effects.LevelUp;
-import models.area_effects.TakeDamage;
-import models.items.InteractiveItem;
 import models.items.Item;
-import models.items.OneShotItem;
-import models.items.TakeableItem;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXParseException;
 
 import utilities.Load_Save;
 import utilities.Observable;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import java.io.File;
 
 /**
  * Created by Bradley on 2/1/16.
