@@ -3,11 +3,11 @@ Objected Oriented Programming Spring 2016
 
 
 ## How to run
-- Clone the repository with:
+- Clone the repository if you do not have the source code, with:
 ```bash
 git clone https://github.com/kanye2021/OOP-Game-S16.git
 ```
-- Run the following command in the same directory to compile and run the game:   
+- Run the following command at the root directory to compile and run the game:   
 ```bash
 find $PWD -name "*.java" > sources.txt && mkdir bin &&  javac -d bin @sources.txt && cp -R src bin/ && cd bin && java RunGame && cd .. && rm -rf bin
 ```
