@@ -25,9 +25,9 @@ find $PWD -name "*.java" > sources.txt && mkdir bin &&  javac -d bin @sources.tx
 ```
 - To just compile the game run:
 ```bash
-find $PWD -name "*.java" > sources.txt && mkdir bin &&  javac -d bin @sources.txt
+find $PWD -name "*.java" > sources.txt && mkdir bin &&  javac -d bin @sources.txt && cp -R src bin/
 ```
 - Then, to run the game, run:
 ```bash
-cp -R src bin/ && cd bin && java RunGame && cd .. && rm -rf bin
+cd bin && java RunGame && cd .. && rm -rf bin
 ```
