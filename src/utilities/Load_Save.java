@@ -60,7 +60,7 @@ Layout of the XML file
 public class Load_Save {
 
     private static String currentFileName;
-    private final static String filePathExtension = "src/res/save_files/";
+    private static String filePathExtension = "src/res/save_files/";
     private static Map gameMap;
     private static Entity avatar;
 
@@ -87,6 +87,7 @@ public class Load_Save {
     }
 
     private Load_Save() {
+        filePathExtension = filePathExtension.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
         currentFileName = "";
     }
 

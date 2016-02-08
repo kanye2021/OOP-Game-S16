@@ -31,15 +31,16 @@ public class Map extends Observable {
     public Tile[][] tiles;
     private int mapWidth;
     private int mapHeight;
-    private final String DEFAULT_MAP = "./src/res/maps/default_map.xml";
+    private String defaultMap = "./src/res/maps/default_map.xml";
     private int changedX;
     private int changedY;
 
     public Map(){
-        Load_Save.getInstance().loadMap(this, DEFAULT_MAP); //whenever it is initialized, the default map will be loaded
+        defaultMap = defaultMap.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
+        Load_Save.getInstance().loadMap(this, defaultMap); //whenever it is initialized, the default map will be loaded
     }
     public void initMap(){
-        //Load_Save.getInstance().loadMap(DEFAULT_MAP);
+        //Load_Save.getInstance().loadMap(defaultMap);
     }
     public void setMapInfo(int width, int height, Tile[][] tileArray){
         mapHeight = height;

@@ -19,6 +19,7 @@ public class LoadGameView extends View{
     private String saveFilePath ="src/res/save_files/";
     private File[] listOfSaveFiles;
     public LoadGameView(){
+        saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
         this.viewController = new LoadGameController(this);
 //        File folder = new File(saveFilePath);
         listOfSaveFiles = ((LoadGameController)viewController).getFileNames();

@@ -27,6 +27,7 @@ public class LoadGameController extends ViewController{
         saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
         loadNewFolder();
         myOption = 0;
+        saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\"+System.getProperty("file.separator"));
     }
     public File[] loadNewFolder(){
         File folder = new File(saveFilePath);
