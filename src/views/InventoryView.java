@@ -31,7 +31,7 @@ public class InventoryView extends View {
 	private final int INVENTORY_VIEW_X_START = (int)(super.B_WIDTH*0.1);
 	private final int INVENTORY_VIEW_Y_START = TITLE_START_Y + TITLE_HEIGHT;
 	private final int INVENTORY_VIEW_WIDTH = (int)(super.B_WIDTH*0.8);
-	private final int INVENTORY_VIEW_HEIGHT = (int)(super.B_HEIGHT*0.5);
+	private final int INVENTORY_VIEW_HEIGHT = (int)(super.B_HEIGHT*0.52);
 	
 	//ITEM VIEW DIMENSION
 	private final int ITEM_VIEW_X_START = INVENTORY_VIEW_X_START;
@@ -40,8 +40,7 @@ public class InventoryView extends View {
 	private final int ITEM_VIEW_HEIGHT = (int)(INVENTORY_VIEW_HEIGHT*0.7);
 	
 	private final int ITEM_MARGIN = 15;
-	private final int ITEM_PER_ROW = 10;
-	private int ITEM_WIDTH =(ITEM_VIEW_WIDTH - (ITEM_PER_ROW + 1)*ITEM_MARGIN)/ITEM_PER_ROW;;
+	private int ITEM_WIDTH =(ITEM_VIEW_WIDTH - (InventoryViewController.ITEMS_PER_ROW + 1)*ITEM_MARGIN)/InventoryViewController.ITEMS_PER_ROW;
 	private int ITEM_HEIGHT = ITEM_WIDTH;
 	
 	//INFO VIEW DIMENSION
@@ -149,7 +148,7 @@ public class InventoryView extends View {
 			paintIcon(g2,xpos,ypos,in.getItemNodeAt(i));
 			
 			//increment for next paint
-			if((i+1)%ITEM_PER_ROW == 0){
+			if((i+1)%InventoryViewController.ITEMS_PER_ROW == 0){
 				xpos = xPosStart;
 				ypos += yPosInc;
 			}

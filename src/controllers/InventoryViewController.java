@@ -17,6 +17,7 @@ import java.awt.event.KeyEvent;
  */
 public class InventoryViewController extends ViewController {
 
+    public static final int ITEMS_PER_ROW = 10;
 	private int position = 0;
     public Map map;
     public Entity entity;
@@ -49,14 +50,24 @@ public class InventoryViewController extends ViewController {
     @Override
     public void handleKeyPress(int key) {
 
-        if (key == KeyEvent.VK_UP || key == KeyEvent.VK_LEFT) {
+        if (key == KeyEvent.VK_LEFT) {
             System.out.println("Up pressed FROM IVC");
-            previousItem();
+            moveSelectedLeft();
         }
 
-        else if (key == KeyEvent.VK_DOWN || key == KeyEvent.VK_RIGHT) {
+        else if (key == KeyEvent.VK_RIGHT) {
             System.out.println("Down pressed FROM IVC");
-            nextItem();
+            moveSelectedRight();
+        }
+
+        else if (key == KeyEvent.VK_UP) {
+            System.out.println("Up pressed FROM IVC");
+            moveSelectedUp();
+        }
+
+        else if (key == KeyEvent.VK_DOWN) {
+            System.out.println("Down pressed FROM IVC");
+            moveSelectedDown();
         }
 
         else if (key == KeyEvent.VK_ESCAPE || key == KeyEvent.VK_I ) {
@@ -95,7 +106,7 @@ public class InventoryViewController extends ViewController {
         }
     }
     
-    private void previousItem() {
+    private void moveSelectedLeft() {
     	
     	position--;
     	
@@ -107,7 +118,7 @@ public class InventoryViewController extends ViewController {
     	
     }
     
-    private void nextItem() {
+    private void moveSelectedRight() {
     	
     	position++;
     	
@@ -118,6 +129,30 @@ public class InventoryViewController extends ViewController {
     	
     	}
     	
+    }
+
+    private void moveSelectedUp() {
+
+        position -= ITEMS_PER_ROW;
+
+        if (position < 0) {
+
+            position = getInventory().getSize() - Math.abs(position);
+
+        }
+
+    }
+
+    private void moveSelectedDown() {
+
+        position += ITEMS_PER_ROW;
+
+        if (position >= getInventory().getSize()) {
+
+            position = position - getInventory().getSize();
+
+        }
+
     }
 
     // Uses/Equips item in inventory
