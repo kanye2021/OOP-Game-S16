@@ -29,6 +29,7 @@ public class InteractiveItem extends Item {
         GATE_OF_KANYE("KanyeGate.png", "The Legendary Gate of Kanye", new Conditions(
                 new ORCondition(
                         new InventoryCondition(Condition.Entities.AVATAR, Condition.Comparison.EXACTLY, 1, TakeableItem.Items.KEY_OF_KANYE),
+                        new EquippedCondition(Condition.Entities.AVATAR, TakeableItem.Items.WOOD_HELM),
                         new StatCondition(Condition.Entities.AVATAR, Condition.Comparison.AT_LEAST, 5, Stats.Type.LEVEL)
                 )
         ));
