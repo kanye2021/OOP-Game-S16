@@ -29,7 +29,7 @@ public class ItemStatsAssociation {
 
         // /if it is equippable (otherwise it would just be used)
 
-        if (usedItem.getEquippable()) {
+        if (usedItem.getItemType() == TakeableItem.ItemType.EQUIPPABLE) {
             EquippedItems.ArmorComponent componentType = usedItem.getComponent();
             usedItem.modifyStats(avatar);
             avatarInventory.removeItem(usedItem);
