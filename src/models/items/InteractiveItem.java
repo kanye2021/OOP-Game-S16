@@ -3,10 +3,7 @@ package models.items;
 
 import models.Entity;
 import models.Stats;
-import utilities.conditions.Condition;
-import utilities.conditions.Conditions;
-import utilities.conditions.InventoryCondition;
-import utilities.conditions.StatCondition;
+import utilities.conditions.*;
 
 
 /**
@@ -30,8 +27,10 @@ public class InteractiveItem extends Item {
                 new StatCondition(Condition.Entities.AVATAR, Condition.Comparison.AT_LEAST, 5, Stats.Type.LEVEL)
         )),
         GATE_OF_KANYE("KanyeGate.png", "The Legendary Gate of Kanye", new Conditions(
-                new InventoryCondition(Condition.Entities.AVATAR, Condition.Comparison.EXACTLY, 1, TakeableItem.Items.KEY_OF_KANYE),
-                new StatCondition(Condition.Entities.AVATAR, Condition.Comparison.AT_LEAST, 25, Stats.Type.LEVEL)
+                new ORCondition(
+                        new InventoryCondition(Condition.Entities.AVATAR, Condition.Comparison.EXACTLY, 1, TakeableItem.Items.KEY_OF_KANYE),
+                        new StatCondition(Condition.Entities.AVATAR, Condition.Comparison.AT_LEAST, 5, Stats.Type.LEVEL)
+                )
         ));
 
         private String pathToPicture;
@@ -78,16 +77,9 @@ public class InteractiveItem extends Item {
     @Override
     public boolean onTouch(Entity entity) {
 
-        boolean condition = checkCondition();
+        // This gets called twice. Why?
+        return checkCondition();
 
-        if (condition) {
-            System.out.println("You did the thing!");
-            return true;
-        } else {
-            System.out.println(this.getDescription());
-            System.out.println("You had one job...");
-        }
-        return false;
     }
 
 }
