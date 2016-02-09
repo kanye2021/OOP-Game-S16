@@ -1,13 +1,15 @@
 package models;
 
+import java.awt.*;
+
 /**
  * Created by Bradley on 2/1/16.
  */
 
 public class Entity {
 
-    protected final int START_X = 24;
-    protected final int START_Y = 35;
+    protected final int START_X = 35;
+    protected final int START_Y = 24;
 
     //Entity properties
     protected String lastAtemptedDirection;
@@ -16,7 +18,7 @@ public class Entity {
     protected Inventory inventory;
     protected EquippedItems equippedItems;
     protected ItemStatsAssociation avatarItemStats;
-    protected int[] location;
+    protected Point location;
 
     public Entity() {
         // Default to smasher
@@ -28,9 +30,7 @@ public class Entity {
     }
 
     private void initEntity(String occupation) {
-        this.location = new int[2];
-        this.location[0] = START_X;
-        this.location[1] = START_Y;
+        location = new Point(START_X, START_Y);
         this.lastAtemptedDirection = "N";
         this.occupation = occupation;
         this.inventory = new Inventory();
@@ -42,7 +42,7 @@ public class Entity {
     }
 
     /*----------Get and Setters --------*/
-    public int[] getLocation() {
+    public Point getLocation() {
         return location;
     }
 
@@ -74,9 +74,8 @@ public class Entity {
         this.occupation = occupation;
     }
 
-    public void updateLocation(int x, int y) {
-        this.location[0] = x;
-        this.location[1] = y;
+    public void updateLocation(int y, int x) {
+        location.setLocation(x, y);
     }
 
     // Each "type" (subclass) of entity will override this method to return its type.
@@ -95,9 +94,8 @@ public class Entity {
 
     //All this is going to do is update orientation/location of the entity
 
-    public void moveTo(int x, int y, String direction) {
-        location[0] = x;
-        location[1] = y;
+    public void moveTo(int y, int x, String direction) {
+        location.setLocation(x, y);
         updateOrientation(direction);
 
 

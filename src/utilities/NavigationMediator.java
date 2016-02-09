@@ -6,6 +6,7 @@ import models.Terrain;
 import models.area_effects.AreaEffect;
 import models.items.Item;
 
+import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -36,7 +37,7 @@ public class NavigationMediator {
         }
 
         // Assumes the entity has a location of the form int[] = {x, y}
-        int[] currentLocation = entity.getLocation();
+        Point currentLocation = entity.getLocation();
 
         // Update the entity's orientation;
         entity.updateOrientation(direction);
@@ -45,8 +46,8 @@ public class NavigationMediator {
         //-------------------------------Determine where we are trying to move---------------------------------------
 
         // The location desired to be moved to will be initialized to the current location.
-        int desiredX = currentLocation[0];
-        int desiredY = currentLocation[1];
+        int desiredX = currentLocation.y;
+        int desiredY = currentLocation.x;
 
         switch (direction) {
             case "N":
@@ -122,7 +123,7 @@ public class NavigationMediator {
                 } else {
 
                     System.out.println("KILL ME");
-                    map.removeItemFromLocation(currentLocation[0], currentLocation[1]);
+                    map.removeItemFromLocation(currentLocation.x, currentLocation.y);
 
                 }
 
@@ -132,7 +133,7 @@ public class NavigationMediator {
         //----------------------If we got here we are okay to move so lets do it!----------------------------------
 
         // Remove the entity from it's current location and put it in the new one.
-        map.removeEntityFromLocation(currentLocation[0], currentLocation[1]);
+        map.removeEntityFromLocation(currentLocation.y, currentLocation.x);
         map.insertEntityAtLocation(desiredX, desiredY, entity);
 
         entity.moveTo(desiredX, desiredY, direction);
@@ -164,7 +165,7 @@ public class NavigationMediator {
         if (item != null) {
             boolean questFinished = item.onTouch(entity);
             if (questFinished) {
-                map.removeItemFromLocation(currentLocation[0], currentLocation[1]);
+                map.removeItemFromLocation(currentLocation.y, currentLocation.x);
             }
         }
 

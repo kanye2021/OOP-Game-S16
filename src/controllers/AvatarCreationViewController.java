@@ -100,7 +100,7 @@ public class AvatarCreationViewController extends ViewController {
         NavigationMediator nav = new NavigationMediator(map, avatar);
         IOMediator.entity = avatar;
         IOMediator.map = map;
-        map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
+        map.insertEntityAtLocation(avatar.getLocation().y, avatar.getLocation().x, avatar);
 
         // TODO: DELETE
 //        // Create inventory view

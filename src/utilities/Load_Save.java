@@ -261,7 +261,7 @@ public class Load_Save {
                 }
             }
 
-            System.out.println("Finish loading entity: " + avatar.getLocation()[0] + "," + avatar.getLocation()[1] + "," + avatar.getOrientation());
+            //System.out.println("Finish loading entity: " + avatar.getLocation()[0] + "," + avatar.getLocation()[1] + "," + avatar.getOrientation());
         } catch (Exception e) {
             System.out.println("Problem parsing avatar");
             e.printStackTrace();
@@ -417,11 +417,11 @@ public class Load_Save {
 
 
         Attr x = doc.createAttribute("location_x");
-        x.setValue(Integer.toString(e.getLocation()[0]));
+        x.setValue(Integer.toString(e.getLocation().x));
         type.setAttributeNode(x);
 
         Attr y = doc.createAttribute("location_y");
-        y.setValue(Integer.toString(e.getLocation()[1]));
+        y.setValue(Integer.toString(e.getLocation().y));
         type.setAttributeNode(y);
 
         Attr orientation = doc.createAttribute("orientation");

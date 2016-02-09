@@ -63,8 +63,8 @@ public class AreaViewport extends View implements Observer {
         int logicalHeight = (int) Math.ceil((double) AREA_HEIGHT / TILE_SIZE);
 
         // r and c represent the row and column in the tile array that correspond the top left corner of the visible map.
-        int r = entity.getLocation()[1] - logicalHeight / 2;
-        int c = entity.getLocation()[0] - logicalWidth / 2;
+        int r = entity.getLocation().x - logicalHeight / 2;
+        int c = entity.getLocation().y - logicalWidth / 2;
 
         // Make sure to stay within the bounds of the map
         if (r < 0) {
@@ -96,8 +96,7 @@ public class AreaViewport extends View implements Observer {
                 Terrain t = map.getTerrainAtLocation(j, i);
 
                 //OUT OF BOUNDS!!!!!!!!!!!!!!!!
-                if (t == null)
-                    continue;
+                if (t == null) { continue; }
 
                 ImageIcon ii = new ImageIcon(terrainBaseFilepath + t.getType() + ".png");
 

@@ -85,7 +85,7 @@ public class GameViewController extends ViewController {
                 navMediator.requestMovement("W");
                 break;
             case KeyEvent.VK_B:
-                System.out.println(IOMediator.entity.getLocation()[0] + " | " + IOMediator.entity.getLocation()[1]);
+                //System.out.println(IOMediator.entity.getLocation()[0] + " | " + IOMediator.entity.getLocation()[1]);
                 break;
 
         }

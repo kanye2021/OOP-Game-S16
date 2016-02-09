@@ -113,7 +113,7 @@ public class LoadGameController extends ViewController {
             IOMediator.Views.GAME.setView(gameView);
             // map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
         } else {
-            IOMediator.getInstance().map.removeEntityFromLocation(IOMediator.getInstance().entity.getLocation()[0], IOMediator.getInstance().entity.getLocation()[1]);
+            IOMediator.getInstance().map.removeEntityFromLocation(IOMediator.getInstance().entity.getLocation().x, IOMediator.getInstance().entity.getLocation().y);
             //Needs to remove the previous entity
         }
 

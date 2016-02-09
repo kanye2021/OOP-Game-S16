@@ -80,9 +80,13 @@ public class InventoryViewController extends ViewController {
     }
 
     private void dropItem(TakeableItem item) {
+
         if (inventory.removeItem(item)) {
-            map.insertItemAtLocation(entity.getLocation()[0], entity.getLocation()[1], item);
+
+            map.insertItemAtLocation(entity.getLocation().y, entity.getLocation().x, item);
+
         }
+
     }
 
     private void moveSelectedLeft() {
@@ -142,10 +146,10 @@ public class InventoryViewController extends ViewController {
     }
 
     public int getPosition() {
+
         return position;
+
     }
 
 
 }
-
-
