@@ -33,4 +33,11 @@ public class Avatar extends Entity {
     public void equipItem(Item item) {
         //TODO: equipped items
     }
+
+    public int getID() {
+
+        return 1000;
+
+    }
+
 }

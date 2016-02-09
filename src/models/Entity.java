@@ -103,5 +103,10 @@ public class Entity {
 
     }
 
+    public int getID() {
+
+        return 666; // cancer
+
+    }
 
 }
