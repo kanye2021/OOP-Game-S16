@@ -139,7 +139,7 @@ public class NavigationMediator {
         canMove = false;
 
         // Set a timer to determine when the entity can move again.
-        // The delay is inversely proportionaly to the entity's movement statgs
+        // The delay is inversely proportional to the entity's movement stats
         int delay = 100 - (entity.getStats().getMovement() / 5);
 
         // If the delay is less than 0, the entity defaults to the fastest movement of 5ms.
