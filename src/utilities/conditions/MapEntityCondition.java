@@ -12,13 +12,13 @@ import models.items.TakeableItem;
 
 public class MapEntityCondition extends MapCondition {
 
-    Entity entity;
+    Condition.Entities entity;
     MapCondition.Location location;
     int x;
     int y;
-    Map map;
+    MapCondition.Maps map;
 
-    public MapEntityCondition(Entity entity, MapCondition.Location location, int x, int y, Map map) {
+    public MapEntityCondition(Condition.Entities entity, MapCondition.Location location, int x, int y, MapCondition.Maps map) {
 
         this.entity = entity;
         this.location = location;
@@ -30,12 +30,12 @@ public class MapEntityCondition extends MapCondition {
 
     public boolean checkCondition() {
 
-        Entity entityOnMap = map.getEntityAtLocation(x, y);
+        Entity entityOnMap = map.getMap().getEntityAtLocation(x, y);
 
         if (entityOnMap != null) {
 
             int i1 = entityOnMap.getID();
-            int i2 = entity.getID();
+            int i2 = entity.getEntity().getID();
 
             return location.checkLocation(i1, i2);
 

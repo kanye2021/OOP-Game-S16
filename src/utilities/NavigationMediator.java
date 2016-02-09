@@ -104,12 +104,30 @@ public class NavigationMediator {
 
         // Check to see if there is an obstacle
         Item item = map.getItemAtLocation(desiredX, desiredY);
-        if (item != null && item.getType().equals(Item.Type.OBSTACLE)) {
-            return;
-        }
-        //Checks to see if there is an interactive item that also has not fulfilled the conditions
-        if (item != null && item.equalsType(Item.Type.INTERACTIVE) && !item.onTouch(entity)) {
-            return;
+
+        if (item != null) {
+
+            if (item.getType().equals(Item.Type.OBSTACLE)) {
+
+                return;
+
+            }
+
+            if (item.equalsType(Item.Type.INTERACTIVE)) {
+
+                if (!item.onTouch(entity)) {
+
+                    return;
+
+                } else {
+
+                    System.out.println("KILL ME");
+                    map.removeItemFromLocation(currentLocation[0], currentLocation[1]);
+
+                }
+
+            }
+
         }
         //----------------------If we got here we are okay to move so lets do it!----------------------------------
 

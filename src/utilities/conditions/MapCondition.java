@@ -1,13 +1,21 @@
 package utilities.conditions;
 
 import models.Map;
-import models.items.Item;
+import utilities.IOMediator;
 
 /**
  * Created by aseber
  * on 2/9/16.
  */
 public abstract class MapCondition extends Condition {
+
+    public enum Maps {
+
+        DEFAULT {public Map getMap() {return IOMediator.map;}};
+
+        public abstract Map getMap();
+
+    }
 
     private enum Equality {
 

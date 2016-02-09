@@ -2,6 +2,7 @@ package utilities.conditions;
 
 import models.Map;
 import models.items.Item;
+import models.items.TakeableItem;
 
 /**
  * Created by aseber
@@ -10,16 +11,16 @@ import models.items.Item;
 
 public class MapItemCondition extends MapCondition {
 
-    Item item;
+    TakeableItem.Items item;
     MapCondition.Location location;
     int x;
     int y;
-    Map map;
+    MapCondition.Maps map;
 
 
     // The map conditional statement. It only supports one point on the map at this time but it can be expanded to any number
     // in the future given functons in Map that return rectangles, circles etc.
-    MapItemCondition(Item item, MapCondition.Location location, int x, int y, Map map) {
+    public MapItemCondition(TakeableItem.Items item, MapCondition.Location location, int x, int y, MapCondition.Maps map) {
 
         this.item = item;
         this.location = location;
@@ -31,7 +32,7 @@ public class MapItemCondition extends MapCondition {
 
     public boolean checkCondition() {
 
-        Item itemOnMap = map.getItemAtLocation(x, y);
+        Item itemOnMap = map.getMap().getItemAtLocation(x, y);
 
         if (itemOnMap != null) {
 
