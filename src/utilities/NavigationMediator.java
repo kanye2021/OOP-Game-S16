@@ -36,10 +36,10 @@ public class NavigationMediator {
             return;
         }
 
-        // Assumes the entity has a location of the form int[] = {x, y}
+        // Assumes the avatar has a location of the form int[] = {x, y}
         Point currentLocation = entity.getLocation();
 
-        // Update the entity's orientation;
+        // Update the avatar's orientation;
         entity.updateOrientation(direction);
 
 
@@ -96,7 +96,7 @@ public class NavigationMediator {
         }
 
 
-        // Check to see if there is another entity blocking the path.
+        // Check to see if there is another avatar blocking the path.
         Entity entityOnTile = map.getEntityAtLocation(desiredX, desiredY);
         if (entityOnTile != null) {
             return;
@@ -132,18 +132,18 @@ public class NavigationMediator {
         }
         //----------------------If we got here we are okay to move so lets do it!----------------------------------
 
-        // Remove the entity from it's current location and put it in the new one.
+        // Remove the avatar from it's current location and put it in the new one.
         map.removeEntityFromLocation(currentLocation.y, currentLocation.x);
         map.insertEntityAtLocation(desiredX, desiredY, entity);
 
         entity.moveTo(desiredX, desiredY, direction);
         canMove = false;
 
-        // Set a timer to determine when the entity can move again.
-        // The delay is inversely proportional to the entity's movement stats
+        // Set a timer to determine when the avatar can move again.
+        // The delay is inversely proportional to the avatar's movement stats
         int delay = 100 - (entity.getStats().getMovement() / 5);
 
-        // If the delay is less than 0, the entity defaults to the fastest movement of 5ms.
+        // If the delay is less than 0, the avatar defaults to the fastest movement of 5ms.
         delay = delay > 0 ? delay : 5;
         timer.schedule(new TimerTask() {
             @Override

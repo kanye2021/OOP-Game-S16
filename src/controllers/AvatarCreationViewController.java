@@ -94,7 +94,7 @@ public class AvatarCreationViewController extends ViewController {
         Entity avatar = new Avatar(occupation);
         Map map = new Map();
         NavigationMediator nav = new NavigationMediator(map, avatar);
-        IOMediator.entity = avatar;
+        IOMediator.avatar = avatar;
         IOMediator.map = map;
         map.insertEntityAtLocation(avatar.getLocation().y, avatar.getLocation().x, avatar);
 

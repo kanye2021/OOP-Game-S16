@@ -48,12 +48,12 @@ public class Stats {
             public int get(Entity entity) {return entity.getStats().getLivesLeft();}
         },
         /*MAX_HEALTH("Max Health") {
-            public void modify(Entity entity, int delta) {entity.getStats().modifyH (delta);}
-            public int get(Entity entity) {return entity.getStats().getHealth();}
+            public void modify(Entity avatar, int delta) {avatar.getStats().modifyH (delta);}
+            public int get(Entity avatar) {return avatar.getStats().getHealth();}
         },
         MAX_MANA("Max Mana") {
-            public void modify(Entity entity, int delta) {entity.getStats().modifyMana(delta);}
-            public int get(Entity entity) {return entity.getStats().getMana();}
+            public void modify(Entity avatar, int delta) {avatar.getStats().modifyMana(delta);}
+            public int get(Entity avatar) {return avatar.getStats().getMana();}
         },*/
         CURRENT_HEALTH("Current Health") {
             public void modify(Entity entity, int delta) {entity.getStats().modifyHealth(delta);}

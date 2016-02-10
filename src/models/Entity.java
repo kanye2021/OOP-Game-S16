@@ -54,7 +54,7 @@ public abstract class Entity {
     }
 
     protected final StatModifications initialStats = new StatModifications(
-            new StatModification(Stats.Type.LIVES, 3, StatModification.NumberType.POINT), // Should be three but something is decrementing this
+            new StatModification(Stats.Type.LIVES, 3, StatModification.NumberType.POINT),
             new StatModification(Stats.Type.LEVEL, 1, StatModification.NumberType.POINT),
             new StatModification(Stats.Type.AGILITY, 10, StatModification.NumberType.POINT),
             new StatModification(Stats.Type.STRENGTH, 10, StatModification.NumberType.POINT),
@@ -73,11 +73,6 @@ public abstract class Entity {
     protected EquippedItems equippedItems;
     protected ItemStatsAssociation avatarItemStats;
     protected Point location;
-
-   // public Entity() {
-        // Default to smasher
-    //    initEntity("smasher");
-    //}
 
     public Entity(Occupation occupation) {
 
@@ -131,9 +126,9 @@ public abstract class Entity {
         location.setLocation(x, y);
     }
 
-    // Each "type" (subclass) of entity will override this method to return its type.
+    // Each "type" (subclass) of avatar will override this method to return its type.
     public String getType() {
-        return "entity";
+        return "avatar";
     }
 
     public void updateOrientation(String orientation) {
@@ -158,7 +153,7 @@ public abstract class Entity {
     }
     /* ------End of Getters and Setters -----*/
 
-    //All this is going to do is update orientation/location of the entity
+    //All this is going to do is update orientation/location of the avatar
 
     public void moveTo(int y, int x, String direction) {
         location.setLocation(x, y);

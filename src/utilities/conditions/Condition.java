@@ -20,7 +20,7 @@ public abstract class Condition {
 
         AVATAR() {
             public Entity getEntity() {
-                return IOMediator.entity;
+                return IOMediator.avatar;
             }
         };
 

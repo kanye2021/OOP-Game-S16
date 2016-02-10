@@ -147,7 +147,7 @@ public class AreaViewport extends View implements Observer {
                     ImageIcon avatar_icon = Utilities.getImageIcon(entityBaseFilepath + e.getImageName());
                     Image avatarImage = avatar_icon.getImage();
 
-                    // Center the entity in the tile
+                    // Center the avatar in the tile
                     int offsetX = (TILE_SIZE - avatarImage.getWidth(null)) / 2;
                     int offsetY = (TILE_SIZE - avatarImage.getHeight(null)) / 2;
                     g.drawImage(avatarImage, displayX + offsetX, displayY + offsetY, Display.getInstance());

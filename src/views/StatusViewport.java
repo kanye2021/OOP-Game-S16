@@ -38,10 +38,10 @@ public class StatusViewport extends View {
         g.setColor(new Color(32, 32, 32));
         g.fillRect(0, View.B_HEIGHT * 4 / 5, View.B_WIDTH, View.B_HEIGHT * 1 / 5);
 
-        // Display the entity's level
+        // Display the avatar's level
         drawLevel(g, stats);
 
-        // Draw the entity's lives.
+        // Draw the avatar's lives.
         drawLives(g, stats);
 
         // Draw the health bar

@@ -22,13 +22,13 @@ public class EquippedItemsViewController extends ViewController {
             }
 
             public String getImagePath() {
-                if (IOMediator.entity.getEquippedItems().getCape() != null)
-                    return IOMediator.entity.getEquippedItems().getCape().getPathToPicture();
+                if (IOMediator.avatar.getEquippedItems().getCape() != null)
+                    return IOMediator.avatar.getEquippedItems().getCape().getPathToPicture();
                 else return "";
             }
 
             public TakeableItem getComponent() {
-                return EquippedItems.ArmorComponent.CAPE.getCurrentEquippedItem(IOMediator.entity);
+                return EquippedItems.ArmorComponent.CAPE.getCurrentEquippedItem(IOMediator.avatar);
             }
         },
         HEAD("Head") {
@@ -37,13 +37,13 @@ public class EquippedItemsViewController extends ViewController {
             }
 
             public String getImagePath() {
-                if (IOMediator.entity.getEquippedItems().getHead() != null)
-                    return IOMediator.entity.getEquippedItems().getHead().getPathToPicture();
+                if (IOMediator.avatar.getEquippedItems().getHead() != null)
+                    return IOMediator.avatar.getEquippedItems().getHead().getPathToPicture();
                 else return "";
             }
 
             public TakeableItem getComponent() {
-                return EquippedItems.ArmorComponent.HEAD.getCurrentEquippedItem(IOMediator.entity);
+                return EquippedItems.ArmorComponent.HEAD.getCurrentEquippedItem(IOMediator.avatar);
             }
         },
         NECKLACE("Necklace") {
@@ -52,13 +52,13 @@ public class EquippedItemsViewController extends ViewController {
             }
 
             public String getImagePath() {
-                if (IOMediator.entity.getEquippedItems().getNecklace() != null)
-                    return IOMediator.entity.getEquippedItems().getNecklace().getPathToPicture();
+                if (IOMediator.avatar.getEquippedItems().getNecklace() != null)
+                    return IOMediator.avatar.getEquippedItems().getNecklace().getPathToPicture();
                 else return "";
             }
 
             public TakeableItem getComponent() {
-                return EquippedItems.ArmorComponent.NECKLACE.getCurrentEquippedItem(IOMediator.entity);
+                return EquippedItems.ArmorComponent.NECKLACE.getCurrentEquippedItem(IOMediator.avatar);
             }
         },
         PRIMARY("Primary Weapon") {
@@ -67,13 +67,13 @@ public class EquippedItemsViewController extends ViewController {
             }
 
             public String getImagePath() {
-                if (IOMediator.entity.getEquippedItems().getPrimaryWeapon() != null)
-                    return IOMediator.entity.getEquippedItems().getPrimaryWeapon().getPathToPicture();
+                if (IOMediator.avatar.getEquippedItems().getPrimaryWeapon() != null)
+                    return IOMediator.avatar.getEquippedItems().getPrimaryWeapon().getPathToPicture();
                 else return "";
             }
 
             public TakeableItem getComponent() {
-                return EquippedItems.ArmorComponent.PRIMARY_WEAPON.getCurrentEquippedItem(IOMediator.entity);
+                return EquippedItems.ArmorComponent.PRIMARY_WEAPON.getCurrentEquippedItem(IOMediator.avatar);
             }
         },
         CHEST("Chest") {
@@ -82,13 +82,13 @@ public class EquippedItemsViewController extends ViewController {
             }
 
             public String getImagePath() {
-                if (IOMediator.entity.getEquippedItems().getChest() != null)
-                    return IOMediator.entity.getEquippedItems().getChest().getPathToPicture();
+                if (IOMediator.avatar.getEquippedItems().getChest() != null)
+                    return IOMediator.avatar.getEquippedItems().getChest().getPathToPicture();
                 else return "";
             }
 
             public TakeableItem getComponent() {
-                return EquippedItems.ArmorComponent.CHEST.getCurrentEquippedItem(IOMediator.entity);
+                return EquippedItems.ArmorComponent.CHEST.getCurrentEquippedItem(IOMediator.avatar);
             }
         },
         SECONDARY("Secondary Weapon") {
@@ -97,13 +97,13 @@ public class EquippedItemsViewController extends ViewController {
             }
 
             public String getImagePath() {
-                if (IOMediator.entity.getEquippedItems().getSecondaryWeapon() != null)
-                    return IOMediator.entity.getEquippedItems().getSecondaryWeapon().getPathToPicture();
+                if (IOMediator.avatar.getEquippedItems().getSecondaryWeapon() != null)
+                    return IOMediator.avatar.getEquippedItems().getSecondaryWeapon().getPathToPicture();
                 else return "";
             }
 
             public TakeableItem getComponent() {
-                return EquippedItems.ArmorComponent.SECONDARY_WEAPON.getCurrentEquippedItem(IOMediator.entity);
+                return EquippedItems.ArmorComponent.SECONDARY_WEAPON.getCurrentEquippedItem(IOMediator.avatar);
             }
         },
         GLOVES("Gloves") {
@@ -112,13 +112,13 @@ public class EquippedItemsViewController extends ViewController {
             }
 
             public String getImagePath() {
-                if (IOMediator.entity.getEquippedItems().getGloves() != null)
-                    return IOMediator.entity.getEquippedItems().getGloves().getPathToPicture();
+                if (IOMediator.avatar.getEquippedItems().getGloves() != null)
+                    return IOMediator.avatar.getEquippedItems().getGloves().getPathToPicture();
                 else return "";
             }
 
             public TakeableItem getComponent() {
-                return EquippedItems.ArmorComponent.GLOVES.getCurrentEquippedItem(IOMediator.entity);
+                return EquippedItems.ArmorComponent.GLOVES.getCurrentEquippedItem(IOMediator.avatar);
             }
         },
         GREAVES("Greaves") {
@@ -127,13 +127,13 @@ public class EquippedItemsViewController extends ViewController {
             }
 
             public String getImagePath() {
-                if (IOMediator.entity.getEquippedItems().getGreaves() != null)
-                    return IOMediator.entity.getEquippedItems().getGreaves().getPathToPicture();
+                if (IOMediator.avatar.getEquippedItems().getGreaves() != null)
+                    return IOMediator.avatar.getEquippedItems().getGreaves().getPathToPicture();
                 else return "";
             }
 
             public TakeableItem getComponent() {
-                return EquippedItems.ArmorComponent.GREAVES.getCurrentEquippedItem(IOMediator.entity);
+                return EquippedItems.ArmorComponent.GREAVES.getCurrentEquippedItem(IOMediator.avatar);
             }
         },
         BOOTS("Boots") {
@@ -142,13 +142,13 @@ public class EquippedItemsViewController extends ViewController {
             }
 
             public String getImagePath() {
-                if (IOMediator.entity.getEquippedItems().getBoots() != null)
-                    return IOMediator.entity.getEquippedItems().getBoots().getPathToPicture();
+                if (IOMediator.avatar.getEquippedItems().getBoots() != null)
+                    return IOMediator.avatar.getEquippedItems().getBoots().getPathToPicture();
                 else return "";
             }
 
             public TakeableItem getComponent() {
-                return EquippedItems.ArmorComponent.BOOTS.getCurrentEquippedItem(IOMediator.entity);
+                return EquippedItems.ArmorComponent.BOOTS.getCurrentEquippedItem(IOMediator.avatar);
             }
         };
 
@@ -200,13 +200,13 @@ public class EquippedItemsViewController extends ViewController {
     public static void unequipSlot(EquippedItems.ArmorComponent component) {
 
 
-        TakeableItem itemInSlot = component.getCurrentEquippedItem(IOMediator.entity);
+        TakeableItem itemInSlot = component.getCurrentEquippedItem(IOMediator.avatar);
 
         if (itemInSlot != null) {
 
-            component.unequipComponent(IOMediator.entity);
-            itemInSlot.modifyStatsReverse(IOMediator.entity);
-            IOMediator.entity.getInventory().addItem(itemInSlot);
+            component.unequipComponent(IOMediator.avatar);
+            itemInSlot.modifyStatsReverse(IOMediator.avatar);
+            IOMediator.avatar.getInventory().addItem(itemInSlot);
 
         }
 

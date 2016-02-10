@@ -92,9 +92,9 @@ public class OneShotItem extends Item {
 
     }
 
-	/*public void modifyStatsReverse(Entity entity) {
+	/*public void modifyStatsReverse(Entity avatar) {
 		
-		Effects.values()[getID()].modifications.modifyStats(entity, StatModification.DIRECTION.REVERSE);
+		Effects.values()[getID()].modifications.modifyStats(avatar, StatModification.DIRECTION.REVERSE);
 		
 	}*/
 

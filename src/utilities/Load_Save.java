@@ -57,7 +57,7 @@ Layout of the XML file
 public class Load_Save {
 
     private static String currentFileName;
-    private static String filePathExtension = "src/res/save_files/";
+    private static final String filePathExtension = Utilities.getFileSystemDependentPath("src/res/save_files/");
     private static Map gameMap;
     private static Entity avatar;
 
@@ -87,7 +87,6 @@ public class Load_Save {
     }
 
     private Load_Save() {
-        filePathExtension = filePathExtension.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
         currentFileName = "";
     }
 
@@ -101,20 +100,19 @@ public class Load_Save {
 
     /*-----------------------------For Loading --------------------------------*/
     public static void load(String fileName) {
-        System.out.println("File name is: " + fileName);
         currentFileName = fileName;
         String filePath = filePathExtension + fileName;
         loadMap(IOMediator.getInstance().map, filePath);
         loadAvatar(filePath);
         //In this case the loadMap will just load the static map in IOMediator
-        Display.getInstance().repaint(); //To repaint the entity back on the map
+        Display.getInstance().repaint(); //To repaint the avatar back on the map
     }
 
     public static void loadMap(Map inputMap, String fileName) { //Function will load the map in xml (Through fileName) to the inputMap
         try {
             // Get the xml filepath string ensuring file separators are specific to the use's OS.
             //TODO: Uncomment when done testing
-            String filepath = fileName.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
+            String filepath = Utilities.getFileSystemDependentPath(fileName);
 
             // Create a document from the xml file
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -208,11 +206,14 @@ public class Load_Save {
                     }
 
                     // Get any entities that are on the tile.
-                    NodeList entityNodes = tileElement.getElementsByTagName("entity");
+                    NodeList entityNodes = tileElement.getElementsByTagName("avatar");
                     if (entityNodes.getLength() > 0) {
                         Element entityElement = (Element) entityNodes.item(0);
                         //TODO: Load whatever attributes are necessary
-                        entity = new Avatar();
+
+                        System.out.println("An avatar was loaded into the game but was not initialized as there is no NPC Class yet.");
+
+                        //avatar = new Avatar();
                     }
 
                     tiles[i][j] = new Tile(terrain, areaEffect, decal, item, entity);
@@ -232,8 +233,8 @@ public class Load_Save {
 
     public static void loadAvatar(String filepath) {
         // Get the xml filepath string ensuring file separators are specific to the use's OS.
-        String file = filepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        Entity avatar = IOMediator.getInstance().entity;
+        String file = Utilities.getFileSystemDependentPath(filepath);
+        Entity avatar = IOMediator.getInstance().avatar;
         Map m = IOMediator.getInstance().map;
         try {
             // Create a document from the xml file
@@ -242,8 +243,8 @@ public class Load_Save {
             Document doc = docBuilder.parse(new File(file));
             doc.getDocumentElement().normalize();
 
-            NodeList entities = doc.getElementsByTagName("entity"); //used for future
-            //Checks the type of the entity and sets information
+            NodeList entities = doc.getElementsByTagName("avatar"); //used for future
+            //Checks the type of the avatar and sets information
             for (int i = 0; i < entities.getLength(); i++) {
                 Element entity = (Element) entities.item(i);
                 if (entity.getAttribute("type").equals("avatar")) {
@@ -269,7 +270,7 @@ public class Load_Save {
                 }
             }
 
-            //System.out.println("Finish loading entity: " + avatar.getLocation()[0] + "," + avatar.getLocation()[1] + "," + avatar.getOrientation());
+            //System.out.println("Finish loading avatar: " + avatar.getLocation()[0] + "," + avatar.getLocation()[1] + "," + avatar.getOrientation());
         } catch (Exception e) {
             System.out.println("Problem parsing avatar");
             e.printStackTrace();
@@ -416,7 +417,7 @@ public class Load_Save {
     }
 
     private static Node getEntityInfo(Document doc, Entity e) {
-        Element type = doc.createElement("entity");
+        Element type = doc.createElement("avatar");
 
         //Get attributes such as location, orientation and type
         Attr e_type = doc.createAttribute("type");
@@ -440,7 +441,7 @@ public class Load_Save {
         occupation.setValue(e.getOccupation().getType());
         type.setAttributeNode(occupation);
 
-        //Get stats and inventory of the entity
+        //Get stats and inventory of the avatar
         type.appendChild(getInventory(doc, e.getInventory()));
         type.appendChild(getStats(doc, e.getStats()));
         type.appendChild(getEquippedItems(doc, e.getEquippedItems()));

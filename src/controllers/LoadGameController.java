@@ -105,7 +105,7 @@ public class LoadGameController extends ViewController {
             Entity avatar = new Avatar();
             Map map = new Map();
             NavigationMediator nav = new NavigationMediator(map, avatar);
-            IOMediator.entity = avatar;
+            IOMediator.avatar = avatar;
             IOMediator.map = map;
 
             // Create the game view
@@ -113,8 +113,8 @@ public class LoadGameController extends ViewController {
             IOMediator.Views.GAME.setView(gameView);
             // map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
         } else {
-            IOMediator.getInstance().map.removeEntityFromLocation(IOMediator.getInstance().entity.getLocation().x, IOMediator.getInstance().entity.getLocation().y);
-            //Needs to remove the previous entity
+            IOMediator.getInstance().map.removeEntityFromLocation(IOMediator.getInstance().avatar.getLocation().x, IOMediator.getInstance().avatar.getLocation().y);
+            //Needs to remove the previous avatar
         }
 
         Load_Save.getInstance().load(fileNames[myOption].getName()); //Going to grab information from XML

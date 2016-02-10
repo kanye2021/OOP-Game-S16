@@ -15,7 +15,7 @@ public class IOMediator {
 
 
     public static Map map;
-    public static Entity entity;
+    public static Entity avatar;
 
     // This represents all of the views that the utilities.IOMediator can see. the utilities.IOMediator acts as a MUX and goes through these
     // to modify the graphics and where the keyPresses go.
@@ -69,7 +69,7 @@ public class IOMediator {
             void render(Graphics g) {
                 getView().render(g);
             }
-        }, // Not sure if having map and entity in constructor is "hacky" or not
+        }, // Not sure if having map and avatar in constructor is "hacky" or not
         EXIT(null) {
             void render(Graphics g) {
                 getView().render(g);
