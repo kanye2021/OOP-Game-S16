@@ -60,7 +60,7 @@ public class DeathView extends View {
             Color primaryColor;
             Color secondaryColor;
 
-            if (option == (((DeathViewController) viewController).getActiveItem())) {
+            /*if (option == (((DeathViewController) viewController).getActiveItem())) {
                 primaryColor = Color.WHITE;
                 secondaryColor = Color.BLACK;
 
@@ -73,7 +73,7 @@ public class DeathView extends View {
             g.setColor(primaryColor);
             g.fillRect(boxX, boxY, boxDX, boxDY);
             g.setColor(secondaryColor);
-            g.drawString(message, stringX, stringY);
+            g.drawString(message, stringX, stringY);*/
             ++i;
         }
     }

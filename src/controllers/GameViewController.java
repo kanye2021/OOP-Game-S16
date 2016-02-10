@@ -14,8 +14,7 @@ import java.awt.event.KeyEvent;
 public class GameViewController extends ViewController {
     private NavigationMediator navMediator;
 
-    public GameViewController(View view, NavigationMediator navigationMediator) {
-        super(view);
+    public GameViewController(NavigationMediator navigationMediator) {
         this.navMediator = navigationMediator;
     }
 
@@ -48,13 +47,13 @@ public class GameViewController extends ViewController {
                 break;
             case KeyEvent.VK_R:
                 // Tell GameView to render EquippedItemsView over it
-                ((GameView) IOMediator.Views.GAME.getView()).setShowEquippedItems(true);
+//                ((GameView) IOMediator.Views.GAME.getView()).setShowEquippedItems(true);
                 break;
             case KeyEvent.VK_I:
-                ((GameView) IOMediator.Views.GAME.getView()).setShowInventory(true);
+//                ((GameView) IOMediator.Views.GAME.getView()).setShowInventory(true);
                 break;
             case KeyEvent.VK_ESCAPE:
-                IOMediator.setActiveView(IOMediator.Views.PAUSE);
+//                IOMediator.setActiveView(IOMediator.Views.PAUSE);
                 break;
 //            case KeyEvent.VK_S:
 //                navMediator.save();

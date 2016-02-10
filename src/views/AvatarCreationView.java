@@ -59,13 +59,13 @@ public class AvatarCreationView extends View {
 
             Color primaryColor = Color.white;
 
-            if (occupation == ((AvatarCreationViewController) viewController).getSelectedOccupation()) {
+            /*if (occupation == ((AvatarCreationViewController) viewController).getSelectedOccupation()) {
                 // Drawing Arrow next to selection
                 ImageIcon ii = new ImageIcon(arrowFilePath);
                 Image arrow = ii.getImage();
                 arrow_x_offset -= arrow.getWidth(null) + 10;
                 g.drawImage(arrow, arrow_x_offset, stringY, Display.getInstance());
-            }
+            }*/
 
             g.setColor(primaryColor);
             g.setFont(title);

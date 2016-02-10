@@ -49,20 +49,20 @@ public class SaveGameView extends View {
             Color primaryColor;
             Color secondaryColor;
 
-            if (option == ((SaveGameController) viewController).getSelectedOption()) {
+            /*if (option == ((SaveGameController) viewController).getSelectedOption()) {
                 primaryColor = Color.WHITE;
                 secondaryColor = Color.BLACK;
             } else {
                 primaryColor = Color.BLACK;
                 secondaryColor = Color.WHITE;
-            }
+            }*/
 
-            g.setColor(primaryColor);
+            /*g.setColor(primaryColor);
             g.fillRect(boxX, boxY, boxDX, boxDY);
             g.setColor(secondaryColor);
             g.drawString(option.getText(), stringX, stringY);
             g.drawRect(boxX, boxY, boxDX, boxDY);
-
+*/
             fraction += 1;
 
         }

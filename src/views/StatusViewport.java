@@ -1,3 +1,4 @@
+/*
 package views;
 
 import models.Entity;
@@ -7,9 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
+*/
 /**
  * Created by Bradley on 2/3/16.
- */
+ *//*
+
 public class StatusViewPort extends View {
     private static Entity entity;
     // Constants representing the viepwport dimensions.
@@ -365,3 +368,4 @@ public class StatusViewPort extends View {
         g.drawString(movement, speedX, speedY);
     }
 }
+*/

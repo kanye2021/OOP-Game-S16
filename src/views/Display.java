@@ -38,7 +38,7 @@ public class Display extends JPanel {
     public void paintComponent(Graphics g) {
         // 	super.paintComponent(g);
         // Every refresh, tell the active view to refresh itself
-        IOMediator.getActiveView().render(g);
+        IOMediator.renderActiveView(g);
     }
 
 

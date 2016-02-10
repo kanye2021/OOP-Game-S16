@@ -36,7 +36,7 @@ public class GameView extends View {
         NavigationMediator mediator = new NavigationMediator(map, avatar);
         areaViewport.init(map,avatar);
         //gameViewController = new GameViewController(mediator);
-        viewController = gameViewController;
+//        viewController = gameViewController;
         //statusViewport = new StatusViewport(avatar);
 
 
@@ -59,13 +59,13 @@ public class GameView extends View {
         //statusViewport.render(g);
 
         if (showEquippedItems) {
-            viewController = equippedItemsViewController;
+//            viewController = equippedItemsViewController;
             EquippedItemsView.render(g);
         } else if (showInventory) {
-            viewController = inventoryViewController;
+//            viewController = inventoryViewController;
            // inventoryView.render(g);
         } else {
-            viewController = gameViewController;
+//            viewController = gameViewController;
         }
     }
 

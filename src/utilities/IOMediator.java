@@ -1,6 +1,5 @@
 package utilities;
 
-import controllers.StartMenuViewController;
 import controllers.ViewController;
 import models.Entity;
 import models.Map;
@@ -25,17 +24,13 @@ public class IOMediator {
     // the single argument that the enum takes is a new view.
     // The view's render function is mapped to the enum's render such that START_MENU.render(g) -> views.StartMenuView->render(g)
 
-    public static enum Views {
+    public enum Views {
 
         START_MENU() {
-            public void render(Graphics g) {
-                //StartMenuView.getInstance().render(g);}
-            }
-                //public ViewController getController() {
-              //  return StartMenuViewController.getInstance();
-            //}
-        },
-        CREATE_GAME() {
+            public void render(Graphics g) {StartMenuView.render(g);}
+            public ViewController getController() {return StartMenuView.getController();}
+        };
+        /*CREATE_GAME() {
             void render(Graphics g) { CreateNewGameView.render(g); }
         },
         AVATAR_CREATION() {
@@ -74,9 +69,10 @@ public class IOMediator {
         },
         GAME() {
             void render(Graphics g) { GameView.render(g); }
-        };
+        };*/
 
-        abstract void render(Graphics g);
+        public abstract void render(Graphics g);
+        public abstract ViewController getController();
 
     }
 
@@ -105,7 +101,9 @@ public class IOMediator {
         activeView = view;
     }
 
-    public static View getActiveView() {return activeView.getView(); }
+    //public static View getActiveView() {return activeView.(); }
+
+    public static void renderActiveView(Graphics g) {activeView.render(g);}
 
     public static Views getPreviousView() {
         return previousView;
@@ -117,7 +115,7 @@ public class IOMediator {
         int key = e.getKeyCode();
         if (activeView != null) {
             // If we have an active view, send key press to its controller
-            activeView.getView().getViewController().handleKeyPress(key);
+            activeView.getController().handleKeyPress(key);
         } else {
             System.out.println("no active view lol?");
         }

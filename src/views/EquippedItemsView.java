@@ -119,12 +119,12 @@ public class EquippedItemsView extends View {
             colCount++;
             // Draw slots
             g.fillRect(x, y, ITEM_SLOT, ITEM_SLOT);
-            if (((EquippedItemsViewController) viewController).getSelectedItem() == option) {
+            /*if (((EquippedItemsViewController) viewController).getSelectedItem() == option) {
                 g.setColor(secondary);
                 g.drawRect(x - 3, y - 3, ITEM_SLOT + 6, ITEM_SLOT + 6);
                 g.setColor(primary);
 
-            }
+            }*/
             // Get image path for appropiate slot
             if (option.getImagePath() != "") {
                 // Load the equipped item image image

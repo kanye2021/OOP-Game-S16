@@ -68,8 +68,7 @@ public class DeathViewController extends ViewController {
 
     MenuOptions option;
 
-    public DeathViewController(View view) {
-        super(view);
+    public DeathViewController() {
         option = MenuOptions.MAIN_MENU;
     }
 

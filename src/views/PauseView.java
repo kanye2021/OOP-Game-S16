@@ -17,16 +17,6 @@ public class PauseView extends View {
 
     private static final int ITEM_HEIGHT = 50;
 
-    private static  PauseView pauseView = new PauseView();
-    private PauseView() {}
-
-
-
-    public static void init(){
-
-    }
-
-
     public static void render(Graphics g) {
 
         BufferedImage overImage = new BufferedImage(View.B_WIDTH, View.B_HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -88,15 +78,15 @@ public class PauseView extends View {
 
         g.drawImage(overImage, (int) (View.B_WIDTH * 0.1), (int) (View.B_HEIGHT * 0.1), (int) (View.B_WIDTH * 0.8), (int) (View.B_HEIGHT * 0.8), null);
 
-        public static ViewController getController() {
+    }
 
-            return PauseViewController.getInstance();
+    public static PauseViewController getController() {
 
-        }
+        return PauseViewController.getInstance();
 
     }
 
-    static class PauseViewController extends ViewController {
+    private static class PauseViewController extends ViewController {
 
         // This enum represents the menu options available on this screen. The setView() function maps to an individual view
         // such as utilities.IOMediator.Views.GAME;
@@ -104,20 +94,20 @@ public class PauseView extends View {
         private enum MenuOptions {
             RESUME("Resume Game") {
                 protected void setView() {
-                    IOMediator.setActiveView(IOMediator.Views.GAME);
+//                    IOMediator.setActiveView(IOMediator.Views.GAME);
                 }
 
                 ;},
             //		OPTIONS("Options") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
             LOAD_GAME("Load Game") {
                 protected void setView() {
-                    IOMediator.setActiveView(IOMediator.Views.LOAD);
+//                    IOMediator.setActiveView(IOMediator.Views.LOAD);
                 }
 
                 ;},
             SAVE_GAME("Save Game") {
                 protected void setView() {
-                    IOMediator.setActiveView(IOMediator.Views.SAVE);
+//                    IOMediator.setActiveView(IOMediator.Views.SAVE);
                 }
 
                 ;},
@@ -207,7 +197,7 @@ public class PauseView extends View {
             } else if (key == KeyEvent.VK_DOWN) {
                 option = option.next();
             } else if (key == KeyEvent.VK_ESCAPE) {
-                IOMediator.setActiveView(IOMediator.Views.GAME);
+//                IOMediator.setActiveView(IOMediator.Views.GAME);
             } else if (key == KeyEvent.VK_ENTER) {
                 option.setView();
             }

@@ -25,13 +25,13 @@ public class LoadGameView extends View {
     public static void init(){
         saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
 //        File folder = new File(saveFilePath);
-        listOfSaveFiles = ((LoadGameController) viewController).getFileNames();
+//        listOfSaveFiles = ((LoadGameController) viewController).getFileNames();
         //getNewFiles();
     }
 
 
     public static void getNewFiles() { //Function is used to update the list of save files in the folder
-        listOfSaveFiles = ((LoadGameController) viewController).loadNewFolder();
+//        listOfSaveFiles = ((LoadGameController) viewController).loadNewFolder();
         System.out.println("LGV: " + listOfSaveFiles.length);
     }
 
@@ -106,7 +106,7 @@ public class LoadGameView extends View {
                     Color primaryColor;
                     Color secondaryColor;
 
-                    if (i == (((LoadGameController) viewController).getActiveOptions())) {
+                    /*if (i == (((LoadGameController) viewController).getActiveOptions())) {
                         primaryColor = Color.WHITE;
                         secondaryColor = Color.BLACK;
 
@@ -119,7 +119,7 @@ public class LoadGameView extends View {
                     g.setColor(primaryColor);
                     g.fillRect(boxX, boxY, boxDX, boxDY);
                     g.setColor(secondaryColor);
-                    g.drawString(fileName, stringX, stringY);
+                    g.drawString(fileName, stringX, stringY);*/
                 }
             }
         }

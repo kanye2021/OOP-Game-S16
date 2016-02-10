@@ -119,7 +119,7 @@ public class LoadGameController extends ViewController {
         }
 
         Load_Save.getInstance().load(fileNames[myOption].getName()); //Going to grab information from XML
-        IOMediator.setActiveView(IOMediator.Views.GAME);
+//        IOMediator.setActiveView(IOMediator.Views.GAME);
         Display.getInstance().repaint();
 
     }

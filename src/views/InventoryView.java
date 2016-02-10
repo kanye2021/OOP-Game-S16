@@ -127,7 +127,7 @@ public class InventoryView extends View {
         g2.fillRect(0, 0, ITEM_VIEW_WIDTH, ITEM_VIEW_HEIGHT);
 
 
-        InventoryViewController ivc = ((InventoryViewController) viewController);
+        /*InventoryViewController ivc = ((InventoryViewController) viewController);
         Inventory in = ivc.getInventory();
         int size = in.getSize();
 
@@ -157,6 +157,7 @@ public class InventoryView extends View {
             }
         }
         g.drawImage(overImage, ITEM_VIEW_X_START, ITEM_VIEW_Y_START, ITEM_VIEW_WIDTH, ITEM_VIEW_HEIGHT, null);
+        */
     }
 
     private static void paintIcon(Graphics g, int xpos, int ypos, ItemNode itemNode) {
@@ -201,7 +202,7 @@ public class InventoryView extends View {
         g2.setColor(new Color(25, 25, 25));
         g2.fillRect(0, 0, ITEM_VIEW_WIDTH, ITEM_VIEW_HEIGHT);
 
-        InventoryViewController ivc = ((InventoryViewController) viewController);
+        /*InventoryViewController ivc = ((InventoryViewController) viewController);
         Inventory in = ivc.getInventory();
 
         TakeableItem item = in.getItemAt(ivc.getPosition());
@@ -213,6 +214,7 @@ public class InventoryView extends View {
         paintOptions(g2, item);
 
         g.drawImage(overImage, INFO_VIEW_X_START, INFO_VIEW_Y_START, INFO_VIEW_WIDTH, INFO_VIEW_HEIGHT, null);
+        */
     }
 
 

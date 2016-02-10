@@ -437,7 +437,7 @@ public class Stats {
         if (livesLeft < 1) {
             //TODO: Implement GAME
             System.out.println("Game Over");
-            IOMediator.setActiveView(IOMediator.Views.DEATH);
+            //IOMediator.setActiveView(IOMediator.Views.DEATH);
         }
 
         health = maxHealth;

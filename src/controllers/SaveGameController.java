@@ -67,8 +67,7 @@ public class SaveGameController extends ViewController {
         return selectedOption;
     }
 
-    public SaveGameController(View view) {
-        super(view);
+    public SaveGameController() {
         selectedOption = SaveOptions.SAVE_AND_EXIT;
     }
 
@@ -82,10 +81,10 @@ public class SaveGameController extends ViewController {
             case SAVE:
                 System.out.println("SAVING GAME FROM SAVE GAME VIEW");
                 Load_Save.getInstance().save();
-                IOMediator.setActiveView(IOMediator.Views.GAME);
+//                IOMediator.setActiveView(IOMediator.Views.GAME);
                 break;
             case BACK:
-                IOMediator.setActiveView(IOMediator.Views.GAME);
+//                IOMediator.setActiveView(IOMediator.Views.GAME);
                 break;
         }
 

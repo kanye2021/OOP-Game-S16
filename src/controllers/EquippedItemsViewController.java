@@ -186,8 +186,7 @@ public class EquippedItemsViewController extends ViewController {
 
     }
 
-    public EquippedItemsViewController(View v) {
-        super(v);
+    public EquippedItemsViewController() {
         selectedItem = EquippedItemOptSelections.HEAD;
     }
 
@@ -228,10 +227,10 @@ public class EquippedItemsViewController extends ViewController {
             System.out.println("Down pressed FROM EIVC");
             selectedItem = selectedItem.next();
         } else if (key == KeyEvent.VK_ESCAPE || key == KeyEvent.VK_R) {
-            ((GameView) IOMediator.Views.GAME.getView()).setShowEquippedItems(false);
+//            ((GameView) IOMediator.Views.GAME.getView()).setShowEquippedItems(false);
         } else if (key == KeyEvent.VK_I) {
-            ((GameView) IOMediator.Views.GAME.getView()).setShowEquippedItems(false);
-            ((GameView) IOMediator.Views.GAME.getView()).setShowInventory(true);
+//            ((GameView) IOMediator.Views.GAME.getView()).setShowEquippedItems(false);
+//            ((GameView) IOMediator.Views.GAME.getView()).setShowInventory(true);
         }
 
     }

@@ -25,7 +25,6 @@ public class InventoryViewController extends ViewController {
     public Inventory inventory;
 
     public InventoryViewController(View view, Map map, Entity entity) {
-        super(view);
         this.map = map;
         this.entity = entity;
         this.inventory = entity.getInventory();
@@ -58,10 +57,10 @@ public class InventoryViewController extends ViewController {
         } else if (key == KeyEvent.VK_DOWN) {
             moveSelectedDown();
         } else if (key == KeyEvent.VK_ESCAPE || key == KeyEvent.VK_I) {
-            ((GameView) IOMediator.Views.GAME.getView()).setShowInventory(false);
+//            ((GameView) IOMediator.Views.GAME.getView()).setShowInventory(false);
         } else if (key == KeyEvent.VK_R) {
-            ((GameView) IOMediator.Views.GAME.getView()).setShowInventory(false);
-            ((GameView) IOMediator.Views.GAME.getView()).setShowEquippedItems(true);
+//            ((GameView) IOMediator.Views.GAME.getView()).setShowInventory(false);
+//            ((GameView) IOMediator.Views.GAME.getView()).setShowEquippedItems(true);
         } else if (key == KeyEvent.VK_ENTER) {
             if (inventory.isThereAnItemAt(getPosition())) {
                 useItem(inventory.getItemAt(getPosition()));

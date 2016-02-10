@@ -83,13 +83,7 @@ public class AvatarCreationViewController extends ViewController {
     }
 
     public AvatarCreationViewController() {
-        super();
-    }
-
-    public AvatarCreationViewController(View view) {
-        super(view);
         selectedOccupation = OccupationOptions.SMASHER;
-
     }
 
     public static void createAvatarAndSaveGame(String occupation) {
