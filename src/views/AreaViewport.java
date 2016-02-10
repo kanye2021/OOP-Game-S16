@@ -11,22 +11,23 @@ import models.Terrain;
 import models.area_effects.AreaEffect;
 import models.items.Item;
 import utilities.Observer;
+import utilities.Utilities;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class AreaViewport extends View implements Observer {
     private Map map;
     private Entity entity;
 
-    private String terrainBaseFilepath = "./src/res/terrain/";
-    private String decalBaseFilepath = "./src/res/decals/";
-    private String takeableItemBaseFilepath = "./src/res/items/takeable/";
-    private String oneshotItemBaseFilepath = "./src/res/items/oneshot/";
-    private String entityBaseFilepath = "./src/res/entitys/";
+    private final String terrainBaseFilepath = Utilities.getFileSystemDependentPath("./src/res/terrain/");
+    private final String decalBaseFilepath = Utilities.getFileSystemDependentPath("./src/res/decals/");
+    private final String takeableItemBaseFilepath = Utilities.getFileSystemDependentPath("./src/res/items/takeable/");
+    private final String oneshotItemBaseFilepath = Utilities.getFileSystemDependentPath("./src/res/items/oneshot/");
+    private final String entityBaseFilepath = Utilities.getFileSystemDependentPath("./src/res/entitys/");
+    private final String obstacleItemBaseFilepath = Utilities.getFileSystemDependentPath("./src/res/items/obstacle/");
+    private final String interactiveItemBaseFilepath = Utilities.getFileSystemDependentPath("./src/res/items/interactive/");
 
-    private String obstacleItemBaseFilepath = "./src/res/items/obstacle/";
-    private String interactiveItemBaseFilepath = "./src/res/items/interactive/";
     private final int AREA_WIDTH = B_WIDTH;
     private final int AREA_HEIGHT = B_HEIGHT * 4 / 5;
     private final int TILE_SIZE = 50;
@@ -41,13 +42,6 @@ public class AreaViewport extends View implements Observer {
 
         // Modify the filepaths based on the user's OS
 
-        terrainBaseFilepath = terrainBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        decalBaseFilepath = decalBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        takeableItemBaseFilepath = takeableItemBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        obstacleItemBaseFilepath = obstacleItemBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        interactiveItemBaseFilepath = interactiveItemBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        oneshotItemBaseFilepath = oneshotItemBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        entityBaseFilepath = entityBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
     }
 
     @Override
@@ -98,7 +92,7 @@ public class AreaViewport extends View implements Observer {
                 //OUT OF BOUNDS!!!!!!!!!!!!!!!!
                 if (t == null) { continue; }
 
-                ImageIcon ii = new ImageIcon(terrainBaseFilepath + t.getType() + ".png");
+                ImageIcon ii = Utilities.getImageIcon(terrainBaseFilepath + t.getType() + ".png");
 
                 Image terrainImg = ii.getImage();
                 g.drawImage(terrainImg, displayX, displayY, Display.getInstance());
@@ -125,7 +119,7 @@ public class AreaViewport extends View implements Observer {
                             break;
                     }
 
-                    ImageIcon item_icon = new ImageIcon(filePath + item.getPathToPicture());
+                    ImageIcon item_icon = Utilities.getImageIcon(filePath + item.getPathToPicture());
                     Image itemImage = item_icon.getImage();
 
                     // Center the item in the tile
@@ -137,7 +131,7 @@ public class AreaViewport extends View implements Observer {
                 // Display decals
                 Decal decal = map.getDecalAtLocation(j, i);
                 if (decal != null) {
-                    ImageIcon area_effect_icon = new ImageIcon(decalBaseFilepath + decal.getPathToFile());
+                    ImageIcon area_effect_icon = Utilities.getImageIcon(decalBaseFilepath + decal.getPathToFile());
 
                     Image areaEffectImage = area_effect_icon.getImage();
 
@@ -150,7 +144,7 @@ public class AreaViewport extends View implements Observer {
                 // Display any entitys at thi slocation
                 Entity e = map.getEntityAtLocation(j, i);
                 if (e != null) {
-                    ImageIcon avatar_icon = new ImageIcon(entityBaseFilepath + e.getImageName());
+                    ImageIcon avatar_icon = Utilities.getImageIcon(entityBaseFilepath + e.getImageName());
                     Image avatarImage = avatar_icon.getImage();
 
                     // Center the entity in the tile
