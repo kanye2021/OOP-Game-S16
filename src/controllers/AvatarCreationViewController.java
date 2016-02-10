@@ -22,19 +22,19 @@ public class AvatarCreationViewController extends ViewController {
     public enum OccupationOptions {
         SMASHER("Smasher", "specialized in hand-to-hand combat") {
             protected void selectOccupation() {
-                createAvatarAndSaveGame("smasher");
+                createAvatarAndSaveGame(Entity.Occupation.SMASHER);
             }
 
             ;},
         SUMMONER("Summoner", "specialized in spell-casting") {
             protected void selectOccupation() {
-                createAvatarAndSaveGame("summoner");
+                createAvatarAndSaveGame(Entity.Occupation.SUMMONER);
             }
 
             ;},
         SNEAK("Sneak", "specialized in ranged weapons, evading detection, finding/removing traps") {
             protected void selectOccupation() {
-                createAvatarAndSaveGame("sneak");
+                createAvatarAndSaveGame(Entity.Occupation.SNEAK);
             }
 
             ;};
@@ -82,17 +82,13 @@ public class AvatarCreationViewController extends ViewController {
         return selectedOccupation;
     }
 
-    public AvatarCreationViewController() {
-        super();
-    }
-
     public AvatarCreationViewController(View view) {
         super(view);
         selectedOccupation = OccupationOptions.SMASHER;
 
     }
 
-    public static void createAvatarAndSaveGame(String occupation) {
+    public static void createAvatarAndSaveGame(Entity.Occupation occupation) {
         // Wanna ask if ppl think this is good.
         System.out.println("Making an avatar of occupation: " + occupation);
         Entity avatar = new Avatar(occupation);

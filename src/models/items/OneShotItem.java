@@ -24,16 +24,16 @@ public class OneShotItem extends Item {
         //These things should create payloads, not statModifications. The reason is because a one shot item can do more than just modify the players stats
 
         GAIN_HEALTH("HealthOrb.png", new StatModifications(
-                new StatModification(Stats.Type.HEALTH, 5, StatModification.NumberType.POINT)
+                new StatModification(Stats.Type.CURRENT_HEALTH, 5, StatModification.NumberType.POINT)
         )),
         LOSE_HEALTH("takeable-item.png", new StatModifications(
-                new StatModification(Stats.Type.HEALTH, -5, StatModification.NumberType.POINT)
+                new StatModification(Stats.Type.CURRENT_HEALTH, -5, StatModification.NumberType.POINT)
         )),
         GAIN_MANA("ManaOrb.png", new StatModifications(
-                new StatModification(Stats.Type.MANA_LEFT, 5, StatModification.NumberType.POINT)
+                new StatModification(Stats.Type.CURRENT_MANA, 5, StatModification.NumberType.POINT)
         )),
         LOSE_MANA("takeable-item.png", new StatModifications(
-                new StatModification(Stats.Type.MANA_LEFT, -5, StatModification.NumberType.POINT)
+                new StatModification(Stats.Type.CURRENT_MANA, -5, StatModification.NumberType.POINT)
         )),
         GAIN_STRENGTH("takeable-item.png", new StatModifications(
                 new StatModification(Stats.Type.STRENGTH, 5, StatModification.NumberType.POINT)

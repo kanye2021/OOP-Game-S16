@@ -212,7 +212,7 @@ public class Load_Save {
                     if (entityNodes.getLength() > 0) {
                         Element entityElement = (Element) entityNodes.item(0);
                         //TODO: Load whatever attributes are necessary
-                        entity = new Entity();
+                        entity = new Avatar();
                     }
 
                     tiles[i][j] = new Tile(terrain, areaEffect, decal, item, entity);
@@ -251,7 +251,15 @@ public class Load_Save {
                     int y = Integer.parseInt(entity.getAttribute("location_y"));
                     avatar.updateLocation(x, y);
                     avatar.updateOrientation(entity.getAttribute("orientation"));
-                    avatar.setOccupation(entity.getAttribute("occupation"));
+                    String occupation = entity.getAttribute("occupation");
+
+                    if (occupation.equals(Entity.Occupation.SMASHER.getType())) {
+                        avatar.setOccupation(Entity.Occupation.SMASHER);
+                    } else if (occupation.equals(Entity.Occupation.SUMMONER.getType())) {
+                        avatar.setOccupation(Entity.Occupation.SUMMONER);
+                    } else if (occupation.equals(Entity.Occupation.SNEAK.getType())) {
+                        avatar.setOccupation(Entity.Occupation.SNEAK);
+                    }
 
                     loadStats(avatar.getStats(), entity); //Separate function to handle loading stats
                     loadInventory(avatar.getInventory(), entity);
@@ -417,11 +425,11 @@ public class Load_Save {
 
 
         Attr x = doc.createAttribute("location_x");
-        x.setValue(Integer.toString(e.getLocation().x));
+        x.setValue(Integer.toString(e.getLocation().y));
         type.setAttributeNode(x);
 
         Attr y = doc.createAttribute("location_y");
-        y.setValue(Integer.toString(e.getLocation().y));
+        y.setValue(Integer.toString(e.getLocation().x));
         type.setAttributeNode(y);
 
         Attr orientation = doc.createAttribute("orientation");
@@ -429,7 +437,7 @@ public class Load_Save {
         type.setAttributeNode(orientation);
 
         Attr occupation = doc.createAttribute("occupation");
-        occupation.setValue(e.getOccupation());
+        occupation.setValue(e.getOccupation().getType());
         type.setAttributeNode(occupation);
 
         //Get stats and inventory of the entity

@@ -24,7 +24,7 @@ public class IOMediator {
     // the single argument that the enum takes is a new view.
     // The view's render function is mapped to the enum's render such that START_MENU.render(g) -> views.StartMenuView->render(g)
 
-    public static enum Views {
+    public enum Views {
 
         START_MENU(new StartMenuView()) {
             void render(Graphics g) {

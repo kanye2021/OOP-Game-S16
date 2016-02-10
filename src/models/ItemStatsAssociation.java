@@ -3,7 +3,8 @@ package models;
 import models.items.TakeableItem;
 
 /**
- * Created by david on 2/4/16.
+ * Created by david
+ * on 2/4/16.
  */
 public class ItemStatsAssociation {
     //Class Variables
