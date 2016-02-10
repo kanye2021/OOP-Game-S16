@@ -109,8 +109,9 @@ public class LoadGameController extends ViewController {
             IOMediator.map = map;
 
             // Create the game view
-            GameView gameView = new GameView(map, avatar);
-            IOMediator.Views.GAME.setView(gameView);
+            //GameView gameView = new GameView(map, avatar);
+            GameView.init(map,avatar);
+//            IOMediator.Views.GAME.setView(gameView);
             // map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
         } else {
             IOMediator.getInstance().map.removeEntityFromLocation(IOMediator.getInstance().entity.getLocation()[0], IOMediator.getInstance().entity.getLocation()[1]);

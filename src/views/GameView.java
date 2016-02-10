@@ -16,31 +16,34 @@ import java.awt.*;
 // Make an enum for these sub views
 
 public class GameView extends View {
-    private AreaViewport areaViewport;
-    private StatusViewport statusViewport;
+    private static AreaViewport areaViewport;
     // Two view controllers, because we want to switch off what handles input
     // depending on If Equipped items is showing.
 
-    private ViewController gameViewController;
-    private ViewController equippedItemsViewController;
-    private ViewController inventoryViewController;
+    private static ViewController gameViewController;
+    private static ViewController equippedItemsViewController;
+    private static ViewController inventoryViewController;
     // Adding Equipped Items view as part of game View to Overlay the view
-    private EquippedItemsView equippedItemsView;
-    private InventoryView inventoryView;
-    private boolean showEquippedItems;
-    private boolean showInventory;
+    //private static EquippedItemsView equippedItemsView;
+    private static boolean showEquippedItems;
+    private static boolean showInventory;
 
-    public GameView(Map map, Entity avatar) {
+    private static GameView gameView = new GameView();
+    private GameView() {}
+
+
+    public static void init(Map map, Entity avatar){
         NavigationMediator mediator = new NavigationMediator(map, avatar);
-        areaViewport = new AreaViewport(map, avatar);
-        gameViewController = new GameViewController(this, mediator);
+        areaViewport.init(map,avatar);
+        //gameViewController = new GameViewController(mediator);
         viewController = gameViewController;
-        statusViewport = new StatusViewport(avatar);
+        //statusViewport = new StatusViewport(avatar);
 
-        equippedItemsView = new EquippedItemsView();
-        equippedItemsViewController = equippedItemsView.viewController;
-        inventoryView = new InventoryView(map, avatar);
-        inventoryViewController = inventoryView.getViewController();
+
+        EquippedItemsView.init();
+        //equippedItemsViewController = equippedItemsView.viewController;
+        //inventoryView = new InventoryView(map, avatar);
+        //inventoryViewController = inventoryView.getViewController();
         showEquippedItems = false;
         showInventory = false;
 
@@ -48,20 +51,19 @@ public class GameView extends View {
         // Set the Load_Save Singleton to the current map and avatar
         Load_Save.getInstance().setAvatar(avatar);
         Load_Save.getInstance().setGameMap(map);
-
     }
 
-    @Override
-    public void render(Graphics g) {
+
+    public static void render(Graphics g) {
         areaViewport.render(g);
-        statusViewport.render(g);
+        //statusViewport.render(g);
 
         if (showEquippedItems) {
             viewController = equippedItemsViewController;
-            equippedItemsView.render(g);
+            EquippedItemsView.render(g);
         } else if (showInventory) {
             viewController = inventoryViewController;
-            inventoryView.render(g);
+           // inventoryView.render(g);
         } else {
             viewController = gameViewController;
         }

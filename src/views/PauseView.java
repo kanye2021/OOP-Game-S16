@@ -1,8 +1,12 @@
 package views;
 
-import controllers.PauseViewController;
+//import controllers.PauseViewController;
+
+import controllers.ViewController;
+import utilities.IOMediator;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
@@ -11,15 +15,19 @@ import java.awt.image.BufferedImage;
  */
 public class PauseView extends View {
 
-    private final int ITEM_HEIGHT = 50;
+    private static final int ITEM_HEIGHT = 50;
 
-    public PauseView() {
-        super();
-        this.viewController = new PauseViewController(this);
+    private static  PauseView pauseView = new PauseView();
+    private PauseView() {}
+
+
+
+    public static void init(){
+
     }
 
-    @Override
-    public void render(Graphics g) {
+
+    public static void render(Graphics g) {
 
         BufferedImage overImage = new BufferedImage(View.B_WIDTH, View.B_HEIGHT, BufferedImage.TYPE_INT_RGB);
         Graphics g2 = overImage.getGraphics();
@@ -58,7 +66,7 @@ public class PauseView extends View {
             Color primaryColor;
             Color secondaryColor;
 
-            if (option == ((PauseViewController) viewController).getActiveItem()) {
+            if (option == (PauseViewController.getInstance().getActiveItem())) {
 
                 primaryColor = Color.WHITE;
                 secondaryColor = Color.BLACK;
@@ -79,6 +87,137 @@ public class PauseView extends View {
         }
 
         g.drawImage(overImage, (int) (View.B_WIDTH * 0.1), (int) (View.B_HEIGHT * 0.1), (int) (View.B_WIDTH * 0.8), (int) (View.B_HEIGHT * 0.8), null);
+
+        public static ViewController getController() {
+
+            return PauseViewController.getInstance();
+
+        }
+
+    }
+
+    static class PauseViewController extends ViewController {
+
+        // This enum represents the menu options available on this screen. The setView() function maps to an individual view
+        // such as utilities.IOMediator.Views.GAME;
+
+        private enum MenuOptions {
+            RESUME("Resume Game") {
+                protected void setView() {
+                    IOMediator.setActiveView(IOMediator.Views.GAME);
+                }
+
+                ;},
+            //		OPTIONS("Options") {protected void setView() {IOMediator.setActiveView(IOMediator.Views.UNIMPLEMENTED);};},
+            LOAD_GAME("Load Game") {
+                protected void setView() {
+                    IOMediator.setActiveView(IOMediator.Views.LOAD);
+                }
+
+                ;},
+            SAVE_GAME("Save Game") {
+                protected void setView() {
+                    IOMediator.setActiveView(IOMediator.Views.SAVE);
+                }
+
+                ;},
+            DAVE("Dave") {
+                protected void setView() {
+                    IOMediator.setActiveView(IOMediator.Views.START_MENU);
+                }
+
+                ;},
+            EXIT_GAME("Exit Game") {
+                protected void setView() {
+                    IOMediator.setActiveView(IOMediator.Views.START_MENU);
+                }
+
+                ;};
+
+            private String s;
+
+            protected abstract void setView();
+
+            MenuOptions(String s) {
+
+                this.s = s;
+
+            }
+
+            protected MenuOptions previous() {
+
+                if (this.ordinal() == 0) {
+
+                    return MenuOptions.values()[MenuOptions.values().length - 1];
+
+                } else {
+
+                    return MenuOptions.values()[this.ordinal() - 1];
+
+                }
+
+            }
+
+            protected MenuOptions next() {
+
+                if (this.ordinal() == MenuOptions.values().length - 1) {
+
+                    return MenuOptions.values()[0];
+
+                } else {
+
+                    return MenuOptions.values()[this.ordinal() + 1];
+
+                }
+
+            }
+
+            public String toString() {
+
+                return s;
+
+            }
+
+        }
+
+        private static MenuOptions option;
+        private static PauseViewController controller = new PauseViewController();
+
+        private PauseViewController() {
+            option = MenuOptions.RESUME;
+        }
+
+        public static PauseViewController getInstance() {
+
+            return controller;
+
+        }
+
+        protected MenuOptions getActiveItem() {
+
+            return option;
+
+        }
+
+        @Override
+        public void handleKeyPress(int key) {
+
+            if (key == KeyEvent.VK_UP) {
+                option = option.previous();
+            } else if (key == KeyEvent.VK_DOWN) {
+                option = option.next();
+            } else if (key == KeyEvent.VK_ESCAPE) {
+                IOMediator.setActiveView(IOMediator.Views.GAME);
+            } else if (key == KeyEvent.VK_ENTER) {
+                option.setView();
+            }
+
+        }
+
+        @Override
+        public void handleKeyRelease(int key) {
+
+        }
 
     }
 

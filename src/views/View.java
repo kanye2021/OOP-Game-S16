@@ -10,24 +10,21 @@ import java.awt.*;
 public abstract class View {
 
     // Constants
-    public static int B_WIDTH = 1200;
-    public static int B_HEIGHT = 812;
-    public final int TILE_SIZE = 50;
+    public static final int B_WIDTH = 1200;
+    public static final int B_HEIGHT = 812;
+    public static final int TILE_SIZE = 50;
 
-    public static Font VIEW_FONT = new Font("Helvetica", Font.BOLD, 14);
+    public static final Font VIEW_FONT = new Font("Helvetica", Font.BOLD, 14);
 
-    protected ViewController viewController;
-
-    public ViewController getViewController() {
-        return viewController;
-    }
 
     // Subclasses need to implement to render
     // e.g.
 
-    public abstract void render(Graphics g);
+    public static void render(Graphics g){
+        clear(g);
+    }
 
-    public final void clear(Graphics g) {
+    public static final void clear(Graphics g) {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, B_WIDTH, B_HEIGHT);
     }

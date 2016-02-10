@@ -1,5 +1,7 @@
 package utilities;
 
+import controllers.StartMenuViewController;
+import controllers.ViewController;
 import models.Entity;
 import models.Map;
 import views.*;
@@ -13,7 +15,6 @@ import java.awt.event.KeyEvent;
  */
 public class IOMediator {
 
-
     public static Map map;
     public static Entity entity;
 
@@ -26,82 +27,56 @@ public class IOMediator {
 
     public static enum Views {
 
-        START_MENU(new StartMenuView()) {
+        START_MENU() {
+            public void render(Graphics g) {
+                //StartMenuView.getInstance().render(g);}
+            }
+                //public ViewController getController() {
+              //  return StartMenuViewController.getInstance();
+            //}
+        },
+        CREATE_GAME() {
+            void render(Graphics g) { CreateNewGameView.render(g); }
+        },
+        AVATAR_CREATION() {
             void render(Graphics g) {
-                getView().render(g);
+                AvatarCreationView.render(g);
             }
         },
-        CREATE_GAME(new CreateNewGameView()) {
-            void render(Graphics g) {
-                getView().render(g);
-            }
+        PAUSE() {
+            void render(Graphics g) { PauseView.render(g); }
         },
-        AVATAR_CREATION(new AvatarCreationView()) {
+        UNIMPLEMENTED() {
             void render(Graphics g) {
-                ;
-            }
-        },
-        PAUSE(new PauseView()) {
-            void render(Graphics g) {
-                getView().render(g);
+
             }
         },
 
-        UNIMPLEMENTED(null) {
-            void render(Graphics g) {
-                getView().render(g);
-            }
+        DEATH() {
+            void render(Graphics g) {  DeathView.render(g);  }
         },
 
-        DEATH(new DeathView()) {
-            void render(Graphics g) {
-                getView().render(g);
-            }
-        },
-
-        LOAD(new LoadGameView()) {
+        LOAD() {
             void render(Graphics g) {
                 System.out.println("When is the view loaded");
-                getView().render(g);
+                LoadGameView.render(g);
             }
         },
-        SAVE(new SaveGameView()) {
+        SAVE() {
             void render(Graphics g) {
-                getView().render(g);
+                SaveGameView.render(g);
             }
         }, // Not sure if having map and entity in constructor is "hacky" or not
-        EXIT(null) {
+        EXIT() {
             void render(Graphics g) {
-                getView().render(g);
+
             }
         },
         GAME() {
-            void render(Graphics g) {
-                getView().render(g);
-            }
+            void render(Graphics g) { GameView.render(g); }
         };
-        // TODO: REMOVE HACKY SHIT
-//        INVENTORY() {void render(Graphics g) {getView().render(g);}};
-//        EQUIPPED_ITEMS() {void render(Graphics g) {;}};
 
         abstract void render(Graphics g);
-
-        private View view;
-
-        public View getView() {
-            return view;
-        }
-
-        public void setView(View v) {
-            view = v;
-        }
-
-        private Views() {
-        }
-
-        private Views(View view) {
-            this.view = view;
-        }
 
     }
 
@@ -130,9 +105,7 @@ public class IOMediator {
         activeView = view;
     }
 
-    public static View getActiveView() {
-        return activeView.getView();
-    }
+    public static View getActiveView() {return activeView.getView(); }
 
     public static Views getPreviousView() {
         return previousView;
@@ -149,7 +122,6 @@ public class IOMediator {
             System.out.println("no active view lol?");
         }
     }
-
 
     public void keyReleased(KeyEvent e) {
 

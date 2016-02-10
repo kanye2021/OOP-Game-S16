@@ -14,29 +14,30 @@ import java.awt.geom.Rectangle2D;
 
 public class EquippedItemsView extends View {
 
-    private final String TITLE = "Equipped Items";
-    private final String DESCRIPTION = "Press [ENTER] on your selected item to unequip";
-    private final int RECT_W = B_WIDTH / 3;
-    private final int RECT_H = B_HEIGHT / 2;
-    private final int TOP_PANE_H = B_HEIGHT / 8;
-    private final int ITEM_SLOT = (int) (((double) TILE_SIZE) * 1.5);
+    private static final String TITLE = "Equipped Items";
+    private static final String DESCRIPTION = "Press [ENTER] on your selected item to unequip";
+    private static final int RECT_W = B_WIDTH / 3;
+    private static final int RECT_H = B_HEIGHT / 2;
+    private static final int TOP_PANE_H = B_HEIGHT / 8;
+    private static final int ITEM_SLOT = (int) (((double) TILE_SIZE) * 1.5);
     // image length and width is 80% of the item slot size.
-    private final int IMG_SIZE = (int) ((double) ITEM_SLOT * .80);
-    private final int RECT_XY_OFFSET_TOP = (int) (((double) TILE_SIZE) * 1.5);
-    private final int RECT_X_OFFSET = (int) (((double) TILE_SIZE) * 1.5);
-    private final int RECT_Y_OFFSET = (int) (((double) TILE_SIZE) * 1.5) + TOP_PANE_H;
-    private Color secondary;
-    private Color primary;
-    private Color rlySmallColor;
-    private Font rlySmall;
-    private Font small;
-    private Font title;
-    private Font desc;
+    private static final int IMG_SIZE = (int) ((double) ITEM_SLOT * .80);
+    private static final int RECT_XY_OFFSET_TOP = (int) (((double) TILE_SIZE) * 1.5);
+    private static final int RECT_X_OFFSET = (int) (((double) TILE_SIZE) * 1.5);
+    private static final int RECT_Y_OFFSET = (int) (((double) TILE_SIZE) * 1.5) + TOP_PANE_H;
+    private static Color secondary;
+    private static Color primary;
+    private static Color rlySmallColor;
+    private static Font rlySmall;
+    private static Font small;
+    private static Font title;
+    private static Font desc;
+
+    private static EquippedItemsView equippedItemsView = new EquippedItemsView();
+    private EquippedItemsView() {}
 
 
-    public EquippedItemsView() {
-        super();
-        this.viewController = new EquippedItemsViewController(this);
+    public static void init(){
 
         small = new Font("Courier New", 1, 12);
         rlySmall = new Font("Courier New", Font.BOLD, 10);
@@ -49,8 +50,8 @@ public class EquippedItemsView extends View {
     }
 
 
-    @Override
-    public void render(Graphics g) {
+
+    public static void render(Graphics g) {
 
         // Draw Top Pane
         g.setColor(new Color(32, 32, 32));
@@ -84,7 +85,7 @@ public class EquippedItemsView extends View {
 
     }
 
-    private void renderSlots(Graphics g) {
+    private static void renderSlots(Graphics g) {
 
         //
         int xFirstCol = RECT_X_OFFSET + 1 * RECT_W / 4 - ITEM_SLOT / 2;

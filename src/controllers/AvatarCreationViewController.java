@@ -107,9 +107,9 @@ public class AvatarCreationViewController extends ViewController {
 //        InventoryView inventoryView = new InventoryView(map, avatar);
 //        IOMediator.Views.INVENTORY.setView(inventoryView);
 
-        GameView gameView = new GameView(map, avatar);
-        IOMediator.Views.GAME.setView(gameView);
-        IOMediator.setActiveView(IOMediator.Views.GAME);
+        //GameView gameView = new GameView(map, avatar);
+        //IOMediator.Views.GAME.setView(gameView);
+        //IOMediator.setActiveView(IOMediator.Views.GAME);
 
         // Saving
         Load_Save.getInstance().setGameMap(map);

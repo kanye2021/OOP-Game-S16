@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 /**
  * Created by Austin on 2/2/16.
  */
-public class PauseViewController extends ViewController {
+/*public class PauseViewController extends ViewController {
 
     // This enum represents the menu options available on this screen. The setView() function maps to an individual view
     // such as utilities.IOMediator.Views.GAME;
@@ -125,4 +125,4 @@ public class PauseViewController extends ViewController {
 
     }
 
-}
+}*/

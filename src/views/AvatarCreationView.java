@@ -11,17 +11,17 @@ import java.awt.geom.Rectangle2D;
  */
 public class AvatarCreationView extends View {
 
-    private final String AVATAR_CREATE_TEXT = "Please select an Occupation";
-    private String arrowFilePath = "./src/res/arrow.png";
+    private static final String AVATAR_CREATE_TEXT = "Please select an Occupation";
+    private static String arrowFilePath = "./src/res/arrow.png";
 
-    public AvatarCreationView() {
-        super();
+    private static AvatarCreationView avatarCreationView  = new AvatarCreationView();
+    private AvatarCreationView() {};
+
+    public static void init(){
         arrowFilePath = arrowFilePath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        this.viewController = new AvatarCreationViewController(this);
     }
 
-    @Override
-    public void render(Graphics g) {
+    public static void render(Graphics g) {
         clear(g); // clear the background
 
 

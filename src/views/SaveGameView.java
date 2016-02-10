@@ -10,17 +10,20 @@ import java.awt.geom.Rectangle2D;
  */
 public class SaveGameView extends View {
 
-    private final int BUTTON_WIDTH = 200;
-    private final int BUTTON_HEIGHT = 50;
-    private final int Y_OFFSET = View.B_HEIGHT / 6;
+    private static final int BUTTON_WIDTH = 200;
+    private static final int BUTTON_HEIGHT = 50;
+    private static final int Y_OFFSET = View.B_HEIGHT / 6;
 
-    public SaveGameView() {
-        super();
-        this.viewController = new SaveGameController(this);
+    private static  SaveGameView saveGameView = new SaveGameView();
+    private SaveGameView() {}
+
+
+    public static void init(){
+
     }
 
-    @Override
-    public void render(Graphics g) {
+
+    public static void render(Graphics g) {
         Font small = new Font("Helvetica", Font.BOLD, 14);
         clear(g);
 

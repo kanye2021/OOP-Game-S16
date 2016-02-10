@@ -16,69 +16,71 @@ import java.awt.image.BufferedImage;
  * Created by Austin on 2/2/16.
  */
 public class InventoryView extends View {
-    private final String ITEM_IMAGE_LOCATION = "./src/res/items/takeable/";
-    private final String FONT_USE = "Calibri (Body)";
+    private static final String ITEM_IMAGE_LOCATION = "./src/res/items/takeable/";
+    private static final String FONT_USE = "Calibri (Body)";
 
     //INVENTORY TITLE
-    private final int TITLE_START_X = (int) (super.B_WIDTH * 0.1);
-    private final int TITLE_START_Y = (int) (super.B_HEIGHT * 0.05);
-    private final int TITLE_WIDTH = (int) (super.B_WIDTH * 0.8);
-    private final int TITLE_HEIGHT = (int) (super.B_HEIGHT * 0.15);
+    private static final int TITLE_START_X = (int) (B_WIDTH * 0.1);
+    private static final int TITLE_START_Y = (int) (B_HEIGHT * 0.05);
+    private static final int TITLE_WIDTH = (int) (B_WIDTH * 0.8);
+    private static final int TITLE_HEIGHT = (int) (B_HEIGHT * 0.15);
 
 
     //INVETORY DIMENSION
-    private final int INVENTORY_VIEW_X_START = (int) (super.B_WIDTH * 0.1);
-    private final int INVENTORY_VIEW_Y_START = TITLE_START_Y + TITLE_HEIGHT;
-    private final int INVENTORY_VIEW_WIDTH = (int) (super.B_WIDTH * 0.8);
-    private final int INVENTORY_VIEW_HEIGHT = (int) (super.B_HEIGHT * 0.52);
+    private static final int INVENTORY_VIEW_X_START = (int) (B_WIDTH * 0.1);
+    private static final int INVENTORY_VIEW_Y_START = TITLE_START_Y + TITLE_HEIGHT;
+    private static final int INVENTORY_VIEW_WIDTH = (int) (B_WIDTH * 0.8);
+    private static final int INVENTORY_VIEW_HEIGHT = (int) (B_HEIGHT * 0.52);
 
     //ITEM VIEW DIMENSION
-    private final int ITEM_VIEW_X_START = INVENTORY_VIEW_X_START;
-    private final int ITEM_VIEW_Y_START = INVENTORY_VIEW_Y_START;
-    private final int ITEM_VIEW_WIDTH = INVENTORY_VIEW_WIDTH;
-    private final int ITEM_VIEW_HEIGHT = (int) (INVENTORY_VIEW_HEIGHT * 0.7);
+    private static final int ITEM_VIEW_X_START = INVENTORY_VIEW_X_START;
+    private static final int ITEM_VIEW_Y_START = INVENTORY_VIEW_Y_START;
+    private static final int ITEM_VIEW_WIDTH = INVENTORY_VIEW_WIDTH;
+    private static final int ITEM_VIEW_HEIGHT = (int) (INVENTORY_VIEW_HEIGHT * 0.7);
 
-    private final int ITEM_MARGIN = 15;
-    private int ITEM_WIDTH = (ITEM_VIEW_WIDTH - (InventoryViewController.ITEMS_PER_ROW + 1) * ITEM_MARGIN) / InventoryViewController.ITEMS_PER_ROW;
-    private int ITEM_HEIGHT = ITEM_WIDTH;
+    private static final int ITEM_MARGIN = 15;
+    private static int ITEM_WIDTH = (ITEM_VIEW_WIDTH - (InventoryViewController.ITEMS_PER_ROW + 1) * ITEM_MARGIN) / InventoryViewController.ITEMS_PER_ROW;
+    private static int ITEM_HEIGHT = ITEM_WIDTH;
 
     //INFO VIEW DIMENSION
-    private final int INFO_VIEW_X_START = INVENTORY_VIEW_X_START;
-    private final int INFO_VIEW_Y_START = ITEM_VIEW_Y_START + ITEM_VIEW_HEIGHT;
-    private final int INFO_VIEW_WIDTH = INVENTORY_VIEW_WIDTH;
-    private final int INFO_VIEW_HEIGHT = INVENTORY_VIEW_HEIGHT - ITEM_VIEW_HEIGHT;
+    private static final int INFO_VIEW_X_START = INVENTORY_VIEW_X_START;
+    private static final int INFO_VIEW_Y_START = ITEM_VIEW_Y_START + ITEM_VIEW_HEIGHT;
+    private static final int INFO_VIEW_WIDTH = INVENTORY_VIEW_WIDTH;
+    private static final int INFO_VIEW_HEIGHT = INVENTORY_VIEW_HEIGHT - ITEM_VIEW_HEIGHT;
 
-    private final int INFO_X_MARGIN = 40;
-    private final int INFO_Y_MARGIN = (int) (INFO_VIEW_HEIGHT * 0.2);
-    private final int INFO_ELEMENT_HEIGHT = (int) (INFO_VIEW_HEIGHT - INFO_Y_MARGIN * 2);
-    private final int INFO_DESCRIPTION_WIDTH = (int) (INFO_VIEW_WIDTH - 2 * INFO_ELEMENT_HEIGHT - 4 * INFO_X_MARGIN);
+    private static final int INFO_X_MARGIN = 40;
+    private static final int INFO_Y_MARGIN = (int) (INFO_VIEW_HEIGHT * 0.2);
+    private static final int INFO_ELEMENT_HEIGHT = (int) (INFO_VIEW_HEIGHT - INFO_Y_MARGIN * 2);
+    private static final int INFO_DESCRIPTION_WIDTH = (int) (INFO_VIEW_WIDTH - 2 * INFO_ELEMENT_HEIGHT - 4 * INFO_X_MARGIN);
 
-    private Font font;
-    private Font smallFont;
-    private Font largeFont;
-    private Font titleFont;
+    private static Font font;
+    private static Font smallFont;
+    private static Font largeFont;
+    private static Font titleFont;
 
-    private String takeableItemRootFilepath = "./src/res/items/takeable/";
+    private static String takeableItemRootFilepath = "./src/res/items/takeable/";
 
-    public InventoryView(Map map, Entity entity) {
-        super();
+    private static InventoryView InventoryView = new InventoryView();
+    private InventoryView() {}
+
+
+    public static void init(Map map,Entity entity){
         takeableItemRootFilepath = takeableItemRootFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        this.viewController = new InventoryViewController(this, map, entity);
+        //this.viewController = new InventoryViewController(this, map, entity);
+
         font = new Font("Courier New", 1, 24);
         smallFont = new Font("Courier New", 1, 18);
         largeFont = new Font("Courier New", 1, 40);
         titleFont = new Font("Courier New", 1, 55);
     }
 
-
-    @Override
-    public void render(Graphics g) {
+    public static void render(Graphics g) {
         renderTitle(g);
         renderItemsView(g);
         renderInfoView(g);
     }
 
-    private void renderTitle(Graphics g) {
+    private static void renderTitle(Graphics g) {
         int titleMargin = 5;
         int instMargin = 15;
 
@@ -116,7 +118,7 @@ public class InventoryView extends View {
 
     }
 
-    private void renderItemsView(Graphics g) {
+    private static void renderItemsView(Graphics g) {
         BufferedImage overImage = new BufferedImage(ITEM_VIEW_WIDTH, ITEM_VIEW_HEIGHT, BufferedImage.TYPE_INT_RGB);
         Graphics g2 = overImage.getGraphics();
 
@@ -141,7 +143,7 @@ public class InventoryView extends View {
             if (ivc.getPosition() == i) {
                 g2.setColor(Color.RED);
                 //change
-                g2.drawRect(xpos - 3, ypos - 3, this.ITEM_WIDTH + 6, this.ITEM_HEIGHT + 6);
+                g2.drawRect(xpos - 3, ypos - 3, ITEM_WIDTH + 6, ITEM_HEIGHT + 6);
             }
 
             paintIcon(g2, xpos, ypos, in.getItemNodeAt(i));
@@ -154,10 +156,10 @@ public class InventoryView extends View {
                 xpos += xPosInc;
             }
         }
-        g.drawImage(overImage, this.ITEM_VIEW_X_START, this.ITEM_VIEW_Y_START, this.ITEM_VIEW_WIDTH, this.ITEM_VIEW_HEIGHT, null);
+        g.drawImage(overImage, ITEM_VIEW_X_START, ITEM_VIEW_Y_START, ITEM_VIEW_WIDTH, ITEM_VIEW_HEIGHT, null);
     }
 
-    private void paintIcon(Graphics g, int xpos, int ypos, ItemNode itemNode) {
+    private static void paintIcon(Graphics g, int xpos, int ypos, ItemNode itemNode) {
 
         if (itemNode == null) {
             //draw empty slot
@@ -177,7 +179,7 @@ public class InventoryView extends View {
             g.setColor(Color.LIGHT_GRAY);
             g.fillRect(xpos, ypos, ITEM_WIDTH, ITEM_HEIGHT);
             ImageIcon im = new ImageIcon(ITEM_IMAGE_LOCATION + itemNode.item.getPathToPicture());
-            g.drawImage(im.getImage(), xpos, ypos, this.ITEM_WIDTH, this.ITEM_HEIGHT, null);
+            g.drawImage(im.getImage(), xpos, ypos, ITEM_WIDTH, ITEM_HEIGHT, null);
 
 
             //draw amount
@@ -188,11 +190,10 @@ public class InventoryView extends View {
             g.setColor(Color.BLACK);
             g.drawString("x" + itemNode.amount + "", xpos, ypos + (int) (fm.getHeight() * 0.8));
         }
-
     }
 
 
-    private void renderInfoView(Graphics g) {
+    private static void renderInfoView(Graphics g) {
         BufferedImage overImage = new BufferedImage(INFO_VIEW_WIDTH, INFO_VIEW_HEIGHT, BufferedImage.TYPE_INT_RGB);
         Graphics g2 = overImage.getGraphics();
 
@@ -211,11 +212,11 @@ public class InventoryView extends View {
 
         paintOptions(g2, item);
 
-        g.drawImage(overImage, this.INFO_VIEW_X_START, this.INFO_VIEW_Y_START, this.INFO_VIEW_WIDTH, this.INFO_VIEW_HEIGHT, null);
+        g.drawImage(overImage, INFO_VIEW_X_START, INFO_VIEW_Y_START, INFO_VIEW_WIDTH, INFO_VIEW_HEIGHT, null);
     }
 
 
-    private void paintSelectedIcon(Graphics g2, TakeableItem item) {
+    private static void paintSelectedIcon(Graphics g2, TakeableItem item) {
         if (item == null) {
             g2.setColor(Color.LIGHT_GRAY);
             g2.fillRect(INFO_X_MARGIN, INFO_Y_MARGIN, INFO_ELEMENT_HEIGHT, INFO_ELEMENT_HEIGHT);
@@ -227,7 +228,7 @@ public class InventoryView extends View {
         }
     }
 
-    private void paintInfo(Graphics g2, TakeableItem item) {
+    private static void paintInfo(Graphics g2, TakeableItem item) {
 
         g2.setFont(font);
         FontMetrics fm = g2.getFontMetrics();
@@ -264,7 +265,7 @@ public class InventoryView extends View {
     }
 
 
-    private void paintOptions(Graphics g2, TakeableItem item) {
+    private static void paintOptions(Graphics g2, TakeableItem item) {
 
         g2.setColor(Color.LIGHT_GRAY);
         g2.fillRect(INFO_VIEW_WIDTH - INFO_X_MARGIN - INFO_ELEMENT_HEIGHT, INFO_Y_MARGIN, INFO_ELEMENT_HEIGHT, INFO_ELEMENT_HEIGHT);

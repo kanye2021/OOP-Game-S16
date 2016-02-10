@@ -16,30 +16,28 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AreaViewport extends View implements Observer {
-    private Map map;
-    private Entity entity;
+   private static Map map;
+    private static Entity entity;
 
-    private String terrainBaseFilepath = "./src/res/terrain/";
-    private String decalBaseFilepath = "./src/res/decals/";
-    private String takeableItemBaseFilepath = "./src/res/items/takeable/";
-    private String oneshotItemBaseFilepath = "./src/res/items/oneshot/";
-    private String entityBaseFilepath = "./src/res/entitys/";
+    private static String terrainBaseFilepath = "./src/res/terrain/";
+    private static String decalBaseFilepath = "./src/res/decals/";
+    private static String takeableItemBaseFilepath = "./src/res/items/takeable/";
+    private static String oneshotItemBaseFilepath = "./src/res/items/oneshot/";
+    private static String entityBaseFilepath = "./src/res/entitys/";
 
-    private String obstacleItemBaseFilepath = "./src/res/items/obstacle/";
-    private String interactiveItemBaseFilepath = "./src/res/items/interactive/";
-    private final int AREA_WIDTH = B_WIDTH;
-    private final int AREA_HEIGHT = B_HEIGHT * 4 / 5;
-    private final int TILE_SIZE = 50;
+    private static String obstacleItemBaseFilepath = "./src/res/items/obstacle/";
+    private static String interactiveItemBaseFilepath = "./src/res/items/interactive/";
+    private static final int AREA_WIDTH = B_WIDTH;
+    private static final int AREA_HEIGHT = B_HEIGHT * 4 / 5;
+    private static final int TILE_SIZE = 50;
+
+    private static AreaViewport areaViewport = new AreaViewport();
+    private AreaViewport() {};
 
 
-    public AreaViewport(Map map, Entity entity) {
-        super();
-        this.map = map;
-        this.entity = entity;
-        map.addObserver(this);
-//        this.viewController = new controllers.GameViewController(this);
-
-        // Modify the filepaths based on the user's OS
+    public static void init(Map m, Entity e){
+        map = m;
+        entity = e;
 
         terrainBaseFilepath = terrainBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
         decalBaseFilepath = decalBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
@@ -50,8 +48,8 @@ public class AreaViewport extends View implements Observer {
         entityBaseFilepath = entityBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
     }
 
-    @Override
-    public void render(Graphics g) {
+
+    public static void render(Graphics g) {
 
         /*  There is essentially a transformation between two different coordinate systems. There is the logical coordinate
             system (the array of tiles in the map) and a visual coordinate system (what will be shown on the display).

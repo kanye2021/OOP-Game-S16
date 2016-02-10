@@ -10,27 +10,28 @@ import java.awt.geom.Rectangle2D;
 /**
  * Created by Bradley on 2/3/16.
  */
-public class StatusViewport extends View {
-    private Entity entity;
+public class StatusViewPort extends View {
+    private static Entity entity;
     // Constants representing the viepwport dimensions.
-    private final int MARGIN_HORIZONTAL = 20;
-    private final int MARGIN_VERTICAL = View.B_HEIGHT * 4 / 5 + 8;
-    private String resourceBasePath = "./src/res/etc/";
-    private Font font;
-    private Font smallFont;
-    private FontMetrics fm;
-    private int borderRadius;
+    private static final int MARGIN_HORIZONTAL = 20;
+    private static final int MARGIN_VERTICAL = View.B_HEIGHT * 4 / 5 + 8;
+    private static String resourceBasePath = "./src/res/etc/";
+    private static Font font;
+    private static Font smallFont;
+    private static FontMetrics fm;
+    private static int borderRadius;
 
-    public StatusViewport(Entity entity) {
-        this.entity = entity;
+
+    public static void init(Entity e){
+        entity = e;
         font = new Font("Courier New", 1, 24);
         smallFont = new Font("Courier New", 1, 18);
         resourceBasePath = resourceBasePath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
         borderRadius = 10;
     }
 
-    @Override
-    public void render(Graphics g) {
+
+    public static void render(Graphics g) {
         Stats stats = entity.getStats();
 
         // Display a gray background.
@@ -57,7 +58,7 @@ public class StatusViewport extends View {
         drawCenteredStats(g, stats);
     }
 
-    private void drawLevel(Graphics g, Stats stats) {
+    private static void drawLevel(Graphics g, Stats stats) {
         // Get the necessary stats
         String level = "Level: " + stats.getLevel();
 
@@ -76,7 +77,7 @@ public class StatusViewport extends View {
         g.drawString(level, levelX, levelY);
     }
 
-    private void drawLives(Graphics g, Stats stats) {
+    private static void drawLives(Graphics g, Stats stats) {
         // Get the necessary stats
         int lives = stats.getLivesLeft();
 
@@ -108,7 +109,7 @@ public class StatusViewport extends View {
         }
     }
 
-    private void drawHealthBar(Graphics g, Stats stats) {
+    private static void drawHealthBar(Graphics g, Stats stats) {
 
         // Get the necessary stats
         int health = stats.getHealth();
@@ -159,7 +160,7 @@ public class StatusViewport extends View {
         g.drawString(fraction, fractionX, fractionY);
     }
 
-    private void drawManaBar(Graphics g, Stats stats) {
+    private static void drawManaBar(Graphics g, Stats stats) {
 
         // Get the ncessary stats
         int mana = stats.getMana();
@@ -210,7 +211,7 @@ public class StatusViewport extends View {
         g.drawString(fraction, fractionX, fractionY);
     }
 
-    private void drawExperienceBar(Graphics g, Stats stats) {
+    private static void drawExperienceBar(Graphics g, Stats stats) {
 
         // Get the necessary stats
         int exp = stats.getExperience();
@@ -266,7 +267,7 @@ public class StatusViewport extends View {
     }
 
     // Displays strength agility intellect hardines
-    private void drawCenteredStats(Graphics g, Stats stats) {
+    private static void drawCenteredStats(Graphics g, Stats stats) {
         // Get the ncessary stats
         String strength = "Strength: " + stats.getStrength();
         String agility = "Agility: " + stats.getAgility();

@@ -11,24 +11,27 @@ import java.awt.geom.Rectangle2D;
  */
 public class CreateNewGameView extends View {
 
-    private final String NEW_GAME_TEXT = "Enter your save state name below please";
-    private final String SAVE_NAME_TEXT = "[Enter to save & continue]";
-    private JTextField saveStateName;
-    private boolean firstRender;
+    private static final String NEW_GAME_TEXT = "Enter your save state name below please";
+    private static final String SAVE_NAME_TEXT = "[Enter to save & continue]";
+    private static JTextField saveStateName;
+    private static boolean firstRender;
+
+    private static CreateNewGameView createNewGameView = new CreateNewGameView();
+    private CreateNewGameView() {}
 
 
-    public CreateNewGameView() {
-        super();
-        this.viewController = new CreateNewGameViewController(this);
+
+    public static void init(){
         firstRender = true;
     }
 
-    public JTextField getSaveStateName() {
+
+    public static JTextField getSaveStateName() {
         return saveStateName;
     }
 
-    @Override
-    public void render(Graphics g) {
+
+    public static void render(Graphics g) {
         clear(g); // Clear the background
 
         // Text

@@ -11,17 +11,17 @@ import java.awt.geom.Rectangle2D;
 public class DeathView extends View {
 
     //----------View Design stuff --------
-    private final int BUTTON_WIDTH = 200;
-    private final int BUTTON_HEIGHT = 50;
-    private final int START_POSITION = 100;
+    private static final int BUTTON_WIDTH = 200;
+    private static final int BUTTON_HEIGHT = 50;
+    private static final int START_POSITION = 100;
 
-    public DeathView() {
-        super();
-        this.viewController = new DeathViewController(this);
-    }
 
-    @Override
-    public void render(Graphics g) {
+
+    private static DeathView deathView = new DeathView();
+    private DeathView() {}
+
+
+    public static void render(Graphics g) {
 
         Font f = new Font("Courier New", 1, 55);
         g.setFont(f);
@@ -60,7 +60,7 @@ public class DeathView extends View {
             Color primaryColor;
             Color secondaryColor;
 
-            if (option == (((DeathViewController) this.viewController).getActiveItem())) {
+            if (option == (((DeathViewController) viewController).getActiveItem())) {
                 primaryColor = Color.WHITE;
                 secondaryColor = Color.BLACK;
 

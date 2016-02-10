@@ -11,31 +11,35 @@ import java.io.File;
  */
 public class LoadGameView extends View {
     //----------View Design stuff --------
-    private final int BUTTON_WIDTH = 200;
-    private final int BUTTON_HEIGHT = 50;
-    private final int START_POSITION = 100;
+    private static final int BUTTON_WIDTH = 200;
+    private static final int BUTTON_HEIGHT = 50;
+    private static final int START_POSITION = 100;
     //--------File Path stuff -------
-    private String saveFilePath = "src/res/save_files/";
-    private File[] listOfSaveFiles;
+    private static String saveFilePath = "src/res/save_files/";
+    private static File[] listOfSaveFiles;
 
-    public LoadGameView() {
+    private static  LoadGameView loadGameView = new LoadGameView();
+    private LoadGameView() {}
+
+
+    public static void init(){
         saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        this.viewController = new LoadGameController(this);
 //        File folder = new File(saveFilePath);
         listOfSaveFiles = ((LoadGameController) viewController).getFileNames();
         //getNewFiles();
     }
 
-    public void getNewFiles() { //Function is used to update the list of save files in the folder
-        listOfSaveFiles = ((LoadGameController) this.viewController).loadNewFolder();
+
+    public static void getNewFiles() { //Function is used to update the list of save files in the folder
+        listOfSaveFiles = ((LoadGameController) viewController).loadNewFolder();
         System.out.println("LGV: " + listOfSaveFiles.length);
     }
 
-    public void render(Graphics g) {
+    public static void render(Graphics g) {
         renderFileButtons(g);
     }
 
-    private void renderFileButtons(Graphics g) {
+    private static void renderFileButtons(Graphics g) {
 
         g.setFont(VIEW_FONT);
         FontMetrics fm = g.getFontMetrics(VIEW_FONT);
@@ -102,7 +106,7 @@ public class LoadGameView extends View {
                     Color primaryColor;
                     Color secondaryColor;
 
-                    if (i == (((LoadGameController) this.viewController).getActiveOptions())) {
+                    if (i == (((LoadGameController) viewController).getActiveOptions())) {
                         primaryColor = Color.WHITE;
                         secondaryColor = Color.BLACK;
 

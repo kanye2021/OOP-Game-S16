@@ -40,7 +40,7 @@ public class RunGame extends JFrame implements ActionListener {
     // CALLED EVERY DELAY MS
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Display.getInstance().repaint();
+        Display.getInstance().repaint();
     }
 
     public static void main(String[] args) {
