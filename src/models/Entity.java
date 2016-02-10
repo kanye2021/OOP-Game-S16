@@ -54,7 +54,7 @@ public abstract class Entity {
     }
 
     protected final StatModifications initialStats = new StatModifications(
-            new StatModification(Stats.Type.LIVES, 4, StatModification.NumberType.POINT), // Should be three but something is decrementing this
+            new StatModification(Stats.Type.LIVES, 3, StatModification.NumberType.POINT), // Should be three but something is decrementing this
             new StatModification(Stats.Type.LEVEL, 1, StatModification.NumberType.POINT),
             new StatModification(Stats.Type.AGILITY, 10, StatModification.NumberType.POINT),
             new StatModification(Stats.Type.STRENGTH, 10, StatModification.NumberType.POINT),
