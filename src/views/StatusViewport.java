@@ -1,38 +1,29 @@
-/*
 package views;
 
 import models.Entity;
 import models.Stats;
+import utilities.IOMediator;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-*/
-/**
+/*
  * Created by Bradley on 2/3/16.
- *//*
+ *
+ */
 
-public class StatusViewPort extends View {
-    private static Entity entity;
+
+public class StatusViewport extends View {
+    private static Entity entity = IOMediator.entity;
     // Constants representing the viepwport dimensions.
     private static final int MARGIN_HORIZONTAL = 20;
     private static final int MARGIN_VERTICAL = View.B_HEIGHT * 4 / 5 + 8;
     private static String resourceBasePath = "./src/res/etc/";
-    private static Font font;
-    private static Font smallFont;
+    private static final Font font = new Font("Courier New", 1, 24);
+    private static final Font smallFont = new Font("Courier New", 1, 18);
     private static FontMetrics fm;
-    private static int borderRadius;
-
-
-    public static void init(Entity e){
-        entity = e;
-        font = new Font("Courier New", 1, 24);
-        smallFont = new Font("Courier New", 1, 18);
-        resourceBasePath = resourceBasePath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        borderRadius = 10;
-    }
-
+    private static final int borderRadius = 10;
 
     public static void render(Graphics g) {
         Stats stats = entity.getStats();
@@ -368,4 +359,3 @@ public class StatusViewPort extends View {
         g.drawString(movement, speedX, speedY);
     }
 }
-*/

@@ -1,5 +1,6 @@
 package models;
 
+import utilities.IOMediator;
 import utilities.NavigationMediator;
 
 /**
@@ -19,7 +20,7 @@ public class Entity {
     protected EquippedItems equippedItems;
     protected ItemStatsAssociation avatarItemStats;
     protected int[] location;
-    protected NavigationMediator mediator;
+    protected NavigationMediator mediator = new NavigationMediator(IOMediator.map, this);
 
     public Entity() {
         // Default to smasher

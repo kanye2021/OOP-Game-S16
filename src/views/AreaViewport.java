@@ -10,6 +10,7 @@ import models.Map;
 import models.Terrain;
 import models.area_effects.AreaEffect;
 import models.items.Item;
+import utilities.IOMediator;
 import utilities.Observer;
 
 import javax.swing.*;
@@ -31,26 +32,10 @@ public class AreaViewport extends View implements Observer {
     private static final int AREA_HEIGHT = B_HEIGHT * 4 / 5;
     private static final int TILE_SIZE = 50;
 
-    private static AreaViewport areaViewport = new AreaViewport();
-    private AreaViewport() {};
-
-
-    public static void init(Map m, Entity e){
-        map = m;
-        entity = e;
-
-        terrainBaseFilepath = terrainBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        decalBaseFilepath = decalBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        takeableItemBaseFilepath = takeableItemBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        obstacleItemBaseFilepath = obstacleItemBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        interactiveItemBaseFilepath = interactiveItemBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        oneshotItemBaseFilepath = oneshotItemBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-        entityBaseFilepath = entityBaseFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-    }
-
-
     public static void render(Graphics g) {
 
+        entity = IOMediator.entity;
+        map = IOMediator.map;
         /*  There is essentially a transformation between two different coordinate systems. There is the logical coordinate
             system (the array of tiles in the map) and a visual coordinate system (what will be shown on the display).
         */

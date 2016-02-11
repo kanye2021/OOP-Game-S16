@@ -16,7 +16,7 @@ public class Avatar extends Entity {
 
     public Avatar(String occupation) {
         super(occupation);
-        mediator = new NavigationMediator(IOMediator.map, this);
+        //mediator = new NavigationMediator(IOMediator.map, this);
     }
 
     public void dropItem(TakeableItem item) {

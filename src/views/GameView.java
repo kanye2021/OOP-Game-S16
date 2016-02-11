@@ -29,18 +29,8 @@ public class GameView extends View {
     private static boolean showEquippedItems = false;
     private static boolean showInventory = false;
 
-    private static GameView gameView = new GameView();
-    private GameView() {}
-
-
     public static void init(Map map, Entity avatar){
-        areaViewport.init(map,avatar);
-        //gameViewController = new GameViewController(mediator);
-//        viewController = gameViewController;
-        //statusViewport = new StatusViewport(avatar);
-
-
-        EquippedItemsView.init();
+        //EquippedItemsView.init();
         //equippedItemsViewController = equippedItemsView.viewController;
         //inventoryView = new InventoryView(map, avatar);
         //inventoryViewController = inventoryView.getViewController();
@@ -53,9 +43,8 @@ public class GameView extends View {
 
 
     public static void render(Graphics g) {
-     System.out.println("ha");
-        areaViewport.render(g);
-        //statusViewport.render(g);
+        AreaViewport.render(g);
+        StatusViewport.render(g);
 
         /*if (showEquippedItems) {
             viewController = equippedItemsViewController;
