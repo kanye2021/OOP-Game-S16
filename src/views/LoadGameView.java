@@ -1,10 +1,18 @@
 package views;
 
-import controllers.LoadGameController;
+import controllers.ViewController;
+import models.Avatar;
+import models.Entity;
+import models.Map;
+import utilities.IOMediator;
+import utilities.Load_Save;
+import utilities.NavigationMediator;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Created by dyeung on 2/4/16.
@@ -15,25 +23,6 @@ public class LoadGameView extends View {
     private static final int BUTTON_HEIGHT = 50;
     private static final int START_POSITION = 100;
     //--------File Path stuff -------
-    private static String saveFilePath = "src/res/save_files/";
-    private static File[] listOfSaveFiles;
-
-    private static  LoadGameView loadGameView = new LoadGameView();
-    private LoadGameView() {}
-
-
-    public static void init(){
-        saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
-//        File folder = new File(saveFilePath);
-//        listOfSaveFiles = ((LoadGameController) viewController).getFileNames();
-        //getNewFiles();
-    }
-
-
-    public static void getNewFiles() { //Function is used to update the list of save files in the folder
-//        listOfSaveFiles = ((LoadGameController) viewController).loadNewFolder();
-        System.out.println("LGV: " + listOfSaveFiles.length);
-    }
 
     public static void render(Graphics g) {
         renderFileButtons(g);
@@ -50,7 +39,7 @@ public class LoadGameView extends View {
         g2d.setFont(new Font("Courier New", Font.PLAIN, 13));
 
         //no saved games to list in for loop below
-        if (listOfSaveFiles.length == 0) {
+        if (LoadGameController.getInstance().getFileNames().length == 0) {
             String message = "No Saved Games";
             Rectangle2D rectangle = fm.getStringBounds(message, g);
 
@@ -88,8 +77,8 @@ public class LoadGameView extends View {
             fm = g.getFontMetrics(VIEW_FONT);
             g.setFont(VIEW_FONT);
             //display list of files
-            for (int i = 0; i < listOfSaveFiles.length; i++) {
-                File file = listOfSaveFiles[i];
+            for (int i = 0; i < LoadGameController.getInstance().getFileNames().length; i++) {
+                File file = LoadGameController.getInstance().getFileNames()[i];
                 // Exclude .DS_Store file lol.
                 if (file.isFile() && !file.getName().equals(".DS_Store")) {
                     String fileName = file.getName();
@@ -106,7 +95,7 @@ public class LoadGameView extends View {
                     Color primaryColor;
                     Color secondaryColor;
 
-                    /*if (i == (((LoadGameController) viewController).getActiveOptions())) {
+                    if (i == LoadGameController.getInstance().getActiveOptions()) {
                         primaryColor = Color.WHITE;
                         secondaryColor = Color.BLACK;
 
@@ -119,10 +108,138 @@ public class LoadGameView extends View {
                     g.setColor(primaryColor);
                     g.fillRect(boxX, boxY, boxDX, boxDY);
                     g.setColor(secondaryColor);
-                    g.drawString(fileName, stringX, stringY);*/
+                    g.drawString(fileName, stringX, stringY);
                 }
             }
         }
+    }
+
+    public static LoadGameController getController() {
+
+        return LoadGameController.getInstance();
+
+    }
+
+    private static class LoadGameController extends ViewController {
+        File[] fileNames;
+        int myOption;
+
+        private static final String saveFilePath = "src/res/save_files/".replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
+        private static File[] listOfSaveFiles;
+
+        private static LoadGameController controller = new LoadGameController();
+
+        public static LoadGameController getInstance() {
+
+            return controller;
+
+        }
+
+        private LoadGameController() {
+
+            //saveFilePath = saveFilePath
+            loadNewFolder();
+            listOfSaveFiles = getFileNames();
+            myOption = 0;
+
+        }
+
+        private File[] loadNewFolder() {
+            File folder = new File(saveFilePath);
+            if (!folder.exists()) {
+                folder.mkdir();
+            }
+
+            File[] f = folder.listFiles();
+            // Filter files.
+            ArrayList<File> filteredFiles = new ArrayList<File>();
+            for (int i = 0; i < f.length; i++) {
+                File current = f[i];
+                // If not .DS_Store and contains .xml use it
+                if (!current.getName().equals(".DS_Store") && current.getName().contains(".xml")) {
+                    filteredFiles.add(current);
+                }
+            }
+            File[] files = new File[filteredFiles.size()];
+            fileNames = filteredFiles.toArray(files);
+            return fileNames;
+        }
+
+        protected int getActiveOptions() {
+            return myOption;
+        }
+
+        public void handleKeyPress(int key) {
+            switch (key) {
+                case KeyEvent.VK_UP:
+                    if (myOption > 0) {
+                        myOption--;
+                    }
+                    break;
+                case KeyEvent.VK_DOWN:
+                    if (myOption < fileNames.length - 1) {
+                        myOption++;
+                    }
+                    break;
+                case KeyEvent.VK_ENTER:
+                    if (fileNames.length != 0) {
+                        loadGame();
+                    }
+                    break;
+                case KeyEvent.VK_ESCAPE:
+                    IOMediator.setActiveView(IOMediator.getPreviousView());
+                    break;
+            }
+            //Needs to check the number of files just in case there is a new saved file in the folder
+            if (checkFolderList()) {
+                System.out.println("Call this");
+                loadNewFolder();
+            }
+        }
+
+        private File[] getFileNames() {
+            return fileNames;
+        }
+
+        private boolean checkFolderList() {
+            File folder = new File(saveFilePath);
+            if (folder.listFiles().length != fileNames.length) {
+                System.out.println("Mis match of files");
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        private void loadGame() {
+            if (IOMediator.map == null) { //Case if there isn't a map and avatar created (IE coming from AvatarCreationView)
+                System.out.println("New Game!");
+                Entity avatar = new Avatar();
+                Map map = new Map();
+                NavigationMediator nav = new NavigationMediator(map, avatar);
+                IOMediator.entity = avatar;
+                IOMediator.map = map;
+
+                // Create the game view
+                //GameView gameView = new GameView(map, avatar);
+                GameView.init(map,avatar);
+//            IOMediator.Views.GAME.setView(gameView);
+                // map.insertEntityAtLocation(avatar.getLocation()[0], avatar.getLocation()[1], avatar);
+            } else {
+                IOMediator.getInstance().map.removeEntityFromLocation(IOMediator.getInstance().entity.getLocation()[0], IOMediator.getInstance().entity.getLocation()[1]);
+                //Needs to remove the previous entity
+            }
+
+            Load_Save.getInstance().load(fileNames[myOption].getName()); //Going to grab information from XML
+//        IOMediator.setActiveView(IOMediator.Views.GAME);
+            Display.getInstance().repaint();
+
+        }
+
+        public void handleKeyRelease(int key) {
+
+        }
+
     }
 
 }

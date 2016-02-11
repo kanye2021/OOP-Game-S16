@@ -1,6 +1,7 @@
 package views;
 
 import controllers.ViewController;
+import utilities.IOMediator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -163,14 +164,14 @@ public class StartMenuView extends View {
         public enum MenuOptions {
             CREATE_GAME("Create Game") {
                 protected void setView() {
-                    //IOMediator.setActiveView(IOMediator.Views.CREATE_GAME);
+                    IOMediator.setActiveView(IOMediator.Views.CREATE_GAME);
                 }
 
                 ;},
 
             LOAD_GAME("Load Game") {
                 protected void setView() {
-                    //IOMediator.setActiveView(IOMediator.Views.LOAD);
+                    IOMediator.setActiveView(IOMediator.Views.LOAD);
                 }
 
                 ;},
@@ -188,7 +189,7 @@ public class StartMenuView extends View {
 
             protected abstract void setView();
 
-            private MenuOptions(String s) {
+            MenuOptions(String s) {
                 this.s = s;
             }
 
@@ -213,7 +214,7 @@ public class StartMenuView extends View {
             }
         }
 
-        private static StartMenuViewController controller = new StartMenuViewController();
+        private static final StartMenuViewController controller = new StartMenuViewController();
         private MenuOptions option;
 
         private StartMenuViewController() {

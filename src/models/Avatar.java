@@ -2,6 +2,8 @@ package models;
 
 import models.items.Item;
 import models.items.TakeableItem;
+import utilities.IOMediator;
+import utilities.NavigationMediator;
 
 /**
  * Created by sergiopuleri on 2/4/16.
@@ -14,6 +16,7 @@ public class Avatar extends Entity {
 
     public Avatar(String occupation) {
         super(occupation);
+        mediator = new NavigationMediator(IOMediator.map, this);
     }
 
     public void dropItem(TakeableItem item) {

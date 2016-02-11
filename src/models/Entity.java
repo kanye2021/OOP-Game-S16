@@ -1,5 +1,7 @@
 package models;
 
+import utilities.NavigationMediator;
+
 /**
  * Created by Bradley on 2/1/16.
  */
@@ -17,6 +19,7 @@ public class Entity {
     protected EquippedItems equippedItems;
     protected ItemStatsAssociation avatarItemStats;
     protected int[] location;
+    protected NavigationMediator mediator;
 
     public Entity() {
         // Default to smasher
@@ -26,6 +29,8 @@ public class Entity {
     public Entity(String occupation) {
         initEntity(occupation);
     }
+
+
 
     private void initEntity(String occupation) {
         this.location = new int[2];
@@ -52,6 +57,12 @@ public class Entity {
 
     public String getOccupation() {
         return this.occupation;
+    }
+
+    public NavigationMediator getNavigationMediator() {
+
+        return mediator;
+
     }
 
     public Stats getStats() {

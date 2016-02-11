@@ -1,9 +1,12 @@
 package views;
 
-import controllers.CreateNewGameViewController;
+import controllers.ViewController;
+import utilities.IOMediator;
+import utilities.Load_Save;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 
 /**
@@ -14,24 +17,17 @@ public class CreateNewGameView extends View {
     private static final String NEW_GAME_TEXT = "Enter your save state name below please";
     private static final String SAVE_NAME_TEXT = "[Enter to save & continue]";
     private static JTextField saveStateName;
-    private static boolean firstRender;
-
-    private static CreateNewGameView createNewGameView = new CreateNewGameView();
-    private CreateNewGameView() {}
-
-
-
-    public static void init(){
-        firstRender = true;
-    }
-
+    private static boolean firstRender = true;
 
     public static JTextField getSaveStateName() {
+
         return saveStateName;
+
     }
 
 
     public static void render(Graphics g) {
+
         clear(g); // Clear the background
 
         // Text
@@ -73,5 +69,49 @@ public class CreateNewGameView extends View {
 
     }
 
+    public static CreateNewGameViewController getController() {
+
+        return CreateNewGameViewController.getInstance();
+
+    }
+
+    private static class CreateNewGameViewController extends ViewController {
+
+        private static final CreateNewGameViewController controller = new CreateNewGameViewController();
+
+        public static CreateNewGameViewController getInstance() {
+
+            return controller;
+
+        }
+
+        @Override
+        public void handleKeyPress(int key) {
+
+            if (key == KeyEvent.VK_ENTER) {
+
+                String getValue = CreateNewGameView.getSaveStateName().getText();
+
+                if (getValue.isEmpty()) {
+                    System.out.println("File name is empty");
+                    getValue = "No_File_Name";
+                }
+
+                Load_Save.getInstance().setCurrentFileName(getValue + ".xml");
+
+                // Remove the JTextField from the views.Display's JPanel
+            Display.getInstance().remove(CreateNewGameView.getSaveStateName());
+            // Then proceed to avatar create view
+            IOMediator.getInstance().setActiveView(IOMediator.Views.AVATAR_CREATION);
+
+            }
+
+        }
+
+        @Override
+        public void handleKeyRelease(int key) {
+
+        }
+    }
 
 }

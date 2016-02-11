@@ -16,7 +16,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AreaViewport extends View implements Observer {
-   private static Map map;
+    private static Map map;
     private static Entity entity;
 
     private static String terrainBaseFilepath = "./src/res/terrain/";

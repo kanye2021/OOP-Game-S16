@@ -29,39 +29,34 @@ public class IOMediator {
         START_MENU() {
             public void render(Graphics g) {StartMenuView.render(g);}
             public ViewController getController() {return StartMenuView.getController();}
-        };
-        /*CREATE_GAME() {
-            void render(Graphics g) { CreateNewGameView.render(g); }
+        },
+        CREATE_GAME() {
+            public void render(Graphics g) {CreateNewGameView.render(g);}
+            public ViewController getController() {return CreateNewGameView.getController();}
         },
         AVATAR_CREATION() {
-            void render(Graphics g) {
-                AvatarCreationView.render(g);
-            }
+            public void render(Graphics g) {AvatarCreationView.render(g);}
+            public ViewController getController() {return AvatarCreationView.getController();}
         },
-        PAUSE() {
+        LOAD() {
+            public void render(Graphics g) {LoadGameView.render(g);}
+            public ViewController getController() {return LoadGameView.getController();}
+        },
+        SAVE() {
+            public void render(Graphics g) {SaveGameView.render(g);}
+            public ViewController getController() {return SaveGameView.getController();}
+        },
+        GAME() {
+            public void render(Graphics g) {GameView.render(g);}
+            public ViewController getController() {return GameView.getController();}
+        };
+        /*PAUSE() {
             void render(Graphics g) { PauseView.render(g); }
         },
-        UNIMPLEMENTED() {
-            void render(Graphics g) {
-
-            }
-        },
-
         DEATH() {
             void render(Graphics g) {  DeathView.render(g);  }
         },
-
-        LOAD() {
-            void render(Graphics g) {
-                System.out.println("When is the view loaded");
-                LoadGameView.render(g);
-            }
-        },
-        SAVE() {
-            void render(Graphics g) {
-                SaveGameView.render(g);
-            }
-        }, // Not sure if having map and entity in constructor is "hacky" or not
+         // Not sure if having map and entity in constructor is "hacky" or not
         EXIT() {
             void render(Graphics g) {
 
@@ -91,14 +86,18 @@ public class IOMediator {
 
     // Static 'instance' method
     public static IOMediator getInstance() {
+
         return ioMediator;
+
     }
 
 
     // Other methods protected by singleton-ness
     public static void setActiveView(Views view) {
+
         previousView = activeView;
         activeView = view;
+
     }
 
     //public static View getActiveView() {return activeView.(); }
