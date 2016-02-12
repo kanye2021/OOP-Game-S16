@@ -86,7 +86,10 @@ public class TakeableItem extends Item {
         DIAMOND_BODY(19, "Diamond Body", "A platebody made of diamond. Totally not stolen from Minecraft", "bronze_sword.png", ItemType.EQUIPPABLE, EquippedItems.ArmorComponent.CHEST, new StatModifications(
                 new StatModification(Stats.Type.HARDINESS, 50, StatModification.NumberType.POINT)
         )),
-        KEY_OF_KANYE(20, "Key of Kanye", "The Key required to open the Gate of Kanye", "KanyeKey.png", ItemType.NONE, null, null);
+        KEY_OF_KANYE(20, "Key of Kanye", "The Key required to open the Gate of Kanye", "KanyeKey.png", ItemType.NONE, null, null),
+        HERRING(21, "A Herring", "A delicious fish!", "/consumable/herring.png", ItemType.CONSUMABLE, null, new StatModifications(
+                new StatModification(Stats.Type.CURRENT_HEALTH, 10, StatModification.NumberType.POINT)
+        ));
 
         private int id;
         private String name;

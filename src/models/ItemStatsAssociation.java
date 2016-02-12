@@ -49,7 +49,12 @@ public class ItemStatsAssociation {
 
         }
         // Item is use-able/consumable
-        else {
+        else if (usedItem.getItemType() == TakeableItem.ItemType.CONSUMABLE){
+
+            usedItem.modifyStats(avatar);
+            avatarInventory.removeItem(usedItem);
+
+        } else {
             //TODO: consume the item or s/t
         }
 

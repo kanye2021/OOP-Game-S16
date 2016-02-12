@@ -5137,9 +5137,11 @@
         </tile>
         <tile>
             <terrain type="grass"/>
+            <item id="21" type="take-able"/>
         </tile>
         <tile>
             <terrain type="grass"/>
+            <item id="11" type="take-able"/>
         </tile>
         <tile>
             <terrain type="grass"/>
