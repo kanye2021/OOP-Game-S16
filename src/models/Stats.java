@@ -41,7 +41,7 @@ public class Stats {
     private TimerTask currentTask;
     private String lastTaskType;
 
-    public static enum Type {
+    public enum Type {
 
         LIVES("Lives left") {
             public void modify(Entity entity, int delta) {entity.getStats().modifyLivesLeft(delta);}
@@ -277,8 +277,6 @@ public class Stats {
         IOMediator.setActiveView(IOMediator.Views.GAME);
         livesLeft--;
         if (livesLeft < 1) {
-            //TODO: Implement GAME
-            System.out.println("Game Over");
             IOMediator.setActiveView(IOMediator.Views.DEATH);
         }
 
@@ -322,7 +320,6 @@ public class Stats {
         Display.getInstance().repaint();
     }
 
-    // TODO: Test with item that increases exprience
     public void modifyExperience(final int delta) {
         // Increases experience gradually so it "fills" the bar
         final int stopAtExp = experience + delta;

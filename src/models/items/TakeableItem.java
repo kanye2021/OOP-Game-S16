@@ -62,16 +62,16 @@ public class TakeableItem extends Item {
         DIAMOND_HELM(11, "Diamond Helm", "A helm made of diamond. Totally not stolen from Minecraft", "/armor/head/DiamondHelm.png", ItemType.EQUIPPABLE, EquippedItems.ArmorComponent.HEAD, new StatModifications(
                 new StatModification(Stats.Type.HARDINESS, 50, StatModification.NumberType.POINT)
         )),
-        WOOD_LEGS(12, "Wood Legs", "A plateleg made of wood", "/armor/legs/WoodPlatelegs.png", ItemType.EQUIPPABLE, EquippedItems.ArmorComponent.GREAVES, new StatModifications(
+        WOOD_GREAVES(12, "Wood Legs", "A plateleg made of wood", "/armor/legs/WoodPlatelegs.png", ItemType.EQUIPPABLE, EquippedItems.ArmorComponent.GREAVES, new StatModifications(
                 new StatModification(Stats.Type.HARDINESS, 5, StatModification.NumberType.POINT)
         )),
-        IRON_LEGS(13, "Iron Legs", "A plateleg made of iron", "/armor/legs/IronPlatelegs.png", ItemType.EQUIPPABLE, EquippedItems.ArmorComponent.GREAVES, new StatModifications(
+        IRON_GREAVES(13, "Iron Legs", "A plateleg made of iron", "/armor/legs/IronPlatelegs.png", ItemType.EQUIPPABLE, EquippedItems.ArmorComponent.GREAVES, new StatModifications(
                 new StatModification(Stats.Type.HARDINESS, 10, StatModification.NumberType.POINT)
         )),
-        STEEL_LEGS(14, "Steel Legs", "A plateleg made of steel", "/armor/legs/SteelPlatelegs.png", ItemType.EQUIPPABLE, EquippedItems.ArmorComponent.GREAVES, new StatModifications(
+        STEEL_GREAVES(14, "Steel Legs", "A plateleg made of steel", "/armor/legs/SteelPlatelegs.png", ItemType.EQUIPPABLE, EquippedItems.ArmorComponent.GREAVES, new StatModifications(
                 new StatModification(Stats.Type.HARDINESS, 20, StatModification.NumberType.POINT)
         )),
-        DIAMOND_LEGS(15, "Diamond Legs", "A plateleg made of diamond. Totally not stolen from Minecraft", "/armor/legs/DiamondPlatelegs.png", ItemType.EQUIPPABLE, EquippedItems.ArmorComponent.GREAVES, new StatModifications(
+        DIAMOND_GREAVES(15, "Diamond Legs", "A plateleg made of diamond. Totally not stolen from Minecraft", "/armor/legs/DiamondPlatelegs.png", ItemType.EQUIPPABLE, EquippedItems.ArmorComponent.GREAVES, new StatModifications(
                 new StatModification(Stats.Type.HARDINESS, 50, StatModification.NumberType.POINT)
         )),
         WOOD_BODY(16, "Wood Body", "A platebody made of wood", "bronze_sword.png", ItemType.EQUIPPABLE, EquippedItems.ArmorComponent.CHEST, new StatModifications(
