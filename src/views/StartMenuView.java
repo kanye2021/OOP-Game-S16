@@ -1,6 +1,7 @@
 package views;
 
 import controllers.StartMenuViewController;
+import utilities.Utilities;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -16,6 +17,7 @@ public class StartMenuView extends View {
     //title
     private final String TITLE = "Kanye 2020";
     private final Font TITLE_FONT = new Font("Brush Script MT", Font.BOLD, 100);
+    private static final String START_MENU_IMAGE_LOCATION = Utilities.getFileSystemDependentPath("./src/res/start_menu/");
 
     private final int TITLE_BUTTON_MARGIN = (int) (B_HEIGHT * 0.15);
 
