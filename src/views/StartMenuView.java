@@ -3,6 +3,7 @@ package views;
 import controllers.StartMenuViewController;
 import utilities.Utilities;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
@@ -37,20 +38,79 @@ public class StartMenuView extends View {
         renderButtons(g);
 
         Toolkit.getDefaultToolkit().sync();
+
     }
 
 
     private void renderBackground(Graphics g) {
-        clear(g);
+        int x = 0;
+        int y = 0;
+        int width = B_WIDTH;
+        int height = B_HEIGHT;
+
+        //draw background
+        ImageIcon im = Utilities.getImageIcon(START_MENU_IMAGE_LOCATION + "backGround.jpg");
+        g.drawImage(im.getImage(),x,y,width,height,null);
+
+
+        //draw back crowd
+        im = new ImageIcon(START_MENU_IMAGE_LOCATION + "crowd.png");
+        x = 0;
+        y = B_HEIGHT*55/100;
+        width = B_WIDTH;
+        height = B_HEIGHT*2/5;
+        g.drawImage(im.getImage(),x,y,width,height,null);
+
+        //draw Kanye
+        im = new ImageIcon(START_MENU_IMAGE_LOCATION + "Kanye.png");
+        x = 0;
+        y = B_HEIGHT*3/10;
+        width = B_WIDTH*6/10;
+        height = B_HEIGHT*6/10;
+        g.drawImage(im.getImage(),x,y,width,height,null);
+
+        //draw front crowd
+        im = new ImageIcon(START_MENU_IMAGE_LOCATION + "crowd.png");
+        x = 0;
+        y = B_HEIGHT*6/10;
+        width = B_WIDTH*15/10;
+        height = B_HEIGHT*6/10;
+        g.drawImage(im.getImage(),x,y,width,height,null);
     }
 
+    static int pos = 0;
+    static boolean increment = true;
     private void renderTitle(Graphics g) {
-        g.setColor(new Color(255, 255, 255));
 
         g.setFont(TITLE_FONT);
         FontMetrics fm = g.getFontMetrics();
+        int titleWidth = fm.stringWidth(TITLE);
+        int x = View.B_WIDTH / 2 - titleWidth / 2;
+        int y = fm.getHeight();
 
-        g.drawString("Kanye 2020", View.B_WIDTH / 2 - fm.stringWidth(TITLE) / 2, fm.getHeight());
+
+        Graphics2D g2 = (Graphics2D)g;
+
+        GradientPaint gradient = new GradientPaint (
+                x, y, Color.RED,
+                x + titleWidth -  pos, y, Color.blue);
+
+        if(pos >= titleWidth){
+            increment = false;
+        } else if(pos <= -titleWidth*8/10){
+            increment = true;
+        }
+        pos += 10*((increment)? 1: -1);
+
+
+        g2.setPaint(gradient);
+
+        g2.drawString(TITLE, x, y);
+    }
+
+
+    static private Color randomColor(){
+        return new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
     }
 
     private void renderButtons(Graphics g) {
@@ -84,7 +144,6 @@ public class StartMenuView extends View {
                 secondaryColor = Color.WHITE;
 
             }
-
             g.setColor(primaryColor);
             g.fillRect(boxX, boxY, boxDX, boxDY);
             g.setColor(secondaryColor);
