@@ -4,7 +4,7 @@ Objected Oriented Programming Spring 2016, Iteration 1.
 **Team KANYE 2020**
 - Sergio Puleri
 - Bradley Treuherz
-- Denzel Mathews
+- Denzel Mathew
 - Ben Chen
 - David Peguero
 - Austin Seber
