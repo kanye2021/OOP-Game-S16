@@ -41,137 +41,55 @@ public class Stats {
     private TimerTask currentTask;
     private String lastTaskType;
 
-    public static enum Type {
+    public enum Type {
 
-        LIVES_LEFT("Lives left") {
-            public void modify(Entity entity, int delta) {
-                entity.getStats().modifyLivesLeft(delta);
-            }
-
-            ;
-
-            public int get(Entity entity) {
-                return entity.getStats().getLivesLeft();
-            }
-
-            ;
+        LIVES("Lives left") {
+            public void modify(Entity entity, int delta) {entity.getStats().modifyLivesLeft(delta);}
+            public int get(Entity entity) {return entity.getStats().getLivesLeft();}
         },
-        HEALTH("Life left") {
-            public void modify(Entity entity, int delta) {
-                entity.getStats().modifyHealth(delta);
-            }
-
-            ;
-
-            public int get(Entity entity) {
-                return entity.getStats().getHealth();
-            }
-
-            ;
+        /*MAX_HEALTH("Max Health") {
+            public void modify(Entity avatar, int delta) {avatar.getStats().modifyH (delta);}
+            public int get(Entity avatar) {return avatar.getStats().getHealth();}
         },
-        MANA_LEFT("Mana left") {
-            public void modify(Entity entity, int delta) {
-                entity.getStats().modifymana(delta);
-            }
-
-            ;
-
-            public int get(Entity entity) {
-                return entity.getStats().getMana();
-            }
-
-            ;
+        MAX_MANA("Max Mana") {
+            public void modify(Entity avatar, int delta) {avatar.getStats().modifyMana(delta);}
+            public int get(Entity avatar) {return avatar.getStats().getMana();}
+        },*/
+        CURRENT_HEALTH("Current Health") {
+            public void modify(Entity entity, int delta) {entity.getStats().modifyHealth(delta);}
+            public int get(Entity entity) {return entity.getStats().getHealth();}
+        },
+        CURRENT_MANA("Current Mana") {
+            public void modify(Entity entity, int delta) {entity.getStats().modifyMana(delta);}
+            public int get(Entity entity) {return entity.getStats().getMana();}
         },
         EXPERIENCE("Experience") {
-            public void modify(Entity entity, int delta) {
-                entity.getStats().modifyExperience(delta);
-            }
-
-            ;
-
-            public int get(Entity entity) {
-                return entity.getStats().getExperience();
-            }
-
-            ;
+            public void modify(Entity entity, int delta) {entity.getStats().modifyExperience(delta);}
+            public int get(Entity entity) {return entity.getStats().getExperience();}
         },
         MOVEMENT("Movement") {
-            public void modify(Entity entity, int delta) {
-                entity.getStats().actuallyModifyMovement(delta);
-            }
-
-            ;
-
-            public int get(Entity entity) {
-                return entity.getStats().getMovement();
-            }
-
-            ;
+            public void modify(Entity entity, int delta) {entity.getStats().modifyMovement(delta);}
+            public int get(Entity entity) {return entity.getStats().getMovement();}
         },
         LEVEL("Level") {
-            public void modify(Entity entity, int delta) {
-                entity.getStats().modifyLevel(delta);
-            }
-
-            ;
-
-            public int get(Entity entity) {
-                return entity.getStats().getLevel();
-            }
-
-            ;
+            public void modify(Entity entity, int delta) {entity.getStats().modifyLevel(delta);}
+            public int get(Entity entity) {return entity.getStats().getLevel();}
         },
         STRENGTH("Strength") {
-            public void modify(Entity entity, int delta) {
-                entity.getStats().modifyStrength(delta);
-            }
-
-            ;
-
-            public int get(Entity entity) {
-                return entity.getStats().getStrength();
-            }
-
-            ;
+            public void modify(Entity entity, int delta) {entity.getStats().modifyStrength(delta);}
+            public int get(Entity entity) {return entity.getStats().getStrength();}
         },
         AGILITY("Agility") {
-            public void modify(Entity entity, int delta) {
-                entity.getStats().modifyAgility(delta);
-            }
-
-            ;
-
-            public int get(Entity entity) {
-                return entity.getStats().getAgility();
-            }
-
-            ;
+            public void modify(Entity entity, int delta) {entity.getStats().modifyAgility(delta);}
+            public int get(Entity entity) {return entity.getStats().getAgility();}
         },
         INTELLECT("Intellect") {
-            public void modify(Entity entity, int delta) {
-                entity.getStats().modifyIntellect(delta);
-            }
-
-            ;
-
-            public int get(Entity entity) {
-                return entity.getStats().getIntellect();
-            }
-
-            ;
+            public void modify(Entity entity, int delta) {entity.getStats().modifyIntellect(delta);}
+            public int get(Entity entity) {return entity.getStats().getIntellect();}
         },
         HARDINESS("Hardiness") {
-            public void modify(Entity entity, int delta) {
-                entity.getStats().modifyHardiness(delta);
-            }
-
-            ;
-
-            public int get(Entity entity) {
-                return entity.getStats().getHardiness();
-            }
-
-            ;
+            public void modify(Entity entity, int delta) {entity.getStats().modifyHardiness(delta);}
+            public int get(Entity entity) {return entity.getStats().getHardiness();}
         };
 
         private String s;
@@ -180,7 +98,7 @@ public class Stats {
 
         public abstract int get(Entity entity);
 
-        private Type(String s) {
+        Type(String s) {
 
             this.s = s;
 
@@ -192,83 +110,6 @@ public class Stats {
 
         }
 
-    }
-
-    public Stats() {
-
-        // Init primary stats
-        livesLeft = 3;
-        strength = 10;
-        agility = 12;
-        intellect = 10;
-        hardiness = 10;
-        experience = 0;
-        movement = 10;
-
-        // Set up necessary parameters
-        maxHealth = hardiness + level;
-        maxMana = intellect + level;
-        weaponModifier = 0;
-        armorModifier = 0;
-        expReqLvUp = 100;
-        lastLvlExpReq = 0;
-
-
-        // Derived stats
-        level = 1;
-        health = maxHealth;
-        mana = maxMana;
-        offensiveRating = weaponModifier + strength + level;
-        defensiveRating = agility + level;
-        armorRating = armorModifier + hardiness;
-
-        currentTask = null;
-        lastTaskType = "";
-
-    }
-
-    public Stats(String occupation) {//Initializes the original stats from occupation
-
-        // Set up the stats that are not dependent on occupation
-        livesLeft = 3;
-        experience = 0;
-        experience = 0;
-        movement = 10;
-
-        if (occupation == "smasher") {
-            strength = 20;
-            agility = 10;
-            intellect = 10;
-            hardiness = 15;
-        } else if (occupation == "summoner") {
-            strength = 10;
-            agility = 5;
-            intellect = 20;
-            hardiness = 15;
-        } else if (occupation == "sneak") {
-            strength = 15;
-            agility = 20;
-            intellect = 10;
-            hardiness = 5;
-        }
-
-        // Set up necessary parameters
-        maxHealth = hardiness + level;
-        maxMana = intellect + level;
-        weaponModifier = 0;
-        armorModifier = 0;
-        expReqLvUp = 100;
-        lastLvlExpReq = 0;
-
-        // Derived stats
-        level = 1;
-        health = maxHealth;
-        mana = maxMana;
-        offensiveRating = weaponModifier + strength + level;
-        defensiveRating = agility + level;
-        armorRating = armorModifier + hardiness;
-
-        currentTask = null;
     }
 
     //Loaders for Stats
@@ -432,15 +273,19 @@ public class Stats {
 
 
     // Mutator for primary stats
-    public void modifyLivesLeft(int delta) {
+    public void decrementLives() {
+        IOMediator.setActiveView(IOMediator.Views.GAME);
         livesLeft--;
         if (livesLeft < 1) {
-            //TODO: Implement GAME
-            System.out.println("Game Over");
             IOMediator.setActiveView(IOMediator.Views.DEATH);
         }
 
         health = maxHealth;
+        Display.getInstance().repaint();
+    }
+
+    public void modifyLivesLeft(int delta) {
+        livesLeft += delta;
         Display.getInstance().repaint();
     }
 
@@ -475,7 +320,6 @@ public class Stats {
         Display.getInstance().repaint();
     }
 
-    // TODO: Test with item that increases exprience
     public void modifyExperience(final int delta) {
         // Increases experience gradually so it "fills" the bar
         final int stopAtExp = experience + delta;
@@ -516,6 +360,7 @@ public class Stats {
     public void modifyMovement(int delta) {
 
         movement = movement + delta;
+        movement = Math.max(movement, 0);
         Display.getInstance().repaint();
     }
 
@@ -537,7 +382,7 @@ public class Stats {
         modifyHardiness(prizes);
         modifyMovement(prizes);
         modifyHealth(maxHealth);
-        modifymana(maxMana);
+        modifyMana(maxMana);
         lastLvlExpReq = expReqLvUp;
         expReqLvUp = expReqLvUp + 100;
         experience = lastLvlExpReq;
@@ -572,7 +417,7 @@ public class Stats {
                     }
                     if (health + increment <= 0) {
                         health = maxHealth;
-                        modifyLivesLeft(-1);
+                        decrementLives();
                     }
                     Display.getInstance().repaint();
                     this.cancel();
@@ -588,7 +433,7 @@ public class Stats {
     }
 
     // TODO: Test this with something that modifys mana.
-    public void modifymana(final int delta) {
+    public void modifyMana(final int delta) {
         final int stopAtMana = mana + delta;
         int sign = delta > 0 ? 1 : -1;
         final int increment = sign * (maxMana) / 10;
@@ -628,13 +473,6 @@ public class Stats {
         // scheduling the task at fixed rate delay
         int delay = 75;
         timer.scheduleAtFixedRate(currentTask, 100, delay);
-    }
-
-    public void actuallyModifyMovement(int delta) {
-
-        movement = this.getMovement() + delta;
-        movement = Math.max(movement, 0);
-
     }
 
     //derived status or ones that require a formula to calculate

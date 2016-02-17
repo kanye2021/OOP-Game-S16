@@ -1,6 +1,7 @@
 package views;
 
 import controllers.LoadGameController;
+import utilities.Utilities;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -15,11 +16,10 @@ public class LoadGameView extends View {
     private final int BUTTON_HEIGHT = 50;
     private final int START_POSITION = 100;
     //--------File Path stuff -------
-    private String saveFilePath = "src/res/save_files/";
+    private String saveFilePath = Utilities.getFileSystemDependentPath("src/res/save_files/");
     private File[] listOfSaveFiles;
 
     public LoadGameView() {
-        saveFilePath = saveFilePath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
         this.viewController = new LoadGameController(this);
 //        File folder = new File(saveFilePath);
         listOfSaveFiles = ((LoadGameController) viewController).getFileNames();

@@ -6,6 +6,7 @@ import models.Terrain;
 import models.area_effects.AreaEffect;
 import models.items.Item;
 
+import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -35,18 +36,18 @@ public class NavigationMediator {
             return;
         }
 
-        // Assumes the entity has a location of the form int[] = {x, y}
-        int[] currentLocation = entity.getLocation();
+        // Assumes the avatar has a location of the form int[] = {x, y}
+        Point currentLocation = entity.getLocation();
 
-        // Update the entity's orientation;
+        // Update the avatar's orientation;
         entity.updateOrientation(direction);
 
 
         //-------------------------------Determine where we are trying to move---------------------------------------
 
         // The location desired to be moved to will be initialized to the current location.
-        int desiredX = currentLocation[0];
-        int desiredY = currentLocation[1];
+        int desiredX = currentLocation.y;
+        int desiredY = currentLocation.x;
 
         switch (direction) {
             case "N":
@@ -95,7 +96,7 @@ public class NavigationMediator {
         }
 
 
-        // Check to see if there is another entity blocking the path.
+        // Check to see if there is another avatar blocking the path.
         Entity entityOnTile = map.getEntityAtLocation(desiredX, desiredY);
         if (entityOnTile != null) {
             return;
@@ -104,27 +105,45 @@ public class NavigationMediator {
 
         // Check to see if there is an obstacle
         Item item = map.getItemAtLocation(desiredX, desiredY);
-        if (item != null && item.getType().equals(Item.Type.OBSTACLE)) {
-            return;
-        }
-        //Checks to see if there is an interactive item that also has not fulfilled the conditions
-        if (item != null && item.equalsType(Item.Type.INTERACTIVE) && !item.onTouch(entity)) {
-            return;
+
+        if (item != null) {
+
+            if (item.getType().equals(Item.Type.OBSTACLE)) {
+
+                return;
+
+            }
+
+            if (item.equalsType(Item.Type.INTERACTIVE)) {
+
+                if (!item.onTouch(entity)) {
+
+                    return;
+
+                } else {
+
+                    System.out.println("KILL ME");
+                    map.removeItemFromLocation(currentLocation.x, currentLocation.y);
+
+                }
+
+            }
+
         }
         //----------------------If we got here we are okay to move so lets do it!----------------------------------
 
-        // Remove the entity from it's current location and put it in the new one.
-        map.removeEntityFromLocation(currentLocation[0], currentLocation[1]);
+        // Remove the avatar from it's current location and put it in the new one.
+        map.removeEntityFromLocation(currentLocation.y, currentLocation.x);
         map.insertEntityAtLocation(desiredX, desiredY, entity);
 
         entity.moveTo(desiredX, desiredY, direction);
         canMove = false;
 
-        // Set a timer to determine when the entity can move again.
-        // The delay is inversely proportionaly to the entity's movement statgs
+        // Set a timer to determine when the avatar can move again.
+        // The delay is inversely proportional to the avatar's movement stats
         int delay = 100 - (entity.getStats().getMovement() / 5);
 
-        // If the delay is less than 0, the entity defaults to the fastest movement of 5ms.
+        // If the delay is less than 0, the avatar defaults to the fastest movement of 5ms.
         delay = delay > 0 ? delay : 5;
         timer.schedule(new TimerTask() {
             @Override
@@ -146,7 +165,7 @@ public class NavigationMediator {
         if (item != null) {
             boolean questFinished = item.onTouch(entity);
             if (questFinished) {
-                map.removeItemFromLocation(currentLocation[0], currentLocation[1]);
+                map.removeItemFromLocation(currentLocation.y, currentLocation.x);
             }
         }
 

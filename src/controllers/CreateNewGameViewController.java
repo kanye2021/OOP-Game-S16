@@ -45,7 +45,8 @@ public class CreateNewGameViewController extends ViewController {
             // Then proceed to avatar create view
             IOMediator.getInstance().setActiveView(IOMediator.Views.AVATAR_CREATION);
 
-        } else {
+        } else if (key == KeyEvent.VK_ESCAPE){
+            IOMediator.setActiveView(IOMediator.Views.START_MENU);
 //            System.out.println("invalid key press FROM CREATE NEW VC");
         }
 

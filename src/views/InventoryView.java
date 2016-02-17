@@ -6,6 +6,7 @@ import models.Inventory;
 import models.Inventory.ItemNode;
 import models.Map;
 import models.items.TakeableItem;
+import utilities.Utilities;
 
 import javax.swing.*;
 import java.awt.*;
@@ -58,11 +59,10 @@ public class InventoryView extends View {
     private Font largeFont;
     private Font titleFont;
 
-    private String takeableItemRootFilepath = "./src/res/items/takeable/";
+    private final String takeableItemRootFilepath = Utilities.getFileSystemDependentPath("./src/res/items/takeable/");
 
     public InventoryView(Map map, Entity entity) {
         super();
-        takeableItemRootFilepath = takeableItemRootFilepath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
         this.viewController = new InventoryViewController(this, map, entity);
         font = new Font("Courier New", 1, 24);
         smallFont = new Font("Courier New", 1, 18);
@@ -176,7 +176,7 @@ public class InventoryView extends View {
             //draw pic
             g.setColor(Color.LIGHT_GRAY);
             g.fillRect(xpos, ypos, ITEM_WIDTH, ITEM_HEIGHT);
-            ImageIcon im = new ImageIcon(ITEM_IMAGE_LOCATION + itemNode.item.getPathToPicture());
+            ImageIcon im = Utilities.getImageIcon(ITEM_IMAGE_LOCATION + itemNode.item.getPathToPicture());
             g.drawImage(im.getImage(), xpos, ypos, this.ITEM_WIDTH, this.ITEM_HEIGHT, null);
 
 

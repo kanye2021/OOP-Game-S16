@@ -2,6 +2,7 @@ package models;
 
 import models.items.Item;
 import models.items.TakeableItem;
+import utilities.conditions.Condition;
 
 /**
  * Created by sergiopuleri on 2/4/16.
@@ -9,10 +10,10 @@ import models.items.TakeableItem;
 public class Avatar extends Entity {
 
     public Avatar() {
-
+        super(Occupation.SMASHER);
     }
 
-    public Avatar(String occupation) {
+    public Avatar(Entity.Occupation occupation) {
         super(occupation);
     }
 
@@ -33,4 +34,11 @@ public class Avatar extends Entity {
     public void equipItem(Item item) {
         //TODO: equipped items
     }
+
+    public int getID() {
+
+        return 1000;
+
+    }
+
 }

@@ -4,6 +4,7 @@ import models.area_effects.AreaEffect;
 import models.items.Item;
 import utilities.Load_Save;
 import utilities.Observable;
+import utilities.Utilities;
 import views.Decal;
 
 /**
@@ -14,12 +15,11 @@ public class Map extends Observable {
     public Tile[][] tiles;
     private int mapWidth;
     private int mapHeight;
-    private String defaultMap = "./src/res/maps/default_map.xml";
+    private static final String defaultMap = Utilities.getFileSystemDependentPath("./src/res/maps/default_map.xml");
     private int changedX;
     private int changedY;
 
     public Map() {
-        defaultMap = defaultMap.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
         Load_Save.getInstance().loadMap(this, defaultMap); //whenever it is initialized, the default map will be loaded
     }
 

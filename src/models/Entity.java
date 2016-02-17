@@ -1,48 +1,100 @@
 package models;
 
+import utilities.StatModification;
+import utilities.StatModifications;
+
+import java.awt.*;
+
 /**
- * Created by Bradley on 2/1/16.
+ * Created by Bradley
+ * on 2/1/16.
  */
 
-public class Entity {
+public abstract class Entity {
 
-    protected final int START_X = 24;
-    protected final int START_Y = 35;
+    public enum Occupation {
+
+        SMASHER("Smasher", new StatModifications(
+                new StatModification(Stats.Type.STRENGTH, 10, StatModification.NumberType.POINT),
+                new StatModification(Stats.Type.HARDINESS, 5, StatModification.NumberType.POINT)
+        )),
+        SUMMONER("Summoner", new StatModifications(
+                new StatModification(Stats.Type.AGILITY, -5, StatModification.NumberType.POINT),
+                new StatModification(Stats.Type.INTELLECT, 10, StatModification.NumberType.POINT),
+                new StatModification(Stats.Type.HARDINESS, 5, StatModification.NumberType.POINT)
+        )),
+        SNEAK("Sneak", new StatModifications(
+                new StatModification(Stats.Type.STRENGTH, 5, StatModification.NumberType.POINT),
+                new StatModification(Stats.Type.AGILITY, 10, StatModification.NumberType.POINT),
+                new StatModification(Stats.Type.HARDINESS, -5, StatModification.NumberType.POINT)
+        ));
+
+        private String s;
+        private StatModifications modifications;
+
+        private Occupation(String s, StatModifications modifications) {
+
+            this.s = s;
+            this.modifications = modifications;
+
+        }
+
+        public String getType() {
+
+            return s;
+
+        }
+
+        public StatModifications getStatModifications() {
+
+            return modifications;
+
+        }
+
+    }
+
+    protected final StatModifications initialStats = new StatModifications(
+            new StatModification(Stats.Type.LIVES, 3, StatModification.NumberType.POINT),
+            new StatModification(Stats.Type.LEVEL, 1, StatModification.NumberType.POINT),
+            new StatModification(Stats.Type.AGILITY, 10, StatModification.NumberType.POINT),
+            new StatModification(Stats.Type.STRENGTH, 10, StatModification.NumberType.POINT),
+            new StatModification(Stats.Type.INTELLECT, 10, StatModification.NumberType.POINT),
+            new StatModification(Stats.Type.HARDINESS, 10, StatModification.NumberType.POINT)
+    );
+
+    protected final int START_X = 35;
+    protected final int START_Y = 24;
 
     //Entity properties
     protected String lastAtemptedDirection;
-    protected String occupation;
+    protected Occupation occupation;
     protected Stats stats;
     protected Inventory inventory;
     protected EquippedItems equippedItems;
     protected ItemStatsAssociation avatarItemStats;
-    protected int[] location;
+    protected Point location;
 
-    public Entity() {
-        // Default to smasher
-        initEntity("smasher");
-    }
+    public Entity(Occupation occupation) {
 
-    public Entity(String occupation) {
-        initEntity(occupation);
-    }
+        location = new Point(START_X, START_Y);
 
-    private void initEntity(String occupation) {
-        this.location = new int[2];
-        this.location[0] = START_X;
-        this.location[1] = START_Y;
         this.lastAtemptedDirection = "N";
+
         this.occupation = occupation;
+
         this.inventory = new Inventory();
         this.equippedItems = new EquippedItems();
-        this.stats = new Stats(occupation);
+
+        this.stats = new Stats();
         this.avatarItemStats = new ItemStatsAssociation(this);
-        //Avatar parsing
+
+        initialStats.modifyStats(this, StatModification.Direction.FORWARD);
+        occupation.modifications.modifyStats(this, StatModification.Direction.FORWARD);
 
     }
 
     /*----------Get and Setters --------*/
-    public int[] getLocation() {
+    public Point getLocation() {
         return location;
     }
 
@@ -50,7 +102,7 @@ public class Entity {
         return this.lastAtemptedDirection;
     }
 
-    public String getOccupation() {
+    public Occupation getOccupation() {
         return this.occupation;
     }
 
@@ -70,22 +122,30 @@ public class Entity {
         return this.avatarItemStats;
     }
 
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
+    public void updateLocation(int y, int x) {
+        location.setLocation(x, y);
     }
 
-    public void updateLocation(int x, int y) {
-        this.location[0] = x;
-        this.location[1] = y;
-    }
-
-    // Each "type" (subclass) of entity will override this method to return its type.
+    // Each "type" (subclass) of avatar will override this method to return its type.
     public String getType() {
-        return "entity";
+        return "avatar";
     }
 
     public void updateOrientation(String orientation) {
         lastAtemptedDirection = orientation;
+    }
+
+    public void setOccupation(Occupation occupation) {
+
+        if (occupation != null) {
+
+            occupation.getStatModifications().modifyStats(this, StatModification.Direction.REVERSE);
+
+        }
+
+        this.occupation = occupation;
+        occupation.getStatModifications().modifyStats(this, StatModification.Direction.FORWARD);
+
     }
 
     public String getImageName() {
@@ -93,15 +153,19 @@ public class Entity {
     }
     /* ------End of Getters and Setters -----*/
 
-    //All this is going to do is update orientation/location of the entity
+    //All this is going to do is update orientation/location of the avatar
 
-    public void moveTo(int x, int y, String direction) {
-        location[0] = x;
-        location[1] = y;
+    public void moveTo(int y, int x, String direction) {
+        location.setLocation(x, y);
         updateOrientation(direction);
 
 
     }
 
+    public int getID() {
+
+        return 666; // cancer
+
+    }
 
 }

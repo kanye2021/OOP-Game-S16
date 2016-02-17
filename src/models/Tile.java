@@ -69,8 +69,8 @@ public class Tile {
         this.item = item;
     }
 
-    // For now if there is already an entity on the tile. adding an entity will replace that
-    // entity with this one. This may or may not be the desired affect so care should be taken
+    // For now if there is already an avatar on the tile. adding an avatar will replace that
+    // avatar with this one. This may or may not be the desired affect so care should be taken
     // in the logic that consumes this function (and it has been).
     public void addEntity(Entity entity) {
         this.entity = entity;

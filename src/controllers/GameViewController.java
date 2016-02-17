@@ -84,6 +84,9 @@ public class GameViewController extends ViewController {
             case KeyEvent.VK_NUMPAD4:
                 navMediator.requestMovement("W");
                 break;
+            case KeyEvent.VK_B:
+                //System.out.println(IOMediator.avatar.getLocation()[0] + " | " + IOMediator.avatar.getLocation()[1]);
+                break;
 
         }
     }

@@ -2,6 +2,7 @@ package views;
 
 import models.Entity;
 import models.Stats;
+import utilities.Utilities;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,7 @@ public class StatusViewport extends View {
     // Constants representing the viepwport dimensions.
     private final int MARGIN_HORIZONTAL = 20;
     private final int MARGIN_VERTICAL = View.B_HEIGHT * 4 / 5 + 8;
-    private String resourceBasePath = "./src/res/etc/";
+    private final String resourceBasePath = Utilities.getFileSystemDependentPath("./src/res/etc/");
     private Font font;
     private Font smallFont;
     private FontMetrics fm;
@@ -25,7 +26,6 @@ public class StatusViewport extends View {
         this.entity = entity;
         font = new Font("Courier New", 1, 24);
         smallFont = new Font("Courier New", 1, 18);
-        resourceBasePath = resourceBasePath.replaceAll("\\\\|/", "\\" + System.getProperty("file.separator"));
         borderRadius = 10;
     }
 
@@ -38,10 +38,10 @@ public class StatusViewport extends View {
         g.setColor(new Color(32, 32, 32));
         g.fillRect(0, View.B_HEIGHT * 4 / 5, View.B_WIDTH, View.B_HEIGHT * 1 / 5);
 
-        // Display the entity's level
+        // Display the avatar's level
         drawLevel(g, stats);
 
-        // Draw the entity's lives.
+        // Draw the avatar's lives.
         drawLives(g, stats);
 
         // Draw the health bar
@@ -94,7 +94,7 @@ public class StatusViewport extends View {
         int widthOfLivesText = (int) livesRect.getWidth();
 
         // Load the heart image
-        ImageIcon lifeIcon = new ImageIcon(resourceBasePath + "life-heart.png");
+        ImageIcon lifeIcon = Utilities.getImageIcon(resourceBasePath + "life-heart.png");
         Image lifeImg = lifeIcon.getImage();
 
         // Set the spacing between hearts

@@ -13,7 +13,8 @@ import views.View;
 import java.awt.event.KeyEvent;
 
 /**
- * Created by Austin on 2/2/16.
+ * Created by aseber
+ * on 2/2/16.
  */
 public class InventoryViewController extends ViewController {
 
@@ -22,8 +23,6 @@ public class InventoryViewController extends ViewController {
     public Map map;
     public Entity entity;
     public Inventory inventory;
-    //public ItemStatsAssociation avatarItemStats;
-
 
     public InventoryViewController(View view, Map map, Entity entity) {
         super(view);
@@ -51,16 +50,12 @@ public class InventoryViewController extends ViewController {
     public void handleKeyPress(int key) {
 
         if (key == KeyEvent.VK_LEFT) {
-            System.out.println("Up pressed FROM IVC");
             moveSelectedLeft();
         } else if (key == KeyEvent.VK_RIGHT) {
-            System.out.println("Down pressed FROM IVC");
             moveSelectedRight();
         } else if (key == KeyEvent.VK_UP) {
-            System.out.println("Up pressed FROM IVC");
             moveSelectedUp();
         } else if (key == KeyEvent.VK_DOWN) {
-            System.out.println("Down pressed FROM IVC");
             moveSelectedDown();
         } else if (key == KeyEvent.VK_ESCAPE || key == KeyEvent.VK_I) {
             ((GameView) IOMediator.Views.GAME.getView()).setShowInventory(false);
@@ -68,7 +63,6 @@ public class InventoryViewController extends ViewController {
             ((GameView) IOMediator.Views.GAME.getView()).setShowInventory(false);
             ((GameView) IOMediator.Views.GAME.getView()).setShowEquippedItems(true);
         } else if (key == KeyEvent.VK_ENTER) {
-            System.out.println("Enter pressed from IVC");
             if (inventory.isThereAnItemAt(getPosition())) {
                 useItem(inventory.getItemAt(getPosition()));
             }
@@ -86,9 +80,13 @@ public class InventoryViewController extends ViewController {
     }
 
     private void dropItem(TakeableItem item) {
+
         if (inventory.removeItem(item)) {
-            map.insertItemAtLocation(entity.getLocation()[0], entity.getLocation()[1], item);
+
+            map.insertItemAtLocation(entity.getLocation().y, entity.getLocation().x, item);
+
         }
+
     }
 
     private void moveSelectedLeft() {
@@ -148,10 +146,10 @@ public class InventoryViewController extends ViewController {
     }
 
     public int getPosition() {
+
         return position;
+
     }
 
 
 }
-
-
